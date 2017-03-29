@@ -1,10 +1,36 @@
-<template>
-  <router-view></router-view>
+<template lang="html">
+  <div>
+    <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
+
+    <router-view></router-view>
+
+    <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>
+  </div>
 </template>
 
 <script lang="buble">
+import TabsFooter from '@/components/tabs-footer'
+import NavBar from '@/components/nav-bar'
+
 export default {
-  name: 'pioupiou-app'
+  name: 'pioupiou-app',
+
+  components: { TabsFooter, NavBar },
+
+  data() {
+    return {
+      routes: this.$router.options.routes.filter(route => route.nav)
+    }
+  },
+
+  computed: {
+    mobileRoutes() {
+      return this.routes.filter(route => !route.desktop)
+    },
+    desktopRoutes() {
+      return this.routes.filter(route => !route.mobile)
+    }
+  }
 }
 </script>
 

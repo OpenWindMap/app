@@ -2,6 +2,10 @@ import Hello from '@/routes/hello/template'
 
 export default {
   path: '/',
-  name: 'hello',
+  name: 'Hello',
+
+  icon: 'home-outline',
+  nav: true,
+
   component: Hello
 }
