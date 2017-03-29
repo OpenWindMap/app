@@ -8,7 +8,7 @@ export default Vue.use(GetText, {
     en: 'English',
     fr: 'Français'
   },
-  defaultLanguage: 'fr',
+  defaultLanguage: 'en',
 
   silent: true,
 

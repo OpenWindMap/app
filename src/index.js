@@ -1,9 +1,9 @@
 import Vue from 'vue'
 
-import router from '@/router'
+import router from '@/routes'
 import locale from '@/locale'
 
-import App from '@/views/Application'
+import App from '@/routes/application/template'
 
 new Vue({
   el: 'pioupiou-app',
