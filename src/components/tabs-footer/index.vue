@@ -1,6 +1,6 @@
 <template lang="html">
   <footer>
-    <div class="tabs is-fullwidth is-mobile">
+    <div class="tabs is-fullwidth">
       <ul>
         <li v-for="route in routes">
           <router-link :to="route.path || { 'name': route.name }">
