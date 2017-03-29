@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div class="field">
     <p class="control">
       <input class="input" type="text" placeholder="Text input" v-model="message">
@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="buble">
 export default {
   data() {
     return {

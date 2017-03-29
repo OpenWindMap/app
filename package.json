@@ -11,12 +11,14 @@
   "dependencies": {
     "buble-loader": "^0.4.1",
     "bulma": "^0.4.0",
+    "typicons.font": "^2.0.8",
     "vue": "^2.2.6",
     "vue-gettext": "^2.0.10",
     "vue-router": "^2.3.0"
   },
   "devDependencies": {
     "node-sass": "^4.5.1",
+    "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
     "vbuild": "^6.24.9"
   }

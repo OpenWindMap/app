@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div>
     <h1 class="title is-1">
       <translate>Hello %{ name } !!!</translate>
@@ -7,12 +7,13 @@
       <translate :translate-n="count" translate-plural="%{ count } cars">%{ count } car</translate>
     </h1>
 
+    <a href="#">Demo link</a> <br><br>
 
     <demo-input></demo-input>
   </div>
 </template>
 
-<script>
+<script lang="buble">
 import DemoInput from '@/components/demo-input'
 
 export default {
