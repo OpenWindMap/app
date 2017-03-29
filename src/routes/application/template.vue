@@ -1,10 +1,23 @@
-<template>
-  <router-view></router-view>
+<template lang="html">
+  <div>
+    <router-view></router-view>
+    <tabs-footer :routes="routes"/>
+  </div>
 </template>
 
 <script lang="buble">
+import TabsFooter from '@/components/tabs-footer'
+
 export default {
-  name: 'pioupiou-app'
+  name: 'pioupiou-app',
+
+  components: { TabsFooter },
+
+  data() {
+    return {
+      routes: this.$router.options.routes.filter(route => route.nav)
+    }
+  }
 }
 </script>
 
