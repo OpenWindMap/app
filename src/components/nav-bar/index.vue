@@ -31,6 +31,6 @@ export default {
 
 <style lang="scss" scoped>
   nav {
-    margin-bottom: 1em;
+    z-index: 9999;
   }
 </style>

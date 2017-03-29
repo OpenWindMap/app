@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="app">
     <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
 
     <router-view></router-view>
@@ -40,5 +40,15 @@ export default {
 
   html, body {
     overflow: hidden;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100Vh;
+
+    > section {
+      flex: 1;
+    }
   }
 </style>
