@@ -1,0 +1,7 @@
+{
+  entry: 'src/index.js',
+  port: 3000,
+
+  development: {},
+  production: {}
+}
