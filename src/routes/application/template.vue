@@ -18,12 +18,13 @@ export default {
   components: { TabsFooter, NavBar },
 
   data() {
-    return {
-      routes: this.$router.options.routes.filter(route => route.nav)
-    }
+    return {}
   },
 
   computed: {
+    routes() {
+      return this.$router.options.routes.filter(route => route.nav)
+    },
     mobileRoutes() {
       return this.routes.filter(route => !route.desktop)
     },
