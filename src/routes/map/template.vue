@@ -64,12 +64,12 @@ export default {
   },
 
   mounted() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.$set(this, 'zoom', 15)
-        this.$set(this, 'center', [position.coords.latitude, position.coords.longitude])
-      })
-    }
+    // if ('geolocation' in navigator) {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //     this.$set(this, 'zoom', 15)
+    //     this.$set(this, 'center', [position.coords.latitude, position.coords.longitude])
+    //   })
+    // }
 
     this.$http.get('live/all').then(({ body: response }) => {
       this.$set(this, 'pioupious', response.data)
