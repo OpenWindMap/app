@@ -6,7 +6,7 @@
         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
       />
       <div class="leaflet-empty-marker">
-        <template v-for="pioupiou in visiblePioupious">
+        <template v-for="pioupiou in pioupious">
           <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"></map-marker>
         </template>
       </div>
@@ -32,9 +32,7 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 5,
       center: [48.866667, 2.333333],
-      bounds: undefined,
-      timeout: 45 * 60000, // = min
-      pioupious: []
+      bounds: undefined
     }
   },
 
@@ -45,14 +43,8 @@ export default {
   },
 
   computed: {
-    visiblePioupious() {
-      const now = new Date().getTime()
-      return this.pioupious.filter(pioupiou =>
-        pioupiou.status.state === 'on' &&
-        pioupiou.location.date !== null &&
-        pioupiou.measurements.date !== null &&
-        Math.round(now - new Date(pioupiou.measurements.date).getTime()) <= this.timeout
-      )
+    pioupious() {
+      return this.$store.getters.visiblePioupious
     }
   },
 
@@ -64,9 +56,7 @@ export default {
     //   })
     // }
 
-    this.$http.get('live/all').then(({ body: response }) => {
-      this.$set(this, 'pioupious', response.data)
-    })
+    this.$store.dispatch('fetchAllPioupious')
   }
 }
 </script>
