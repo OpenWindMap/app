@@ -27,11 +27,10 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 5,
       center: [48.866667, 2.333333],
-      icon: L.icon({
-        iconUrl: 'static/pioupiou-logo-mini.svg',
-        iconRetinaUrl: 'static/pioupiou-logo-mini.svg',
-        iconSize: [80, 80],
-        iconAnchor: [40, 40]
+      icon: L.divIcon({
+        iconSize: [26, 48],
+        popupAnchor: [1, -10],
+        iconAnchor: [13, 12]
       }),
       bounds: undefined,
       pioupious: []
@@ -41,14 +40,13 @@ export default {
   methods: {
     mapmove(evt) {
       this.$set(this, 'bounds', evt.target.getBounds())
-      console.log(this.bounds)
     }
   },
 
   computed: {
     visiblePioupious() {
       return this.pioupious.filter(pioupiou =>
-        pioupiou.location.latitude + pioupiou.location.longitude !== 0 &&
+        pioupiou.location.date !== null /* &&
         (
           !this.bounds ||
           (
@@ -58,7 +56,7 @@ export default {
             pioupiou.location.latitude <= this.bounds.getNorthEast().lat &&
             pioupiou.location.longitude <= this.bounds.getNorthEast().lng
           )
-        )
+        ) */
       )
     }
   },
@@ -81,7 +79,9 @@ export default {
 <style lang="scss">
   @import "~leaflet/dist/leaflet.css";
 
-  .fake-icon-loader {
-    background-image: url("~static/img/pioupiou-logo-mini.svg");
+  .leaflet-div-icon {
+    background: url("~static/img/map-wind-icon.png");
+    background-position: 0px 0px;
+    border: none;
   }
 </style>
