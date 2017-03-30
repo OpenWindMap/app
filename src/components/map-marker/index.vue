@@ -1,7 +1,7 @@
 <template lang="html">
   <wind-marker
     :lat-lng="{lat: location.latitude, lng: location.longitude}"
-    :heading="measurements.wind_heading" :speed="measurements.wind_speed_max"
+    :heading="measurements.wind_heading" :speed="measurements.wind_speed_max || measurements.wind_speed_avg"
     :visible="visible" ref="marker"></wind-marker>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     measurements: {
       type: Object,
       required: true,
-      validator: obj => 'wind_heading' in obj && 'wind_speed_max' in obj
+      validator: obj => 'wind_heading' in obj && 'wind_speed_max' in obj && 'wind_speed_min' in obj && 'wind_speed_avg' in obj
     },
 
     visible: {

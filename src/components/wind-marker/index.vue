@@ -99,6 +99,14 @@ export default {
         }
       }
     }
+  },
+  watch: {
+    heading(value) {
+      this.mapObject.setHeading(value)
+    },
+    speed(value) {
+      this.mapObject.setSpeed(value)
+    }
   }
 }
 </script>

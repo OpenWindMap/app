@@ -48,7 +48,9 @@ export default {
     visiblePioupious() {
       const now = new Date().getTime()
       return this.pioupious.filter(pioupiou =>
+        pioupiou.status.state === 'on' &&
         pioupiou.location.date !== null &&
+        pioupiou.measurements.date !== null &&
         Math.round(now - new Date(pioupiou.measurements.date).getTime()) <= this.timeout
       )
     }
