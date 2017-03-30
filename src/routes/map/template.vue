@@ -1,12 +1,11 @@
 <template lang="html">
   <section>
-    <keep-alive>
-      <v-map :zoom="zoom" :center="center">
-        <v-tilelayer
-          :url="url"
-          attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"></v-tilelayer>
-      </v-map>
-    </keep-alive>
+    <v-map :zoom="zoom" :center="center">
+      <v-tilelayer
+        :url="url"
+        attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+      />
+    </v-map>
   </section>
 </template>
 
@@ -20,14 +19,31 @@ export default {
 
   data() {
     return {
-      url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      zoom: 13,
-      center: [47.413220, -1.219482]
+      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      zoom: 5,
+      center: [48.866667, 2.333333],
+      pioupious: []
     }
+  },
+
+  mounted() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.$set(this, 'zoom', 15)
+        this.$set(this, 'center', [position.coords.latitude, position.coords.longitude])
+      })
+    }
+
+    this.$http.get('live/all').then(({ body: response }) => {
+      this.$set(this, 'pioupious', response.data)
+
+      console.log(this.pioupious)
+    })
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "~leaflet/dist/leaflet.css";
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import router from '@/routes'
 import locale from '@/locale'
+import resource from '@/resource'
 
 import App from '@/routes/application/template'
 
@@ -12,5 +13,6 @@ new Vue({
   render: h => h('app'),
 
   router,
-  locale
+  locale,
+  resource
 })
