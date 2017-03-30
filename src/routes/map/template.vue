@@ -5,21 +5,26 @@
         :url="url"
         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
       />
-      <template v-for="pioupiou in visiblePioupious">
-        <v-marker :lat-lng="{lat: pioupiou.location.latitude, lng: pioupiou.location.longitude}" :icon="icon"></v-marker>
-      </template>
+      <div class="leaflet-empty-marker">
+        <template v-for="pioupiou in visiblePioupious">
+          <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"></map-marker>
+        </template>
+      </div>
     </v-map>
   </section>
 </template>
 
 <script lang="buble">
-import { Map as vMap, TileLayer as vTilelayer, Marker as vMarker } from 'vue2-leaflet'
-import L from 'leaflet'
+import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
+
+import vMarker from 'vue2-leaflet/src/components/Marker.vue'
+
+import mapMarker from '@/components/map-marker'
 
 export default {
   name: 'map-view',
 
-  components: { vMap, vTilelayer, vMarker },
+  components: { vMap, vTilelayer, mapMarker, vMarker },
 
   data() {
     return {
@@ -27,12 +32,8 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 5,
       center: [48.866667, 2.333333],
-      icon: L.divIcon({
-        iconSize: [26, 48],
-        popupAnchor: [1, -10],
-        iconAnchor: [13, 12]
-      }),
       bounds: undefined,
+      timeout: 45 * 60000, // = min
       pioupious: []
     }
   },
@@ -45,18 +46,10 @@ export default {
 
   computed: {
     visiblePioupious() {
+      const now = new Date().getTime()
       return this.pioupious.filter(pioupiou =>
-        pioupiou.location.date !== null /* &&
-        (
-          !this.bounds ||
-          (
-            this.bounds &&
-            pioupiou.location.latitude >= this.bounds.getSouthWest().lat &&
-            pioupiou.location.longitude >= this.bounds.getSouthWest().lng &&
-            pioupiou.location.latitude <= this.bounds.getNorthEast().lat &&
-            pioupiou.location.longitude <= this.bounds.getNorthEast().lng
-          )
-        ) */
+        pioupiou.location.date !== null &&
+        Math.round(now - new Date(pioupiou.measurements.date).getTime()) <= this.timeout
       )
     }
   },
@@ -78,10 +71,4 @@ export default {
 
 <style lang="scss">
   @import "~leaflet/dist/leaflet.css";
-
-  .leaflet-div-icon {
-    background: url("~static/img/map-wind-icon.png");
-    background-position: 0px 0px;
-    border: none;
-  }
 </style>
