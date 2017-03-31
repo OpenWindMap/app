@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <v-map :zoom="zoom" :center="center" @l-move="mapmove">
+    <v-map :zoom="zoom" :center="center" :minZoom="minZoom" @l-move="mapmove">
       <v-tilelayer
         :url="url"
         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
@@ -31,6 +31,7 @@ export default {
       // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 5,
+      minZoom: 3,
       center: [48.866667, 2.333333],
       bounds: undefined
     }
