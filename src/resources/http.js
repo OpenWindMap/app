@@ -3,10 +3,8 @@ import Resource from 'vue-resource'
 
 Vue.use(Resource, {})
 
-Vue.url.options.root = 'http://api.pioupiou.fr/v1'
+Vue.url.options.root = '//api.pioupiou.fr/v1'
 
 export default {
-  http: {
-    root: Vue.url.options.root
-  }
+  root: Vue.url.options.root
 }

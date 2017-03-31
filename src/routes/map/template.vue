@@ -58,6 +58,7 @@ export default {
     // }
 
     this.$store.dispatch('pioupious/fetchAll')
+    this.$store.dispatch('pioupious/keepAllUpdated')
   }
 }
 </script>

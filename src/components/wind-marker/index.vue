@@ -7,8 +7,8 @@
 <script>
 // import L from 'leaflet'
 
-import eventsBinder from 'vue2-leaflet/src/utils/eventsBinder.js'
-import propsBinder from 'vue2-leaflet/src/utils/propsBinder.js'
+import eventsBinder from 'vue2-leaflet/src/utils/eventsBinder'
+import propsBinder from 'vue2-leaflet/src/utils/propsBinder'
 
 import { windMarker } from './WindMarker'
 

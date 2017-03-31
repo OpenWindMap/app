@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import router from '@/routes'
 import locale from '@/locale'
-import resource from '@/resource'
+import http from '@/resources/http'
 import store from '@/store'
 
 import App from '@/routes/application/template'
@@ -15,6 +15,6 @@ new Vue({
 
   router,
   locale,
-  resource,
+  http,
   store
 })
