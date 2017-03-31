@@ -7,7 +7,9 @@
       />
       <div class="leaflet-empty-marker">
         <template v-for="pioupiou in pioupious">
-          <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"></map-marker>
+          <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"
+            :title="`pioupiou #${pioupiou.id}`"
+          ></map-marker>
         </template>
       </div>
     </v-map>

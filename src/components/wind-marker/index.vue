@@ -53,6 +53,10 @@ const props = {
   speed: {
     type: Number,
     required: true
+  },
+  title: {
+    type: String,
+    default: ''
   }
 }
 
@@ -63,6 +67,7 @@ export default {
     options.draggable = this.draggable
     options.speed = this.speed
     options.heading = this.heading
+    options.title = this.title
     this.mapObject = windMarker(this.latLng, options)
     eventsBinder(this, this.mapObject, events)
     propsBinder(this, this.mapObject, props)
@@ -106,6 +111,9 @@ export default {
     },
     speed(value) {
       this.mapObject.setSpeed(value)
+    },
+    title(value) {
+      this.mapObject.setTitle(value)
     }
   }
 }
