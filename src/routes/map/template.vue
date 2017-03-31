@@ -45,7 +45,7 @@ export default {
 
   computed: {
     pioupious() {
-      return this.$store.getters.visiblePioupious
+      return this.$store.getters['pioupious/visible']
     }
   },
 
@@ -57,7 +57,7 @@ export default {
     //   })
     // }
 
-    this.$store.dispatch('fetchAllPioupious')
+    this.$store.dispatch('pioupious/fetchAll')
   }
 }
 </script>
