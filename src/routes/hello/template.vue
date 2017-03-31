@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <section>
     <h1 class="title is-1">
       <translate>Hello %{ name } !!!</translate>
     </h1>
@@ -10,7 +10,7 @@
     <a href="#">Demo link</a> <br><br>
 
     <demo-input></demo-input>
-  </div>
+  </section>
 </template>
 
 <script lang="buble">

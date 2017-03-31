@@ -32,10 +32,6 @@ export default {
   @import "~bulma/sass/utilities/mixins";
 
   footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
     @include touch {
       height: 8vw;
       min-height: 8vh;

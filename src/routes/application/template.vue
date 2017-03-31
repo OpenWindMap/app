@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="app">
     <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
 
     <router-view></router-view>
@@ -18,12 +18,13 @@ export default {
   components: { TabsFooter, NavBar },
 
   data() {
-    return {
-      routes: this.$router.options.routes.filter(route => route.nav)
-    }
+    return {}
   },
 
   computed: {
+    routes() {
+      return this.$router.options.routes.filter(route => route.nav)
+    },
     mobileRoutes() {
       return this.routes.filter(route => !route.desktop)
     },
@@ -40,5 +41,15 @@ export default {
 
   html, body {
     overflow: hidden;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100Vh;
+
+    > section {
+      flex: 1;
+    }
   }
 </style>
