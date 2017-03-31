@@ -8,7 +8,7 @@
       <div class="leaflet-empty-marker">
         <template v-for="pioupiou in pioupious">
           <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"
-            :title="`pioupiou #${pioupiou.id}`"
+            :title="`pioupiou #${pioupiou.id}`" @l-click="showPioupiou(pioupiou)"
           ></map-marker>
         </template>
       </div>
@@ -42,6 +42,9 @@ export default {
   methods: {
     mapmove(evt) {
       this.$set(this, 'bounds', evt.target.getBounds())
+    },
+    showPioupiou(pioupiou) {
+      console.log('open window for pioupiou #', pioupiou.id)
     }
   },
 

@@ -2,7 +2,7 @@
   <wind-marker :title="title"
     :lat-lng="{lat: location.latitude, lng: location.longitude}"
     :heading="measurements.wind_heading" :speed="measurements.wind_speed_max || measurements.wind_speed_avg"
-    :visible="visible" ref="marker"></wind-marker>
+    :visible="visible" @l-click="click" ref="marker"></wind-marker>
 </template>
 
 <script lang="buble">
@@ -43,6 +43,12 @@ export default {
   mounted() {
     if (this.$parent._isMounted) {
       this.$refs.marker.deferredMountedTo(this.$parent.mapObject)
+    }
+  },
+
+  methods: {
+    click() {
+      this.$emit('l-click', this)
     }
   }
 }
