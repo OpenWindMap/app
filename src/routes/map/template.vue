@@ -44,7 +44,7 @@ export default {
       this.$set(this, 'bounds', evt.target.getBounds())
     },
     showPioupiou(pioupiou) {
-      console.log('open window for pioupiou #', pioupiou.id)
+      this.$router.push({ name: 'Details', params: { id: pioupiou.id } })
     }
   },
 

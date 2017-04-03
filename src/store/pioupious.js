@@ -19,6 +19,9 @@ export default {
         pioupiou.measurements.wind_heading !== null &&
         Math.round(now - new Date(pioupiou.measurements.date).getTime()) <= state.timeout
       )
+    },
+    get(state) {
+      return id => id in state.pioupious ? state.pioupious[id] : {}
     }
   },
 

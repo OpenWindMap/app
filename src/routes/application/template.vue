@@ -52,4 +52,8 @@ export default {
       flex: 1;
     }
   }
+
+  .is-fullwidth {
+    width: 100%;
+  }
 </style>
