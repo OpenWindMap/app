@@ -9,9 +9,7 @@
 
 // import L from 'leaflet'
 
-import eventsBinder from 'vue2-leaflet/src/utils/eventsBinder'
-import propsBinder from 'vue2-leaflet/src/utils/propsBinder'
-
+import { eventsBinder, propsBinder } from './utils'
 import { windMarker } from './WindMarker'
 
 const events = [
