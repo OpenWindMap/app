@@ -49,6 +49,9 @@ export default {
   methods: {
     click() {
       this.$emit('l-click', this)
+    },
+    deferredMountedTo(parent) {
+      this.$refs.marker.deferredMountedTo(parent)
     }
   }
 }

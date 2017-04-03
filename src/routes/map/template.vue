@@ -5,13 +5,10 @@
         :url="url"
         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
       />
-      <div class="leaflet-empty-marker">
-        <template v-for="pioupiou in pioupious">
-          <map-marker :location="pioupiou.location" :measurements="pioupiou.measurements"
-            :title="`pioupiou #${pioupiou.id}`" @l-click="showPioupiou(pioupiou)"
-          ></map-marker>
-        </template>
-      </div>
+      <map-marker v-for="pioupiou in pioupious" :key="pioupiou.id"
+        :location="pioupiou.location" :measurements="pioupiou.measurements"
+        :title="`pioupiou #${pioupiou.id}`" @l-click="showPioupiou(pioupiou)"
+      ></map-marker>
     </v-map>
   </section>
 </template>
@@ -19,14 +16,12 @@
 <script lang="buble">
 import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
 
-import vMarker from 'vue2-leaflet/src/components/Marker.vue'
-
 import mapMarker from '@/components/map-marker'
 
 export default {
   name: 'map-view',
 
-  components: { vMap, vTilelayer, mapMarker, vMarker },
+  components: { vMap, vTilelayer, mapMarker },
 
   data() {
     return {

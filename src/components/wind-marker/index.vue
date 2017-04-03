@@ -5,6 +5,8 @@
 </template>
 
 <script>
+// This component is a copy of the vue2-leaflet's Marker component
+
 // import L from 'leaflet'
 
 import eventsBinder from 'vue2-leaflet/src/utils/eventsBinder'
