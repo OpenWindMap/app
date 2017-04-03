@@ -6,7 +6,7 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{pioupiou.meta.name || `Pioupiou sans nom`}}</strong> <br>
+                <strong>{{pioupiou.meta && pioupiou.meta.name || `Pioupiou sans nom`}}</strong> <br>
                 <small>#{{pioupiou.id}}</small>
               </div>
               <div class="is-pulled-right title is-6">
@@ -16,39 +16,21 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <div class="is-fullwidth has-text-centered title is-3">
-                <i class="typcn typcn-location-arrow-outline compass-north-west" style="font-size: 25vw;"></i>
-                <br>
-                <small>35 Km/h</small>
-              </div>
-              <br>
-              <hr>
-              <br>
-
-              <figure>
-                <img src="" alt="">
-                <div class="direction">
-                  <i class="typcn typcn-location-arrow compass-west"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-north-west"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-north"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-north"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-west"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-north-west"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-south"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-south"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-south-west"></i>
-                  &nbsp;
-                  <i class="typcn typcn-location-arrow compass-west"></i>
+              <div class="columns">
+                <div class="column">
+                  <wind-compass v-if="pioupiouSet"
+                    :heading="pioupiou.measurements.wind_heading"
+                    :speed="pioupiou.measurements.wind_speed_max || pioupiou.measurements.wind_speed_avg"></wind-compass>
                 </div>
-              </figure>
+
+                <div class="is-hidden-desktop">
+                  <br> <hr> <br>
+                </div>
+
+                <div class="column">
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,10 +40,14 @@
 </template>
 
 <script lang="buble">
+import windCompass from '@/components/wind-compass'
+
 export default {
   name: 'details-view',
 
   props: ['id'],
+
+  components: { windCompass },
 
   data() {
     return {}
@@ -70,12 +56,15 @@ export default {
   computed: {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
+    },
+    pioupiouSet() {
+      return this.pioupiou && this.pioupiou.id !== undefined
     }
   },
 
   mounted() {
-    console.log(this.id)
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
+    this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
   }
 }
 </script>
@@ -87,15 +76,6 @@ export default {
 
   .card-content {
     padding: 0.4rem;
-  }
-
-  .direction {
-    margin-top: 7px;
-  }
-
-  figure img {
-    height: 50px;
-    width: 100%;
   }
 
   .column {
@@ -119,28 +99,5 @@ export default {
 
   .subtitle.is-5 {
     font-size: 1.23rem;
-  }
-
-  .typcn {
-      font-size: 21px;
-      text-align: center;
-      vertical-align: top;
-  }
-
-  .card-header .typcn {
-    font-size: 1.8rem;
-    display: inline-block;
-  }
-
-  figure .typcn {
-    font-size: inherit;
-    display: inline-block;
-  }
-
-  figure .direction {
-    margin-top: -7px;
-    margin-bottom: 15px;
-    font-size: 5.5vw;
-    text-align: center;
   }
 </style>
