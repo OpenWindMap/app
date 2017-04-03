@@ -51,7 +51,7 @@ export default {
       })
     },
     keepAllUpdated(context) {
-      // TODO : Move it into resource
+      // NEEDTODO : Move it into resource
       const socket = connect('//api.pioupiou.fr/v1/push')
 
       socket.on('connect', () => {
@@ -68,7 +68,7 @@ export default {
       })
     },
     keepOneUpdated(context, { stationId }) {
-      // TODO : Move it into resource
+      // NEEDTODO : Move it into resource
       const socket = connect('//api.pioupiou.fr/v1/push')
 
       socket.on('connect', () => {
