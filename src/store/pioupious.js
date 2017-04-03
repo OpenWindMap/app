@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import { connect } from 'socket.io-client'
 
+Object.values = object => Object.keys(object).map(key => object[key])
+
 export default {
   namespaced: true,
 

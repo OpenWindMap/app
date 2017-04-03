@@ -46,9 +46,10 @@ export default {
   #app {
     display: flex;
     flex-direction: column;
-    height: 100Vh;
+    height: 100vh;
 
     > section {
+      position: relative;
       flex: 1;
     }
   }

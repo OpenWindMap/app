@@ -17,7 +17,7 @@ export const WindMarker = L.Marker.extend({
   _setPos(pos) {
     L.Marker.prototype._setPos.call(this, pos)
 
-    this._icon.style.background = 'url("/img/map-wind-icon.png")'
+    this._icon.style.background = 'url("./img/map-wind-icon.png")'
     this._icon.style.border = 'none'
 
     let colorIndex = Math.floor(this.options.speed / 5)

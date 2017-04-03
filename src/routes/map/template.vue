@@ -29,7 +29,7 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 5,
       minZoom: 3,
-      center: [48.866667, 2.333333],
+      center: [46.76306, 2.42472],
       bounds: undefined
     }
   },
@@ -58,11 +58,23 @@ export default {
     // }
 
     this.$store.dispatch('pioupious/fetchAll')
-    this.$store.dispatch('pioupious/keepAllUpdated')
+    // this.$store.dispatch('pioupious/keepAllUpdated')
   }
 }
 </script>
 
 <style lang="scss">
   @import "~leaflet/dist/leaflet.css";
+
+  #map {
+    flex: 1 1 auto;
+    min-height: 50vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+
+  .leaflet-top .leaflet-control {
+    margin-top: 20px;
+  }
 </style>
