@@ -34,28 +34,13 @@
                       :title="`pioupiou #${pioupiou.id}`"
                     ></map-marker>
                   </v-map>
-                  <div class="columns is-mobile has-text-centered" v-if="pioupiouSet">
-                    <div class="column is-2-mobile">
-                      <strong>NE</strong>
-                      <br>
-                      {{pioupiou.measurements.wind_heading}} °
-                    </div>
-                    <div class="column is-offset-4 is-2-mobile">
-                      <strong>{{pioupiou.measurements.wind_speed_min}}</strong>
-                      <br>
-                      <small>MIN</small>
-                    </div>
-                    <div class="column is-2-mobile has-highlight">
-                      <strong>{{pioupiou.measurements.wind_speed_avg}}</strong>
-                      <br>
-                      <small>AVG</small>
-                    </div>
-                    <div class="column is-2-mobile">
-                      <strong>{{pioupiou.measurements.wind_speed_max}}</strong>
-                      <br>
-                      <small>MAX</small>
-                    </div>
-                  </div>
+
+                  <wind-overview
+                    :heading="pioupiou.measurements.wind_heading"
+                    :speedMin="pioupiou.measurements.wind_speed_min"
+                    :speedAvg="pioupiou.measurements.wind_speed_avg"
+                    :speedMax="pioupiou.measurements.wind_speed_max">
+                  </wind-overview>
                 </div>
 
                 <div class="is-hidden-desktop">
@@ -113,7 +98,7 @@
 </template>
 
 <script lang="buble">
-import windCompass from '@/components/wind-compass'
+import windOverview from '@/components/wind-overview'
 
 import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
 
@@ -124,7 +109,7 @@ export default {
 
   props: ['id'],
 
-  components: { windCompass, vMap, vTilelayer, mapMarker },
+  components: { windOverview, vMap, vTilelayer, mapMarker },
 
   data() {
     return {
@@ -217,10 +202,5 @@ export default {
     .message-body {
       border-radius: initial;
     }
-  }
-
-  .has-highlight strong {
-    font-size: 1.2rem;
-    line-height: 1.1;
   }
 </style>
