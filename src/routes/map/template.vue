@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import "~leaflet/dist/leaflet.css";
 
   #map {
@@ -72,9 +72,5 @@ export default {
     position: absolute;
     top: 0;
     bottom: 0;
-  }
-
-  .leaflet-top .leaflet-control {
-    margin-top: 20px;
   }
 </style>

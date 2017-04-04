@@ -51,10 +51,15 @@ export default {
     > section {
       position: relative;
       flex: 1;
+      overflow: auto;
     }
   }
 
   .is-fullwidth {
     width: 100%;
+  }
+
+  .leaflet-top .leaflet-control {
+    margin-top: 20px;
   }
 </style>
