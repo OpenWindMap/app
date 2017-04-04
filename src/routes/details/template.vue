@@ -72,9 +72,8 @@
                 </div>
 
                 <div class="column">
-                  <article class="message">
-                    <div class="message-body" v-if="pioupiouSet">
-                      {{ pioupiou.meta.description }}
+                  <article class="message" v-if="pioupiou.meta">
+                    <div class="message-body" v-html="$options.filters.linkify(pioupiou.meta.description || '')">
                     </div>
                   </article>
                 </div>
