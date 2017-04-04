@@ -7,7 +7,12 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
                 <strong>{{pioupiou.meta && pioupiou.meta.name || `Pioupiou sans nom`}}</strong> <br>
-                <small>#{{pioupiou.id}}</small>
+                <small>#{{pioupiou.id}}</small> &mdash;
+                <small v-if="pioupiouSet">
+                  {{Math.abs(pioupiou.location.latitude)}} {{pioupiou.location.latitude > 0 ? 'N' : 'S'}}
+                  ,
+                  {{Math.abs(pioupiou.location.longitude)}} {{pioupiou.location.longitude > 0 ? 'E' : 'W'}}
+                </small>
               </div>
               <div class="is-pulled-right title is-6">
                 <small>11:21</small>
@@ -18,18 +23,86 @@
             <div class="content">
               <div class="columns">
                 <div class="column">
-                  <wind-compass v-if="pioupiouSet"
-                    :heading="pioupiou.measurements.wind_heading"
-                    :speed="pioupiou.measurements.wind_speed_max || pioupiou.measurements.wind_speed_avg"></wind-compass>
+                  <v-map v-if="pioupiouSet"
+                    :zoom="zoom" :center="[pioupiou.location.latitude, pioupiou.location.longitude]" :minZoom="minZoom">
+                    <v-tilelayer
+                      :url="url"
+                      attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+                    />
+                    <map-marker :key="pioupiou.id"
+                      :location="pioupiou.location" :measurements="pioupiou.measurements"
+                      :title="`pioupiou #${pioupiou.id}`"
+                    ></map-marker>
+                  </v-map>
+                  <div class="columns is-mobile has-text-centered" v-if="pioupiouSet">
+                    <div class="column is-2-mobile">
+                      <strong>NE</strong>
+                      <br>
+                      {{pioupiou.measurements.wind_heading}} °
+                    </div>
+                    <div class="column is-offset-4 is-2-mobile">
+                      <strong>{{pioupiou.measurements.wind_speed_min}}</strong>
+                      <br>
+                      <small>MIN</small>
+                    </div>
+                    <div class="column is-2-mobile has-highlight">
+                      <strong>{{pioupiou.measurements.wind_speed_avg}}</strong>
+                      <br>
+                      <small>AVG</small>
+                    </div>
+                    <div class="column is-2-mobile">
+                      <strong>{{pioupiou.measurements.wind_speed_max}}</strong>
+                      <br>
+                      <small>MAX</small>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="is-hidden-desktop">
-                  <br> <hr> <br>
+                  <hr>
                 </div>
 
                 <div class="column">
-
+                  <figure>
+                    <img src="~static/img/chart.png">
+                    <div class="direction has-text-centered">
+                      <i class="typcn typcn-location-arrow compass-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-north-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-north"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-north"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-north-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-west"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south"></i>
+                      &nbsp;
+                      <i class="typcn typcn-location-arrow compass-south-west"></i>
+                    </div>
+                  </figure>
                 </div>
+
+                <div class="column">
+                  <article class="message">
+                    <div class="message-body" v-if="pioupiouSet">
+                      {{ pioupiou.meta.description }}
+                    </div>
+                  </article>
+                </div>
+
               </div>
             </div>
           </div>
@@ -42,15 +115,24 @@
 <script lang="buble">
 import windCompass from '@/components/wind-compass'
 
+import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
+
+import mapMarker from '@/components/map-marker'
+
 export default {
   name: 'details-view',
 
   props: ['id'],
 
-  components: { windCompass },
+  components: { windCompass, vMap, vTilelayer, mapMarker },
 
   data() {
-    return {}
+    return {
+      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      zoom: 14,
+      minZoom: 3
+    }
   },
 
   computed: {
@@ -71,11 +153,27 @@ export default {
 
 <style lang="scss" scoped>
   .card-header {
-    padding: 6px 12px;
+    padding: 12px 12px 0px;
+
+    .title {
+      margin-bottom: 0;
+    }
   }
 
   .card-content {
-    padding: 0.4rem;
+    padding: 0;
+
+    .content > .columns > .column:last-child {
+      padding: 0;
+    }
+  }
+
+  .columns.is-mobile {
+    padding: 0 0.75rem;
+
+    .column {
+      padding: 0.25rem;
+    }
   }
 
   .column {
@@ -99,5 +197,30 @@ export default {
 
   .subtitle.is-5 {
     font-size: 1.23rem;
+  }
+
+  #map {
+    height: 180px;
+  }
+
+  hr {
+    margin: 0.25rem 0;
+  }
+
+  figure {
+    background-color: #fdfdfd;
+  }
+
+  article.message {
+    background-color: #fcfcfc;
+
+    .message-body {
+      border-radius: initial;
+    }
+  }
+
+  .has-highlight strong {
+    font-size: 1.2rem;
+    line-height: 1.1;
   }
 </style>
