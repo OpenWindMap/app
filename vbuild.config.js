@@ -6,12 +6,14 @@ module.exports = (options) => ({
 
   cleanDist: true,
 
-  webpack(cfg) {
-    cfg.output.publicPath = './'
-    return cfg
+  autoprefixer: {
+    browsers: ['ios 7', 'chrome 30', 'ie 8', 'firefox 25', 'edge 12', 'safari 7'] // ~ august 2013
   },
 
-  autoprefixer: {
-    browsers: ['last 4 versions']
-  }
+   production: {
+     webpack(cfg) {
+       cfg.output.publicPath = './'
+       return cfg
+     }
+   }
 })
