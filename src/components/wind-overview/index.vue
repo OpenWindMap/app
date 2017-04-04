@@ -51,7 +51,8 @@ export default {
 
   computed: {
     headingFromCompass() {
-      return '--'
+      const compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N']
+      return compass[Math.round(this.heading / (360 / 16))]
     }
   }
 }
