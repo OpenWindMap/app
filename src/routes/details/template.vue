@@ -23,19 +23,10 @@
             <div class="content">
               <div class="columns">
                 <div class="column">
-                  <v-map v-if="pioupiouSet"
-                    :zoom="zoom" :center="[pioupiou.location.latitude, pioupiou.location.longitude]" :minZoom="minZoom">
-                    <v-tilelayer
-                      :url="url"
-                      attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-                    />
-                    <map-marker :key="pioupiou.id"
-                      :location="pioupiou.location" :measurements="pioupiou.measurements"
-                      :title="`pioupiou #${pioupiou.id}`"
-                    ></map-marker>
-                  </v-map>
+                  <map-content v-if="pioupiou.measurements && pioupiou.location"
+                    :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
 
-                  <wind-overview
+                  <wind-overview v-if="pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
                     :speedMin="pioupiou.measurements.wind_speed_min"
                     :speedAvg="pioupiou.measurements.wind_speed_avg"
@@ -98,26 +89,18 @@
 </template>
 
 <script lang="buble">
+import mapContent from '@/components/map-content'
 import windOverview from '@/components/wind-overview'
-
-import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
-
-import mapMarker from '@/components/map-marker'
 
 export default {
   name: 'details-view',
 
   props: ['id'],
 
-  components: { windOverview, vMap, vTilelayer, mapMarker },
+  components: { windOverview, mapContent },
 
   data() {
-    return {
-      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      zoom: 14,
-      minZoom: 3
-    }
+    return {}
   },
 
   computed: {

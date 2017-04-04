@@ -58,8 +58,4 @@ export default {
   .is-fullwidth {
     width: 100%;
   }
-
-  .leaflet-top .leaflet-control {
-    margin-top: 20px;
-  }
 </style>
