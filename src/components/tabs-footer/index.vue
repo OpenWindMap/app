@@ -4,7 +4,7 @@
       <ul>
         <li v-for="route in routes">
           <router-link :to="route.path || { 'name': route.name }">
-            <span class="icon"><i :class="`ion ion-${ route.icon || 'directions' }`"></i></span>
+            <span class="icon"><i :class="`fa fa-${ route.icon || 'map-signs' }`"></i></span>
             <span>{{ route.label || route.name || route.path }}</span>
           </router-link>
         </li>
@@ -61,8 +61,6 @@ export default {
     }
 
     .icon {
-      font-size: 24px;
-
       &:first-child {
         margin-right: 0;
         margin-bottom: 0.3rem;
