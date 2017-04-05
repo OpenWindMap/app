@@ -4,6 +4,7 @@ import router from '@/routes'
 import locale from '@/locale'
 import http from '@/resources/http'
 import store from '@/store'
+import filters from '@/filters'
 
 import App from '@/routes/application/template'
 
@@ -16,5 +17,6 @@ new Vue({
   router,
   locale,
   http,
-  store
+  store,
+  filters
 })

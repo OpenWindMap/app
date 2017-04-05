@@ -46,10 +46,16 @@ export default {
   #app {
     display: flex;
     flex-direction: column;
-    height: 100Vh;
+    height: 100vh;
 
     > section {
+      position: relative;
       flex: 1;
+      overflow: auto;
     }
+  }
+
+  .is-fullwidth {
+    width: 100%;
   }
 </style>

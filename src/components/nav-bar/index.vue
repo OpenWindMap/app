@@ -1,9 +1,9 @@
 <template lang="html">
   <nav class="nav has-shadow">
     <div class="nav-left">
-      <a class="nav-item">
+      <router-link to="/" class="nav-item">
         <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
-      </a>
+      </router-link>
     </div>
 
     <div class="nav-right nav-menu">

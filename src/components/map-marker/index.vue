@@ -10,6 +10,7 @@ import windMarker from '@/components/wind-marker'
 
 export default {
   name: 'map-marker',
+  abstract: true,
 
   components: { windMarker },
 
@@ -49,6 +50,9 @@ export default {
   methods: {
     click() {
       this.$emit('l-click', this)
+    },
+    deferredMountedTo(parent) {
+      this.$refs.marker.deferredMountedTo(parent)
     }
   }
 }

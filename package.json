@@ -11,6 +11,7 @@
   "dependencies": {
     "buble-loader": "^0.4.1",
     "bulma": "^0.4.0",
+    "linkifyjs": "^2.1.4",
     "socket.io-client": "^1.7.3",
     "typicons.font": "^2.0.8",
     "vue": "^2.2.6",
@@ -18,13 +19,13 @@
     "vue-resource": "^1.2.1",
     "vue-router": "^2.3.0",
     "vue-socket.io": "^2.1.1-a",
-    "vue2-leaflet": "^0.0.40",
+    "vue2-leaflet": "0.0.42",
     "vuex": "^2.2.1"
   },
   "devDependencies": {
     "node-sass": "^4.5.1",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
-    "vbuild": "^6.24.9"
+    "vbuild": "^6.24.14"
   }
 }

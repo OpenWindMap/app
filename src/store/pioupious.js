@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import { connect } from 'socket.io-client'
 
+Object.values = object => Object.keys(object).map(key => object[key])
+
 export default {
   namespaced: true,
 
@@ -19,6 +21,9 @@ export default {
         pioupiou.measurements.wind_heading !== null &&
         Math.round(now - new Date(pioupiou.measurements.date).getTime()) <= state.timeout
       )
+    },
+    get(state) {
+      return id => id in state.pioupious ? state.pioupious[id] : {}
     }
   },
 
@@ -43,12 +48,12 @@ export default {
       })
     },
     fetchOne(context, { stationId }) {
-      Vue.http.get(`live/${stationId}`).then(({ body: response }) => {
+      Vue.http.get(`live-with-meta/${stationId}`).then(({ body: response }) => {
         context.commit('updateOne', { pioupiou: response.data })
       })
     },
     keepAllUpdated(context) {
-      // TODO : Move it into resource
+      // NEEDTODO : Move it into resource
       const socket = connect('//api.pioupiou.fr/v1/push')
 
       socket.on('connect', () => {
@@ -65,7 +70,7 @@ export default {
       })
     },
     keepOneUpdated(context, { stationId }) {
-      // TODO : Move it into resource
+      // NEEDTODO : Move it into resource
       const socket = connect('//api.pioupiou.fr/v1/push')
 
       socket.on('connect', () => {
