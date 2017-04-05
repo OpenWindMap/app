@@ -28,9 +28,9 @@
 
                   <wind-overview v-if="pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
-                    :speedMin="pioupiou.measurements.wind_speed_min"
-                    :speedAvg="pioupiou.measurements.wind_speed_avg"
-                    :speedMax="pioupiou.measurements.wind_speed_max">
+                    :speed-min="pioupiou.measurements.wind_speed_min"
+                    :speed-avg="pioupiou.measurements.wind_speed_avg"
+                    :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
                 </div>
 
@@ -91,32 +91,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-header {
-    padding: 12px 12px 0px;
 
-    .title {
-      margin-bottom: 0;
+  .card {
+    .card-header {
+      padding: 12px 12px 0px;
+      box-shadow: initial;
+
+      .title {
+        margin-bottom: 0;
+      }
+
+      .is-pulled-right {
+        line-height: 1.8rem;
+      }
+
+      .subtitle.is-5 {
+        font-size: 1.23rem;
+      }
     }
-  }
 
-  .card-content {
-    padding: 0;
-
-    .content > .columns > .column:last-child {
+    .card-content {
       padding: 0;
+
+      .content > .columns > .column:last-child {
+        padding: 0;
+      }
     }
-  }
-
-  .columns.is-mobile {
-    padding: 0 0.75rem;
-
-    .column {
-      padding: 0.25rem;
-    }
-  }
-
-  .column {
-    padding: 0.75rem 0;
   }
 
   .columns {
@@ -124,18 +124,18 @@ export default {
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
-  }
 
-  .card-header {
-    box-shadow: initial;
-  }
+    .column {
+      padding: 0.75rem 0;
+    }
 
-  .card-header .is-pulled-right {
-    line-height: 1.8rem;
-  }
+    &.is-mobile {
+      padding: 0 0.75rem;
 
-  .subtitle.is-5 {
-    font-size: 1.23rem;
+      .column {
+        padding: 0.25rem;
+      }
+    }
   }
 
   #map {

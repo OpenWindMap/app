@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-map :zoom="zoom" :center="enumCenter" :minZoom="minZoom">
+  <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom">
     <v-tilelayer
       :url="url"
       attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
