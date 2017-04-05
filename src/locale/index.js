@@ -6,9 +6,10 @@ import translations from '@/locale/translations'
 export default Vue.use(GetText, {
   availableLanguages: {
     en: 'English',
-    fr: 'Français'
+    fr: 'Français',
+    jp: '日本語'
   },
-  defaultLanguage: 'fr',
+  defaultLanguage: 'jp',
 
   silent: true,
 
