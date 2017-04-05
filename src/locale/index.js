@@ -9,7 +9,7 @@ export default Vue.use(GetText, {
     fr: 'Français',
     jp: '日本語'
   },
-  defaultLanguage: 'jp',
+  defaultLanguage: 'en',
 
   silent: true,
 

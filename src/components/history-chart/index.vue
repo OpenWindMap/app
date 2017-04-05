@@ -2,31 +2,31 @@
   <figure>
     <img src="~static/img/chart.png">
     <div class="direction has-text-centered">
-      <i class="typcn typcn-location-arrow compass-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-north-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-north"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-north"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-north-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-west"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south"></i>
+      <i class="ion ion-navigate"></i>
       &nbsp;
-      <i class="typcn typcn-location-arrow compass-south-west"></i>
+      <i class="ion ion-navigate"></i>
     </div>
   </figure>
 </template>

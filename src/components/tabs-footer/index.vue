@@ -4,7 +4,7 @@
       <ul>
         <li v-for="route in routes">
           <router-link :to="route.path || { 'name': route.name }">
-            <span class="icon"><i :class="`typcn typcn-${ route.icon || 'directions' }`"></i></span>
+            <span class="icon"><i :class="`ion ion-${ route.icon || 'directions' }`"></i></span>
             <span>{{ route.label || route.name || route.path }}</span>
           </router-link>
         </li>

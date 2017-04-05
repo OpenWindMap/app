@@ -2807,6 +2807,10 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
+ionicons-npm@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ionicons-npm/-/ionicons-npm-2.0.1.tgz#ecd0be94944d9ca69f5bb4912edf84d2ec702e15"
+
 ipaddr.js@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.3.0.tgz#1e03a52fdad83a8bbb2b25cbf4998b4cffcd3dec"
@@ -5172,10 +5176,6 @@ type-is@~1.6.14:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-typicons.font@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/typicons.font/-/typicons.font-2.0.8.tgz#ddbc42da781af4ee74da3362a72842519bbd1b17"
 
 ua-parser-js@^0.7.9:
   version "0.7.12"

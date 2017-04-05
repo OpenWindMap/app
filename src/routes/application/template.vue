@@ -38,6 +38,7 @@ export default {
 <style lang="scss">
   @import "~src/assets/vars";
   @import '~bulma';
+  @import '~ionicons-npm/scss/ionicons';
 
   html, body {
     overflow: hidden;
