@@ -52,7 +52,6 @@ export default {
 
   computed: {
     headingFromCompass() {
-
       const compass = [
         this.$pgettext('Cardinal direction abbreviation', 'N'),
         this.$pgettext('Cardinal direction abbreviation', 'NNE'),

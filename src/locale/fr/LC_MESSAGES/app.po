@@ -20,111 +20,111 @@ msgstr ""
 #. Degree symbol
 #: src/components/wind-overview/index.vue:7
 msgid "°"
-msgstr ""
+msgstr "°"
 
 #: src/components/wind-overview/index.vue:17
 msgid "AVG"
-msgstr ""
+msgstr "MOY"
 
 #: src/components/wind-overview/index.vue:22
 msgid "MAX"
-msgstr ""
+msgstr "MAX"
 
 #: src/components/wind-overview/index.vue:12
 msgid "MIN"
-msgstr ""
+msgstr "MIN"
 
 #: src/components/wind-overview/index.vue:57
 #: src/components/wind-overview/index.vue:73 src/routes/details/template.vue:14
 msgctxt "Cardinal direction abbreviation"
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: src/components/wind-overview/index.vue:58
 msgctxt "Cardinal direction abbreviation"
 msgid "NNE"
-msgstr ""
+msgstr "NNE"
 
 #: src/components/wind-overview/index.vue:59
 msgctxt "Cardinal direction abbreviation"
 msgid "NE"
-msgstr ""
+msgstr "NE"
 
 #: src/components/wind-overview/index.vue:60
 msgctxt "Cardinal direction abbreviation"
 msgid "ENE"
-msgstr ""
+msgstr "ENE"
 
 #: src/components/wind-overview/index.vue:61 src/routes/details/template.vue:19
 msgctxt "Cardinal direction abbreviation"
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: src/components/wind-overview/index.vue:62
 msgctxt "Cardinal direction abbreviation"
 msgid "ESE"
-msgstr ""
+msgstr "ESE"
 
 #: src/components/wind-overview/index.vue:63
 msgctxt "Cardinal direction abbreviation"
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
 #: src/components/wind-overview/index.vue:64
 msgctxt "Cardinal direction abbreviation"
 msgid "SSE"
-msgstr ""
+msgstr "SSE"
 
 #: src/components/wind-overview/index.vue:65 src/routes/details/template.vue:15
 msgctxt "Cardinal direction abbreviation"
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: src/components/wind-overview/index.vue:66
 msgctxt "Cardinal direction abbreviation"
 msgid "SSW"
-msgstr ""
+msgstr "SSO"
 
 #: src/components/wind-overview/index.vue:67
 msgctxt "Cardinal direction abbreviation"
 msgid "SW"
-msgstr ""
+msgstr "SO"
 
 #: src/components/wind-overview/index.vue:68
 msgctxt "Cardinal direction abbreviation"
 msgid "WSW"
-msgstr ""
+msgstr "OSO"
 
 #: src/components/wind-overview/index.vue:69 src/routes/details/template.vue:20
 msgctxt "Cardinal direction abbreviation"
 msgid "W"
-msgstr ""
+msgstr "O"
 
 #: src/components/wind-overview/index.vue:70
 msgctxt "Cardinal direction abbreviation"
 msgid "WNW"
-msgstr ""
+msgstr "ONO"
 
 #: src/components/wind-overview/index.vue:71
 msgctxt "Cardinal direction abbreviation"
 msgid "NW"
-msgstr ""
+msgstr "NO"
 
 #: src/components/wind-overview/index.vue:72
 msgctxt "Cardinal direction abbreviation"
 msgid "NNW"
-msgstr ""
+msgstr "NNO"
 
 #: src/routes/map/index.js:7
 msgctxt "Route label"
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 #: src/routes/details/index.js:7
 msgctxt "Route label"
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 #: src/routes/details/template.vue:9
 msgid "Unnamed Pioupiou"
-msgstr ""
+msgstr "Pioupiou sans nom"
