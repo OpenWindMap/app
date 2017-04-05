@@ -6,12 +6,18 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{pioupiou.meta && pioupiou.meta.name || `Pioupiou sans nom`}}</strong> <br>
-                <small>#{{pioupiou.id}}</small> &mdash;
+                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ this.$gettext('Unnamed Pioupiou') }` }}</strong> <br>
+                <small>#{{ pioupiou.id }}</small> &mdash;
                 <small v-if="pioupiouSet">
-                  {{Math.abs(pioupiou.location.latitude)}} {{pioupiou.location.latitude > 0 ? 'N' : 'S'}}
+                  {{ Math.abs(pioupiou.location.latitude) }}
+                  {{ pioupiou.location.latitude > 0 ?
+                    this.$pgettext('Cardinal direction abbreviation', 'N') :
+                    this.$pgettext('Cardinal direction abbreviation', 'S') }}
                   ,
-                  {{Math.abs(pioupiou.location.longitude)}} {{pioupiou.location.longitude > 0 ? 'E' : 'W'}}
+                  {{ Math.abs(pioupiou.location.longitude) }}
+                  {{ pioupiou.location.longitude > 0 ?
+                    this.$pgettext('Cardinal direction abbreviation', 'E') :
+                    this.$pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
               <div class="is-pulled-right title is-6">

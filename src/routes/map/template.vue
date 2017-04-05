@@ -20,7 +20,7 @@ export default {
 
   methods: {
     showPioupiou(pioupiou) {
-      this.$router.push({ name: 'Details', params: { id: pioupiou.id } })
+      this.$router.push({ name: 'details', params: { id: pioupiou.id } })
     }
   },
 
