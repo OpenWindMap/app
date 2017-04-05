@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-import router from '@/routes'
 import locale from '@/locale'
+import router from '@/routes'
 import http from '@/resources/http'
 import store from '@/store'
 import filters from '@/filters'

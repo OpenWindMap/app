@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pioupiou-app 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-29 10:19+0200\n"
+"POT-Creation-Date: 2017-04-05 10:53+0200\n"
 "PO-Revision-Date: 2017-03-29 10:19+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,16 +17,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/views/Hello.vue:7
-msgid "%{ count } car"
-msgid_plural "%{ count } cars"
-msgstr[0] "%{ count } car"
-msgstr[1] "%{ count } cars"
+#. Degree symbol
+#: src/components/wind-overview/index.vue:7
+msgid "°"
+msgstr ""
 
-#: src/views/Hello.vue:4
-msgid "Hello %{ name } !!!"
-msgstr "Hello %{ name } !!!"
+#: src/components/wind-overview/index.vue:17
+msgid "AVG"
+msgstr ""
 
-#: src/views/Hello.vue:22
-msgid "World"
-msgstr "World"
+#: src/components/wind-overview/index.vue:22
+msgid "MAX"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:12
+msgid "MIN"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:57
+#: src/components/wind-overview/index.vue:73 src/routes/details/template.vue:14
+msgctxt "Cardinal direction abbreviation"
+msgid "N"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:58
+msgctxt "Cardinal direction abbreviation"
+msgid "NNE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:59
+msgctxt "Cardinal direction abbreviation"
+msgid "NE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:60
+msgctxt "Cardinal direction abbreviation"
+msgid "ENE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:61 src/routes/details/template.vue:19
+msgctxt "Cardinal direction abbreviation"
+msgid "E"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:62
+msgctxt "Cardinal direction abbreviation"
+msgid "ESE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:63
+msgctxt "Cardinal direction abbreviation"
+msgid "SE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:64
+msgctxt "Cardinal direction abbreviation"
+msgid "SSE"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:65 src/routes/details/template.vue:15
+msgctxt "Cardinal direction abbreviation"
+msgid "S"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:66
+msgctxt "Cardinal direction abbreviation"
+msgid "SSW"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:67
+msgctxt "Cardinal direction abbreviation"
+msgid "SW"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:68
+msgctxt "Cardinal direction abbreviation"
+msgid "WSW"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:69 src/routes/details/template.vue:20
+msgctxt "Cardinal direction abbreviation"
+msgid "W"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:70
+msgctxt "Cardinal direction abbreviation"
+msgid "WNW"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:71
+msgctxt "Cardinal direction abbreviation"
+msgid "NW"
+msgstr ""
+
+#: src/components/wind-overview/index.vue:72
+msgctxt "Cardinal direction abbreviation"
+msgid "NNW"
+msgstr ""
+
+#: src/routes/map/index.js:7
+msgctxt "Route label"
+msgid "Map"
+msgstr ""
+
+#: src/routes/details/index.js:7
+msgctxt "Route label"
+msgid "Details"
+msgstr ""
+
+#: src/routes/details/template.vue:9
+msgid "Unnamed Pioupiou"
+msgstr ""

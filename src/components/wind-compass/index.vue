@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="is-fullwidth has-text-centered title is-3">
     <div class="wind-icon" :style="windIconStyle"></div>
-    <small>{{ speed }} Km/h</small>
+    <small>{{ speed }} {{ unit }}</small>
   </div>
 </template>
 
@@ -18,6 +18,12 @@ export default {
     speed: {
       type: Number,
       required: true
+    }
+  },
+
+  data() {
+    return {
+      'unit': 'Km/h'
     }
   },
 

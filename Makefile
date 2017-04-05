@@ -7,7 +7,7 @@ export PATH := $(NODE_BINDIR):$(PATH)
 OUTPUT_DIR = src
 
 # Available locales for the app.
-LOCALES = en fr
+LOCALES = en fr jp
 
 # Name of the generated .po files for each available locale.
 LOCALE_FILES ?= $(patsubst %,$(OUTPUT_DIR)/locale/%/LC_MESSAGES/app.po,$(LOCALES))
