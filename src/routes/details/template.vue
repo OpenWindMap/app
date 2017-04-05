@@ -20,8 +20,10 @@
                     this.$pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
-              <div class="is-pulled-right title is-6">
-                <small>11:21</small>
+              <div class="is-pulled-right title is-3">
+                <a @click="favMe" class="is-warning">
+                  <i :class="['fa', faved ? 'fa-star' : 'fa-star-o']"></i>
+                </a>
               </div>
             </div>
           </header>
@@ -77,7 +79,9 @@ export default {
   components: { windOverview, mapContent, historyChart },
 
   data() {
-    return {}
+    return {
+      faved: false
+    }
   },
 
   computed: {
@@ -86,6 +90,12 @@ export default {
     },
     pioupiouSet() {
       return this.pioupiou && this.pioupiou.id !== undefined
+    }
+  },
+
+  methods: {
+    favMe() {
+      this.faved = !this.faved
     }
   },
 
