@@ -39,36 +39,7 @@
                 </div>
 
                 <div class="column">
-                  <figure>
-                    <img src="~static/img/chart.png">
-                    <div class="direction has-text-centered">
-                      <i class="typcn typcn-location-arrow compass-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-north-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-north"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-north"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-north-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-west"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south"></i>
-                      &nbsp;
-                      <i class="typcn typcn-location-arrow compass-south-west"></i>
-                    </div>
-                  </figure>
+                  <history-chart></history-chart>
                 </div>
 
                 <div class="column">
@@ -90,13 +61,14 @@
 <script lang="buble">
 import mapContent from '@/components/map-content'
 import windOverview from '@/components/wind-overview'
+import historyChart from '@/components/history-chart'
 
 export default {
   name: 'details-view',
 
   props: ['id'],
 
-  components: { windOverview, mapContent },
+  components: { windOverview, mapContent, historyChart },
 
   data() {
     return {}
@@ -172,10 +144,6 @@ export default {
 
   hr {
     margin: 0.25rem 0;
-  }
-
-  figure {
-    background-color: #fdfdfd;
   }
 
   article.message {

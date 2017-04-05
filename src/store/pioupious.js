@@ -48,7 +48,7 @@ export default {
       })
     },
     fetchOne(context, { stationId }) {
-      Vue.http.get(`live/${stationId}`).then(({ body: response }) => {
+      Vue.http.get(`live-with-meta/${stationId}`).then(({ body: response }) => {
         context.commit('updateOne', { pioupiou: response.data })
       })
     },
