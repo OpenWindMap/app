@@ -6,18 +6,18 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ this.$gettext('Unnamed Pioupiou') }` }}</strong> <br>
+                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ $gettext('Unnamed Pioupiou') }` }}</strong> <br>
                 <small>#{{ pioupiou.id }}</small> &mdash;
-                <small v-if="pioupiouSet">
+                <small v-if="pioupiou.location">
                   {{ Math.abs(pioupiou.location.latitude) }}
                   {{ pioupiou.location.latitude > 0 ?
-                    this.$pgettext('Cardinal direction abbreviation', 'N') :
-                    this.$pgettext('Cardinal direction abbreviation', 'S') }}
+                    $pgettext('Cardinal direction abbreviation', 'N') :
+                    $pgettext('Cardinal direction abbreviation', 'S') }}
                   ,
                   {{ Math.abs(pioupiou.location.longitude) }}
                   {{ pioupiou.location.longitude > 0 ?
-                    this.$pgettext('Cardinal direction abbreviation', 'E') :
-                    this.$pgettext('Cardinal direction abbreviation', 'W') }}
+                    $pgettext('Cardinal direction abbreviation', 'E') :
+                    $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
               <div class="is-pulled-right title is-3">
@@ -87,9 +87,6 @@ export default {
   computed: {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
-    },
-    pioupiouSet() {
-      return this.pioupiou && this.pioupiou.id !== undefined
     }
   },
 

@@ -3,10 +3,9 @@
     <div class="column is-3-mobile">
       <strong>{{ headingFromCompass }}</strong>
       <br>
-      {{ heading }}
-      <translate tag="small" translate-comment="Degree symbol">°</translate>
+      {{ heading }}°
     </div>
-    <div class="column is-offset-3 is-2-mobile">
+    <div :class="['column is-2-mobile', offset ? `is-offset-${ offset }` : `` ]">
       <strong>{{ speedMin }}</strong>
       <br>
       <translate tag="small">MIN</translate>
@@ -47,6 +46,11 @@ export default {
     speedMax: {
       type: Number,
       required: true
+    },
+
+    offset: {
+      type: [Boolean, Number],
+      default: 3
     }
   },
 
@@ -80,7 +84,7 @@ export default {
 
 <style lang="scss" scoped>
   .columns {
-    font-size: 1.1rem;
+    font-size: 1.1em;
   }
 
   small {
@@ -88,7 +92,7 @@ export default {
   }
 
   .has-highlight strong {
-    font-size: 1.3rem;
+    font-size: 1.3em;
     line-height: .9;
   }
 </style>

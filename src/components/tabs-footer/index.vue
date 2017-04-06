@@ -8,6 +8,14 @@
             <span>{{ route.label || route.name || route.path }}</span>
           </router-link>
         </li>
+        <li style="border-left: 1px solid #dbdbdb; background: #fefefe;">
+          <a>
+            <span class="icon">
+              <strong>km/h</strong>
+            </span>
+            <span>Unit</span>
+          </a>
+        </li>
       </ul>
     </div>
   </footer>
@@ -46,6 +54,10 @@ export default {
     ul {
       border-bottom: initial;
       border-top: 1px solid #dbdbdb;
+
+      li:last-child {
+        padding-right: 10px;
+      }
     }
 
     span {
@@ -58,12 +70,26 @@ export default {
       border-bottom: initial;
       flex-direction: column;
       padding-top: 0.9rem;
+
+      &.router-link-active {
+        box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
+        border-left: 1px solid #dbdbdb;
+        background: #fefefe;
+      }
     }
 
     .icon {
       &:first-child {
         margin-right: 0;
         margin-bottom: 0.3rem;
+      }
+
+      .fa.fa-map-o {
+        font-weight: bold;
+      }
+
+      strong {
+        font-size: 1.3em;
       }
     }
   }
