@@ -2,8 +2,8 @@
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
     <div class="column" v-if="!iconOnly && inline">
-      <strong>{{ speedMax || speedAvg }}</strong> <br>
-      <small>{{ unit }}</small>
+      <strong>{{ speedAvg || speedMax || speedMin }}</strong> <br>
+      <small>{{ label || unit }}</small>
     </div>
 
     <div class="column">
@@ -11,8 +11,8 @@
     </div>
 
     <div class="column" v-if="!iconOnly && !inline">
-      <strong>{{ speedMax || speedAvg }}</strong>
-      <small>{{ unit }}</small>
+      <strong>{{ speedAvg || speedMax || speedMin }}</strong>
+      <small>{{ label || unit }}</small>
     </div>
   </div>
 </template>
@@ -49,6 +49,10 @@ export default {
     iconOnly: {
       type: Boolean,
       default: false
+    },
+
+    label: {
+      type: String
     }
   },
 

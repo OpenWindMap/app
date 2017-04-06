@@ -8,7 +8,7 @@
             <span>{{ route.label || route.name || route.path }}</span>
           </router-link>
         </li>
-        <li style="border-left: 1px solid #dbdbdb; background: #fefefe;">
+        <li>
           <a>
             <span class="icon">
               <strong>km/h</strong>
@@ -56,7 +56,8 @@ export default {
       border-top: 1px solid #dbdbdb;
 
       li:last-child {
-        padding-right: 10px;
+        border-left: 1px solid #dbdbdb;
+        background: #fefefe;
       }
     }
 
