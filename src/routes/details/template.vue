@@ -79,26 +79,33 @@ export default {
   components: { windOverview, mapContent, historyChart },
 
   data() {
-    return {
-      faved: false
-    }
+    return {}
   },
 
   computed: {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
+    },
+    faved() {
+      return this.$store.state.user.favorites.indexOf(this.id) !== -1
     }
   },
 
   methods: {
     favMe() {
-      this.faved = !this.faved
+      if (this.faved) {
+        this.$store.commit('user/removeToFavorites', { stationId: this.id })
+      } else {
+        this.$store.commit('user/pushToFavorites', { stationId: this.id })
+      }
     }
   },
 
   mounted() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
+
+    this.$store.commit('user/pushToHistories', { stationId: this.id })
   }
 }
 </script>

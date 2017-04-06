@@ -38,22 +38,22 @@ export default {
 
   computed: {
     favoritesPioupious() {
-      return this.favorites.map(
+      return this.$store.state.user.favorites.map(
         id => this.$store.getters['pioupious/get'](id)
       )
     },
     historiesPioupious() {
-      return this.histories.map(
+      return this.$store.state.user.histories.map(
         id => this.$store.getters['pioupious/get'](id)
       )
     }
   },
 
   mounted() {
-    this.favorites.forEach(
+    this.$store.state.user.favorites.forEach(
       id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
     )
-    this.histories.forEach(
+    this.$store.state.user.histories.forEach(
       id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
     )
   },
@@ -61,7 +61,7 @@ export default {
   methods: {
     open(pioupiou, ctx) {
       this.opened = this.opened === pioupiou.id && this.context === ctx ? undefined : pioupiou.id
-      this.context = this.opened === pioupiou.id && this.context === ctx ? undefined : ctx
+      this.context = ctx
     },
     show(pioupiou) {
       this.$router.push({ name: 'details', params: { id: pioupiou.id } })

@@ -68,7 +68,6 @@ export default {
 
   methods: {
     open(pioupiou) {
-      console.log('event open in')
       this.$emit('open', pioupiou)
     },
     show(pioupiou) {
