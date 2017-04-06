@@ -2,31 +2,31 @@
   <figure>
     <img src="~static/img/chart.png">
     <div class="direction has-text-centered">
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
       &nbsp;
-      <i class="ion ion-navigate"></i>
+      <i class="fa fa-location-arrow"></i>
     </div>
   </figure>
 </template>

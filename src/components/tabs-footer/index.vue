@@ -4,9 +4,17 @@
       <ul>
         <li v-for="route in routes">
           <router-link :to="route.path || { 'name': route.name }">
-            <span class="icon"><i :class="`ion ion-${ route.icon || 'directions' }`"></i></span>
+            <span class="icon"><i :class="`fa fa-${ route.icon || 'map-signs' }`"></i></span>
             <span>{{ route.label || route.name || route.path }}</span>
           </router-link>
+        </li>
+        <li>
+          <a>
+            <span class="icon">
+              <strong>km/h</strong>
+            </span>
+            <span>Unit</span>
+          </a>
         </li>
       </ul>
     </div>
@@ -46,6 +54,11 @@ export default {
     ul {
       border-bottom: initial;
       border-top: 1px solid #dbdbdb;
+
+      li:last-child {
+        border-left: 1px solid #dbdbdb;
+        background: #fefefe;
+      }
     }
 
     span {
@@ -58,14 +71,26 @@ export default {
       border-bottom: initial;
       flex-direction: column;
       padding-top: 0.9rem;
+
+      &.router-link-active {
+        box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
+        border-left: 1px solid #dbdbdb;
+        background: #fefefe;
+      }
     }
 
     .icon {
-      font-size: 24px;
-
       &:first-child {
         margin-right: 0;
         margin-bottom: 0.3rem;
+      }
+
+      .fa.fa-map-o {
+        font-weight: bold;
+      }
+
+      strong {
+        font-size: 1.3em;
       }
     }
   }

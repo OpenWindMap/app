@@ -6,7 +6,7 @@ export default {
   name: 'map',
   label: Vue.prototype.$pgettext('Route label', 'Map'),
 
-  icon: 'map',
+  icon: 'map-o',
   nav: true,
   mobile: true,
 

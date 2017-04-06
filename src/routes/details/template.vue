@@ -6,22 +6,24 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ this.$gettext('Unnamed Pioupiou') }` }}</strong> <br>
+                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ $gettext('Unnamed Pioupiou') }` }}</strong> <br>
                 <small>#{{ pioupiou.id }}</small> &mdash;
-                <small v-if="pioupiouSet">
+                <small v-if="pioupiou.location">
                   {{ Math.abs(pioupiou.location.latitude) }}
                   {{ pioupiou.location.latitude > 0 ?
-                    this.$pgettext('Cardinal direction abbreviation', 'N') :
-                    this.$pgettext('Cardinal direction abbreviation', 'S') }}
+                    $pgettext('Cardinal direction abbreviation', 'N') :
+                    $pgettext('Cardinal direction abbreviation', 'S') }}
                   ,
                   {{ Math.abs(pioupiou.location.longitude) }}
                   {{ pioupiou.location.longitude > 0 ?
-                    this.$pgettext('Cardinal direction abbreviation', 'E') :
-                    this.$pgettext('Cardinal direction abbreviation', 'W') }}
+                    $pgettext('Cardinal direction abbreviation', 'E') :
+                    $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
-              <div class="is-pulled-right title is-6">
-                <small>11:21</small>
+              <div class="is-pulled-right title is-3">
+                <a @click="favMe" class="is-warning">
+                  <i :class="['fa', faved ? 'fa-star' : 'fa-star-o']"></i>
+                </a>
               </div>
             </div>
           </header>
@@ -84,14 +86,26 @@ export default {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
     },
-    pioupiouSet() {
-      return this.pioupiou && this.pioupiou.id !== undefined
+    faved() {
+      return this.$store.state.user.favorites.indexOf(this.id) !== -1
+    }
+  },
+
+  methods: {
+    favMe() {
+      if (this.faved) {
+        this.$store.commit('user/removeToFavorites', { stationId: this.id })
+      } else {
+        this.$store.commit('user/pushToFavorites', { stationId: this.id })
+      }
     }
   },
 
   mounted() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
+
+    this.$store.commit('user/pushToHistories', { stationId: this.id })
   }
 }
 </script>

@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
   @import "~src/assets/vars";
   @import '~bulma';
-  @import '~ionicons-npm/scss/ionicons';
+  @import '~font-awesome/scss/font-awesome';
 
   html, body {
     overflow: hidden;
@@ -52,7 +52,8 @@ export default {
     > section {
       position: relative;
       flex: 1;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   }
 
