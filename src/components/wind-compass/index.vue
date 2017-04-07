@@ -2,8 +2,8 @@
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
     <div class="column" v-if="!iconOnly && inline">
-      <strong>{{ speedAvg || speedMax || speedMin }}</strong> <br>
-      <small>{{ label || unit }}</small>
+      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
     <div class="column">
@@ -11,8 +11,8 @@
     </div>
 
     <div class="column" v-if="!iconOnly && !inline">
-      <strong>{{ speedAvg || speedMax || speedMin }}</strong>
-      <small>{{ label || unit }}</small>
+      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <small>{{ label || $convert.currentLabel }}</small>
     </div>
   </div>
 </template>
@@ -57,9 +57,7 @@ export default {
   },
 
   data() {
-    return {
-      unit: 'Km/h'
-    }
+    return {}
   },
 
   computed: {

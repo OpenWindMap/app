@@ -9,9 +9,9 @@
           </router-link>
         </li>
         <li>
-          <a>
+          <a @click="rotateUnit">
             <span class="icon">
-              <strong>km/h</strong>
+              <strong>{{ $convert.currentLabel }}</strong>
             </span>
             <span>Unit</span>
           </a>
@@ -30,6 +30,12 @@ export default {
       type: Array,
       required: true,
       validator: array => array.length > 0 && array.every(obj => 'name' in obj || 'path' in obj)
+    }
+  },
+
+  methods: {
+    rotateUnit() {
+      this.$store.commit('user/rotateUnit')
     }
   }
 }

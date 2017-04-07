@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import locale from '@/locale'
+import { locale, convert } from '@/locale'
 import router from '@/routes'
 import http from '@/resources/http'
 import store from '@/store'
@@ -18,5 +18,8 @@ new Vue({
   locale,
   http,
   store,
-  filters
+  filters,
+  convert
 })
+
+window.Vue = Vue

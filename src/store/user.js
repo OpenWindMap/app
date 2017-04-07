@@ -1,12 +1,11 @@
-// import Vue from 'vue'
+import Vue from 'vue'
+
+Object.values = object => Object.keys(object).map(key => object[key])
 
 export default {
   namespaced: true,
 
   state: {
-    unit: 0,
-    units: ['kmph', 'mph', 'knot'],
-
     favorites: [542, 293, 438, 265],
     histories: [],
     historyLength: 4
@@ -17,7 +16,10 @@ export default {
 
   mutations: {
     rotateUnit(state) {
-      state.unit = (state.unit += 1) && state.unit >= state.units.length ? 0 : state.unit
+      const availableUnits = Object.keys(Vue.config.availableUnits)
+      let unit = availableUnits.indexOf(Vue.config.unit)
+      unit = (unit += 1) && unit >= availableUnits.length ? 0 : unit
+      Vue.config.unit = availableUnits[unit]
     },
 
     pushToHistories(state, { stationId }) {

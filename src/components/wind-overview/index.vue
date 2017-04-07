@@ -6,17 +6,17 @@
       {{ heading }}°
     </div>
     <div :class="['column is-2-mobile', offset ? `is-offset-${ offset }` : `` ]">
-      <strong>{{ speedMin }}</strong>
+      <strong>{{ $getvalue(speedMin) }}</strong>
       <br>
       <translate tag="small">MIN</translate>
     </div>
     <div class="column is-2-mobile has-highlight">
-      <strong>{{ speedAvg }}</strong>
+      <strong>{{ $getvalue(speedAvg) }}</strong>
       <br>
       <translate tag="small">AVG</translate>
     </div>
     <div class="column is-2-mobile">
-      <strong>{{ speedMax }}</strong>
+      <strong>{{ $getvalue(speedMax) }}</strong>
       <br>
       <translate tag="small">MAX</translate>
     </div>
