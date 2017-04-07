@@ -62,6 +62,7 @@ export default {
       border-top: 1px solid #dbdbdb;
 
       li:last-child {
+        padding: 0 .3rem;
         border-left: 1px solid #dbdbdb;
         background: #fefefe;
       }
@@ -96,7 +97,8 @@ export default {
       }
 
       strong {
-        font-size: 1.3em;
+        text-transform: uppercase;
+        font-size: 1.1em;
       }
     }
   }

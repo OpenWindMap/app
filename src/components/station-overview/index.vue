@@ -19,7 +19,7 @@
         </div>
         <div class="is-pulled-right">
           <wind-compass class="wind-compass" v-if="station.measurements"
-            :inline="true" :icon-only="opened" :label="$gettext('AVG')"
+            :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('AVG')"
             :heading="station.measurements.wind_heading"
             :speed-min="station.measurements.wind_speed_min"
             :speed-avg="station.measurements.wind_speed_avg"

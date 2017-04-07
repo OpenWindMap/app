@@ -1,7 +1,8 @@
 <template lang="html">
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
-    <div class="column" v-if="!iconOnly && inline">
+    <div class="column" v-if="(!iconOnly && inline) || (iconOnly && inline && hide)"
+      :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
       <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
@@ -10,7 +11,8 @@
       <div class="wind-icon" :style="windIconStyle"></div>
     </div>
 
-    <div class="column" v-if="!iconOnly && !inline">
+    <div class="column" v-if="(!iconOnly && !inline) || (iconOnly && !inline && hide)"
+      :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
       <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
@@ -47,6 +49,11 @@ export default {
     },
 
     iconOnly: {
+      type: Boolean,
+      default: false
+    },
+
+    hide: {
       type: Boolean,
       default: false
     },
