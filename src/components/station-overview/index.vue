@@ -80,6 +80,12 @@ export default {
 <style lang="scss" scoped>
 .card {
   cursor: pointer;
+  box-shadow: initial;
+  border-top: 1px solid rgba(10, 10, 10, 0.1);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  }
 
   .card-header {
     padding: 12px 12px 0px;

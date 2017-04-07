@@ -79,6 +79,10 @@ export default {
 
     .column {
       padding: 0.75rem 0;
+
+      &:last-child {
+        padding-bottom: 3rem;
+      }
     }
 
     &:last-child {
