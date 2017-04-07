@@ -5422,6 +5422,10 @@ vue-router@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.3.1.tgz#3135448cf57d4ca576906061a5a9d25fae0214d7"
 
+vue-select@sagalbot/vue-select:
+  version "2.2.0"
+  resolved "https://codeload.github.com/sagalbot/vue-select/tar.gz/7f8c5478508d579f0037d0e50c143389fc2d117b"
+
 vue-socket.io@^2.1.1-a:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/vue-socket.io/-/vue-socket.io-2.1.1.tgz#57c9042686097026efb5fc048c58fc96ee264638"
