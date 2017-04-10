@@ -1,5 +1,12 @@
 <template lang="html">
   <section>
+    <nav class="nav has-shadow">
+      <div class="nav-center">
+        <router-link to="/" class="nav-item">
+          <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+        </router-link>
+      </div>
+    </nav>
     <div class="columns">
       <div class="column">
         <h5 class="subtitle is-5">History</h5>
@@ -94,5 +101,9 @@ export default {
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
+  }
+
+  .nav-item img {
+    max-height: 2em;
   }
 </style>

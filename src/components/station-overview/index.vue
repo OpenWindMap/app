@@ -95,6 +95,13 @@ export default {
       margin-bottom: 0;
     }
 
+    .is-pulled-left {
+      max-width: 75%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
     .is-pulled-right {
       line-height: 1.8rem;
     }

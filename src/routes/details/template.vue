@@ -121,6 +121,10 @@ export default {
         margin-bottom: 0;
       }
 
+      .is-pulled-left {
+        max-width: 80vw;
+      }
+
       .is-pulled-right {
         line-height: 1.8rem;
       }

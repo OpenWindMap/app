@@ -223,6 +223,9 @@ export default {
     li {
       padding: 0.2em 0.5em;
       font-size: 0.92rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
 
       &:hover {
         background: #fafafa;
