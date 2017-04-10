@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <nav class="nav has-shadow">
+    <nav class="nav has-shadow fixed-header">
       <div class="field is-fullwidth nav-item">
         <p class="control is-fullwidth has-icon has-icon-right">
           <input class="input" type="text" placeholder="Search something awesome..."
@@ -56,7 +56,7 @@
       </div>
       <div class="column columns" v-else>
 
-        <div class="column" v-if="searchLocation">
+        <div class="column fixed-header mini-map-container" v-if="searchLocation">
           <map-content :zoom="9" :map-markers="searchResults" :center="searchLocation" @bounds-change="boundsChange"></map-content>
         </div>
 
@@ -239,5 +239,19 @@ export default {
   .control.has-icon .icon {
     pointer-events: initial;
     cursor: pointer;
+  }
+
+  .fixed-header {
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
+  }
+
+  nav.fixed-header + .columns {
+    margin-top: 3.25rem;
+  }
+
+  .fixed-header.mini-map-container + .column {
+    padding-top: 180px;
   }
 </style>

@@ -35,8 +35,8 @@ export default {
         )
       )
     },
-    findByLoc(state) {
-      return boundaries => Object.values(state.pioupious).filter(pioupiou =>
+    findByLoc(state, getters) {
+      return boundaries => getters.visible.filter(pioupiou =>
         boundaries !== undefined &&
         pioupiou.location.latitude >= boundaries._southWest.lat &&
         pioupiou.location.latitude <= boundaries._northEast.lat &&
@@ -125,7 +125,7 @@ export default {
         navigator.geolocation.getCurrentPosition(position => {
           geoloc = `&lat=${position.coords.latitude}&lon=${position.coords.longitude}`
           getIt()
-        })
+        }, () => getIt())
       } else {
         getIt()
       }
