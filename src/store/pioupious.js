@@ -27,10 +27,21 @@ export default {
     get(state) {
       return id => id in state.pioupious ? state.pioupious[id] : {}
     },
-    find(state) {
+    findByName(state) {
       return search => Object.values(state.pioupious).filter(pioupiou =>
-        (new RegExp(search, 'i')).test(pioupiou.meta.name) ||
-        (new RegExp(search, 'i')).test(pioupiou.id)
+        search.length > 0 && (
+          (new RegExp(search, 'i')).test(pioupiou.meta.name) ||
+          (new RegExp(search, 'i')).test(pioupiou.id)
+        )
+      )
+    },
+    findByLoc(state) {
+      return boundaries => Object.values(state.pioupious).filter(pioupiou =>
+        boundaries !== undefined &&
+        pioupiou.location.latitude >= boundaries._southWest.lat &&
+        pioupiou.location.latitude <= boundaries._northEast.lat &&
+        pioupiou.location.longitude >= boundaries._southWest.lng &&
+        pioupiou.location.longitude <= boundaries._northEast.lng
       )
     }
   },
@@ -98,6 +109,8 @@ export default {
       })
     },
     searchLocation(context, { query }) {
+      if (query.length < 3) return
+
       const tags = 'aeroway:aerodrome&osm_tag=natural&osm_tag=place:city&osm_tag=place:town&osm_tag=place:village&osm_tag=place:hamlet&osm_tag=place:locality&osm_tag=place:island'
       Vue.http.get(`http://photon.komoot.de/api/?q=${query}&limit=5&lang=${Vue.config.language}&osm_tag=${tags}`)
       .then(({ body: response }) => {

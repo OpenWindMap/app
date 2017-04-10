@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom">
+  <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom" @l-viewreset="boundsChange" @l-moveend="boundsChange" @l-zoomend="boundsChange" ref="map">
     <v-tilelayer
       :url="url"
       attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
@@ -74,7 +74,14 @@ export default {
   methods: {
     markerClick(marker) {
       this.$emit('marker-click', marker)
+    },
+    boundsChange() {
+      this.$emit('bounds-change', this.$refs.map.mapObject.getBounds())
     }
+  },
+
+  mounted() {
+    this.$emit('bounds-change', this.$refs.map.mapObject.getBounds())
   }
 }
 </script>
@@ -84,5 +91,9 @@ export default {
 
   .leaflet-top .leaflet-control {
     margin-top: 20px;
+  }
+
+  .leaflet-top.leaflet-left {
+    position: static;
   }
 </style>
