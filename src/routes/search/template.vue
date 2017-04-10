@@ -10,7 +10,7 @@
             <i class="fa fa-search" v-else></i>
           </span>
           <ul class="autocomplete" v-if="searchFocused && (locationResult.length > 1 || preSearchResults.length > 1)">
-            <li v-for="pioupiou in preSearchResults" v-if="pioupiou !== undefined" @click="show(pioupiou)">
+            <li v-for="pioupiou in preSearchResults.slice(0, 5)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
               <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
               <span> #{{ pioupiou.id }}</span>
             </li>
@@ -27,10 +27,18 @@
         <br>
         <h6 class="subtitle is-6">Find a spot</h6>
         <ul>
-          <li><a href="#">Maui - Hawaï</a></li>
-          <li><a href="#">Tarifa - Spain</a></li>
-          <li><a href="#">Almanarre - France</a></li>
-          <li><a href="#">Beouwersdam - Netherland</a></li>
+          <li><a @click="setSuggest('Maui, Hawaï', [20.802956799999997, -156.31068321602177])">
+            Maui - Hawaï
+          </a></li>
+          <li><a @click="setSuggest('Tarifa, Spain', [36.0127749, -5.6048872])">
+            Tarifa - Spain
+          </a></li>
+          <li><a @click="setSuggest('Chamonix-Mont-Blanc, France', [45.9246705, 6.8727506])">
+            Chamonix-Mont-Blanc - France
+          </a></li>
+          <li><a @click="setSuggest('Biarritz, France', [43.4815899, -1.5561078])">
+            Biarritz - France
+          </a></li>
         </ul>
         <br>
         <hr>
@@ -131,13 +139,16 @@ export default {
       setTimeout(() => {
         this.searchFocused = false
       }, 100)
+    },
+    setSuggest(name, location) {
+      this.searchInput = name
+      this.searchLocation = location
     }
   },
 
   watch: {
     searchInput() {
       if (this.searchInput === '') {
-        console.log('loc cleared')
         this.searchLocation = undefined
       }
       this.$store.dispatch('pioupious/searchLocation', { query: this.searchInput })

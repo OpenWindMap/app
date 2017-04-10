@@ -112,10 +112,23 @@ export default {
       if (query.length < 3) return
 
       const tags = 'aeroway:aerodrome&osm_tag=natural&osm_tag=place:city&osm_tag=place:town&osm_tag=place:village&osm_tag=place:hamlet&osm_tag=place:locality&osm_tag=place:island'
-      Vue.http.get(`http://photon.komoot.de/api/?q=${query}&limit=5&lang=${Vue.config.language}&osm_tag=${tags}`)
-      .then(({ body: response }) => {
-        context.commit('addLocationResults', { results: response.features })
-      })
+
+      let geoloc = ''
+
+      const getIt = () =>
+        Vue.http.get(`http://photon.komoot.de/api/?q=${query}&limit=5&lang=${Vue.config.language}&osm_tag=${tags}${geoloc}`)
+        .then(({ body: response }) => {
+          context.commit('addLocationResults', { results: response.features })
+        })
+
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+          geoloc = `&lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+          getIt()
+        })
+      } else {
+        getIt()
+      }
     }
   }
 }
