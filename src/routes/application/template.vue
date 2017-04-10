@@ -2,7 +2,9 @@
   <div id="app">
     <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
 
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
 
     <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>
   </div>

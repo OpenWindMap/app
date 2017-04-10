@@ -6,7 +6,7 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{ pioupiou.meta && pioupiou.meta.name || `${ $gettext('Unnamed Pioupiou') }` }}</strong> <br>
+                <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
                 <small>#{{ pioupiou.id }}</small> &mdash;
                 <small v-if="pioupiou.location">
                   {{ Math.abs(pioupiou.location.latitude) }}

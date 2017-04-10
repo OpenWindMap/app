@@ -3354,7 +3354,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
@@ -5387,6 +5387,12 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-focus@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-focus/-/vue-focus-2.1.0.tgz#7a0337ce9074d5ef03d15a4b5b862cf45e5e04e3"
+  dependencies:
+    loose-envify "^1.2.0"
+
 vue-gettext@^2.0.10:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/vue-gettext/-/vue-gettext-2.0.10.tgz#bbce7085cab2baf654dad2779126efcbfd9b9f4a"
@@ -5421,6 +5427,10 @@ vue-resource@^1.2.1:
 vue-router@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.3.1.tgz#3135448cf57d4ca576906061a5a9d25fae0214d7"
+
+vue-select@sagalbot/vue-select:
+  version "2.2.0"
+  resolved "https://codeload.github.com/sagalbot/vue-select/tar.gz/7f8c5478508d579f0037d0e50c143389fc2d117b"
 
 vue-socket.io@^2.1.1-a:
   version "2.1.1"

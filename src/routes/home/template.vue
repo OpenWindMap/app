@@ -29,8 +29,6 @@ export default {
 
   data() {
     return {
-      favorites: [542, 293, 438, 265],
-      histories: [542, 293, 438, 265],
       opened: undefined,
       context: undefined
     }

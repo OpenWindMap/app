@@ -20,10 +20,10 @@
         <div class="is-pulled-right">
           <wind-compass class="wind-compass" v-if="station.measurements"
             :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('AVG')"
-            :heading="station.measurements.wind_heading"
-            :speed-min="station.measurements.wind_speed_min"
-            :speed-avg="station.measurements.wind_speed_avg"
-            :speed-max="station.measurements.wind_speed_max">
+            :heading="station.measurements.wind_heading || 0"
+            :speed-min="station.measurements.wind_speed_min || 0"
+            :speed-avg="station.measurements.wind_speed_avg || 0"
+            :speed-max="station.measurements.wind_speed_max || 0">
           </wind-compass>
         </div>
       </div>
@@ -32,10 +32,10 @@
       <div class="content">
         <hr>
         <wind-overview v-if="station.measurements"
-          :heading="station.measurements.wind_heading"
-          :speed-min="station.measurements.wind_speed_min"
-          :speed-avg="station.measurements.wind_speed_avg"
-          :speed-max="station.measurements.wind_speed_max">
+          :heading="station.measurements.wind_heading || 0"
+          :speed-min="station.measurements.wind_speed_min || 0"
+          :speed-avg="station.measurements.wind_speed_avg || 0"
+          :speed-max="station.measurements.wind_speed_max || 0">
         </wind-overview>
         <history-chart></history-chart>
         <br>
