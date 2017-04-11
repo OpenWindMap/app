@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/jquery@^2.0.40":
+  version "2.0.41"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.41.tgz#b87ba051011f99edbe586d8f97282e7786e01a6d"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -5101,6 +5105,12 @@ tildify@^1.2.0:
   resolved "https://registry.yarnpkg.com/tildify/-/tildify-1.2.0.tgz#dcec03f55dca9b7aa3e5b04f21817eb56e63588a"
   dependencies:
     os-homedir "^1.0.0"
+
+timeago.js@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/timeago.js/-/timeago.js-3.0.1.tgz#59b75e0c963bbadc34e0aca901f7430c053a0e1f"
+  dependencies:
+    "@types/jquery" "^2.0.40"
 
 timed-out@^4.0.0:
   version "4.0.1"

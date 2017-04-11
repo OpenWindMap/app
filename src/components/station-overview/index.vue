@@ -4,7 +4,10 @@
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
-          <small>#{{ station.id }}</small>
+          <small>#{{ station.id }}</small> -
+          <small v-if="station.measurements">
+            {{ station.measurements.date | timeago }}
+          </small>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
             {{ station.location.latitude > 0 ?

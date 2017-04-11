@@ -20,8 +20,8 @@
                     $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
-              <div class="is-pulled-right title is-3">
-                <a @click="favMe" class="is-warning">
+              <div class="is-pulled-right">
+                <a @click="favMe" class="is-warning title is-3">
                   <i :class="['fa', faved ? 'fa-star' : 'fa-star-o']"></i>
                 </a>
               </div>
@@ -33,6 +33,10 @@
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
+
+                  <span class="tag is-medium" v-if="pioupiou.measurements">
+                    {{ pioupiou.measurements.date | timeago }}
+                  </span>
 
                   <wind-overview v-if="pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
@@ -141,6 +145,12 @@ export default {
 
       .content > .columns > .column:last-child {
         padding: 0;
+      }
+
+      .tag.is-medium {
+        margin: 0 0.75rem;
+        font-size: 0.9em;
+        background-color: transparent;
       }
     }
   }
