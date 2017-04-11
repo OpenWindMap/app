@@ -94,18 +94,20 @@ export default {
   methods: {
     favMe() {
       if (this.faved) {
-        this.$store.commit('user/removeToFavorites', { stationId: this.id })
+        this.$store.dispatch('user/removeToFavorites', { stationId: this.id })
       } else {
-        this.$store.commit('user/pushToFavorites', { stationId: this.id })
+        this.$store.dispatch('user/pushToFavorites', { stationId: this.id })
       }
     }
   },
 
   mounted() {
+    this.$store.dispatch('user/restoreStore')
+
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
-    this.$store.commit('user/pushToHistories', { stationId: this.id })
+    this.$store.dispatch('user/pushToHistories', { stationId: this.id })
   }
 }
 </script>

@@ -59,6 +59,7 @@ export default {
 
   computed: {
     enumCenter() {
+      console.log(this.center)
       switch (this.autoCenter) {
         case 'marker':
           return [this.mapMarkers[0].location.latitude, this.mapMarkers[0].location.longitude]
@@ -77,6 +78,14 @@ export default {
     },
     boundsChange() {
       this.$emit('bounds-change', this.$refs.map.mapObject.getBounds())
+
+      this.controlsChange()
+    },
+    controlsChange() {
+      this.$emit('controls-change', {
+        zoom: this.$refs.map.mapObject.getZoom(),
+        center: this.$refs.map.mapObject.getCenter()
+      })
     }
   },
 

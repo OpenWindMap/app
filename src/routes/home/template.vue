@@ -55,12 +55,25 @@ export default {
   },
 
   mounted() {
+    this.$store.dispatch('user/restoreStore')
+
     this.$store.state.user.favorites.forEach(
-      id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+      id => {
+        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+      }
     )
     this.$store.state.user.histories.forEach(
-      id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+      id => {
+        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+      }
     )
+  },
+
+  activated() {
+    this.opened = undefined
+    this.context = undefined
   },
 
   methods: {

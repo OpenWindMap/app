@@ -116,8 +116,10 @@ export default {
     // this.highlights.forEach(
     //   id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
     // )
+    this.$store.dispatch('user/restoreStore')
 
     this.$store.dispatch('pioupious/fetchAll')
+    this.$store.dispatch('pioupious/keepAllUpdated')
   },
 
   methods: {
