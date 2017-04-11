@@ -9,14 +9,18 @@
     </nav>
     <div class="columns">
       <div class="column">
-        <h5 class="subtitle is-5">History</h5>
+        <h5 class="subtitle is-5">
+          <translate>History</translate>
+        </h5>
         <station-overview v-for="pioupiou in historiesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'H'" @open="open(pioupiou, 'H')" @show="show(pioupiou)">
         </station-overview>
       </div>
       <div class="column">
-        <h5 class="subtitle is-5">Favorites</h5>
+        <h5 class="subtitle is-5">
+          <translate>Favorites</translate>
+        </h5>
         <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'F'" @open="open(pioupiou, 'F')" @show="show(pioupiou)">

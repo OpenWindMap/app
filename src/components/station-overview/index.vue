@@ -6,7 +6,7 @@
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
           <small>#{{ station.id }}</small> -
           <small v-if="station.measurements">
-            {{ station.measurements.date | timeago }}
+            {{ station.measurements.date | timeago(now) }}
           </small>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
@@ -76,6 +76,18 @@ export default {
     show(pioupiou) {
       this.$emit('show', pioupiou)
     }
+  },
+
+  data() {
+    return {
+      now: (new Date()).getTime()
+    }
+  },
+
+  mounted() {
+    setInterval(() => {
+      this.now = (new Date()).getTime()
+    }, 1000)
   }
 }
 </script>

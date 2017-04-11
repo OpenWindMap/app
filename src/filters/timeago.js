@@ -5,7 +5,7 @@ const $pgettext = s => Vue.prototype.$pgettext('Time to words', s)
 
 timeago.register('i18n', (number, index) => [
   [$pgettext('just now'), $pgettext('right now')],
-  [$pgettext('%s seconds ago'), $pgettext('in %s seconds')],
+  [$pgettext('few seconds ago'), $pgettext('in few seconds')],
   [$pgettext('1 minute ago'), $pgettext('in 1 minute')],
   [$pgettext('%s minutes ago'), $pgettext('in %s minutes')],
   [$pgettext('1 hour ago'), $pgettext('in 1 hour')],
@@ -20,4 +20,4 @@ timeago.register('i18n', (number, index) => [
   [$pgettext('%s years ago'), $pgettext('in %s years')]
 ][index])
 
-export default Vue.filter('timeago', datetime => timeago().format(datetime, 'i18n'))
+export default Vue.filter('timeago', (datetime, now) => timeago(now).format(datetime, 'i18n'))

@@ -35,7 +35,7 @@
                     :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
-                    {{ pioupiou.measurements.date | timeago }}
+                    {{ pioupiou.measurements.date | timeago(now) }}
                   </span>
 
                   <wind-overview v-if="pioupiou.measurements"
@@ -83,7 +83,9 @@ export default {
   components: { windOverview, mapContent, historyChart },
 
   data() {
-    return {}
+    return {
+      now: (new Date()).getTime()
+    }
   },
 
   computed: {
@@ -112,6 +114,10 @@ export default {
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+
+    setInterval(() => {
+      this.now = (new Date()).getTime()
+    }, 1000)
   }
 }
 </script>

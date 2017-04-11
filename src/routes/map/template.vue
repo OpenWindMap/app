@@ -35,7 +35,6 @@ export default {
       return this.$store.getters['pioupious/visible']
     },
     userCenter() {
-      console.log(this.$store.state.user.center)
       return this.$store.state.user.center
     },
     userZoom() {

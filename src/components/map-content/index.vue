@@ -59,7 +59,6 @@ export default {
 
   computed: {
     enumCenter() {
-      console.log(this.center)
       switch (this.autoCenter) {
         case 'marker':
           return [this.mapMarkers[0].location.latitude, this.mapMarkers[0].location.longitude]
