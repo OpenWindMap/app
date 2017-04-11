@@ -77,6 +77,14 @@ export default {
     },
     boundsChange() {
       this.$emit('bounds-change', this.$refs.map.mapObject.getBounds())
+
+      this.controlsChange()
+    },
+    controlsChange() {
+      this.$emit('controls-change', {
+        zoom: this.$refs.map.mapObject.getZoom(),
+        center: this.$refs.map.mapObject.getCenter()
+      })
     }
   },
 

@@ -1,15 +1,26 @@
 <template lang="html">
   <section>
+    <nav class="nav has-shadow">
+      <div class="nav-center">
+        <router-link to="/" class="nav-item">
+          <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+        </router-link>
+      </div>
+    </nav>
     <div class="columns">
       <div class="column">
-        <h5 class="subtitle is-5">History</h5>
+        <h5 class="subtitle is-5">
+          <translate>History</translate>
+        </h5>
         <station-overview v-for="pioupiou in historiesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'H'" @open="open(pioupiou, 'H')" @show="show(pioupiou)">
         </station-overview>
       </div>
       <div class="column">
-        <h5 class="subtitle is-5">Favorites</h5>
+        <h5 class="subtitle is-5">
+          <translate>Favorites</translate>
+        </h5>
         <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'F'" @open="open(pioupiou, 'F')" @show="show(pioupiou)">
@@ -48,12 +59,25 @@ export default {
   },
 
   mounted() {
+    this.$store.dispatch('user/restoreStore')
+
     this.$store.state.user.favorites.forEach(
-      id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+      id => {
+        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+      }
     )
     this.$store.state.user.histories.forEach(
-      id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+      id => {
+        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+      }
     )
+  },
+
+  activated() {
+    this.opened = undefined
+    this.context = undefined
   },
 
   methods: {
@@ -94,5 +118,9 @@ export default {
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
+  }
+
+  .nav-item img {
+    max-height: 2em;
   }
 </style>

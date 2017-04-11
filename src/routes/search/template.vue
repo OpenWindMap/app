@@ -116,8 +116,10 @@ export default {
     // this.highlights.forEach(
     //   id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
     // )
+    this.$store.dispatch('user/restoreStore')
 
     this.$store.dispatch('pioupious/fetchAll')
+    this.$store.dispatch('pioupious/keepAllUpdated')
   },
 
   methods: {
@@ -223,6 +225,9 @@ export default {
     li {
       padding: 0.2em 0.5em;
       font-size: 0.92rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
 
       &:hover {
         background: #fafafa;

@@ -20,8 +20,8 @@
                     $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
               </div>
-              <div class="is-pulled-right title is-3">
-                <a @click="favMe" class="is-warning">
+              <div class="is-pulled-right">
+                <a @click="favMe" class="is-warning title is-3">
                   <i :class="['fa', faved ? 'fa-star' : 'fa-star-o']"></i>
                 </a>
               </div>
@@ -33,6 +33,10 @@
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
+
+                  <span class="tag is-medium" v-if="pioupiou.measurements">
+                    {{ pioupiou.measurements.date | timeago(now) }}
+                  </span>
 
                   <wind-overview v-if="pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
@@ -79,7 +83,9 @@ export default {
   components: { windOverview, mapContent, historyChart },
 
   data() {
-    return {}
+    return {
+      now: (new Date()).getTime()
+    }
   },
 
   computed: {
@@ -94,18 +100,24 @@ export default {
   methods: {
     favMe() {
       if (this.faved) {
-        this.$store.commit('user/removeToFavorites', { stationId: this.id })
+        this.$store.dispatch('user/removeToFavorites', { stationId: this.id })
       } else {
-        this.$store.commit('user/pushToFavorites', { stationId: this.id })
+        this.$store.dispatch('user/pushToFavorites', { stationId: this.id })
       }
     }
   },
 
   mounted() {
+    this.$store.dispatch('user/restoreStore')
+
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
-    this.$store.commit('user/pushToHistories', { stationId: this.id })
+    this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+
+    setInterval(() => {
+      this.now = (new Date()).getTime()
+    }, 1000)
   }
 }
 </script>
@@ -119,6 +131,10 @@ export default {
 
       .title {
         margin-bottom: 0;
+      }
+
+      .is-pulled-left {
+        max-width: 80vw;
       }
 
       .is-pulled-right {
@@ -135,6 +151,12 @@ export default {
 
       .content > .columns > .column:last-child {
         padding: 0;
+      }
+
+      .tag.is-medium {
+        margin: 0 0.75rem;
+        font-size: 0.9em;
+        background-color: transparent;
       }
     }
   }

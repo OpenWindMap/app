@@ -4,7 +4,10 @@
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
-          <small>#{{ station.id }}</small>
+          <small>#{{ station.id }}</small> -
+          <small v-if="station.measurements">
+            {{ station.measurements.date | timeago(now) }}
+          </small>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
             {{ station.location.latitude > 0 ?
@@ -73,6 +76,18 @@ export default {
     show(pioupiou) {
       this.$emit('show', pioupiou)
     }
+  },
+
+  data() {
+    return {
+      now: (new Date()).getTime()
+    }
+  },
+
+  mounted() {
+    setInterval(() => {
+      this.now = (new Date()).getTime()
+    }, 1000)
   }
 }
 </script>
@@ -93,6 +108,13 @@ export default {
 
     .title {
       margin-bottom: 0;
+    }
+
+    .is-pulled-left {
+      max-width: 75%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     .is-pulled-right {

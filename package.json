@@ -13,6 +13,7 @@
     "font-awesome": "^4.7.0",
     "linkifyjs": "^2.1.4",
     "socket.io-client": "^1.7.3",
+    "timeago.js": "^3.0.1",
     "vue": "^2.2.6",
     "vue-focus": "^2.1.0",
     "vue-gettext": "^2.0.10",
