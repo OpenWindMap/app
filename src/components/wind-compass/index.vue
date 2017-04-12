@@ -3,7 +3,7 @@
 
     <div class="column" v-if="!offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
@@ -13,7 +13,7 @@
 
     <div class="column" v-if="!offline && ((!iconOnly && !inline) || (iconOnly && !inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 

@@ -8,7 +8,7 @@
           <small v-if="!offline && station.measurements">
             {{ station.measurements.date | timeago(now) }}
           </small>
-          <small v-else style="color: red;">
+          <small v-else class="is-danger">
             offline
           </small>
           <!-- <small v-if="station.location">
@@ -112,6 +112,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~src/assets/vars";
+
 .card {
   cursor: pointer;
   box-shadow: initial;
@@ -155,7 +157,7 @@ export default {
   .card-content {
     padding: 0;
     box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
-    background: #fefefe;
+    background: $white-ter;
 
     .content {
       font-size: 0.8em;

@@ -101,8 +101,7 @@ export default {
     draw() {
       if (this.data.length === 0) return
 
-      this.context.fillStyle = 'rgba(66, 139, 202, 0.5)'
-      this.context.strokeStyle = 'rgba(255, 255, 255, 0.7)'
+      this.context.fillStyle = 'rgb(240, 240, 240)'
       this.context.lineWidth = 2 * this.pxRatio
 
       this.context.beginPath()
@@ -121,13 +120,18 @@ export default {
 
       this.context.beginPath()
 
-      this.context.moveTo(this.time2x(this.dataSet[0].date), this.speed2y(this.dataSet[0].avg))
+      let X = this.time2x(this.dataSet[0].date)
+      let Y = this.speed2y(this.dataSet[0].avg)
 
       this.dataSet.slice(1).forEach(data => {
-        this.context.lineTo(this.time2x(data.date), this.speed2y(data.avg))
+        this.context.beginPath()
+        this.context.moveTo(X, Y)
+        X = this.time2x(data.date)
+        Y = this.speed2y(data.avg)
+        this.context.strokeStyle = this.$options.filters.speedToColors(data.avg)
+        this.context.lineTo(X, Y)
+        this.context.stroke()
       })
-
-      this.context.stroke()
     }
   }
 }

@@ -1,7 +1,7 @@
 <template lang="html">
   <wind-marker :title="title"
     :lat-lng="{lat: location.latitude, lng: location.longitude}"
-    :heading="measurements.wind_heading" :speed="measurements.wind_speed_max || measurements.wind_speed_avg"
+    :heading="measurements.wind_heading" :speed="measurements.wind_speed_avg"
     :visible="visible" @l-click="click" ref="marker"></wind-marker>
 </template>
 

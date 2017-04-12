@@ -120,7 +120,7 @@ export default {
       this.now = (new Date()).getTime()
     }, 1000)
 
-    const start = new Date(new Date().getTime() - (1 * 3600 * 1000)).toISOString()
+    const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
     this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
       this.data = body.data
     })
@@ -129,6 +129,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
 
   .card {
     .card-header {
@@ -195,7 +196,9 @@ export default {
   }
 
   article.message {
-    background-color: #fcfcfc;
+    box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
+    border-left: 1px solid $grey-lighter;
+    background: $white-ter;
 
     .message-body {
       border-radius: initial;
