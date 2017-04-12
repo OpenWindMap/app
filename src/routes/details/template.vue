@@ -7,7 +7,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
                 <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
-                <small>#{{ pioupiou.id }}</small> &mdash;
+                <small>#{{ pioupiou.id || id}}</small> &mdash;
                 <small v-if="pioupiou.location">
                   {{ Math.abs(pioupiou.location.latitude) }}
                   {{ pioupiou.location.latitude > 0 ?
@@ -19,6 +19,7 @@
                     $pgettext('Cardinal direction abbreviation', 'E') :
                     $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
+                <small class="location-placeholder" v-else></small>
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
@@ -33,6 +34,7 @@
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
+                  <div class="map-placeholder" v-else></div>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
                     {{ pioupiou.measurements.date | timeago(currentTime) }}
@@ -44,6 +46,7 @@
                     :speed-avg="pioupiou.measurements.wind_speed_avg"
                     :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
+                  <div class="overview-placeholder" v-else></div>
                 </div>
 
                 <div class="is-hidden-desktop">
@@ -56,7 +59,11 @@
 
                 <div class="column">
                   <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="$options.filters.linkify(pioupiou.meta.description || '')">
+                    <div class="message-body" v-html="description">
+                    </div>
+                  </article>
+                  <article class="message" v-else>
+                    <div class="message-body">
                     </div>
                   </article>
                 </div>
@@ -100,6 +107,9 @@ export default {
     },
     currentTime() {
       return this.$store.state.user.currentTime
+    },
+    description() {
+      return this.$options.filters.linkify(this.pioupiou.meta.description || '')
     }
   },
 
@@ -113,6 +123,15 @@ export default {
     }
   },
 
+  watch: {
+    pioupiou() {
+      const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
+      this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
+        this.data = body.data
+      })
+    }
+  },
+
   mounted() {
     this.$store.dispatch('user/restoreStore')
 
@@ -120,11 +139,6 @@ export default {
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
-
-    // const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
-    // this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
-    //   this.data = body.data
-    // })
   }
 }
 </script>
@@ -204,5 +218,24 @@ export default {
     .message-body {
       border-radius: initial;
     }
+  }
+
+  .map-placeholder {
+    height: 180px;
+    width: 100%;
+    background-color: $grey-lighter;
+  }
+
+  .location-placeholder {
+    background-color: $white;
+    width: 160px;
+    display: inline-block;
+    height: 0.8em;
+  }
+
+  .overview-placeholder {
+    background-color: $white;
+    height: 100px;
+    width: 100%;
   }
 </style>

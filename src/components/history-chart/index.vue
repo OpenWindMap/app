@@ -28,14 +28,14 @@ export default {
     period() {
       return this.stopTime - this.startTime
     },
-    marginBottom() {
-      return this.height * 0.05
+    margin() {
+      return this.height * 0.10
     },
     timeToPixels() {
       return this.width / this.period
     },
     speedToPixels() {
-      return (this.height - this.marginBottom) / this.maxSpeed
+      return (this.height - this.margin) / this.maxSpeed
     },
     maxSpeed() {
       return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 0)
@@ -91,7 +91,7 @@ export default {
       return ((new Date(time)).getTime() - this.startTime) * this.timeToPixels
     },
     speed2y(speed) {
-      return (this.height - this.marginBottom) - (speed * this.speedToPixels)
+      return (this.height - this.margin) - (speed * this.speedToPixels)
     },
     handleWindowResize() {
       this.height = this.$refs.chart.clientHeight
@@ -99,6 +99,8 @@ export default {
     },
 
     draw() {
+      this.context.clearRect(0, 0, this.width, this.height)
+
       if (this.data.length === 0) return
 
       this.context.fillStyle = 'rgb(240, 240, 240)'
@@ -118,8 +120,6 @@ export default {
 
       this.context.fill()
 
-      this.context.beginPath()
-
       let X = this.time2x(this.dataSet[0].date)
       let Y = this.speed2y(this.dataSet[0].avg)
 
@@ -132,6 +132,33 @@ export default {
         this.context.lineTo(X, Y)
         this.context.stroke()
       })
+
+      Y = this.height - this.margin
+      let LX = 0
+
+      this.dataSet.reverse().forEach(data => {
+        X = this.time2x(data.date)
+        if ((X - LX) < (20 * this.pxRatio)) return
+        this.drawArrow(X, Y, data.heading, data.avg)
+        LX = X
+      })
+    },
+    drawArrow(x, y, heading, speed) {
+      this.context.save()
+      this.context.translate(x, y)
+      this.context.rotate(((heading + 180) / 180) * Math.PI)
+      this.context.beginPath()
+      this.context.moveTo(0 * this.pxRatio, -9 * this.pxRatio)
+      this.context.lineTo(5 * this.pxRatio, 9 * this.pxRatio)
+      this.context.lineTo(0 * this.pxRatio, 5 * this.pxRatio)
+      this.context.lineTo(-5 * this.pxRatio, 9 * this.pxRatio)
+      this.context.closePath()
+      this.context.lineWidth = this.pxRatio
+      this.context.fillStyle = this.$options.filters.speedToColors(speed)
+      this.context.strokeStyle = 'rgb(74, 74, 74)'
+      this.context.fill()
+      this.context.stroke()
+      this.context.restore()
     }
   }
 }
