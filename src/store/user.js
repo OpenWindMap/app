@@ -11,7 +11,8 @@ export default {
     histories: [],
     historyLength: 4,
     center: undefined,
-    zoom: undefined
+    zoom: undefined,
+    currentTime: 0
   },
 
   getters: {
@@ -50,6 +51,9 @@ export default {
     pushMapControls(state, { zoom, center }) {
       state.zoom = zoom
       state.center = center
+    },
+    setTimeToNow(state) {
+      state.currentTime = (new Date()).getTime()
     }
   },
 
@@ -83,6 +87,11 @@ export default {
       Object.keys(context.state).forEach(key => {
         context.dispatch('getFromLStorage', { key })
       })
+    },
+    syncTime(context) {
+      setInterval(() => {
+        context.commit('setTimeToNow')
+      }, 1000)
     }
   }
 }

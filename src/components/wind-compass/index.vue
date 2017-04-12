@@ -104,6 +104,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
+
   .wind-icon {
     background-image: url("~static/img/compass-wind-icon.png");
     height: 3em;
@@ -124,5 +126,9 @@ export default {
   strong {
     font-size: 1.3em;
     line-height: .9;
+  }
+
+  span.icon {
+    color: $grey;
   }
 </style>

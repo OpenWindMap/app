@@ -6,7 +6,7 @@
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
           <small>#{{ station.id }}</small> -
           <small v-if="!offline && station.measurements">
-            {{ station.measurements.date | timeago(now) }}
+            {{ station.measurements.date | timeago(currentTime) }}
           </small>
           <small v-else class="is-danger">
             offline
@@ -87,7 +87,6 @@ export default {
 
   data() {
     return {
-      now: (new Date()).getTime(),
       data: []
     }
   },
@@ -96,14 +95,13 @@ export default {
     offline() {
       const now = new Date().getTime()
       return Math.round(now - new Date(this.station.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
+    },
+    currentTime() {
+      return this.$store.state.user.currentTime
     }
   },
 
   mounted() {
-    setInterval(() => {
-      this.now = (new Date()).getTime()
-    }, 1000)
-
     this.$http.get(`archive/${this.station.id}?start=2017-04-11T09:00:32.079Z&stop=now`).then(({ body }) => {
       this.data = body.data
     })

@@ -32,10 +32,10 @@
               <div class="columns">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
-                    :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
+                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
-                    {{ pioupiou.measurements.date | timeago(now) }}
+                    {{ pioupiou.measurements.date | timeago(currentTime) }}
                   </span>
 
                   <wind-overview v-if="pioupiou.measurements"
@@ -84,7 +84,6 @@ export default {
 
   data() {
     return {
-      now: (new Date()).getTime(),
       data: []
     }
   },
@@ -93,8 +92,14 @@ export default {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
     },
+    pioupiouMarkers() {
+      return [this.pioupiou]
+    },
     faved() {
       return this.$store.state.user.favorites.indexOf(this.id) !== -1
+    },
+    currentTime() {
+      return this.$store.state.user.currentTime
     }
   },
 
@@ -116,14 +121,10 @@ export default {
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
 
-    setInterval(() => {
-      this.now = (new Date()).getTime()
-    }, 1000)
-
-    const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
-    this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
-      this.data = body.data
-    })
+    // const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
+    // this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
+    //   this.data = body.data
+    // })
   }
 }
 </script>
