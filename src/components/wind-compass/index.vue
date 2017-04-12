@@ -85,7 +85,7 @@ export default {
 
   computed: {
     speed() {
-      return this.speedMax || this.speedAvg
+      return this.speedAvg
     },
     windIconStyle() {
       let colorIndex = Math.floor(this.speed / 5)
