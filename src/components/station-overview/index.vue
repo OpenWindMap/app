@@ -5,8 +5,11 @@
         <div class="is-pulled-left">
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
           <small>#{{ station.id }}</small> -
-          <small v-if="station.measurements">
+          <small v-if="!offline && station.measurements">
             {{ station.measurements.date | timeago(now) }}
+          </small>
+          <small v-else style="color: red;">
+            offline
           </small>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
@@ -21,7 +24,7 @@
           </small> -->
         </div>
         <div class="is-pulled-right">
-          <wind-compass class="wind-compass" v-if="station.measurements"
+          <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
             :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('AVG')"
             :heading="station.measurements.wind_heading || 0"
             :speed-min="station.measurements.wind_speed_min || 0"
@@ -31,16 +34,20 @@
         </div>
       </div>
     </header>
-    <div class="card-content" v-show="opened" @click="show(station)">
+    <div class="card-content" v-if="opened" @click="show(station)">
       <div class="content">
         <hr>
-        <wind-overview v-if="station.measurements"
-          :heading="station.measurements.wind_heading || 0"
-          :speed-min="station.measurements.wind_speed_min || 0"
-          :speed-avg="station.measurements.wind_speed_avg || 0"
-          :speed-max="station.measurements.wind_speed_max || 0">
-        </wind-overview>
-        <history-chart></history-chart>
+        <keep-alive>
+          <wind-overview v-if="station.measurements"
+            :heading="station.measurements.wind_heading || 0"
+            :speed-min="station.measurements.wind_speed_min || 0"
+            :speed-avg="station.measurements.wind_speed_avg || 0"
+            :speed-max="station.measurements.wind_speed_max || 0">
+          </wind-overview>
+        </keep-alive>
+        <keep-alive>
+          <history-chart :data="data" style="height: 85px;"></history-chart>
+        </keep-alive>
         <br>
       </div>
     </div>
@@ -80,7 +87,15 @@ export default {
 
   data() {
     return {
-      now: (new Date()).getTime()
+      now: (new Date()).getTime(),
+      data: []
+    }
+  },
+
+  computed: {
+    offline() {
+      const now = new Date().getTime()
+      return Math.round(now - new Date(this.station.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
     }
   },
 
@@ -88,6 +103,10 @@ export default {
     setInterval(() => {
       this.now = (new Date()).getTime()
     }, 1000)
+
+    this.$http.get(`archive/${this.station.id}?start=2017-04-11T09:00:32.079Z&stop=now`).then(({ body }) => {
+      this.data = body.data
+    })
   }
 }
 </script>

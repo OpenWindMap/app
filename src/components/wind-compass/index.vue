@@ -1,20 +1,31 @@
 <template lang="html">
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
-    <div class="column" v-if="(!iconOnly && inline) || (iconOnly && inline && hide)"
+    <div class="column" v-if="!offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
       <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
-    <div class="column">
+    <div class="column" v-if="!offline">
       <div class="wind-icon" :style="windIconStyle"></div>
     </div>
 
-    <div class="column" v-if="(!iconOnly && !inline) || (iconOnly && !inline && hide)"
+    <div class="column" v-if="!offline && ((!iconOnly && !inline) || (iconOnly && !inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
       <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
+    </div>
+
+    <div class="column" v-if="offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
+      :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
+      <strong>--</strong> <br>
+      <small>{{ label || $convert.currentLabel }}</small>
+    </div>
+    <div v-if="offline" class="column">
+      <span class="icon">
+        <i class="fa fa-ban"></i>
+      </span>
     </div>
   </div>
 </template>
@@ -60,6 +71,11 @@ export default {
 
     label: {
       type: String
+    },
+
+    offline: {
+      type: Boolean,
+      default: false
     }
   },
 

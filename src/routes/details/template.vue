@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="column">
-                  <history-chart></history-chart>
+                  <history-chart :data="data" style="height: 150px;"></history-chart>
                 </div>
 
                 <div class="column">
@@ -84,7 +84,8 @@ export default {
 
   data() {
     return {
-      now: (new Date()).getTime()
+      now: (new Date()).getTime(),
+      data: []
     }
   },
 
@@ -118,6 +119,11 @@ export default {
     setInterval(() => {
       this.now = (new Date()).getTime()
     }, 1000)
+
+    const start = new Date(new Date().getTime() - (1 * 3600 * 1000)).toISOString()
+    this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
+      this.data = body.data
+    })
   }
 }
 </script>
