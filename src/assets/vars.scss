@@ -64,18 +64,28 @@ $speed15: $purlple;
 
 // Generics class
 
-.is-primary {
+.is-primary:not(.button) {
   color: $primary;
 }
-.is-info {
+.button.is-primary {
+  &, &:hover, &:focus {
+    color: $white;
+  }
+  &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    &:hover, &:focus {
+      color: $white;
+    }
+  }
+}
+.is-info:not(.button) {
   color: $info;
 }
-.is-success {
+.is-success:not(.button) {
   color: $success;
 }
-.is-warning {
+.is-warning:not(.button) {
   color: $warning;
 }
-.is-danger {
+.is-danger:not(.button) {
   color: $danger;
 }
