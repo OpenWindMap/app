@@ -43,8 +43,6 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('user/restoreStore')
-
     this.$store.dispatch('pioupious/fetchAll')
     this.$store.dispatch('pioupious/keepAllUpdated')
   }

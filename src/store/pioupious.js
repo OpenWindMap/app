@@ -8,6 +8,7 @@ export default {
 
   state: {
     timeout: 45 * 60000, // = min
+    archiveTime: 3 * 3600000, // = hour
     pioupious: {},
 
     locationResult: []
@@ -58,6 +59,9 @@ export default {
     updateKey(state, { id, value, key }) {
       Vue.set(state.pioupious[id], key, value)
     },
+    archiveOne(state, { stationId, data }) {
+      Vue.set(state.pioupious[stationId], 'archive', data)
+    },
     addLocationResults(state, { results }) {
       state.locationResult = results
     }
@@ -72,6 +76,14 @@ export default {
     fetchOne(context, { stationId }) {
       Vue.http.get(`live-with-meta/${stationId}`).then(({ body: response }) => {
         context.commit('updateOne', { pioupiou: response.data })
+
+        const start = new Date(new Date().getTime() - context.state.archiveTime).toISOString()
+        context.dispatch('fetchArchive', { stationId, stop: 'now', start })
+      })
+    },
+    fetchArchive(context, { stationId, start, stop }) {
+      Vue.http.get(`archive/${stationId}?start=${start}&stop=${stop}`).then(({ body: response }) => {
+        context.commit('archiveOne', { stationId, data: response.data })
       })
     },
     keepAllUpdated(context) {
@@ -100,6 +112,9 @@ export default {
       })
       socket.on('status', data => {
         context.commit('updateKey', { id: data.station_id, value: data, key: 'status' })
+
+        const start = new Date(new Date().getTime() - context.state.archiveTime).toISOString()
+        context.dispatch('fetchArchive', { stationId: data.station_id, stop: 'now', start })
       })
       socket.on('measurement', data => {
         context.commit('updateKey', { id: data.station_id, value: data, key: 'measurements' })

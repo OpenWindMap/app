@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="column">
-                  <history-chart :data="data" style="height: 150px;"></history-chart>
+                  <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
                 </div>
 
                 <div class="column">
@@ -85,7 +85,12 @@ import historyChart from '@/components/history-chart'
 export default {
   name: 'details-view',
 
-  props: ['id'],
+  props: {
+    id: {
+      Type: Number,
+      default: 0
+    }
+  },
 
   components: { windOverview, mapContent, historyChart },
 
@@ -123,18 +128,7 @@ export default {
     }
   },
 
-  watch: {
-    pioupiou() {
-      const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
-      this.$http.get(`archive/${this.pioupiou.id}?start=${start}&stop=now`).then(({ body }) => {
-        this.data = body.data
-      })
-    }
-  },
-
-  mounted() {
-    this.$store.dispatch('user/restoreStore')
-
+  activated() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 

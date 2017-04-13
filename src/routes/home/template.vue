@@ -59,8 +59,6 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('user/restoreStore')
-
     this.$store.state.user.favorites.forEach(
       id => {
         this.$store.dispatch('pioupious/fetchOne', { stationId: id })
