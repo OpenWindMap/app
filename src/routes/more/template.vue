@@ -6,8 +6,8 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <strong>Units</strong> <br>
-                <small>Units available</small>
+                <translate tag="strong">Units</translate> <br>
+                <translate tag="small">Units available</translate>
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -26,8 +26,8 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <strong>Language</strong> <br>
-                <small>Choose your language</small>
+                <translate tag="strong">Language</translate> <br>
+                <translate tag="small">Choose your language</translate>
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -51,8 +51,8 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <strong>Support</strong> <br>
-                <small>Need some help ?</small>
+                <translate tag="strong">Support</translate> <br>
+                <translate tag="small">Need some help ?</translate>
               </div>
               <div class="is-pulled-right">
                 <small>
@@ -66,12 +66,12 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <strong>Open Data</strong> <br>
-                <small>Data are free for everyone !</small>
+                <translate tag="strong">Open Data</translate> <br>
+                <translate tag="small">Data are free for everyone !</translate>
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <a href="http://developers.pioupiou.fr" target="_blank">http://developers.pioupiou.fr</a>
+                  <a href="http://developers.pioupiou.fr" target="_blank">developers.pioupiou.fr</a>
                 </small>
               </div>
             </div>

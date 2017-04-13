@@ -4,7 +4,9 @@ import Map from '@/routes/map/template'
 export default {
   path: '/map',
   name: 'map',
-  label: Vue.prototype.$pgettext('Route label', 'Map'),
+  label() {
+    return Vue.prototype.$pgettext('Route label', 'Map')
+  },
 
   icon: 'map-o',
   nav: true,

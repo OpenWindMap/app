@@ -12,15 +12,26 @@
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="box content">
-          <h3 class="has-text-centered">Ow no ...</h3>
-          <p>
-            Looks like you are running the app without any connection. <br>
-            However during the beta, an internet connection is required to run the Pioupiou application. <br>
+          <h3 class="has-text-centered">
+            <translate translate-context="Offline alert message title">Ow no ..</translate>
+          </h3>
+            <translate tag="p" translate-context="Offline alert message content">
+              Looks like you are running the app without any connection.
+            </translate>
+            <translate tag="p" translate-context="Offline alert message content">
+              However during the beta, an internet connection is required to run the Pioupiou application.
+            </translate>
             <br>
-            We are sorry about this issue and work hard on offline capabilites. <br>
+            <translate tag="p" translate-context="Offline alert message content">
+              We are sorry about this issue and work hard on offline capabilites.
+            </translate>
             <br>
-            Cheers, <br>
-            <strong>The Pioupiou Team.</strong>
+            <translate tag="p" translate-context="Offline alert message content">
+              Cheers,
+            </translate>
+            <p>
+              <translate tag="strong" translate-context="Offline alert message author">The Pioupiou Team.</translate>
+            </p>
           </p>
         </div>
       </div>
@@ -103,5 +114,9 @@ export default {
 
   .modal .modal-content {
     max-height: 80vh;
+
+    .content p {
+      margin-bottom: 0;
+    }
   }
 </style>

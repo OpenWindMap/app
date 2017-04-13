@@ -3,7 +3,7 @@
     <nav class="nav has-shadow fixed-header">
       <div class="field is-fullwidth nav-item">
         <p class="control is-fullwidth has-icon has-icon-right">
-          <input class="input" type="text" placeholder="Search something awesome..."
+          <input class="input" type="text" :placeholder="$pgettext('Search something awesome...', 'Search field placeholder')"
             v-model="searchInput" @focus="searchFocused = true" @blur="blurLater">
           <span class="icon">
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
@@ -25,7 +25,9 @@
       <div class="column has-text-centered search-highlight" v-if="searchInput === ''">
         <br>
         <br>
-        <h6 class="subtitle is-6">Find a spot</h6>
+        <h6 class="subtitle is-6">
+          <translate translate-context="Search examples title">Find a spot</translate>
+        </h6>
         <ul>
           <li><a @click="setSuggest('Maui, Hawaï', [20.802956799999997, -156.31068321602177])">
             Maui - Hawaï
@@ -43,7 +45,9 @@
         <br>
         <hr>
         <br>
-        <h6 class="subtitle is-6">Find a Pioupiou</h6>
+        <h6 class="subtitle is-6">
+          <translate translate-context="Search examples title">Find a Pioupiou</translate>
+        </h6>
         <ul>
           <li v-for="pioupiou in highlightsPioupious" v-if="pioupiou !== undefined" :key="pioupiou.id">
             <router-link :to="{ 'name': 'details', 'params': { id: pioupiou.id } }"

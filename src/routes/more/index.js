@@ -4,7 +4,9 @@ import More from '@/routes/more/template'
 export default {
   path: '/more',
   name: 'more',
-  label: Vue.prototype.$pgettext('Route label', 'More'),
+  label() {
+    return Vue.prototype.$pgettext('Route label', 'More')
+  },
 
   icon: 'ellipsis-h',
   nav: true,

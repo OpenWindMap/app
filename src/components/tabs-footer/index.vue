@@ -5,7 +5,7 @@
         <li v-for="route in routes">
           <router-link :to="route.path || { 'name': route.name }">
             <span class="icon"><i :class="`fa fa-${ route.icon || 'map-signs' }`"></i></span>
-            <span>{{ route.label || route.name || route.path }}</span>
+            <span>{{ route.label() || route.name || route.path }}</span>
           </router-link>
         </li>
         <li>
@@ -13,7 +13,7 @@
             <span class="icon">
               <strong>{{ $convert.currentLabel }}</strong>
             </span>
-            <span>Unit</span>
+            <translate tag="span" translate-context="Footer unit chooser">Unit</translate>
           </a>
         </li>
       </ul>
