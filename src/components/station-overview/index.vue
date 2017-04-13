@@ -5,8 +5,11 @@
         <div class="is-pulled-left">
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
           <small>#{{ station.id }}</small> -
-          <small v-if="station.measurements">
-            {{ station.measurements.date | timeago(now) }}
+          <small v-if="!offline && station.measurements">
+            {{ station.measurements.date | timeago(currentTime) }}
+          </small>
+          <small v-else class="is-danger">
+            offline
           </small>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
@@ -21,7 +24,7 @@
           </small> -->
         </div>
         <div class="is-pulled-right">
-          <wind-compass class="wind-compass" v-if="station.measurements"
+          <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
             :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('AVG')"
             :heading="station.measurements.wind_heading || 0"
             :speed-min="station.measurements.wind_speed_min || 0"
@@ -31,16 +34,20 @@
         </div>
       </div>
     </header>
-    <div class="card-content" v-show="opened" @click="show(station)">
+    <div class="card-content" v-if="opened" @click="show(station)">
       <div class="content">
         <hr>
-        <wind-overview v-if="station.measurements"
-          :heading="station.measurements.wind_heading || 0"
-          :speed-min="station.measurements.wind_speed_min || 0"
-          :speed-avg="station.measurements.wind_speed_avg || 0"
-          :speed-max="station.measurements.wind_speed_max || 0">
-        </wind-overview>
-        <history-chart></history-chart>
+        <keep-alive>
+          <wind-overview v-if="station.measurements"
+            :heading="station.measurements.wind_heading || 0"
+            :speed-min="station.measurements.wind_speed_min || 0"
+            :speed-avg="station.measurements.wind_speed_avg || 0"
+            :speed-max="station.measurements.wind_speed_max || 0">
+          </wind-overview>
+        </keep-alive>
+        <keep-alive>
+          <history-chart :data="data" style="height: 85px;"></history-chart>
+        </keep-alive>
         <br>
       </div>
     </div>
@@ -80,19 +87,32 @@ export default {
 
   data() {
     return {
-      now: (new Date()).getTime()
+      data: []
+    }
+  },
+
+  computed: {
+    offline() {
+      const now = new Date().getTime()
+      return Math.round(now - new Date(this.station.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
+    },
+    currentTime() {
+      return this.$store.state.user.currentTime
     }
   },
 
   mounted() {
-    setInterval(() => {
-      this.now = (new Date()).getTime()
-    }, 1000)
+    const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
+    this.$http.get(`archive/${this.station.id}?start=${start}&stop=now`).then(({ body }) => {
+      this.data = body.data
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "~src/assets/vars";
+
 .card {
   cursor: pointer;
   box-shadow: initial;
@@ -136,7 +156,7 @@ export default {
   .card-content {
     padding: 0;
     box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
-    background: #fefefe;
+    background: $white-ter;
 
     .content {
       font-size: 0.8em;

@@ -78,6 +78,10 @@ export default {
 
       return compass[Math.round(this.heading / (360 / 16))]
     }
+  },
+
+  updated() {
+    console.log('updated Wind')
   }
 }
 </script>

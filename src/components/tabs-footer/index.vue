@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
   @import "~bulma/sass/utilities/variables";
   @import "~bulma/sass/utilities/mixins";
 
@@ -59,12 +60,16 @@ export default {
 
     ul {
       border-bottom: initial;
-      border-top: 1px solid #dbdbdb;
+      border-top: 1px solid $grey-lighter;
 
-      li:last-child {
-        padding: 0 .3rem;
-        border-left: 1px solid #dbdbdb;
-        background: #fefefe;
+      li {
+        flex-shrink: 1;
+        flex-basis: 0;
+
+        &:last-child {
+          border-left: 1px solid $grey-lighter;
+          background: $white-bis;
+        }
       }
     }
 
@@ -81,8 +86,8 @@ export default {
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
-        border-left: 1px solid #dbdbdb;
-        background: #fefefe;
+        border-left: 1px solid $grey-lighter;
+        background: $white-ter;
       }
     }
 

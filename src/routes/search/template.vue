@@ -63,7 +63,7 @@
         <div class="column" v-if="searchResults.length">
           <station-overview v-for="pioupiou in searchResults" v-if="pioupiou !== undefined"
             :key="pioupiou.id" :station="pioupiou"
-            :opened="opened === pioupiou.id" @open="open(pioupiou)" @show="show(pioupiou)">
+            :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
           </station-overview>
         </div>
       </div>
@@ -160,11 +160,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
+
   .search-highlight {
     padding: 0.75rem;
 
     a {
-      color: black;
+      color: $primary;
       text-decoration: underline;
       font-weight: 200;
     }
@@ -215,7 +217,7 @@ export default {
     width: 100%;
     background: white;
     margin-top: -1px;
-    border: 1px solid #dbdbdb;
+    border: 1px solid $grey-lighter;
     max-height: 25vh;
     overflow: auto;
     padding-top: 0.3em;
@@ -230,7 +232,7 @@ export default {
       white-space: nowrap;
 
       &:hover {
-        background: #fafafa;
+        background: $white-ter;
         opacity: 0.8;
         cursor: pointer;
       }

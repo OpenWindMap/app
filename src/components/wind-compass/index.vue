@@ -1,20 +1,31 @@
 <template lang="html">
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
-    <div class="column" v-if="(!iconOnly && inline) || (iconOnly && inline && hide)"
+    <div class="column" v-if="!offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
-    <div class="column">
+    <div class="column" v-if="!offline">
       <div class="wind-icon" :style="windIconStyle"></div>
     </div>
 
-    <div class="column" v-if="(!iconOnly && !inline) || (iconOnly && !inline && hide)"
+    <div class="column" v-if="!offline && ((!iconOnly && !inline) || (iconOnly && !inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) || $getvalue(speedAvg) || $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
+    </div>
+
+    <div class="column" v-if="offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
+      :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
+      <strong>--</strong> <br>
+      <small>{{ label || $convert.currentLabel }}</small>
+    </div>
+    <div v-if="offline" class="column">
+      <span class="icon">
+        <i class="fa fa-ban"></i>
+      </span>
     </div>
   </div>
 </template>
@@ -60,6 +71,11 @@ export default {
 
     label: {
       type: String
+    },
+
+    offline: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -69,7 +85,7 @@ export default {
 
   computed: {
     speed() {
-      return this.speedMax || this.speedAvg
+      return this.speedAvg
     },
     windIconStyle() {
       let colorIndex = Math.floor(this.speed / 5)
@@ -88,6 +104,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
+
   .wind-icon {
     background-image: url("~static/img/compass-wind-icon.png");
     height: 3em;
@@ -108,5 +126,9 @@ export default {
   strong {
     font-size: 1.3em;
     line-height: .9;
+  }
+
+  span.icon {
+    color: $grey;
   }
 </style>

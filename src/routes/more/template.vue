@@ -1,50 +1,31 @@
 <template lang="html">
   <section>
-    <wind-compass v-if="pioupiou.measurements"
-      :heading="pioupiou.measurements.wind_heading"
-      :speed-min="pioupiou.measurements.wind_speed_min"
-      :speed-avg="pioupiou.measurements.wind_speed_avg"
-      :speed-max="pioupiou.measurements.wind_speed_max">
-    </wind-compass>
-
-    <br>
-
-    <wind-compass v-if="pioupiou.measurements"
-      :heading="pioupiou.measurements.wind_heading"
-      :speed-min="pioupiou.measurements.wind_speed_min"
-      :speed-avg="pioupiou.measurements.wind_speed_avg"
-      :speed-max="pioupiou.measurements.wind_speed_max"
-      :inline="true">
-    </wind-compass>
-
-    <br>
-
-    <wind-compass v-if="pioupiou.measurements"
-      :heading="pioupiou.measurements.wind_heading"
-      :speed-min="pioupiou.measurements.wind_speed_min"
-      :speed-avg="pioupiou.measurements.wind_speed_avg"
-      :speed-max="pioupiou.measurements.wind_speed_max"
-      :icon-only="true">
-    </wind-compass>
+    <history-chart :data="data" style="height: 180px;"></history-chart>
   </section>
 </template>
 
 <script lang="buble">
-import windCompass from '@/components/wind-compass'
+import historyChart from '@/components/history-chart'
 
 export default {
   name: 'more-view',
 
-  components: { windCompass },
+  components: { historyChart },
 
   computed: {
-    pioupiou() {
-      return this.$store.getters['pioupious/get'](265)
+  },
+
+  data() {
+    return {
+      data: []
     }
   },
 
   mounted() {
-    this.$store.dispatch('pioupious/fetchOne', { stationId: 265 })
+    const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
+    this.$http.get(`archive/614?start=${start}&stop=now`).then(({ body }) => {
+      this.data = body.data
+    })
   }
 }
 </script>

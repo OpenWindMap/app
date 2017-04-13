@@ -7,5 +7,5 @@ export default {
   label: Vue.prototype.$pgettext('Route label', 'Details'),
 
   component: Details,
-  props: true
+  props: ({ params }) => ({ id: parseInt(params.id, 10) })
 }

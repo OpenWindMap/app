@@ -1,3 +1,81 @@
-$primary: black;
+// Colors
+$black:          rgb( 18,  18,  18) !default;
+$black-bis:      rgb( 36,  36,  36) !default;
+$black-ter:      rgb( 54,  54,  54) !default;
 
+$grey-darker:    rgb( 74,  74,  74) !default;
+$grey-dark:      rgb(100, 100, 100) !default;
+$grey:           rgb(180, 180, 180) !default;
+$grey-light:     rgb(200, 200, 200) !default;
+$grey-lighter:   rgb(240, 240, 240) !default;
+
+$white-ter:      rgb(252, 252, 252) !default;
+$white-bis:      rgb(254, 254, 254) !default;
+$white:          rgb(255, 255, 255) !default;
+
+$blue:           rgb(  0, 255, 255) !default;
+$turquoise:      rgb(  3, 230, 175) !default;
+$emerald:        rgb(  5, 204,  95) !default;
+$green-darker:   rgb(  8, 179,  15) !default;
+$green:          rgb( 88, 204,  10) !default;
+$green-lighter:  rgb(168, 228,   5) !default;
+$yellow:         rgb(248, 253,   0) !default;
+$yellow-darker:  rgb(255, 228,   0) !default;
+$orange-yellow:  rgb(255, 198,   0) !default;
+$orange-darker:  rgb(255, 168,   0) !default;
+$orange:         rgb(255, 115,   0) !default;
+$orange-red:     rgb(255,  60,   0) !default;
+$red:            rgb(255,   5,   0) !default;
+$red-darker:     rgb(204,   0,  41) !default;
+$purlple:        rgb(148,   0,  87) !default;
+
+// Typography
 $fa-font-path: '~font-awesome/fonts';
+
+// Primary colors
+$primary: $black-ter;
+
+$info:    $blue;
+$success: $emerald;
+$warning: $orange-yellow;
+$danger:  $orange-red;
+
+$light:   $white-ter;
+$dark:    $grey-darker;
+
+$speed0:  $white;
+$speed1:  $blue;
+$speed2:  $turquoise;
+$speed3:  $emerald;
+$speed4:  $green-darker;
+$speed5:  $green;
+$speed6:  $green-lighter;
+$speed7:  $yellow;
+$speed8:  $yellow-darker;
+$speed9:  $orange-yellow;
+$speed10: $orange-darker;
+$speed11: $orange;
+$speed12: $orange-red;
+$speed13: $red;
+$speed14: $red-darker;
+$speed15: $purlple;
+
+
+
+// Generics class
+
+.is-primary {
+  color: $primary;
+}
+.is-info {
+  color: $info;
+}
+.is-success {
+  color: $success;
+}
+.is-warning {
+  color: $warning;
+}
+.is-danger {
+  color: $danger;
+}

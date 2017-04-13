@@ -7,7 +7,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
                 <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
-                <small>#{{ pioupiou.id }}</small> &mdash;
+                <small>#{{ pioupiou.id || id}}</small> &mdash;
                 <small v-if="pioupiou.location">
                   {{ Math.abs(pioupiou.location.latitude) }}
                   {{ pioupiou.location.latitude > 0 ?
@@ -19,6 +19,7 @@
                     $pgettext('Cardinal direction abbreviation', 'E') :
                     $pgettext('Cardinal direction abbreviation', 'W') }}
                 </small>
+                <small class="location-placeholder" v-else></small>
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
@@ -32,10 +33,11 @@
               <div class="columns">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
-                    :zoom="14" :map-markers="[pioupiou]" auto-center="marker"></map-content>
+                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
+                  <div class="map-placeholder" v-else></div>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
-                    {{ pioupiou.measurements.date | timeago(now) }}
+                    {{ pioupiou.measurements.date | timeago(currentTime) }}
                   </span>
 
                   <wind-overview v-if="pioupiou.measurements"
@@ -44,6 +46,7 @@
                     :speed-avg="pioupiou.measurements.wind_speed_avg"
                     :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
+                  <div class="overview-placeholder" v-else></div>
                 </div>
 
                 <div class="is-hidden-desktop">
@@ -51,12 +54,16 @@
                 </div>
 
                 <div class="column">
-                  <history-chart></history-chart>
+                  <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
                 </div>
 
                 <div class="column">
                   <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="$options.filters.linkify(pioupiou.meta.description || '')">
+                    <div class="message-body" v-html="description">
+                    </div>
+                  </article>
+                  <article class="message" v-else>
+                    <div class="message-body">
                     </div>
                   </article>
                 </div>
@@ -78,13 +85,18 @@ import historyChart from '@/components/history-chart'
 export default {
   name: 'details-view',
 
-  props: ['id'],
+  props: {
+    id: {
+      Type: Number,
+      default: 0
+    }
+  },
 
   components: { windOverview, mapContent, historyChart },
 
   data() {
     return {
-      now: (new Date()).getTime()
+      data: []
     }
   },
 
@@ -92,8 +104,17 @@ export default {
     pioupiou() {
       return this.$store.getters['pioupious/get'](this.id)
     },
+    pioupiouMarkers() {
+      return [this.pioupiou]
+    },
     faved() {
       return this.$store.state.user.favorites.indexOf(this.id) !== -1
+    },
+    currentTime() {
+      return this.$store.state.user.currentTime
+    },
+    description() {
+      return this.$options.filters.linkify(this.pioupiou.meta.description || '')
     }
   },
 
@@ -107,22 +128,17 @@ export default {
     }
   },
 
-  mounted() {
-    this.$store.dispatch('user/restoreStore')
-
+  activated() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
-
-    setInterval(() => {
-      this.now = (new Date()).getTime()
-    }, 1000)
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
 
   .card {
     .card-header {
@@ -189,10 +205,31 @@ export default {
   }
 
   article.message {
-    background-color: #fcfcfc;
+    box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
+    border-left: 1px solid $grey-lighter;
+    background: $white-ter;
 
     .message-body {
       border-radius: initial;
     }
+  }
+
+  .map-placeholder {
+    height: 180px;
+    width: 100%;
+    background-color: $grey-lighter;
+  }
+
+  .location-placeholder {
+    background-color: $white;
+    width: 160px;
+    display: inline-block;
+    height: 0.8em;
+  }
+
+  .overview-placeholder {
+    background-color: $white;
+    height: 100px;
+    width: 100%;
   }
 </style>

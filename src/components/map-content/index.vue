@@ -89,7 +89,7 @@ export default {
   },
 
   mounted() {
-    this.$emit('bounds-change', this.$refs.map.mapObject.getBounds())
+    this.boundsChange()
   }
 }
 </script>

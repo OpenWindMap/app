@@ -22,4 +22,7 @@ new Vue({
   convert
 })
 
+store.dispatch('user/syncTime')
+store.dispatch('user/restoreStore')
+
 window.Vue = Vue

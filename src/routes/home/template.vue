@@ -14,7 +14,7 @@
         </h5>
         <station-overview v-for="pioupiou in historiesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
-          :opened="opened === pioupiou.id && context === 'H'" @open="open(pioupiou, 'H')" @show="show(pioupiou)">
+          :opened="opened === pioupiou.id && context === 'H'" @open="show(pioupiou)" @show="show(pioupiou)">
         </station-overview>
       </div>
       <div class="column">
@@ -23,7 +23,7 @@
         </h5>
         <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou"
-          :opened="opened === pioupiou.id && context === 'F'" @open="open(pioupiou, 'F')" @show="show(pioupiou)">
+          :opened="opened === pioupiou.id && context === 'F'" @open="show(pioupiou)" @show="show(pioupiou)">
         </station-overview>
       </div>
     </div>
@@ -59,8 +59,6 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('user/restoreStore')
-
     this.$store.state.user.favorites.forEach(
       id => {
         this.$store.dispatch('pioupious/fetchOne', { stationId: id })
