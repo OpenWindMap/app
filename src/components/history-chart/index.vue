@@ -74,16 +74,14 @@ export default {
   mounted() {
     this.context = this.$refs.chart.getContext('2d')
 
-    this.height = this.$refs.chart.clientHeight * this.pxRatio
-    this.width = this.$refs.chart.clientWidth * this.pxRatio
-
-    console.log(this.height, this.width)
-
+    this.handleWindowResize()
     window.addEventListener('resize', this.handleWindowResize)
+    window.addEventListener('orientationchange', this.handleWindowResize)
   },
 
   beforeDestroy() {
     window.removeEventListener('resize', this.handleWindowResize)
+    window.addEventListener('orientationchange', this.handleWindowResize)
   },
 
   methods: {
@@ -94,8 +92,8 @@ export default {
       return (this.height - this.margin) - (speed * this.speedToPixels)
     },
     handleWindowResize() {
-      this.height = this.$refs.chart.clientHeight
-      this.width = this.$refs.chart.clientWidth
+      this.height = this.$refs.chart.clientHeight * this.pxRatio
+      this.width = this.$refs.chart.clientWidth * this.pxRatio
     },
 
     draw() {
