@@ -12,7 +12,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/map' },
+    { path: '/', redirect: '/home' },
 
     home, search, map, more, details
   ]
