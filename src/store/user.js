@@ -10,6 +10,8 @@ export default {
     favorites: [542, 293, 438, 265],
     histories: [],
     historyLength: 4,
+    lang: undefined,
+    unit: undefined,
     center: undefined,
     zoom: undefined,
     currentTime: 0
@@ -54,6 +56,14 @@ export default {
     },
     setTimeToNow(state) {
       state.currentTime = (new Date()).getTime()
+    },
+    setLang(state, { lang }) {
+      state.lang = lang
+      Vue.config.language = state.lang
+    },
+    setUnit(state, { unit }) {
+      state.unit = unit
+      Vue.config.unit = state.unit
     }
   },
 
@@ -82,6 +92,14 @@ export default {
     pushMapControls(context, { zoom, center }) {
       context.commit('pushMapControls', { zoom, center })
       context.dispatch('saveIntoLStorage', { zoom: context.state.zoom, center: context.state.center })
+    },
+    setLang(context, { lang }) {
+      context.commit('setLang', { lang })
+      context.dispatch('saveIntoLStorage', { lang })
+    },
+    setUnit(context, { unit }) {
+      context.commit('setUnit', { unit })
+      context.dispatch('saveIntoLStorage', { unit })
     },
     restoreStore(context) {
       Object.keys(context.state).forEach(key => {

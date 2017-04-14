@@ -15,23 +15,22 @@
           <h3 class="has-text-centered">
             <translate translate-context="Offline alert message title">Ow no ..</translate>
           </h3>
-            <translate tag="p" translate-context="Offline alert message content">
-              Looks like you are running the app without any connection.
-            </translate>
-            <translate tag="p" translate-context="Offline alert message content">
-              However during the beta, an internet connection is required to run the Pioupiou application.
-            </translate>
-            <br>
-            <translate tag="p" translate-context="Offline alert message content">
-              We are sorry about this issue and work hard on offline capabilites.
-            </translate>
-            <br>
-            <translate tag="p" translate-context="Offline alert message content">
-              Cheers,
-            </translate>
-            <p>
-              <translate tag="strong" translate-context="Offline alert message author">The Pioupiou Team.</translate>
-            </p>
+          <translate tag="p" translate-context="Offline alert message content">
+            Looks like you are running the app without any connection.
+          </translate>
+          <translate tag="p" translate-context="Offline alert message content">
+            However during the beta, an internet connection is required to run the Pioupiou application.
+          </translate>
+          <br>
+          <translate tag="p" translate-context="Offline alert message content">
+            We are sorry about this issue and work hard on offline capabilites.
+          </translate>
+          <br>
+          <translate tag="p" translate-context="Offline alert message content">
+            Cheers,
+          </translate>
+          <p>
+            <translate tag="strong" translate-context="Offline alert message author">The Pioupiou Team.</translate>
           </p>
         </div>
       </div>
@@ -82,6 +81,11 @@ export default {
   mounted() {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
+
+    const systemLanguage = navigator.language.split('-')[0]
+    if (systemLanguage in this.$language.available) {
+      this.$store.dispatch('user/setLang', { lang: systemLanguage })
+    }
   }
 }
 </script>
@@ -118,5 +122,15 @@ export default {
     .content p {
       margin-bottom: 0;
     }
+  }
+
+  * {
+    user-select: none;
+    touch-callout: none;
+    user-drag: none;
+  }
+
+  input {
+    user-select: auto !important;
   }
 </style>

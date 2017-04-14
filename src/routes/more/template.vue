@@ -26,7 +26,7 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <translate tag="strong">Language</translate> <br>
+                <translate tag="strong">Language</translate> ({{ langDemo }})<br>
                 <translate tag="small">Choose your language</translate>
               </div>
               <div class="is-pulled-right">
@@ -107,11 +107,17 @@ export default {
   },
 
   methods: {
-    changeLanguage(key) {
-      this.$language.current = key
+    changeLanguage(lang) {
+      this.$store.dispatch('user/setLang', { lang })
     },
-    changeUnit(key) {
-      this.$convert.current = key
+    changeUnit(unit) {
+      this.$store.dispatch('user/setUnit', { unit })
+    }
+  },
+
+  computed: {
+    langDemo() {
+      return navigator.language
     }
   }
 }
