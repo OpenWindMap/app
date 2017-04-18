@@ -58,7 +58,10 @@ export default {
     }
   },
 
-  mounted() {
+  activated() {
+    this.opened = undefined
+    this.context = undefined
+
     this.$store.state.user.favorites.forEach(
       id => {
         this.$store.dispatch('pioupious/fetchOne', { stationId: id })
@@ -73,9 +76,17 @@ export default {
     )
   },
 
-  activated() {
-    this.opened = undefined
-    this.context = undefined
+  deactivated() {
+    this.$store.state.user.favorites.forEach(
+      id => {
+        this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: id })
+      }
+    )
+    this.$store.state.user.histories.forEach(
+      id => {
+        this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: id })
+      }
+    )
   },
 
   methods: {

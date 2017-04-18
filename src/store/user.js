@@ -7,7 +7,7 @@ export default {
   namespaced: true,
 
   state: {
-    favorites: [542, 293, 438, 265],
+    favorites: [],
     histories: [],
     historyLength: 4,
     lang: undefined,

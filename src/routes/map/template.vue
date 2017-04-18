@@ -42,9 +42,13 @@ export default {
     }
   },
 
-  mounted() {
+  activated() {
     this.$store.dispatch('pioupious/fetchAll')
     this.$store.dispatch('pioupious/keepAllUpdated')
+  },
+
+  deactivated() {
+    this.$store.dispatch('pioupious/stopAllToBeUpdated')
   }
 }
 </script>

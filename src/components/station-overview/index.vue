@@ -38,7 +38,7 @@
       <div class="content">
         <hr>
         <keep-alive>
-          <wind-overview v-if="station.measurements"
+          <wind-overview v-if="station.measurements && !offline"
             :heading="station.measurements.wind_heading || 0"
             :speed-min="station.measurements.wind_speed_min || 0"
             :speed-avg="station.measurements.wind_speed_avg || 0"

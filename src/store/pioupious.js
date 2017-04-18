@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { connect } from 'socket.io-client'
+// import { connect } from 'socket.io-client'
 
 Object.values = object => Object.keys(object).map(key => object[key])
 
@@ -11,7 +11,8 @@ export default {
     archiveTime: 3 * 3600000, // = hour
     pioupious: {},
 
-    locationResult: []
+    locationResult: [],
+    watchers: {}
   },
 
   getters: {
@@ -50,20 +51,46 @@ export default {
   mutations: {
     updateAll(state, { pioupious }) {
       pioupious.forEach(pioupiou => {
-        Vue.set(state.pioupious, pioupiou.id, pioupiou)
+        if (pioupiou.id in state.pioupious) {
+          Object.keys(pioupiou).forEach(key => {
+            if (state.pioupious[pioupiou.id][key] !== pioupiou[key]) {
+              Vue.set(state.pioupious[pioupiou.id], key, pioupiou[key])
+            }
+          })
+        } else {
+          Vue.set(state.pioupious, pioupiou.id, pioupiou)
+        }
       })
     },
     updateOne(state, { pioupiou }) {
-      Vue.set(state.pioupious, pioupiou.id, pioupiou)
+      if (pioupiou.id in state.pioupious) {
+        Object.keys(pioupiou).forEach(key => {
+          if (state.pioupious[pioupiou.id][key] !== pioupiou[key]) {
+            Vue.set(state.pioupious[pioupiou.id], key, pioupiou[key])
+          }
+        })
+      } else {
+        Vue.set(state.pioupious, pioupiou.id, pioupiou)
+      }
     },
     updateKey(state, { id, value, key }) {
-      Vue.set(state.pioupious[id], key, value)
+      if (state.pioupious[id][key] !== value) {
+        Vue.set(state.pioupious[id], key, value)
+      }
     },
     archiveOne(state, { stationId, data }) {
-      Vue.set(state.pioupious[stationId], 'archive', data)
+      if (state.pioupious[stationId]['archive'] !== data) { // eslint-disable-line dot-notation
+        Vue.set(state.pioupious[stationId], 'archive', data)
+      }
     },
     addLocationResults(state, { results }) {
       state.locationResult = results
+    },
+    addWatcher(state, { stationId, intId }) {
+      Vue.set(state.watchers, stationId, intId)
+    },
+    removeWatcher(state, { stationId }) {
+      Vue.delete(state.watchers, stationId)
     }
   },
 
@@ -87,41 +114,34 @@ export default {
       })
     },
     keepAllUpdated(context) {
-      // NEEDTODO : Move it into resource
-      const socket = connect('//api.pioupiou.fr/v1/push')
+      if ('all' in context.state.watchers) return
 
-      socket.on('connect', () => {
-        socket.emit('subscribe', 'all')
-      })
-      socket.on('status', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'status' })
-      })
-      socket.on('measurement', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'measurements' })
-      })
-      socket.on('location', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'location' })
-      })
+      const intId = setInterval(() => {
+        console.log('update all')
+        context.dispatch('fetchAll')
+      }, 10000)
+
+      context.commit('addWatcher', { stationId: 'all', intId })
     },
     keepOneUpdated(context, { stationId }) {
-      // NEEDTODO : Move it into resource
-      const socket = connect('//api.pioupiou.fr/v1/push')
+      if (stationId in context.state.watchers) return
 
-      socket.on('connect', () => {
-        socket.emit('subscribe', stationId)
-      })
-      socket.on('status', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'status' })
+      const intId = setInterval(() => {
+        console.log('update', stationId)
+        context.dispatch('fetchOne', { stationId })
+      }, 10000)
 
-        const start = new Date(new Date().getTime() - context.state.archiveTime).toISOString()
-        context.dispatch('fetchArchive', { stationId: data.station_id, stop: 'now', start })
-      })
-      socket.on('measurement', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'measurements' })
-      })
-      socket.on('location', data => {
-        context.commit('updateKey', { id: data.station_id, value: data, key: 'location' })
-      })
+      context.commit('addWatcher', { stationId, intId })
+    },
+    stopAllToBeUpdated(context) {
+      console.log('stopAllToBeUpdated', context.state.watchers)
+      clearInterval(context.state.watchers['all']) // eslint-disable-line dot-notation
+      context.commit('removeWatcher', { stationId: 'all' })
+    },
+    stopOneToBeUpdated(context, { stationId }) {
+      console.log('stopOneToBeUpdated', stationId, context.state.watchers)
+      clearInterval(context.state.watchers[stationId])
+      context.commit('removeWatcher', { stationId })
     },
     searchLocation(context, { query }) {
       if (query.length < 3) return
@@ -147,3 +167,22 @@ export default {
     }
   }
 }
+
+// NEEDTODO : Move it into resource
+// const socket = connect('//api.pioupiou.fr/v1/push')
+//
+// socket.on('connect', () => {
+//   socket.emit('subscribe', stationId)
+// })
+// socket.on('status', data => {
+//   context.commit('updateKey', { id: data.station_id, value: data, key: 'status' })
+//
+//   const start = new Date(new Date().getTime() - context.state.archiveTime).toISOString()
+//   context.dispatch('fetchArchive', { stationId: data.station_id, stop: 'now', start })
+// })
+// socket.on('measurement', data => {
+//   context.commit('updateKey', { id: data.station_id, value: data, key: 'measurements' })
+// })
+// socket.on('location', data => {
+//   context.commit('updateKey', { id: data.station_id, value: data, key: 'location' })
+// })

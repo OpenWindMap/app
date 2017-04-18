@@ -90,6 +90,14 @@ export default {
 
   mounted() {
     this.boundsChange()
+
+    this.$forceUpdate()
+  },
+
+  updated() {
+    this.$nextTick(() => {
+      this.$refs.map.mapObject.invalidateSize()
+    })
   }
 }
 </script>

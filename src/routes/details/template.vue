@@ -37,7 +37,7 @@
                   <div class="map-placeholder" v-else></div>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
-                    {{ pioupiou.measurements.date | timeago(currentTime) }}
+                    {{ dataOld }}
                   </span>
 
                   <wind-overview v-if="pioupiou.measurements"
@@ -54,7 +54,9 @@
                 </div>
 
                 <div class="column">
-                  <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
+                  <keep-alive>
+                    <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
+                  </keep-alive>
                 </div>
 
                 <div class="column">
@@ -96,7 +98,8 @@ export default {
 
   data() {
     return {
-      data: []
+      data: [],
+      dataOld: undefined
     }
   },
 
@@ -128,11 +131,24 @@ export default {
     }
   },
 
+  watch: {
+    currentTime() {
+      const nTime = this.$options.filters.timeago(this.pioupiou.measurements.date, this.currentTime)
+      if (nTime !== this.dataOld) {
+        this.dataOld = nTime
+      }
+    }
+  },
+
   activated() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+  },
+
+  deactivated() {
+    this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: this.id })
   }
 }
 </script>
