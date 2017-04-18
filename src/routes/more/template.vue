@@ -26,7 +26,7 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <translate tag="strong">Language</translate> ({{ langDemo }})<br>
+                <translate tag="strong">Language</translate> <br>
                 <translate tag="small">Choose your language</translate>
               </div>
               <div class="is-pulled-right">
@@ -38,7 +38,8 @@
                     </a>
                   </p>
                   <p class="control">
-                    <a class="button is-small is-primary is-outlined is-inverted">
+                    <a @click="moreLanguage"
+                      class="button is-small is-primary is-outlined is-inverted">
                       <i class="fa fa-plus"></i>
                     </a>
                   </p>
@@ -91,12 +92,34 @@
             </div>
           </header>
         </div>
+        <div class="card">
+          <header class="card-header">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <translate tag="strong">Help us!</translate> <br>
+                <translate tag="small">Help us on the beta</translate>
+              </div>
+              <div class="is-pulled-right">
+                <div class="field has-addons">
+                  <p class="control">
+                    <a @click="repportBug"
+                      class="button is-small is-primary is-outlined is-inverted">
+                      <translate>Report a bug</translate>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script lang="buble">
+import Raven from 'raven-js'
+
 export default {
   name: 'more-view',
 
@@ -112,12 +135,20 @@ export default {
     },
     changeUnit(unit) {
       this.$store.dispatch('user/setUnit', { unit })
-    }
-  },
-
-  computed: {
-    langDemo() {
-      return navigator.language
+    },
+    moreLanguage() {
+      Raven.captureMessage('Hit the more language button', {
+        level: 'info',
+        tags: {
+          'missing feature': 'language addition'
+        }
+      })
+    },
+    repportBug() {
+      Raven.captureMessage('Generic bug reports', {
+        level: 'warning'
+      })
+      Raven.showReportDialog()
     }
   }
 }

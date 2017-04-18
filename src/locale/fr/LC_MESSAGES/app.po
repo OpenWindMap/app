@@ -160,7 +160,7 @@ msgstr "Pioupiou sans nom"
 #: src/routes/home/index.js:7
 msgctxt "Route label"
 msgid "Home"
-msgstr "Acceuil"
+msgstr "Accueil"
 
 #: src/routes/more/index.js:7
 msgctxt "Route label"
