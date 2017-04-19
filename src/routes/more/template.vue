@@ -3,7 +3,345 @@
     <div class="columns">
       <div class="column">
         <div class="card">
-          <header class="card-header">
+          <header class="card-header" @click="open('what-is')">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <span class="icon">
+                  <i class="fa fa-book"></i>
+                </span> &nbsp;
+                <translate tag="strong">What is Pioupiou ?</translate> <br>
+                <!-- <translate tag="small">Brief about Pioupiou</translate> -->
+              </div>
+              <div class="is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-chevron-down" v-if="opened === 'what-is'"></i>
+                  <i class="fa fa-chevron-right" v-else></i>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div :class="['card-content', opened === 'what-is' ? '' : 'is-hidden']">
+            <div class="content">
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Overview</translate> <br>
+                      <!-- <translate tag="small">------</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="http://pioupiou.fr/en/" target="_blank">
+                            <translate>Discover</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Specs</translate> <br>
+                      <!-- <translate tag="small">------</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="http://pioupiou.fr/en/specs/" target="_blank">
+                            <translate>Consult it</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header" @click="open('settings')">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <span class="icon">
+                  <i class="fa fa-sliders"></i>
+                </span> &nbsp;
+                <translate tag="strong">Settings</translate> <br>
+                <!-- <translate tag="small">Available settings</translate> -->
+              </div>
+              <div class="is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-chevron-down" v-if="opened === 'settings'"></i>
+                  <i class="fa fa-chevron-right" v-else></i>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div :class="['card-content', opened === 'settings' ? '' : 'is-hidden']">
+            <div class="content">
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Units</translate> <br>
+                      <!-- <translate tag="small">Units available</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control" v-for="(unit, key) in $convert.available">
+                          <a @click="changeUnit(key)"
+                            :class="['button is-small is-primary', $convert.current === key ? '' : 'is-outlined is-inverted']">
+                            <span>{{ unit }}</span>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Language</translate> <br>
+                      <!-- <translate tag="small">Choose your language</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control" v-for="(language, key) in $language.available">
+                          <a @click="changeLanguage(key)"
+                            :class="['button is-small is-primary', $language.current === key ? '' : 'is-outlined is-inverted']">
+                            <span>{{ language }}</span>
+                          </a>
+                        </p>
+                        <p class="control">
+                          <a @click="moreLanguage"
+                            class="button is-small is-primary is-outlined is-inverted">
+                            <i class="fa fa-plus"></i>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header" @click="open('contribute')">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <span class="icon">
+                  <i class="fa fa-child"></i>
+                </span> &nbsp;
+                <translate tag="strong">Contribute</translate> <br>
+                <!-- <translate tag="small">How to contribute</translate> -->
+              </div>
+              <div class="is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-chevron-down" v-if="opened === 'contribute'"></i>
+                  <i class="fa fa-chevron-right" v-else></i>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div :class="['card-content', opened === 'contribute' ? '' : 'is-hidden']">
+            <div class="content">
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Your own Pioupiou</translate> <br>
+                      <!-- <translate tag="small">Buy a Pioupiou to contribute</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="http://pioupiou.fr/en/reserve" target="_blank">
+                            <translate>Reserve it</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Open Data</translate> <br>
+                      <!-- <translate tag="small">Data are free for everyone !</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="http://developers.pioupiou.fr" target="_blank">
+                            <translate>Consult it</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Help us!</translate> <br>
+                      <!-- <translate tag="small">Help us on the beta</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a @click="repportBug"
+                            class="button is-small is-primary is-outlined is-inverted">
+                            <translate>Report a bug</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header" @click="open('contact')">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <span class="icon">
+                  <i class="fa fa-commenting-o"></i>
+                </span> &nbsp;
+                <translate tag="strong">Contact</translate> <br>
+                <!-- <translate tag="small">Contact us</translate> -->
+              </div>
+              <div class="is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-chevron-down" v-if="opened === 'contact'"></i>
+                  <i class="fa fa-chevron-right" v-else></i>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div :class="['card-content', opened === 'contact' ? '' : 'is-hidden']">
+            <div class="content">
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Support</translate> <br>
+                      <!-- <translate tag="small">Need some help ?</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="https://pioupiou.fr/en/support" target="_blank">
+                            <translate>Contact us</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header" @click="open('legal')">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <span class="icon">
+                  <i class="fa fa-gavel"></i>
+                </span> &nbsp;
+                <translate tag="strong">Legal</translate> <br>
+                <!-- <translate tag="small">Legal things</translate> -->
+              </div>
+              <div class="is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-chevron-down" v-if="opened === 'legal'"></i>
+                  <i class="fa fa-chevron-right" v-else></i>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div :class="['card-content', opened === 'legal' ? '' : 'is-hidden']">
+            <div class="content">
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Privacy Policy</translate> <br>
+                      <!-- <translate tag="small">Our Privacy Policy</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="https://pioupiou.fr/en/privacy-and-cookies" target="_blank">
+                            <translate>Consult it</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left">
+                      <translate tag="strong">Terms of Use</translate> <br>
+                      <!-- <translate tag="small">Our Terms and Conditions of Use</translate> -->
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="field has-addons">
+                        <p class="control">
+                          <a class="button is-small is-primary is-outlined is-inverted"
+                            href="https://pioupiou.fr/en/terms-of-use" target="_blank">
+                            <translate>Consult it</translate>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <div class="card">
+                <header class="card-header">
+                  <div class="is-clearfix is-fullwidth">
+                    <div class="is-pulled-left no-limit">
+                      <translate tag="strong">Attributions</translate> <br>
+                      <p class="control">
+                        <small>
+                          <translate>All map credits goes to</translate>
+                          <a href="http://leafletjs.com">Leaflet</a>
+                          <translate tag="small"> and </translate>
+                          <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header" style="padding-bottom: 0px;">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
@@ -11,168 +349,6 @@
               <div class="is-pulled-right">
                 <small>
                   <strong>Version 0.4.0</strong> - beta
-                </small>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Units</translate> <br>
-                <!-- <translate tag="small">Units available</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control" v-for="(unit, key) in $convert.available">
-                    <a @click="changeUnit(key)"
-                      :class="['button is-small is-primary', $convert.current === key ? '' : 'is-outlined is-inverted']">
-                      <span>{{ unit }}</span>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Language</translate> <br>
-                <!-- <translate tag="small">Choose your language</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control" v-for="(language, key) in $language.available">
-                    <a @click="changeLanguage(key)"
-                      :class="['button is-small is-primary', $language.current === key ? '' : 'is-outlined is-inverted']">
-                      <span>{{ language }}</span>
-                    </a>
-                  </p>
-                  <p class="control">
-                    <a @click="moreLanguage"
-                      class="button is-small is-primary is-outlined is-inverted">
-                      <i class="fa fa-plus"></i>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Support</translate> <br>
-                <!-- <translate tag="small">Need some help ?</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control">
-                    <a class="button is-small is-primary is-outlined is-inverted"
-                      href="https://pioupiou.fr/en/support" target="_blank">
-                      <translate>Contact us</translate>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Open Data</translate> <br>
-                <!-- <translate tag="small">Data are free for everyone !</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control">
-                    <a class="button is-small is-primary is-outlined is-inverted"
-                      href="http://developers.pioupiou.fr" target="_blank">
-                      <translate>Consult it</translate>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Privacy</translate> <br>
-                <!-- <translate tag="small">Our Privacy Policy</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control">
-                    <a class="button is-small is-primary is-outlined is-inverted"
-                      href="https://pioupiou.fr/en/privacy-and-cookies" target="_blank">
-                      <translate>Consult it</translate>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Terms of Use</translate> <br>
-                <!-- <translate tag="small">Our Terms and Conditions of Use</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control">
-                    <a class="button is-small is-primary is-outlined is-inverted"
-                      href="https://pioupiou.fr/en/terms-of-use" target="_blank">
-                      <translate>Consult it</translate>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <translate tag="strong">Help us!</translate> <br>
-                <!-- <translate tag="small">Help us on the beta</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <div class="field has-addons">
-                  <p class="control">
-                    <a @click="repportBug"
-                      class="button is-small is-primary is-outlined is-inverted">
-                      <translate>Report a bug</translate>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left no-limit">
-                <translate tag="strong">Attributions</translate> <br>
-
-                <small>
-                  <translate>All map credits goes to</translate>
-                  <a href="http://leafletjs.com">Leaflet</a>
-                  <translate tag="small"> and </translate>
-                  <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors
                 </small>
               </div>
             </div>
@@ -191,7 +367,8 @@ export default {
 
   data() {
     return {
-      data: []
+      data: [],
+      opened: undefined
     }
   },
 
@@ -215,6 +392,9 @@ export default {
         level: 'warning'
       })
       Raven.showReportDialog()
+    },
+    open(label) {
+      this.opened = this.opened === label ? undefined : label
     }
   }
 }
@@ -245,14 +425,14 @@ export default {
   .card {
     box-shadow: initial;
     border-top: 1px solid rgba(10, 10, 10, 0.1);
-    min-height: 62px;
+    background-color: initial;
 
     &:last-child {
       border-bottom: 1px solid rgba(10, 10, 10, 0.1);
     }
 
     .card-header {
-      padding: 12px 12px 0px;
+      padding: 12px;
       box-shadow: initial;
 
       .title {
@@ -264,21 +444,43 @@ export default {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        vertical-align: middle;
+        line-height: 1.9rem;
       }
       .is-pulled-left.no-limit {
         max-width: 100%;
         text-overflow: initial;
         overflow: initial;
         white-space: initial;
+        vertical-align: initial;
+        line-height: initial;
       }
 
       .is-pulled-right {
         line-height: 1.9rem;
+
+        .icon {
+          vertical-align: middle;
+        }
       }
 
       .field.has-addons {
         margin-top: 5px;
       }
+    }
+
+    .card-content {
+      padding: 0;
+      box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
+      background: $white-ter;
+
+      .card-header {
+        padding: 12px 12px 0px;
+      }
+    }
+
+    p.control {
+      margin-bottom: 1em;
     }
   }
 
