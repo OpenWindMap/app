@@ -21,7 +21,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Units</translate> <br>
-                <translate tag="small">Units available</translate>
+                <!-- <translate tag="small">Units available</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -41,7 +41,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Language</translate> <br>
-                <translate tag="small">Choose your language</translate>
+                <!-- <translate tag="small">Choose your language</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -67,7 +67,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Support</translate> <br>
-                <translate tag="small">Need some help ?</translate>
+                <!-- <translate tag="small">Need some help ?</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -87,7 +87,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Open Data</translate> <br>
-                <translate tag="small">Data are free for everyone !</translate>
+                <!-- <translate tag="small">Data are free for everyone !</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -107,14 +107,14 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Privacy</translate> <br>
-                <translate tag="small">Our Privacy Policy</translate>
+                <!-- <translate tag="small">Our Privacy Policy</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
                   <p class="control">
                     <a class="button is-small is-primary is-outlined is-inverted"
                       href="https://pioupiou.fr/en/privacy-and-cookies" target="_blank">
-                      <translate>Inquire</translate>
+                      <translate>Consult it</translate>
                     </a>
                   </p>
                 </div>
@@ -127,14 +127,14 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Terms of Use</translate> <br>
-                <translate tag="small">Our Terms and Conditions of Use</translate>
+                <!-- <translate tag="small">Our Terms and Conditions of Use</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
                   <p class="control">
                     <a class="button is-small is-primary is-outlined is-inverted"
                       href="https://pioupiou.fr/en/terms-of-use" target="_blank">
-                      <translate>Look at</translate>
+                      <translate>Consult it</translate>
                     </a>
                   </p>
                 </div>
@@ -147,7 +147,7 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
                 <translate tag="strong">Help us!</translate> <br>
-                <translate tag="small">Help us on the beta</translate>
+                <!-- <translate tag="small">Help us on the beta</translate> -->
               </div>
               <div class="is-pulled-right">
                 <div class="field has-addons">
@@ -165,8 +165,8 @@
         <div class="card">
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left" style="max-width: 100%;">
-                <translate tag="strong">Credits</translate> <br>
+              <div class="is-pulled-left no-limit">
+                <translate tag="strong">Attributions</translate> <br>
 
                 <small>
                   <translate>All map credits goes to</translate>
@@ -245,6 +245,7 @@ export default {
   .card {
     box-shadow: initial;
     border-top: 1px solid rgba(10, 10, 10, 0.1);
+    min-height: 62px;
 
     &:last-child {
       border-bottom: 1px solid rgba(10, 10, 10, 0.1);
@@ -263,6 +264,12 @@ export default {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+      }
+      .is-pulled-left.no-limit {
+        max-width: 100%;
+        text-overflow: initial;
+        overflow: initial;
+        white-space: initial;
       }
 
       .is-pulled-right {
