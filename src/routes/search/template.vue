@@ -70,6 +70,12 @@
             :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
           </station-overview>
         </div>
+        <div class="column has-text-centered" v-else>
+          <br><br>
+          <span class="icon">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+          </span>
+        </div>
       </div>
     </div>
   </section>
@@ -268,5 +274,14 @@ export default {
 
   .fixed-header.mini-map-container + .column {
     padding-top: 180px;
+  }
+
+  span.icon {
+    color: $grey;
+    vertical-align: middle;
+    height: 100%;
+    i.fa {
+      font-size: 2em;
+    }
   }
 </style>

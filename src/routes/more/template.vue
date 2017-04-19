@@ -6,6 +6,20 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
+                <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+              </div>
+              <div class="is-pulled-right">
+                <small>
+                  <strong>Version 0.4.0</strong> - beta
+                </small>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div class="card">
+          <header class="card-header">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
                 <translate tag="strong">Units</translate> <br>
                 <translate tag="small">Units available</translate>
               </div>
@@ -56,9 +70,14 @@
                 <translate tag="small">Need some help ?</translate>
               </div>
               <div class="is-pulled-right">
-                <small>
-                  <a href="mailto:support@pioupiou.fr">support@pioupiou.fr</a>
-                </small>
+                <div class="field has-addons">
+                  <p class="control">
+                    <a class="button is-small is-primary is-outlined is-inverted"
+                      href="https://pioupiou.fr/en/support" target="_blank">
+                      <translate>Contact us</translate>
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </header>
@@ -71,9 +90,14 @@
                 <translate tag="small">Data are free for everyone !</translate>
               </div>
               <div class="is-pulled-right">
-                <small>
-                  <a href="http://developers.pioupiou.fr" target="_blank">developers.pioupiou.fr</a>
-                </small>
+                <div class="field has-addons">
+                  <p class="control">
+                    <a class="button is-small is-primary is-outlined is-inverted"
+                      href="http://developers.pioupiou.fr" target="_blank">
+                      <translate>Consult it</translate>
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </header>
@@ -82,12 +106,38 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+                <translate tag="strong">Privacy</translate> <br>
+                <translate tag="small">Our Privacy Policy</translate>
               </div>
               <div class="is-pulled-right">
-                <small>
-                  <strong>Version 0.4.0</strong> - beta
-                </small>
+                <div class="field has-addons">
+                  <p class="control">
+                    <a class="button is-small is-primary is-outlined is-inverted"
+                      href="https://pioupiou.fr/en/privacy-and-cookies" target="_blank">
+                      <translate>Inquire</translate>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div class="card">
+          <header class="card-header">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left">
+                <translate tag="strong">Terms of Use</translate> <br>
+                <translate tag="small">Our Terms and Conditions of Use</translate>
+              </div>
+              <div class="is-pulled-right">
+                <div class="field has-addons">
+                  <p class="control">
+                    <a class="button is-small is-primary is-outlined is-inverted"
+                      href="https://pioupiou.fr/en/terms-of-use" target="_blank">
+                      <translate>Look at</translate>
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </header>
@@ -108,6 +158,22 @@
                     </a>
                   </p>
                 </div>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div class="card">
+          <header class="card-header">
+            <div class="is-clearfix is-fullwidth">
+              <div class="is-pulled-left" style="max-width: 100%;">
+                <translate tag="strong">Credits</translate> <br>
+
+                <small>
+                  <translate>All map credits goes to</translate>
+                  <a href="http://leafletjs.com">Leaflet</a>
+                  <translate tag="small"> and </translate>
+                  <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors
+                </small>
               </div>
             </div>
           </header>

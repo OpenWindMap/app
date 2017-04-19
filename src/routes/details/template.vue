@@ -35,6 +35,7 @@
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
                   <div class="map-placeholder" v-else></div>
+                  <map-content v-else :zoom="14"></map-content>
 
                   <span class="tag is-medium" v-if="pioupiou.measurements">
                     {{ dataOld }}
@@ -46,6 +47,8 @@
                     :speed-avg="pioupiou.measurements.wind_speed_avg"
                     :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
+                  <wind-overview v-else></wind-overview>
+
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
@@ -61,11 +64,14 @@
 
                 <div class="column">
                   <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="description">
+                    <div class="message-body" v-html="description || 'No descrition provided'">
+                      <br><br>
                     </div>
                   </article>
                   <article class="message" v-else>
                     <div class="message-body">
+                      No descrition provided
+                      <br><br>
                     </div>
                   </article>
                 </div>
