@@ -90,6 +90,14 @@ export default {
 
   mounted() {
     this.boundsChange()
+
+    this.$forceUpdate()
+  },
+
+  updated() {
+    // this.$nextTick(() => {
+    //   this.$refs.map.mapObject.invalidateSize()
+    // })
   }
 }
 </script>
@@ -103,5 +111,10 @@ export default {
 
   .leaflet-top.leaflet-left {
     position: static;
+  }
+
+
+  .leaflet-control.leaflet-control-attribution {
+    display: none;
   }
 </style>

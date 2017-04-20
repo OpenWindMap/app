@@ -12,6 +12,7 @@
     "bulma": "^0.4.0",
     "font-awesome": "^4.7.0",
     "linkifyjs": "^2.1.4",
+    "raven-js": "^3.14.1",
     "socket.io-client": "^1.7.3",
     "timeago.js": "^3.0.1",
     "vue": "^2.2.6",

@@ -70,6 +70,12 @@
             :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
           </station-overview>
         </div>
+        <div class="column has-text-centered" v-else>
+          <br><br>
+          <span class="icon">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+          </span>
+        </div>
       </div>
     </div>
   </section>
@@ -116,14 +122,18 @@ export default {
     }
   },
 
-  mounted() {
-    // this.highlights.forEach(
-    //   id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
-    // )
+  activated() {
+    this.highlights.forEach(
+      id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+    )
     this.$store.dispatch('user/restoreStore')
 
     this.$store.dispatch('pioupious/fetchAll')
     this.$store.dispatch('pioupious/keepAllUpdated')
+  },
+
+  deactivated() {
+    this.$store.dispatch('pioupious/stopAllToBeUpdated')
   },
 
   methods: {
@@ -264,5 +274,14 @@ export default {
 
   .fixed-header.mini-map-container + .column {
     padding-top: 180px;
+  }
+
+  span.icon {
+    color: $grey;
+    vertical-align: middle;
+    height: 100%;
+    i.fa {
+      font-size: 2em;
+    }
   }
 </style>

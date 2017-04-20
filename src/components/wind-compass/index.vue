@@ -3,17 +3,17 @@
 
     <div class="column" v-if="!offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ speedAvg !== null && speedAvg !== undefined? $getvalue(speedAvg) : '--' }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
-    <div class="column" v-if="!offline">
+    <div class="column" v-if="!offline && (heading !== null && heading !== undefined)">
       <div class="wind-icon" :style="windIconStyle"></div>
     </div>
 
     <div class="column" v-if="!offline && ((!iconOnly && !inline) || (iconOnly && !inline && hide))"
       :style="{visibility: iconOnly && hide ? 'hidden' : 'visible'}">
-      <strong>{{ $getvalue(speedAvg) }}</strong> <br>
+      <strong>{{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong> <br>
       <small>{{ label || $convert.currentLabel }}</small>
     </div>
 
@@ -25,6 +25,12 @@
     <div v-if="offline" class="column">
       <span class="icon">
         <i class="fa fa-ban"></i>
+      </span>
+    </div>
+
+    <div v-if="!offline && (heading === null || heading === undefined)" class="column">
+      <span class="icon">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
       </span>
     </div>
   </div>

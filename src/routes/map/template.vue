@@ -1,9 +1,7 @@
 <template lang="html">
   <section>
-    <keep-alive>
-      <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
-        @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
-    </keep-alive>
+    <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
+      @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
   </section>
 </template>
 
@@ -42,9 +40,13 @@ export default {
     }
   },
 
-  mounted() {
+  activated() {
     this.$store.dispatch('pioupious/fetchAll')
     this.$store.dispatch('pioupious/keepAllUpdated')
+  },
+
+  deactivated() {
+    this.$store.dispatch('pioupious/stopAllToBeUpdated')
   }
 }
 </script>

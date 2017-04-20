@@ -47,35 +47,60 @@ export default {
 
   computed: {
     favoritesPioupious() {
-      return this.$store.state.user.favorites.map(
+      return this.favorites.map(
         id => this.$store.getters['pioupious/get'](id)
       )
     },
     historiesPioupious() {
-      return this.$store.state.user.histories.map(
+      return this.histories.map(
         id => this.$store.getters['pioupious/get'](id)
       )
+    },
+    histories() {
+      return this.$store.state.user.histories
+    },
+    favorites() {
+      return this.$store.state.user.favorites
     }
   },
 
-  mounted() {
-    this.$store.state.user.favorites.forEach(
-      id => {
-        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
-        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
-      }
-    )
-    this.$store.state.user.histories.forEach(
-      id => {
-        this.$store.dispatch('pioupious/fetchOne', { stationId: id })
-        this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
-      }
-    )
+  watch: {
+    histories() {
+      this.histories.forEach(
+        id => {
+          this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+          this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+        }
+      )
+    },
+    favorites() {
+      this.favorites.forEach(
+        id => {
+          this.$store.dispatch('pioupious/fetchOne', { stationId: id })
+          this.$store.dispatch('pioupious/keepOneUpdated', { stationId: id })
+        }
+      )
+    }
   },
 
   activated() {
     this.opened = undefined
     this.context = undefined
+
+    this.$forceUpdate()
+  },
+
+  deactivated() {
+    this.favorites.forEach(
+      id => {
+        this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: id })
+      }
+    )
+    this.histories.forEach(
+      id => {
+        this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: id })
+      }
+    )
   },
 
   methods: {

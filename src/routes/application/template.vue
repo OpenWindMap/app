@@ -39,6 +39,8 @@
 </template>
 
 <script lang="buble">
+import Raven from 'raven-js'
+
 import TabsFooter from '@/components/tabs-footer'
 import NavBar from '@/components/nav-bar'
 
@@ -75,17 +77,18 @@ export default {
       } else {
         this.connectionType = 'unknow'
       }
+    },
+    deviceready() {
+      Raven.setExtraContext({
+        device: window.device || {}
+      })
     }
   },
 
   mounted() {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
-
-    const systemLanguage = navigator.language.split('-')[0]
-    if (systemLanguage in this.$language.available) {
-      this.$store.dispatch('user/setLang', { lang: systemLanguage })
-    }
+    document.addEventListener('deviceready', this.deviceready)
   }
 }
 </script>
@@ -132,5 +135,9 @@ export default {
 
   input {
     user-select: auto !important;
+  }
+
+  .sentry-error-embed header h2 > span {
+    display: inline !important;
   }
 </style>

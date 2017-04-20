@@ -1,22 +1,32 @@
 <template lang="html">
   <div class="columns is-mobile has-text-centered">
     <div class="column is-3-mobile">
-      <strong>{{ headingFromCompass }}</strong>
-      <br>
-      {{ heading }}°
+      <template v-if="heading !== null && heading !== undefined">
+        <strong>{{ headingFromCompass }}</strong>
+        <br>
+        {{ heading }}°
+      </template>
+      <template v-else>
+        <span class="icon" v-if="!offline">
+          <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </span>
+        <span class="icon" v-else>
+          <i class="fa fa-ban"></i>
+        </span>
+      </template>
     </div>
     <div :class="['column is-2-mobile', offset ? `is-offset-${ offset }` : `` ]">
-      <strong>{{ $getvalue(speedMin) }}</strong>
+      <strong>{{ speedMin !== null && speedMin !== undefined ? $getvalue(speedMin) : '--' }}</strong>
       <br>
       <translate tag="small">MIN</translate>
     </div>
     <div class="column is-2-mobile has-highlight">
-      <strong>{{ $getvalue(speedAvg) }}</strong>
+      <strong>{{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
       <br>
       <translate tag="small">AVG</translate>
     </div>
     <div class="column is-2-mobile">
-      <strong>{{ $getvalue(speedMax) }}</strong>
+      <strong>{{ speedMax !== null && speedMax !== undefined ? $getvalue(speedMax) : '--' }}</strong>
       <br>
       <translate tag="small">MAX</translate>
     </div>
@@ -51,6 +61,11 @@ export default {
     offset: {
       type: [Boolean, Number],
       default: 3
+    },
+
+    offline: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -87,6 +102,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~src/assets/vars";
+
   .columns {
     font-size: 1.1em;
   }
@@ -98,5 +115,14 @@ export default {
   .has-highlight strong {
     font-size: 1.3em;
     line-height: .9;
+  }
+
+  span.icon {
+    color: $grey;
+    vertical-align: middle;
+    height: 100%;
+    i.fa {
+      font-size: 2em;
+    }
   }
 </style>

@@ -8,9 +8,9 @@
           <small v-if="!offline && station.measurements">
             {{ station.measurements.date | timeago(currentTime) }}
           </small>
-          <small v-else class="is-danger">
+          <translate tag="small" class="is-danger" v-else>
             offline
-          </small>
+          </translate>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
             {{ station.location.latitude > 0 ?
@@ -26,11 +26,12 @@
         <div class="is-pulled-right">
           <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
             :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('AVG')"
-            :heading="station.measurements.wind_heading || 0"
-            :speed-min="station.measurements.wind_speed_min || 0"
-            :speed-avg="station.measurements.wind_speed_avg || 0"
-            :speed-max="station.measurements.wind_speed_max || 0">
+            :heading="station.measurements.wind_heading"
+            :speed-min="station.measurements.wind_speed_min"
+            :speed-avg="station.measurements.wind_speed_avg"
+            :speed-max="station.measurements.wind_speed_max">
           </wind-compass>
+          <wind-compass class="wind-compass" v-else></wind-compass>
         </div>
       </div>
     </header>
@@ -38,7 +39,7 @@
       <div class="content">
         <hr>
         <keep-alive>
-          <wind-overview v-if="station.measurements"
+          <wind-overview v-if="station.measurements && !offline"
             :heading="station.measurements.wind_heading || 0"
             :speed-min="station.measurements.wind_speed_min || 0"
             :speed-avg="station.measurements.wind_speed_avg || 0"

@@ -7,7 +7,7 @@ export default {
   namespaced: true,
 
   state: {
-    favorites: [542, 293, 438, 265],
+    favorites: [],
     histories: [],
     historyLength: 4,
     lang: undefined,
@@ -75,7 +75,15 @@ export default {
     },
     getFromLStorage(context, { key }) {
       const value = JSON.parse(localStorage.getItem(key))
-      context.commit('restoreStore', { [key]: value })
+
+      if (key === 'lang' && value === null) {
+        const systemLanguage = navigator.language.split('-')[0]
+        if (systemLanguage in Vue.$translations) {
+          context.dispatch('setLang', { lang: systemLanguage })
+        }
+      } else {
+        context.commit('restoreStore', { [key]: value })
+      }
     },
     pushToHistories(context, { stationId }) {
       context.commit('pushToHistories', { stationId })

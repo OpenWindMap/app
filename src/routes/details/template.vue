@@ -35,17 +35,23 @@
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
                   <div class="map-placeholder" v-else></div>
+                  <map-content v-else :zoom="14"></map-content>
 
-                  <span class="tag is-medium" v-if="pioupiou.measurements">
-                    {{ pioupiou.measurements.date | timeago(currentTime) }}
-                  </span>
+                  <small v-if="!offline && pioupiou.measurements" class="tag is-medium">
+                    {{ dataOld }}
+                  </small>
+                  <translate tag="small" class="tag is-medium is-danger" v-else>
+                    offline
+                  </translate>
 
-                  <wind-overview v-if="pioupiou.measurements"
+                  <wind-overview v-if="!offline && pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
                     :speed-min="pioupiou.measurements.wind_speed_min"
                     :speed-avg="pioupiou.measurements.wind_speed_avg"
                     :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
+                  <wind-overview :offline="offline" v-else></wind-overview>
+
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
@@ -54,16 +60,21 @@
                 </div>
 
                 <div class="column">
-                  <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
+                  <keep-alive>
+                    <history-chart :data="pioupiou.archive" style="height: 150px;"></history-chart>
+                  </keep-alive>
                 </div>
 
                 <div class="column">
                   <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="description">
+                    <div class="message-body" v-html="description || 'No descrition provided'">
+                      <br><br>
                     </div>
                   </article>
                   <article class="message" v-else>
                     <div class="message-body">
+                      No descrition provided
+                      <br><br>
                     </div>
                   </article>
                 </div>
@@ -96,7 +107,8 @@ export default {
 
   data() {
     return {
-      data: []
+      data: [],
+      dataOld: undefined
     }
   },
 
@@ -115,6 +127,10 @@ export default {
     },
     description() {
       return this.$options.filters.linkify(this.pioupiou.meta.description || '')
+    },
+    offline() {
+      const now = new Date().getTime()
+      return this.pioupiou.measurements && Math.round(now - new Date(this.pioupiou.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
     }
   },
 
@@ -128,11 +144,24 @@ export default {
     }
   },
 
+  watch: {
+    currentTime() {
+      const nTime = this.$options.filters.timeago(this.pioupiou.measurements.date, this.currentTime)
+      if (nTime !== this.dataOld) {
+        this.dataOld = nTime
+      }
+    }
+  },
+
   activated() {
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+  },
+
+  deactivated() {
+    this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: this.id })
   }
 }
 </script>

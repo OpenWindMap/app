@@ -1,7 +1,17 @@
 <template lang="html">
-  <figure>
+  <figure class="has-text-centered">
     <!-- <canvas ref="background"></canvas> -->
-    <canvas ref="chart"></canvas>
+    <canvas ref="chart" v-show="data !== null && data !== undefined"></canvas>
+    <template v-if="data !== null && data === undefined">
+      <span class="icon">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+      </span>
+    </template>
+    <template v-if="data === null">
+      <span class="icon">
+        <translate>No data found</translate>
+      </span>
+    </template>
   </figure>
 </template>
 
@@ -67,6 +77,7 @@ export default {
       this.draw()
     },
     data() {
+      this.handleWindowResize()
       this.draw()
     }
   },
@@ -92,14 +103,18 @@ export default {
       return (this.height - this.margin) - (speed * this.speedToPixels)
     },
     handleWindowResize() {
-      this.height = this.$refs.chart.clientHeight * this.pxRatio
-      this.width = this.$refs.chart.clientWidth * this.pxRatio
+      this.$nextTick(() => {
+        this.height = this.$refs.chart.clientHeight * this.pxRatio
+        this.width = this.$refs.chart.clientWidth * this.pxRatio
+      })
+
+      console.log('resize or update')
     },
 
     draw() {
       this.context.clearRect(0, 0, this.width, this.height)
 
-      if (this.data.length === 0) return
+      if (this.data === undefined || this.data === null || this.data.length === 0) return
 
       this.context.fillStyle = 'rgb(240, 240, 240)'
       this.context.lineWidth = 2 * this.pxRatio
@@ -162,9 +177,20 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  @import "~src/assets/vars";
+
   figure, canvas {
     height: 100%;
     width: 100%;
+  }
+
+  span.icon {
+    color: $grey;
+    vertical-align: middle;
+    height: 100%;
+    i.fa {
+      font-size: 2.5em;
+    }
   }
 </style>
