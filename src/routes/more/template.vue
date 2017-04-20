@@ -3,67 +3,24 @@
     <div class="columns">
       <div class="column">
         <div class="card">
-          <header class="card-header" @click="open('what-is')">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <span class="icon">
-                  <i class="fa fa-book"></i>
-                </span> &nbsp;
-                <translate tag="strong">What is Pioupiou ?</translate> <br>
-                <!-- <translate tag="small">Brief about Pioupiou</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <span class="icon">
-                  <i class="fa fa-chevron-down" v-if="opened === 'what-is'"></i>
-                  <i class="fa fa-chevron-right" v-else></i>
-                </span>
-              </div>
-            </div>
-          </header>
-          <div :class="['card-content', opened === 'what-is' ? '' : 'is-hidden']">
-            <div class="content">
-              <div class="card">
-                <header class="card-header">
-                  <div class="is-clearfix is-fullwidth">
-                    <div class="is-pulled-left">
-                      <translate tag="strong">Overview</translate> <br>
-                      <!-- <translate tag="small">------</translate> -->
-                    </div>
-                    <div class="is-pulled-right">
-                      <div class="field has-addons">
-                        <p class="control">
-                          <a class="button is-small is-primary is-outlined is-inverted"
-                            href="http://pioupiou.fr/en/" target="_blank">
-                            <translate>Discover</translate>
-                          </a>
-                        </p>
-                      </div>
-                    </div>
+          <a href="http://pioupiou.fr/en/" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                  <div class="is-pulled-left">
+                    <span class="icon">
+                      <i class="fa fa-book"></i>
+                    </span> &nbsp;
+                    <translate tag="strong">What is Pioupiou ?</translate> <br>
+                    <!-- <translate tag="small">Brief about Pioupiou</translate> -->
                   </div>
-                </header>
-              </div>
-              <div class="card">
-                <header class="card-header">
-                  <div class="is-clearfix is-fullwidth">
-                    <div class="is-pulled-left">
-                      <translate tag="strong">Specs</translate> <br>
-                      <!-- <translate tag="small">------</translate> -->
-                    </div>
-                    <div class="is-pulled-right">
-                      <div class="field has-addons">
-                        <p class="control">
-                          <a class="button is-small is-primary is-outlined is-inverted"
-                            href="http://pioupiou.fr/en/specs/" target="_blank">
-                            <translate>Consult it</translate>
-                          </a>
-                        </p>
-                      </div>
-                    </div>
+                  <div class="is-pulled-right">
+                    <span class="icon">
+                      <i class="fa fa-external-link"></i>
+                    </span>
                   </div>
-                </header>
               </div>
-            </div>
-          </div>
+            </header>
+          </a>
         </div>
         <div class="card">
           <header class="card-header" @click="open('settings')">
@@ -491,5 +448,9 @@ export default {
 
   img {
     width: 7em;
+  }
+
+  .fa.fa-external-link {
+    font-weight: bold;
   }
 </style>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pioupiou-app 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 11:56+0200\n"
+"POT-Creation-Date: 2017-04-20 11:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/routes/more/template.vue:172
+#: src/routes/more/template.vue:330
 msgid "All map credits goes to"
 msgstr ""
 
-#: src/routes/more/template.vue:174
+#: src/routes/more/template.vue:332
 msgid "and"
 msgstr ""
 
-#: src/routes/more/template.vue:169
+#: src/routes/more/template.vue:327
 msgid "Attributions"
 msgstr ""
 
-#: src/components/wind-overview/index.vue:23
+#: src/components/wind-overview/index.vue:26
 msgid "AVG"
 msgstr ""
 
@@ -38,20 +38,25 @@ msgctxt "Offline alert message content"
 msgid "Cheers,"
 msgstr ""
 
-#: src/routes/more/template.vue:44
-msgid "Choose your language"
-msgstr ""
-
-#: src/routes/more/template.vue:97
+#: src/routes/more/template.vue:57 src/routes/more/template.vue:189
+#: src/routes/more/template.vue:295 src/routes/more/template.vue:315
 msgid "Consult it"
 msgstr ""
 
-#: src/routes/more/template.vue:77
+#: src/routes/more/template.vue:227
+msgid "Contact"
+msgstr ""
+
+#: src/routes/more/template.vue:252
 msgid "Contact us"
 msgstr ""
 
-#: src/routes/more/template.vue:90
-msgid "Data are free for everyone !"
+#: src/routes/more/template.vue:144
+msgid "Contribute"
+msgstr ""
+
+#: src/routes/more/template.vue:37
+msgid "Discover"
 msgstr ""
 
 #: src/routes/home/template.vue:22
@@ -68,11 +73,7 @@ msgctxt "Search examples title"
 msgid "Find a spot"
 msgstr ""
 
-#: src/routes/more/template.vue:150
-msgid "Help us on the beta"
-msgstr ""
-
-#: src/routes/more/template.vue:149
+#: src/routes/more/template.vue:201
 msgid "Help us!"
 msgstr ""
 
@@ -85,16 +86,12 @@ msgctxt "Offline alert message content"
 msgid "However during the beta, an internet connection is required to run the Pioupiou application."
 msgstr ""
 
-#: src/routes/more/template.vue:117
-msgid "Inquire"
-msgstr ""
-
-#: src/routes/more/template.vue:43
+#: src/routes/more/template.vue:112
 msgid "Language"
 msgstr ""
 
-#: src/routes/more/template.vue:137
-msgid "Look at"
+#: src/routes/more/template.vue:270
+msgid "Legal"
 msgstr ""
 
 #: src/routes/application/template.vue:18
@@ -102,28 +99,29 @@ msgctxt "Offline alert message content"
 msgid "Looks like you are running the app without any connection."
 msgstr ""
 
-#: src/components/wind-overview/index.vue:28
+#: src/components/wind-overview/index.vue:31
 msgid "MAX"
 msgstr ""
 
-#: src/components/wind-overview/index.vue:18
+#: src/components/wind-overview/index.vue:21
 msgid "MIN"
 msgstr ""
 
-#: src/routes/more/template.vue:70
-msgid "Need some help ?"
+#: src/components/history-chart/index.vue:12
+msgid "No data found"
 msgstr ""
 
-#: src/routes/more/template.vue:89
+#: src/components/station-overview/index.vue:11
+#: src/routes/details/template.vue:43
+msgid "offline"
+msgstr ""
+
+#: src/routes/more/template.vue:181
 msgid "Open Data"
 msgstr ""
 
-#: src/routes/more/template.vue:110
-msgid "Our Privacy Policy"
-msgstr ""
-
-#: src/routes/more/template.vue:130
-msgid "Our Terms and Conditions of Use"
+#: src/routes/more/template.vue:29
+msgid "Overview"
 msgstr ""
 
 #: src/routes/application/template.vue:16
@@ -131,19 +129,31 @@ msgctxt "Offline alert message title"
 msgid "Ow no .."
 msgstr ""
 
-#: src/routes/more/template.vue:109
-msgid "Privacy"
+#: src/routes/more/template.vue:287
+msgid "Privacy Policy"
 msgstr ""
 
-#: src/routes/more/template.vue:157
+#: src/routes/more/template.vue:209
 msgid "Report a bug"
 msgstr ""
 
-#: src/routes/more/template.vue:69
+#: src/routes/more/template.vue:169
+msgid "Reserve it"
+msgstr ""
+
+#: src/routes/more/template.vue:75
+msgid "Settings"
+msgstr ""
+
+#: src/routes/more/template.vue:49
+msgid "Specs"
+msgstr ""
+
+#: src/routes/more/template.vue:244
 msgid "Support"
 msgstr ""
 
-#: src/routes/more/template.vue:129
+#: src/routes/more/template.vue:307
 msgid "Terms of Use"
 msgstr ""
 
@@ -157,17 +167,21 @@ msgctxt "Footer unit chooser"
 msgid "Unit"
 msgstr ""
 
-#: src/routes/more/template.vue:23
+#: src/routes/more/template.vue:92
 msgid "Units"
-msgstr ""
-
-#: src/routes/more/template.vue:24
-msgid "Units available"
 msgstr ""
 
 #: src/routes/application/template.vue:25
 msgctxt "Offline alert message content"
 msgid "We are sorry about this issue and work hard on offline capabilites."
+msgstr ""
+
+#: src/routes/more/template.vue:12
+msgid "What is Pioupiou ?"
+msgstr ""
+
+#: src/routes/more/template.vue:161
+msgid "Your own Pioupiou"
 msgstr ""
 
 #: src/components/station-overview/index.vue:6
@@ -203,13 +217,13 @@ msgctxt "Route label"
 msgid "Map"
 msgstr ""
 
-#: src/routes/details/template.vue:9 src/routes/search/template.vue:55
-msgid "Unnamed Pioupiou"
-msgstr ""
-
 #: src/routes/details/index.js:8
 msgctxt "Route label"
 msgid "Details"
+msgstr ""
+
+#: src/routes/details/template.vue:9 src/routes/search/template.vue:55
+msgid "Unnamed Pioupiou"
 msgstr ""
 
 #: src/routes/home/index.js:8

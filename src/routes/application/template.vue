@@ -89,11 +89,6 @@ export default {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
     document.addEventListener('deviceready', this.deviceready)
-
-    const systemLanguage = navigator.language.split('-')[0]
-    if (systemLanguage in this.$language.available) {
-      this.$store.dispatch('user/setLang', { lang: systemLanguage })
-    }
   }
 }
 </script>

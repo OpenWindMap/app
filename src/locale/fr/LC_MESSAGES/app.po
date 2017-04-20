@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pioupiou-app 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 11:56+0200\n"
+"POT-Creation-Date: 2017-04-20 11:28+0200\n"
 "PO-Revision-Date: 2017-03-29 10:19+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/routes/more/template.vue:172
+#: src/routes/more/template.vue:330
 msgid "All map credits goes to"
 msgstr "Tous les crédits pour la carte vont à"
 
-#: src/routes/more/template.vue:174
+#: src/routes/more/template.vue:332
 msgid "and"
 msgstr "et"
 
-#: src/routes/more/template.vue:169
+#: src/routes/more/template.vue:327
 msgid "Attributions"
 msgstr "Remerciements"
 
-#: src/components/wind-overview/index.vue:23
+#: src/components/wind-overview/index.vue:26
 msgid "AVG"
 msgstr "MOY"
 
@@ -38,21 +38,27 @@ msgctxt "Offline alert message content"
 msgid "Cheers,"
 msgstr "Cordialement,"
 
-#: src/routes/more/template.vue:44
-msgid "Choose your language"
-msgstr "Choisissez votre langue"
-
-#: src/routes/more/template.vue:97
+#: src/routes/more/template.vue:57 src/routes/more/template.vue:189
+#: src/routes/more/template.vue:295 src/routes/more/template.vue:315
 msgid "Consult it"
-msgstr "Consuler"
+msgstr "Consulter"
 
-#: src/routes/more/template.vue:77
+#: src/routes/more/template.vue:227
+#, fuzzy
+msgid "Contact"
+msgstr "Nous contacter"
+
+#: src/routes/more/template.vue:252
 msgid "Contact us"
 msgstr "Nous contacter"
 
-#: src/routes/more/template.vue:90
-msgid "Data are free for everyone !"
-msgstr "Nos données sont ouvertes à tous !"
+#: src/routes/more/template.vue:144
+msgid "Contribute"
+msgstr "Contribuer"
+
+#: src/routes/more/template.vue:37
+msgid "Discover"
+msgstr "Découvrir"
 
 #: src/routes/home/template.vue:22
 msgid "Favorites"
@@ -68,11 +74,7 @@ msgctxt "Search examples title"
 msgid "Find a spot"
 msgstr "Trouver un lieu"
 
-#: src/routes/more/template.vue:150
-msgid "Help us on the beta"
-msgstr "Nous aider durant la beta"
-
-#: src/routes/more/template.vue:149
+#: src/routes/more/template.vue:201
 msgid "Help us!"
 msgstr "Aidez nous!"
 
@@ -85,65 +87,75 @@ msgctxt "Offline alert message content"
 msgid "However during the beta, an internet connection is required to run the Pioupiou application."
 msgstr "Cependant, durant la beta, une connexion internet est requise pour exécuter l'application Pioupiou."
 
-#: src/routes/more/template.vue:117
-msgid "Inquire"
-msgstr "Lire"
-
-#: src/routes/more/template.vue:43
+#: src/routes/more/template.vue:112
 msgid "Language"
 msgstr "Langue"
 
-#: src/routes/more/template.vue:137
-msgid "Look at"
-msgstr "Voir"
+#: src/routes/more/template.vue:270
+msgid "Legal"
+msgstr "Mentions Légales"
 
 #: src/routes/application/template.vue:18
 msgctxt "Offline alert message content"
 msgid "Looks like you are running the app without any connection."
 msgstr "On dirait bien que vous utilisez l'application sans connexion."
 
-#: src/components/wind-overview/index.vue:28
+#: src/components/wind-overview/index.vue:31
 msgid "MAX"
 msgstr "MAX"
 
-#: src/components/wind-overview/index.vue:18
+#: src/components/wind-overview/index.vue:21
 msgid "MIN"
 msgstr "MIN"
 
-#: src/routes/more/template.vue:70
-msgid "Need some help ?"
-msgstr "Besoin d'aide ?"
+#: src/components/history-chart/index.vue:12
+msgid "No data found"
+msgstr "Aucune donnée"
 
-#: src/routes/more/template.vue:89
+#: src/components/station-overview/index.vue:11
+#: src/routes/details/template.vue:43
+msgid "offline"
+msgstr "hors ligne"
+
+#: src/routes/more/template.vue:181
 msgid "Open Data"
 msgstr "Open Data"
 
-#: src/routes/more/template.vue:110
-msgid "Our Privacy Policy"
-msgstr "Notre Politique de Confidentialité"
-
-#: src/routes/more/template.vue:130
-msgid "Our Terms and Conditions of Use"
-msgstr "Nos Conditions Générales d'Utilisation"
+#: src/routes/more/template.vue:29
+msgid "Overview"
+msgstr "Présentation"
 
 #: src/routes/application/template.vue:16
 msgctxt "Offline alert message title"
 msgid "Ow no .."
 msgstr "Oh non !"
 
-#: src/routes/more/template.vue:109
-msgid "Privacy"
-msgstr "Vie Privée"
+#: src/routes/more/template.vue:287
+#, fuzzy
+msgid "Privacy Policy"
+msgstr "Politique de Confidentialité"
 
-#: src/routes/more/template.vue:157
+#: src/routes/more/template.vue:209
 msgid "Report a bug"
 msgstr "Signaler un bug"
 
-#: src/routes/more/template.vue:69
+#: src/routes/more/template.vue:169
+msgid "Reserve it"
+msgstr "Le reserver"
+
+#: src/routes/more/template.vue:75
+msgid "Settings"
+msgstr "Configurations"
+
+#: src/routes/more/template.vue:49
+msgid "Specs"
+msgstr "Spécifications"
+
+#: src/routes/more/template.vue:244
 msgid "Support"
 msgstr "Support"
 
-#: src/routes/more/template.vue:129
+#: src/routes/more/template.vue:307
 msgid "Terms of Use"
 msgstr "Conditions d'Utilisation"
 
@@ -157,61 +169,124 @@ msgctxt "Footer unit chooser"
 msgid "Unit"
 msgstr "Unité"
 
-#: src/routes/more/template.vue:23
+#: src/routes/more/template.vue:92
 msgid "Units"
 msgstr "Unités"
-
-#: src/routes/more/template.vue:24
-msgid "Units available"
-msgstr "Unités disponibles"
 
 #: src/routes/application/template.vue:25
 msgctxt "Offline alert message content"
 msgid "We are sorry about this issue and work hard on offline capabilites."
 msgstr "Nous sommes désolés concernant ce problème et travaillons dur sur les nouvelles fonctionnalités hors-ligne."
 
+#: src/routes/more/template.vue:12
+#, fuzzy
+msgid "What is Pioupiou ?"
+msgstr "L'équipe Pioupiou"
+
+#: src/routes/more/template.vue:161
+#, fuzzy
+msgid "Your own Pioupiou"
+msgstr "Trouver un Pioupiou"
+
 #: src/components/station-overview/index.vue:6
 #, fuzzy
 msgid "Unnamed station"
 msgstr "Pioupiou sans nom"
 
-#: src/components/station-overview/index.vue:17
-#: src/routes/details/template.vue:14
+#: src/components/wind-overview/index.vue:57
+#: src/components/wind-overview/index.vue:73 src/routes/details/template.vue:14
 msgctxt "Cardinal direction abbreviation"
 msgid "N"
 msgstr "N"
 
-#: src/components/station-overview/index.vue:18
-#: src/routes/details/template.vue:15
+#: src/components/wind-overview/index.vue:58
 msgctxt "Cardinal direction abbreviation"
-msgid "S"
-msgstr "S"
+msgid "NNE"
+msgstr "NNE"
 
-#: src/components/station-overview/index.vue:22
-#: src/routes/details/template.vue:19
+#: src/components/wind-overview/index.vue:59
+msgctxt "Cardinal direction abbreviation"
+msgid "NE"
+msgstr "NE"
+
+#: src/components/wind-overview/index.vue:60
+msgctxt "Cardinal direction abbreviation"
+msgid "ENE"
+msgstr "ENE"
+
+#: src/components/wind-overview/index.vue:61 src/routes/details/template.vue:19
 msgctxt "Cardinal direction abbreviation"
 msgid "E"
 msgstr "E"
 
-#: src/components/station-overview/index.vue:23
-#: src/routes/details/template.vue:20
+#: src/components/wind-overview/index.vue:62
+msgctxt "Cardinal direction abbreviation"
+msgid "ESE"
+msgstr "ESE"
+
+#: src/components/wind-overview/index.vue:63
+msgctxt "Cardinal direction abbreviation"
+msgid "SE"
+msgstr "SE"
+
+#: src/components/wind-overview/index.vue:64
+msgctxt "Cardinal direction abbreviation"
+msgid "SSE"
+msgstr "SSE"
+
+#: src/components/wind-overview/index.vue:65 src/routes/details/template.vue:15
+msgctxt "Cardinal direction abbreviation"
+msgid "S"
+msgstr "S"
+
+#: src/components/wind-overview/index.vue:66
+msgctxt "Cardinal direction abbreviation"
+msgid "SSW"
+msgstr "SSO"
+
+#: src/components/wind-overview/index.vue:67
+msgctxt "Cardinal direction abbreviation"
+msgid "SW"
+msgstr "SO"
+
+#: src/components/wind-overview/index.vue:68
+msgctxt "Cardinal direction abbreviation"
+msgid "WSW"
+msgstr "OSO"
+
+#: src/components/wind-overview/index.vue:69 src/routes/details/template.vue:20
 msgctxt "Cardinal direction abbreviation"
 msgid "W"
 msgstr "O"
+
+#: src/components/wind-overview/index.vue:70
+msgctxt "Cardinal direction abbreviation"
+msgid "WNW"
+msgstr "ONO"
+
+#: src/components/wind-overview/index.vue:71
+msgctxt "Cardinal direction abbreviation"
+msgid "NW"
+msgstr "NO"
+
+#: src/components/wind-overview/index.vue:72
+msgctxt "Cardinal direction abbreviation"
+msgid "NNW"
+msgstr "NNO"
 
 #: src/routes/map/index.js:8
 msgctxt "Route label"
 msgid "Map"
 msgstr "Carte"
 
-#: src/routes/details/template.vue:9 src/routes/search/template.vue:55
-msgid "Unnamed Pioupiou"
-msgstr "Pioupiou sans nom"
-
 #: src/routes/details/index.js:8
 msgctxt "Route label"
 msgid "Details"
 msgstr "Détails"
+
+#: src/routes/details/template.vue:9 src/routes/search/template.vue:55
+msgid "Unnamed Pioupiou"
+msgstr "Pioupiou sans nom"
 
 #: src/routes/home/index.js:8
 msgctxt "Route label"
