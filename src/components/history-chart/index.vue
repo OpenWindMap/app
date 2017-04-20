@@ -1,10 +1,15 @@
 <template lang="html">
   <figure class="has-text-centered">
     <!-- <canvas ref="background"></canvas> -->
-    <canvas ref="chart" v-show="data.length"></canvas>
-    <template v-if="!data.length">
+    <canvas ref="chart" v-show="data !== null && data !== undefined"></canvas>
+    <template v-if="data !== null && data === undefined">
       <span class="icon">
         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+      </span>
+    </template>
+    <template v-if="data === null">
+      <span class="icon">
+        <translate>No data found</translate>
       </span>
     </template>
   </figure>
@@ -109,7 +114,7 @@ export default {
     draw() {
       this.context.clearRect(0, 0, this.width, this.height)
 
-      if (this.data.length === 0) return
+      if (this.data === undefined || this.data === null || this.data.length === 0) return
 
       this.context.fillStyle = 'rgb(240, 240, 240)'
       this.context.lineWidth = 2 * this.pxRatio

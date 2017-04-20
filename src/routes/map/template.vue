@@ -1,9 +1,7 @@
 <template lang="html">
   <section>
-    <keep-alive>
-      <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
-        @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
-    </keep-alive>
+    <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
+      @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
   </section>
 </template>
 

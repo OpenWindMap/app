@@ -37,17 +37,20 @@
                   <div class="map-placeholder" v-else></div>
                   <map-content v-else :zoom="14"></map-content>
 
-                  <span class="tag is-medium" v-if="pioupiou.measurements">
+                  <small v-if="!offline && pioupiou.measurements" class="tag is-medium">
                     {{ dataOld }}
-                  </span>
+                  </small>
+                  <translate tag="small" class="tag is-medium is-danger" v-else>
+                    offline
+                  </translate>
 
-                  <wind-overview v-if="pioupiou.measurements"
+                  <wind-overview v-if="!offline && pioupiou.measurements"
                     :heading="pioupiou.measurements.wind_heading"
                     :speed-min="pioupiou.measurements.wind_speed_min"
                     :speed-avg="pioupiou.measurements.wind_speed_avg"
                     :speed-max="pioupiou.measurements.wind_speed_max">
                   </wind-overview>
-                  <wind-overview v-else></wind-overview>
+                  <wind-overview :offline="offline" v-else></wind-overview>
 
                   <div class="overview-placeholder" v-else></div>
                 </div>
@@ -58,7 +61,7 @@
 
                 <div class="column">
                   <keep-alive>
-                    <history-chart :data="pioupiou.archive || []" style="height: 150px;"></history-chart>
+                    <history-chart :data="pioupiou.archive" style="height: 150px;"></history-chart>
                   </keep-alive>
                 </div>
 
@@ -124,6 +127,10 @@ export default {
     },
     description() {
       return this.$options.filters.linkify(this.pioupiou.meta.description || '')
+    },
+    offline() {
+      const now = new Date().getTime()
+      return this.pioupiou.measurements && Math.round(now - new Date(this.pioupiou.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
     }
   },
 

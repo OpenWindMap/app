@@ -7,8 +7,11 @@
         {{ heading }}°
       </template>
       <template v-else>
-        <span class="icon">
+        <span class="icon" v-if="!offline">
           <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </span>
+        <span class="icon" v-else>
+          <i class="fa fa-ban"></i>
         </span>
       </template>
     </div>
@@ -58,6 +61,11 @@ export default {
     offset: {
       type: [Boolean, Number],
       default: 3
+    },
+
+    offline: {
+      type: Boolean,
+      default: false
     }
   },
 

@@ -8,9 +8,9 @@
           <small v-if="!offline && station.measurements">
             {{ station.measurements.date | timeago(currentTime) }}
           </small>
-          <small v-else class="is-danger">
+          <translate tag="small" class="is-danger" v-else>
             offline
-          </small>
+          </translate>
           <!-- <small v-if="station.location">
             {{ Math.abs(station.location.latitude) }}
             {{ station.location.latitude > 0 ?

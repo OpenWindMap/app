@@ -109,8 +109,14 @@ export default {
       })
     },
     fetchArchive(context, { stationId, start, stop }) {
-      Vue.http.get(`archive/${stationId}?start=${start}&stop=${stop}`).then(({ body: response }) => {
+      Vue.http.get(`archive/${stationId}?start=${start}&stop=${stop}`)
+      .then(({ body: response }) => {
         context.commit('archiveOne', { stationId, data: response.data })
+      })
+      .catch(({ status }) => {
+        if (status === 404) {
+          context.commit('archiveOne', { stationId, data: null })
+        }
       })
     },
     keepAllUpdated(context) {
@@ -119,7 +125,7 @@ export default {
       const intId = setInterval(() => {
         console.log('update all')
         context.dispatch('fetchAll')
-      }, 10000)
+      }, 60 * 1000)
 
       context.commit('addWatcher', { stationId: 'all', intId })
     },
@@ -129,7 +135,7 @@ export default {
       const intId = setInterval(() => {
         console.log('update', stationId)
         context.dispatch('fetchOne', { stationId })
-      }, 10000)
+      }, 60 * 1000)
 
       context.commit('addWatcher', { stationId, intId })
     },

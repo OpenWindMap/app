@@ -86,6 +86,8 @@ export default {
   activated() {
     this.opened = undefined
     this.context = undefined
+
+    this.$forceUpdate()
   },
 
   deactivated() {
