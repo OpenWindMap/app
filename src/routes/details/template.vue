@@ -23,7 +23,7 @@
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
-                  <i :class="['fa', faved ? 'fa-star' : 'fa-star-o']"></i>
+                  <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-info']"></i>
                 </a>
               </div>
             </div>
@@ -55,10 +55,6 @@
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
-                <div class="is-hidden-desktop">
-                  <hr>
-                </div>
-
                 <div class="column">
                   <keep-alive>
                     <history-chart :data="pioupiou.archive" style="height: 150px;"></history-chart>
@@ -74,7 +70,6 @@
                   <article class="message" v-else>
                     <div class="message-body">
                       No descrition provided
-                      <br><br>
                     </div>
                   </article>
                 </div>
@@ -171,7 +166,7 @@ export default {
 
   .card {
     .card-header {
-      padding: 12px 12px 0px;
+      padding: 12px 12px 0.75rem;
       box-shadow: initial;
 
       .title {
@@ -213,7 +208,7 @@ export default {
     margin-bottom: 0;
 
     .column {
-      padding: 0.75rem 0;
+      padding: 0 0 0.75rem 0;
     }
 
     &.is-mobile {
@@ -236,6 +231,7 @@ export default {
   article.message {
     box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
     background: $dark;
+    padding-bottom: 3.5rem;
 
     .message-body {
       border-radius: initial;

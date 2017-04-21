@@ -170,22 +170,33 @@ export default {
     drawGrid() {
       this.context.strokeStyle = 'rgba(255, 255, 255, 0.1)'
       this.context.fillStyle = 'rgba(255, 255, 255, 0.5)'
-      this.context.font = '10px Arial' // TODO pxratio
+      this.context.font = `${10 * this.pxRatio}px Arial`
       this.context.textBaseline = 'bottom'
 
       this.context.lineWidth = this.pxRatio
 
-      // 20 kmh
-      // 10 neuds
+      this.context.beginPath()
+      this.context.moveTo(0, 0)
+      this.context.lineTo(this.width, 0)
+      this.context.stroke()
 
       for (let speed = 0; speed <= this.maxSpeed; speed += 20) {
         const Y = Math.round(this.speed2y(speed))
-        this.context.fillText(speed, 3 * this.pxRatio, Y - 2)
+        this.context.fillText(`${speed} KM/H`, 3 * this.pxRatio, Y - 2)
         this.context.beginPath()
         this.context.moveTo(0, Y - 0.5)
         this.context.lineTo(this.width, Y - 0.5)
         this.context.stroke()
       }
+
+      this.dataSet.forEach((data, i) => {
+        if ((i + 1) % 3) return
+
+        this.context.beginPath()
+        this.context.moveTo(this.time2x(data.date), 0)
+        this.context.lineTo(this.time2x(data.date), this.height - this.marginBottom)
+        this.context.stroke()
+      })
     },
     drawArrow(x, y, heading, speed) {
       this.context.save()

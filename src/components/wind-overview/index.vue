@@ -16,17 +16,20 @@
       </template>
     </div>
     <div :class="['column is-2-mobile', offset ? `is-offset-${ offset }` : `` ]">
-      <strong>{{ speedMin !== null && speedMin !== undefined ? $getvalue(speedMin) : '--' }}</strong>
+      <strong :style="{ color: this.$options.filters.speedToColors(speedMin) }">
+        {{ speedMin !== null && speedMin !== undefined ? $getvalue(speedMin) : '--' }}</strong>
       <br>
       <translate tag="small">MIN</translate>
     </div>
     <div class="column is-2-mobile has-highlight">
-      <strong>{{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
+      <strong :style="{ color: this.$options.filters.speedToColors(speedAvg) }">
+        {{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
       <br>
       <translate tag="small">AVG</translate>
     </div>
     <div class="column is-2-mobile">
-      <strong>{{ speedMax !== null && speedMax !== undefined ? $getvalue(speedMax) : '--' }}</strong>
+      <strong :style="{ color: this.$options.filters.speedToColors(speedMax) }">
+        {{ speedMax !== null && speedMax !== undefined ? $getvalue(speedMax) : '--' }}</strong>
       <br>
       <translate tag="small">MAX</translate>
     </div>
