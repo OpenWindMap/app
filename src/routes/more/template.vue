@@ -175,47 +175,24 @@
           </div>
         </div>
         <div class="card">
-          <header class="card-header" @click="open('contact')">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <span class="icon">
-                  <i class="fa fa-commenting-o"></i>
-                </span> &nbsp;
-                <translate tag="strong">Contact</translate> <br>
-                <!-- <translate tag="small">Contact us</translate> -->
+          <a href="https://pioupiou.fr/en/support" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-commenting-o"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Contact</translate> <br>
+                  <!-- <translate tag="small">Contact us</translate> -->
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
               </div>
-              <div class="is-pulled-right">
-                <span class="icon">
-                  <i class="fa fa-chevron-down" v-if="opened === 'contact'"></i>
-                  <i class="fa fa-chevron-right" v-else></i>
-                </span>
-              </div>
-            </div>
-          </header>
-          <div :class="['card-content', opened === 'contact' ? '' : 'is-hidden']">
-            <div class="content">
-              <div class="card">
-                <header class="card-header">
-                  <div class="is-clearfix is-fullwidth">
-                    <div class="is-pulled-left">
-                      <translate tag="strong">Support</translate> <br>
-                      <!-- <translate tag="small">Need some help ?</translate> -->
-                    </div>
-                    <div class="is-pulled-right">
-                      <div class="field has-addons">
-                        <p class="control">
-                          <a class="button is-small is-primary is-outlined is-inverted"
-                            href="https://pioupiou.fr/en/support" target="_blank">
-                            <translate>Contact us</translate>
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </header>
-              </div>
-            </div>
-          </div>
+            </header>
+          </a>
         </div>
         <div class="card">
           <header class="card-header" @click="open('legal')">
@@ -429,7 +406,7 @@ export default {
     .card-content {
       padding: 0;
       box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
-      background: $white-ter;
+      background: $dark;
 
       .card-header {
         padding: 12px 12px 0px;

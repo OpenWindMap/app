@@ -1,19 +1,34 @@
 // Colors
-$black:          rgb( 18,  18,  18) !default;
-$black-bis:      rgb( 36,  36,  36) !default;
-$black-ter:      rgb( 54,  54,  54) !default;
+// $black:          rgb( 18,  18,  18) !default;
+// $black-bis:      rgb( 36,  36,  36) !default;
+// $black-ter:      rgb( 54,  54,  54) !default;
+//
+// $grey-darker:    rgb( 74,  74,  74) !default;
+// $grey-dark:      rgb(100, 100, 100) !default;
+// $grey:           rgb(180, 180, 180) !default;
+// $grey-light:     rgb(200, 200, 200) !default;
+// $grey-lighter:   rgb(240, 240, 240) !default;
+//
+// $white-ter:      rgb(252, 252, 252) !default;
+// $white-bis:      rgb(254, 254, 254) !default;
+// $white:          rgb(255, 255, 255) !default;
 
-$grey-darker:    rgb( 74,  74,  74) !default;
-$grey-dark:      rgb(100, 100, 100) !default;
-$grey:           rgb(180, 180, 180) !default;
-$grey-light:     rgb(200, 200, 200) !default;
-$grey-lighter:   rgb(240, 240, 240) !default;
+$black:          hsl(216, 57%, 7%) !default;
+$black-bis:      hsl(216, 57%, 11%) !default;
+$black-ter:      hsl(216, 57%, 21%) !default;
 
-$white-ter:      rgb(252, 252, 252) !default;
-$white-bis:      rgb(254, 254, 254) !default;
-$white:          rgb(255, 255, 255) !default;
+$grey-darker:    hsl(216, 57%, 31%) !default;
+$grey-dark:      hsl(216, 57%, 41%) !default;
+$grey:           hsl(216, 57%, 51%) !default;
+$grey-light:     hsl(216, 57%, 61%) !default;
+$grey-lighter:   hsl(216, 57%, 71%) !default;
 
-$blue:           rgb(  0, 255, 255) !default;
+$white-ter:      hsl(216, 57%, 80%) !default;
+$white-bis:      hsl(216, 57%, 85%) !default;
+$white:          hsl(216, 57%, 90%) !default;
+
+$true-white:     rgb(255, 255, 255) !default;
+$blue-ligher:    rgb(  0, 255, 255) !default;
 $turquoise:      rgb(  3, 230, 175) !default;
 $emerald:        rgb(  5, 204,  95) !default;
 $green-darker:   rgb(  8, 179,  15) !default;
@@ -31,20 +46,30 @@ $purlple:        rgb(148,   0,  87) !default;
 
 // Typography
 $fa-font-path: '~font-awesome/fonts';
+$text: $grey-lighter;
+$text-light: $text;
+$text-strong: $white;
+$title: $text-strong;
+$subtitle: $text-strong;
+$input: $white;
+$input-icon-active: $input;
 
 // Primary colors
-$primary: $black-ter;
+$primary: $title;
+$body-background: $grey-darker;
 
-$info:    $blue;
+$input-background: $body-background;
+
+$info:    $blue-ligher;
 $success: $emerald;
-$warning: $orange-yellow;
+$warning: $yellow-darker;
 $danger:  $orange-red;
 
-$light:   $white-ter;
-$dark:    $grey-darker;
+$dark: $black-ter;
+$light: $grey;
 
-$speed0:  $white;
-$speed1:  $blue;
+$speed0:  $true-white;
+$speed1:  $blue-ligher;
 $speed2:  $turquoise;
 $speed3:  $emerald;
 $speed4:  $green-darker;
@@ -68,12 +93,16 @@ $speed15: $purlple;
   color: $primary;
 }
 .button.is-primary {
+  color: $body-background;
   &, &:hover, &:focus {
-    color: $white;
+    color: $body-background;
   }
   &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    border-color: $white;
+    color: $white;
     &:hover, &:focus {
-      color: $white;
+      color: $body-background;
+      background-color: $white-bis;
     }
   }
 }
@@ -88,4 +117,16 @@ $speed15: $purlple;
 }
 .is-danger:not(.button) {
   color: $danger;
+}
+
+nav.nav, .card {
+  background-color: $body-background;
+}
+
+::-webkit-input-placeholder {
+  color: $white;
+}
+
+img {
+  filter: grayscale(1) invert(100%) brightness(100);
 }

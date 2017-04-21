@@ -235,29 +235,29 @@ export default {
 
   article.message {
     box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
-    border-left: 1px solid $grey-lighter;
-    background: $white-ter;
+    background: $dark;
 
     .message-body {
       border-radius: initial;
+      border: initial;
     }
   }
 
   .map-placeholder {
     height: 180px;
     width: 100%;
-    background-color: $grey-lighter;
+    background-color: $light;
   }
 
   .location-placeholder {
-    background-color: $white;
+    background-color: $body-background;
     width: 160px;
     display: inline-block;
     height: 0.8em;
   }
 
   .overview-placeholder {
-    background-color: $white;
+    background-color: $body-background;
     height: 100px;
     width: 100%;
   }

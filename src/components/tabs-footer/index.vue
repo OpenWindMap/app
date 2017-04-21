@@ -49,7 +49,7 @@ export default {
   footer {
     @include touch {
       height: 8vw;
-      min-height: 8vh;
+      min-height: 3.25rem;
     }
   }
 
@@ -60,15 +60,15 @@ export default {
 
     ul {
       border-bottom: initial;
-      border-top: 1px solid $grey-lighter;
+      border-top: 1px solid $light;
 
       li {
         flex-shrink: 1;
         flex-basis: 0;
 
         &:last-child {
-          border-left: 1px solid $grey-lighter;
-          background: $white-bis;
+          border-left: 1px solid $light;
+          background: $dark;
         }
       }
     }
@@ -86,8 +86,7 @@ export default {
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
-        border-left: 1px solid $grey-lighter;
-        background: $white-ter;
+        background: $dark;
       }
     }
 

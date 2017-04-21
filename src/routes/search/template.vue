@@ -229,9 +229,9 @@ export default {
   ul.autocomplete {
     position: absolute;
     width: 100%;
-    background: white;
+    background: $white;
     margin-top: -1px;
-    border: 1px solid $grey-lighter;
+    border: 1px solid $white;
     max-height: 25vh;
     overflow: auto;
     padding-top: 0.3em;
@@ -244,6 +244,10 @@ export default {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+
+      &, strong, small {
+        color: $body-background;
+      }
 
       &:hover {
         background: $white-ter;

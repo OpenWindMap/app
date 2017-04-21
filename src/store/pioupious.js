@@ -9,6 +9,7 @@ export default {
   state: {
     timeout: 45 * 60000, // = min
     archiveTime: 3 * 3600000, // = hour
+    reloadTime: 5 * 1000, // = sec
     pioupious: {},
 
     locationResult: [],
@@ -65,7 +66,8 @@ export default {
     updateOne(state, { pioupiou }) {
       if (pioupiou.id in state.pioupious) {
         Object.keys(pioupiou).forEach(key => {
-          if (state.pioupious[pioupiou.id][key] !== pioupiou[key]) {
+          if ((typeof pioupiou[key] === 'object' && 'date' in pioupiou[key] && state.pioupious[pioupiou.id][key].date !== pioupiou[key].date) || (typeof pioupiou[key] !== 'object' && state.pioupious[pioupiou.id][key] !== pioupiou[key])) {
+            console.log('update', pioupiou.id, key)
             Vue.set(state.pioupious[pioupiou.id], key, pioupiou[key])
           }
         })
@@ -125,7 +127,7 @@ export default {
       const intId = setInterval(() => {
         console.log('update all')
         context.dispatch('fetchAll')
-      }, 60 * 1000)
+      }, context.state.reloadTime)
 
       context.commit('addWatcher', { stationId: 'all', intId })
     },
@@ -135,7 +137,7 @@ export default {
       const intId = setInterval(() => {
         console.log('update', stationId)
         context.dispatch('fetchOne', { stationId })
-      }, 60 * 1000)
+      }, context.state.reloadTime)
 
       context.commit('addWatcher', { stationId, intId })
     },

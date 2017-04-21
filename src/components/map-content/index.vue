@@ -50,8 +50,8 @@ export default {
     }
 
     return {
-      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
+      // url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       minZoom: 3,
       myPosition: [undefined, undefined]
     }
@@ -91,13 +91,11 @@ export default {
   mounted() {
     this.boundsChange()
 
-    this.$forceUpdate()
+    this.$refs.map.mapObject.invalidateSize()
   },
 
-  updated() {
-    // this.$nextTick(() => {
-    //   this.$refs.map.mapObject.invalidateSize()
-    // })
+  activated() {
+    this.$refs.map.mapObject.invalidateSize()
   }
 }
 </script>
