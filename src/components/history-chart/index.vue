@@ -27,7 +27,8 @@ export default {
       stopTime: new Date().getTime(),
       height: 0,
       width: 0,
-      pxRatio: window.devicePixelRatio || 1
+      pxRatio: window.devicePixelRatio || 1,
+      marginBottom: 30 * (window.devicePixelRatio || 1)
     }
   },
 
@@ -38,17 +39,14 @@ export default {
     period() {
       return this.stopTime - this.startTime
     },
-    margin() {
-      return this.height * 0.10
-    },
     timeToPixels() {
       return this.width / this.period
     },
     speedToPixels() {
-      return (this.height - this.margin) / this.maxSpeed
+      return (this.height - this.marginBottom) / this.maxSpeed
     },
     maxSpeed() {
-      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 0)
+      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 80)
     },
     dataSet() {
       return this.data.map(data => ({
@@ -100,7 +98,7 @@ export default {
       return ((new Date(time)).getTime() - this.startTime) * this.timeToPixels
     },
     speed2y(speed) {
-      return (this.height - this.margin) - (speed * this.speedToPixels)
+      return (this.height - this.marginBottom) - (speed * this.speedToPixels)
     },
     handleWindowResize() {
       this.$nextTick(() => {
@@ -116,9 +114,45 @@ export default {
 
       if (this.data === undefined || this.data === null || this.data.length === 0) return
 
-      this.context.fillStyle = 'rgb(240, 240, 240)'
+      this.drawDataAmplitude()
+
+      this.drawGrid()
+
+      this.drawDataLine()
+    },
+    drawDataLine() {
       this.context.lineWidth = 2 * this.pxRatio
 
+      this.context.strokeStyle = 'white'
+
+      let X = this.time2x(this.dataSet[0].date)
+      let Y = this.speed2y(this.dataSet[0].avg)
+
+      this.context.beginPath()
+      this.context.moveTo(X, Y)
+
+      this.dataSet.slice(1).forEach((data, i) => {
+        X = this.time2x(data.date)
+        Y = this.speed2y(data.avg)
+        // this.context.strokeStyle = this.$options.filters.speedToColors(average)
+        this.context.lineTo(X, Y)
+      })
+
+      this.context.stroke()
+
+      Y = this.height - (12.5 * this.pxRatio)
+      let LX = 0 // this.width + this.marginLeft
+      // eieea
+
+      this.dataSet.reverse().forEach(data => {
+        X = this.time2x(data.date)
+        if ((X - LX) < (20 * this.pxRatio)) return
+        this.drawArrow(X, Y, data.heading, data.avg)
+        LX = X
+      })
+    },
+    drawDataAmplitude() {
+      this.context.fillStyle = '#316fad'
       this.context.beginPath()
 
       this.context.moveTo(this.time2x(this.dataSet[0].date), this.speed2y(this.dataSet[0].max))
@@ -132,29 +166,26 @@ export default {
       })
 
       this.context.fill()
+    },
+    drawGrid() {
+      this.context.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+      this.context.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      this.context.font = '10px Arial' // TODO pxratio
+      this.context.textBaseline = 'bottom'
 
-      let X = this.time2x(this.dataSet[0].date)
-      let Y = this.speed2y(this.dataSet[0].avg)
+      this.context.lineWidth = this.pxRatio
 
-      this.dataSet.slice(1).forEach(data => {
+      // 20 kmh
+      // 10 neuds
+
+      for (let speed = 0; speed <= this.maxSpeed; speed += 20) {
+        const Y = Math.round(this.speed2y(speed))
+        this.context.fillText(speed, 3 * this.pxRatio, Y - 2)
         this.context.beginPath()
-        this.context.moveTo(X, Y)
-        X = this.time2x(data.date)
-        Y = this.speed2y(data.avg)
-        this.context.strokeStyle = this.$options.filters.speedToColors(data.avg)
-        this.context.lineTo(X, Y)
+        this.context.moveTo(0, Y - 0.5)
+        this.context.lineTo(this.width, Y - 0.5)
         this.context.stroke()
-      })
-
-      Y = this.height - this.margin
-      let LX = 0
-
-      this.dataSet.reverse().forEach(data => {
-        X = this.time2x(data.date)
-        if ((X - LX) < (20 * this.pxRatio)) return
-        this.drawArrow(X, Y, data.heading, data.avg)
-        LX = X
-      })
+      }
     },
     drawArrow(x, y, heading, speed) {
       this.context.save()
@@ -168,9 +199,9 @@ export default {
       this.context.closePath()
       this.context.lineWidth = this.pxRatio
       this.context.fillStyle = this.$options.filters.speedToColors(speed)
-      this.context.strokeStyle = 'rgb(74, 74, 74)'
+      // this.context.strokeStyle = 'rgb(74, 74, 74)'
       this.context.fill()
-      this.context.stroke()
+      //  this.context.stroke()
       this.context.restore()
     }
   }
@@ -183,6 +214,7 @@ export default {
   figure, canvas {
     height: 100%;
     width: 100%;
+    background-color: hsl(216, 57%, 31%)
   }
 
   span.icon {
