@@ -139,22 +139,24 @@
           </div>
         </div>
         <div class="card">
-          <header class="card-header" @click="repportBug">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <span class="icon">
-                  <i class="fa fa-bullhorn"></i>
-                </span> &nbsp;
-                <translate tag="strong">Report a bug</translate> <br>
-                <!-- <translate tag="small">Contact us</translate> -->
+          <a href="mailto:support-app@pioupiou.com" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-bullhorn"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Report a bug</translate> <br>
+                  <!-- <translate tag="small">Contact us</translate> -->
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-chevron-right"></i>
+                  </span>
+                </div>
               </div>
-              <div class="is-pulled-right">
-                <span class="icon">
-                  <i class="fa fa-chevron-right"></i>
-                </span>
-              </div>
-            </div>
-          </header>
+            </header>
+          </a>
         </div>
         <div class="card">
           <a href="https://pioupiou.fr/en/support" target="_blank">
@@ -313,7 +315,7 @@ export default {
       padding: 0;
 
       &:last-child {
-        padding-bottom: 3rem;
+        padding-bottom: 3em;
       }
     }
 
@@ -346,7 +348,7 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         vertical-align: middle;
-        line-height: 1.9rem;
+        line-height: 1.9em;
       }
       .is-pulled-left.no-limit {
         max-width: 100%;
@@ -358,7 +360,7 @@ export default {
       }
 
       .is-pulled-right {
-        line-height: 1.9rem;
+        line-height: 1.9em;
 
         .icon {
           vertical-align: middle;

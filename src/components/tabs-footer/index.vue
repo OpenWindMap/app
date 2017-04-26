@@ -10,7 +10,7 @@
         </li>
         <li>
           <a @click="rotateUnit">
-            <span class="icon">
+            <span class="text-icon">
               <strong>{{ $convert.currentLabel }}</strong>
             </span>
             <translate tag="span" translate-context="Footer unit chooser">Unit</translate>
@@ -48,8 +48,7 @@ export default {
 
   footer {
     @include touch {
-      height: 8vw;
-      min-height: 3.25rem;
+      height: 60px;
     }
   }
 
@@ -74,15 +73,15 @@ export default {
     }
 
     span {
-      font-size: 0.8rem;
-      margin-top: 0.4rem;
+      font-size: 0.8em;
       font-weight: 300;
+      text-align: center;
     }
 
     a {
       border-bottom: initial;
       flex-direction: column;
-      padding-top: 0.9rem;
+      text-align: center;
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
@@ -93,17 +92,23 @@ export default {
     .icon {
       &:first-child {
         margin-right: 0;
-        margin-bottom: 0.3rem;
       }
 
       .fa.fa-map-o {
         font-weight: bold;
       }
+    }
 
-      strong {
-        text-transform: uppercase;
-        font-size: 1.1em;
-      }
+    strong {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 1.1em;
+    }
+
+    .text-icon {
+      align-items: center;
+      display: inline-flex;
+      line-height: 24px;
     }
   }
 </style>

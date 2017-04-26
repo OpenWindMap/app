@@ -99,7 +99,8 @@ export default {
       searchLocation: undefined,
       searchBounds: undefined,
       opened: undefined,
-      highlights: [419, 293, 576, 401]
+      highlights: [419, 293, 576, 401],
+      locationResult: []
     }
   },
 
@@ -116,9 +117,6 @@ export default {
       return this.preSearchResults.concat(
         this.$store.getters['pioupious/findByLoc'](this.searchBounds)
       )
-    },
-    locationResult() {
-      return this.$store.state.pioupious.locationResult
     }
   },
 
@@ -167,7 +165,26 @@ export default {
       if (this.searchInput === '') {
         this.searchLocation = undefined
       }
-      this.$store.dispatch('pioupious/searchLocation', { query: this.searchInput })
+
+      if (this.searchInput.length < 3) return
+
+      let geoloc = ''
+
+      const getIt = () =>
+        this.$http.get(`http://137.74.25.60:3100/v1/autocomplete?text=${this.searchInput}${geoloc}`)
+        .then(({ body: response }) => {
+          if (this.searchInput !== response.geocoding.query.text) return
+          this.locationResult = response.features
+        })
+
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+          geoloc = `&focus.point.lat=${position.coords.latitude}&focus.point.lon=${position.coords.longitude}`
+          getIt()
+        }, () => getIt())
+      } else {
+        getIt()
+      }
     }
   }
 }
@@ -177,7 +194,7 @@ export default {
   @import "~src/assets/vars";
 
   .search-highlight {
-    padding: 0.75rem;
+    padding: 0.75em;
 
     a {
       color: $primary;
@@ -186,7 +203,7 @@ export default {
     }
 
     .subtitle {
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.9em;
       margin-left: 0;
     }
 
@@ -195,7 +212,7 @@ export default {
     }
 
     hr {
-      margin: 1.5rem 1.5rem;
+      margin: 1.5rem 1.5em;
     }
   }
 
@@ -217,7 +234,7 @@ export default {
       padding: 0;
 
       &:last-child {
-        padding-bottom: 3rem;
+        padding-bottom: 3em;
       }
     }
 
@@ -240,7 +257,7 @@ export default {
 
     li {
       padding: 0.2em 0.5em;
-      font-size: 0.92rem;
+      font-size: 0.92em;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -273,7 +290,7 @@ export default {
   }
 
   nav.fixed-header + .columns {
-    margin-top: 3.25rem;
+    margin-top: 3.25em;
   }
 
   .fixed-header.mini-map-container + .column {

@@ -28,7 +28,8 @@ export default {
       height: 0,
       width: 0,
       pxRatio: window.devicePixelRatio || 1,
-      marginBottom: 30 * (window.devicePixelRatio || 1)
+      marginBottom: 30 * (window.devicePixelRatio || 1),
+      marginLeft: 30 * (window.devicePixelRatio || 1)
     }
   },
 
@@ -40,13 +41,13 @@ export default {
       return this.stopTime - this.startTime
     },
     timeToPixels() {
-      return this.width / this.period
+      return (this.width - this.marginLeft) / this.period
     },
     speedToPixels() {
       return (this.height - this.marginBottom) / this.maxSpeed
     },
     maxSpeed() {
-      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 80)
+      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 60)
     },
     dataSet() {
       return this.data.map(data => ({
@@ -95,7 +96,7 @@ export default {
 
   methods: {
     time2x(time) {
-      return ((new Date(time)).getTime() - this.startTime) * this.timeToPixels
+      return (((new Date(time)).getTime() - this.startTime) * this.timeToPixels) + this.marginLeft
     },
     speed2y(speed) {
       return (this.height - this.marginBottom) - (speed * this.speedToPixels)

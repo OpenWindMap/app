@@ -9,10 +9,9 @@ export default {
   state: {
     timeout: 45 * 60000, // = min
     archiveTime: 3 * 3600000, // = hour
-    reloadTime: 5 * 1000, // = sec
+    reloadTime: 60 * 1000, // = sec
     pioupious: {},
 
-    locationResult: [],
     watchers: {}
   },
 
@@ -85,9 +84,6 @@ export default {
         Vue.set(state.pioupious[stationId], 'archive', data)
       }
     },
-    addLocationResults(state, { results }) {
-      state.locationResult = results
-    },
     addWatcher(state, { stationId, intId }) {
       Vue.set(state.watchers, stationId, intId)
     },
@@ -150,28 +146,6 @@ export default {
       console.log('stopOneToBeUpdated', stationId, context.state.watchers)
       clearInterval(context.state.watchers[stationId])
       context.commit('removeWatcher', { stationId })
-    },
-    searchLocation(context, { query }) {
-      if (query.length < 3) return
-
-      const tags = 'aeroway:aerodrome&osm_tag=natural&osm_tag=place:city&osm_tag=place:town&osm_tag=place:village&osm_tag=place:hamlet&osm_tag=place:locality&osm_tag=place:island'
-
-      let geoloc = ''
-
-      const getIt = () =>
-        Vue.http.get(`http://photon.komoot.de/api/?q=${query}&limit=5&lang=${Vue.config.language}&osm_tag=${tags}${geoloc}`)
-        .then(({ body: response }) => {
-          context.commit('addLocationResults', { results: response.features })
-        })
-
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(position => {
-          geoloc = `&lat=${position.coords.latitude}&lon=${position.coords.longitude}`
-          getIt()
-        }, () => getIt())
-      } else {
-        getIt()
-      }
     }
   }
 }

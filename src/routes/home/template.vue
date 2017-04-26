@@ -16,6 +16,9 @@
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'H'" @open="show(pioupiou)" @show="show(pioupiou)">
         </station-overview>
+        <h6 class="subtitle is-6" v-if="historiesPioupious.length === 0">
+          <translate>No history yet</translate>
+        </h6>
       </div>
       <div class="column">
         <h5 class="subtitle is-5">
@@ -25,6 +28,9 @@
           :key="pioupiou.id" :station="pioupiou"
           :opened="opened === pioupiou.id && context === 'F'" @open="show(pioupiou)" @show="show(pioupiou)">
         </station-overview>
+        <h6 class="subtitle is-6" v-if="favoritesPioupious.length === 0">
+          <translate>No favorite yet</translate>
+        </h6>
       </div>
     </div>
   </section>
@@ -126,7 +132,7 @@ export default {
       padding: 0.75rem 0;
 
       &:last-child {
-        padding-bottom: 3rem;
+        padding-bottom: 3em;
       }
     }
 
@@ -139,7 +145,7 @@ export default {
     padding: 12px 12px 0px;
 
     &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: 1em;
     }
   }
 

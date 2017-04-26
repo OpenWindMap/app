@@ -82,6 +82,8 @@ export default {
       Raven.setExtraContext({
         device: window.device || {}
       })
+
+      document.body.className = window.device.platform.toLowerCase()
     }
   },
 
@@ -99,7 +101,7 @@ export default {
   @import '~font-awesome/scss/font-awesome';
 
   html, body {
-    overflow: hidden;
+    overflow: auto;
   }
 
   #app {

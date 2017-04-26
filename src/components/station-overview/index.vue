@@ -139,11 +139,11 @@ export default {
     }
 
     .is-pulled-right {
-      line-height: 1.8rem;
+      line-height: 1.8em;
     }
 
     .subtitle.is-5 {
-      font-size: 1.23rem;
+      font-size: 1.23em;
     }
 
     .wind-compass {

@@ -50,8 +50,8 @@ export default {
     }
 
     return {
-      url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      // url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       minZoom: 3,
       myPosition: [undefined, undefined]
     }
@@ -111,6 +111,13 @@ export default {
     position: static;
   }
 
+  // .leaflet-tile-pane {
+  //   opacity: 0.9;
+  // }
+  //
+  // .leaflet-container {
+  //   background-color: initial;
+  // }
 
   .leaflet-control.leaflet-control-attribution {
     display: none;

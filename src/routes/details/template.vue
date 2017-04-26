@@ -166,7 +166,7 @@ export default {
 
   .card {
     .card-header {
-      padding: 12px 12px 0.75rem;
+      padding: 12px 12px 0.75em;
       box-shadow: initial;
 
       .title {
@@ -178,11 +178,11 @@ export default {
       }
 
       .is-pulled-right {
-        line-height: 1.8rem;
+        line-height: 1.8em;
       }
 
       .subtitle.is-5 {
-        font-size: 1.23rem;
+        font-size: 1.23em;
       }
     }
 
@@ -194,7 +194,7 @@ export default {
       }
 
       .tag.is-medium {
-        margin: 0 0.75rem;
+        margin: 0 0.75em;
         font-size: 0.9em;
         background-color: transparent;
       }
@@ -212,10 +212,10 @@ export default {
     }
 
     &.is-mobile {
-      padding: 0 0.75rem;
+      padding: 0 0.75em;
 
       .column {
-        padding: 0.25rem;
+        padding: 0.25em;
       }
     }
   }
@@ -231,7 +231,7 @@ export default {
   article.message {
     box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
     background: $dark;
-    padding-bottom: 3.5rem;
+    padding-bottom: 3.5em;
 
     .message-body {
       border-radius: initial;
