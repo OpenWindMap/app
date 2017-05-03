@@ -2,16 +2,18 @@
   <section>
     <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
       @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
+    <!-- <map-legend></map-legend> -->
   </section>
 </template>
 
 <script lang="buble">
 import mapContent from '@/components/map-content'
+import mapLegend from '@/components/map-legend'
 
 export default {
   name: 'map-view',
 
-  components: { mapContent },
+  components: { mapContent, mapLegend },
 
   data() {
     return {}

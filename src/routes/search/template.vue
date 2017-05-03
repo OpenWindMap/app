@@ -9,13 +9,14 @@
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
             <i class="fa fa-search" v-else></i>
           </span>
-          <ul class="autocomplete" v-if="searchFocused && (locationResult.length > 1 || preSearchResults.length > 1)">
-            <li v-for="pioupiou in preSearchResults.slice(0, 5)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
+          <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 1 || preSearchResults.length > 1)">
+            <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
               <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
               <span> #{{ pioupiou.id }}</span>
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
               <strong>{{ location.properties.name }}</strong><span>, {{ location.properties.country }}</span>
+              <small>({{ location.properties.source }})</small>
             </li>
           </ul>
         </p>
@@ -60,20 +61,27 @@
       </div>
       <div class="column columns" v-else>
 
-        <div class="column fixed-header mini-map-container" v-if="searchLocation">
-          <map-content :zoom="9" :map-markers="searchResults" :center="searchLocation" @bounds-change="boundsChange"></map-content>
+        <div class="column mini-map-container" v-if="searchLocation">
+          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange"></map-content>
         </div>
 
         <div class="column" v-if="searchResults.length">
-          <station-overview v-for="pioupiou in searchResults" v-if="pioupiou !== undefined"
-            :key="pioupiou.id" :station="pioupiou"
-            :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
-          </station-overview>
+          <template v-for="pioupiou in searchResults">
+            <station-overview v-if="pioupiou !== undefined"
+              :key="pioupiou.id" :station="pioupiou"
+              :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
+            </station-overview>
+            <div class="column has-text-centered" v-else>
+              <span class="icon">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+              </span>
+            </div>
+          </template>
         </div>
         <div class="column has-text-centered" v-else>
           <br><br>
           <span class="icon">
-            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            <translate>No result found</translate>
           </span>
         </div>
       </div>
@@ -85,6 +93,7 @@
 import mapContent from '@/components/map-content'
 import stationOverview from '@/components/station-overview'
 import { focus } from 'vue-focus'
+import { throttle } from 'lodash'
 
 export default {
   name: 'search-view',
@@ -168,14 +177,17 @@ export default {
 
       if (this.searchInput.length < 3) return
 
+      console.log('Search')
+
       let geoloc = ''
 
-      const getIt = () =>
+      const getIt = throttle(() => {
         this.$http.get(`http://137.74.25.60:3100/v1/autocomplete?text=${this.searchInput}${geoloc}`)
         .then(({ body: response }) => {
           if (this.searchInput !== response.geocoding.query.text) return
           this.locationResult = response.features
         })
+      }, 6000)
 
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -198,8 +210,6 @@ export default {
 
     a {
       color: $primary;
-      text-decoration: underline;
-      font-weight: 200;
     }
 
     .subtitle {
@@ -286,7 +296,6 @@ export default {
   .fixed-header {
     position: fixed;
     width: 100vw;
-    z-index: 999;
   }
 
   nav.fixed-header + .columns {
@@ -304,5 +313,13 @@ export default {
     i.fa {
       font-size: 2em;
     }
+  }
+
+  .control span.icon i.fa {
+    font-size: 21px;
+  }
+
+  span.icon {
+    width: initial;
   }
 </style>

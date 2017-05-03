@@ -231,7 +231,7 @@ export default {
   article.message {
     box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
     background: $dark;
-    padding-bottom: 3.5em;
+    padding-bottom: 4em;
 
     .message-body {
       border-radius: initial;

@@ -8,6 +8,9 @@
       :location="marker.location" :measurements="marker.measurements"
       :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
     ></map-marker>
+    <span class="icon" v-if="mapMarkers && !mapMarkers.length">
+      <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+    </span>
   </v-map>
 </template>
 
@@ -121,5 +124,17 @@ export default {
 
   .leaflet-control.leaflet-control-attribution {
     display: none;
+  }
+
+  #map .icon {
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .fa {
+      font-size: 34px;
+    }
   }
 </style>

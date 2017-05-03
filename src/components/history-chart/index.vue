@@ -19,14 +19,14 @@
 export default {
   name: 'history-chart',
 
-  props: ['data'],
+  props: ['data', 'currentTime'],
 
   data() {
     return {
       context: undefined,
-      stopTime: new Date().getTime(),
       height: 0,
       width: 0,
+      defaultMax: 80,
       pxRatio: window.devicePixelRatio || 1,
       marginBottom: 30 * (window.devicePixelRatio || 1),
       marginLeft: 30 * (window.devicePixelRatio || 1)
@@ -34,6 +34,9 @@ export default {
   },
 
   computed: {
+    stopTime() {
+      return this.$store.state.user.currentTime
+    },
     startTime() {
       return this.dataSet[0].date.getTime()
     },
@@ -47,9 +50,25 @@ export default {
       return (this.height - this.marginBottom) / this.maxSpeed
     },
     maxSpeed() {
-      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, 60)
+      return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, this.defaultMax)
+    },
+    gradient() {
+      if (!this.width || !this.height) return 'white'
+
+      const virtualCanvas = document.createElement('canvas')
+      virtualCanvas.width = this.width
+      virtualCanvas.height = this.height
+      const virtualContext = virtualCanvas.getContext('2d')
+
+      for (let speed = 0; speed <= this.maxSpeed; speed += 5) {
+        virtualContext.fillStyle = this.$options.filters.speedToColors(speed)
+        virtualContext.fillRect(0, 0, this.width, this.speed2y(speed))
+      }
+
+      return this.context.createPattern(virtualCanvas, 'repeat-x')
     },
     dataSet() {
+      if (!this.data || !this.data.length) return []
       return this.data.map(data => ({
         lat: data[1],
         lon: data[2],
@@ -77,6 +96,9 @@ export default {
     },
     data() {
       this.handleWindowResize()
+      this.draw()
+    },
+    stopTime() {
       this.draw()
     }
   },
@@ -113,6 +135,9 @@ export default {
     draw() {
       this.context.clearRect(0, 0, this.width, this.height)
 
+      // this.context.fillStyle = this.gradient
+      // this.context.fillRect(0, 0, this.width, this.height)
+
       if (this.data === undefined || this.data === null || this.data.length === 0) return
 
       this.drawDataAmplitude()
@@ -124,7 +149,7 @@ export default {
     drawDataLine() {
       this.context.lineWidth = 2 * this.pxRatio
 
-      this.context.strokeStyle = 'white'
+      this.context.strokeStyle = this.gradient
 
       let X = this.time2x(this.dataSet[0].date)
       let Y = this.speed2y(this.dataSet[0].avg)
@@ -143,7 +168,6 @@ export default {
 
       Y = this.height - (12.5 * this.pxRatio)
       let LX = 0 // this.width + this.marginLeft
-      // eieea
 
       this.dataSet.reverse().forEach(data => {
         X = this.time2x(data.date)
@@ -151,6 +175,14 @@ export default {
         this.drawArrow(X, Y, data.heading, data.avg)
         LX = X
       })
+
+      // for (let i = 0; i < this.dataSet.length; i++) {
+      //   const data = this.dataSet[i]
+      //   X = this.time2x(data.date)
+      //   if ((LX - X) <= (20 * this.pxRatio)) return
+      //   this.drawArrow(X, Y, data.heading, data.avg)
+      //   LX = X
+      // }
     },
     drawDataAmplitude() {
       this.context.fillStyle = '#316fad'
@@ -190,14 +222,27 @@ export default {
         this.context.stroke()
       }
 
-      this.dataSet.forEach((data, i) => {
-        if ((i + 1) % 3) return
+      const date = new Date()
+      date.setMinutes(0)
+      date.setSeconds(0)
 
+      this.context.textBaseline = 'top'
+
+      for (let hour = 0; hour <= 24; hour++) {
+        date.setHours(hour)
+        this.context.fillText(`${hour}:00`, this.time2x(date), 3 * this.pxRatio)
         this.context.beginPath()
-        this.context.moveTo(this.time2x(data.date), 0)
-        this.context.lineTo(this.time2x(data.date), this.height - this.marginBottom)
+        this.context.moveTo(this.time2x(date), 0)
+        this.context.lineTo(this.time2x(date), this.height - this.marginBottom)
         this.context.stroke()
-      })
+
+        date.setHours(-24 + hour)
+        this.context.beginPath()
+        this.context.moveTo(this.time2x(date), 0)
+        this.context.lineTo(this.time2x(date), this.height - this.marginBottom)
+        this.context.stroke()
+        date.setHours(24)
+      }
     },
     drawArrow(x, y, heading, speed) {
       this.context.save()
