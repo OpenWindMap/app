@@ -2,39 +2,18 @@
   <div id="app">
     <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
 
+    <div class="notification is-danger" v-if="offlineMode">
+      <translate translate-context="Offline alert message content">
+        Offline mode
+      </translate>
+    </div>
+
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
 
     <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>
 
-    <div :class="['modal', offlineMode ? 'is-active' : '']">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="box content">
-          <h3 class="has-text-centered">
-            <translate translate-context="Offline alert message title">Ow no ..</translate>
-          </h3>
-          <translate tag="p" translate-context="Offline alert message content">
-            Looks like you are running the app without any connection.
-          </translate>
-          <translate tag="p" translate-context="Offline alert message content">
-            However during the beta, an internet connection is required to run the Pioupiou application.
-          </translate>
-          <br>
-          <translate tag="p" translate-context="Offline alert message content">
-            We are sorry about this issue and work hard on offline capabilites.
-          </translate>
-          <br>
-          <translate tag="p" translate-context="Offline alert message content">
-            Cheers,
-          </translate>
-          <p>
-            <translate tag="strong" translate-context="Offline alert message author">The Pioupiou Team.</translate>
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -137,6 +116,12 @@ export default {
 
   input {
     user-select: auto !important;
+  }
+
+  #app .notification {
+    margin: 0;
+    padding: 0.4em 1em;
+    font-size: 0.9em;
   }
 
   .sentry-error-embed header h2 > span {

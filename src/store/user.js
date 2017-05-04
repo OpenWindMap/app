@@ -55,6 +55,7 @@ export default {
       state.center = center
     },
     setTimeToNow(state) {
+      console.log('Time set')
       state.currentTime = (new Date()).getTime()
     },
     setLang(state, { lang }) {

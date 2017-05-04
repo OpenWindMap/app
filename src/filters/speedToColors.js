@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const palette = [
+export const palette = [
   'rgb(255, 255, 255)',
   'rgb(  0, 255, 255)',
   'rgb(  3, 230, 175)',
