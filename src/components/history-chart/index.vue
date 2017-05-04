@@ -16,6 +16,8 @@
 </template>
 
 <script lang="buble">
+import Vue from 'vue'
+
 export default {
   name: 'history-chart',
 
@@ -26,7 +28,7 @@ export default {
       context: undefined,
       height: 0,
       width: 0,
-      defaultMax: 80,
+      defaultMax: 75,
       pxRatio: window.devicePixelRatio || 1,
       marginBottom: 30 * (window.devicePixelRatio || 1),
       marginLeft: 30 * (window.devicePixelRatio || 1)
@@ -47,7 +49,7 @@ export default {
       return (this.width - this.marginLeft) / this.period
     },
     speedToPixels() {
-      return (this.height - this.marginBottom) / this.maxSpeed
+      return (this.height - this.marginBottom) / this.$getvalue(this.maxSpeed)
     },
     maxSpeed() {
       return this.dataSet.reduce((max, data) => data.max >= max ? data.max : max, this.defaultMax)
@@ -78,6 +80,9 @@ export default {
         heading: data[6],
         date: new Date(data[0])
       }))
+    },
+    unit() {
+      return Vue.config.unit
     }
   },
 
@@ -100,6 +105,9 @@ export default {
     },
     stopTime() {
       this.draw()
+    },
+    unit() {
+      this.draw()
     }
   },
 
@@ -121,7 +129,7 @@ export default {
       return (((new Date(time)).getTime() - this.startTime) * this.timeToPixels) + this.marginLeft
     },
     speed2y(speed) {
-      return (this.height - this.marginBottom) - (speed * this.speedToPixels)
+      return (this.height - this.marginBottom) - (this.$getvalue(speed) * this.speedToPixels)
     },
     handleWindowResize() {
       this.$nextTick(() => {
@@ -213,9 +221,9 @@ export default {
       this.context.lineTo(this.width, 0)
       this.context.stroke()
 
-      for (let speed = 0; speed <= this.maxSpeed; speed += 20) {
+      for (let speed = 0; speed <= this.maxSpeed; speed += 15) {
         const Y = Math.round(this.speed2y(speed))
-        this.context.fillText(`${speed} KM/H`, 3 * this.pxRatio, Y - 2)
+        this.context.fillText(`${Math.round(this.$getvalue(speed))}`, 3 * this.pxRatio, Y - 2)
         this.context.beginPath()
         this.context.moveTo(0, Y - 0.5)
         this.context.lineTo(this.width, Y - 0.5)
