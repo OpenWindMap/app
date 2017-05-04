@@ -62,7 +62,7 @@
       <div class="column columns" v-else>
 
         <div class="column mini-map-container" v-if="searchLocation">
-          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange"></map-content>
+          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange" @center-change="centerChange"></map-content>
         </div>
 
         <div class="column" v-if="searchResults.length">
@@ -151,9 +151,9 @@ export default {
       this.$router.push({ name: 'details', params: { id: pioupiou.id } })
     },
     searchIn(location) {
+      this.searchFocused = false
       this.searchInput = `${location.properties.name}, ${location.properties.country}`
       this.searchLocation = location.geometry.coordinates.reverse()
-      this.searchFocused = false
     },
     boundsChange(bounds) {
       this.searchBounds = bounds
@@ -166,6 +166,19 @@ export default {
     setSuggest(name, location) {
       this.searchInput = name
       this.searchLocation = location
+    },
+    centerChange(center) {
+      throttle(() => {
+        this.$http.get(`http://137.74.25.60:3100/v1/reverse?point.lat=${center.lat}&point.lon=${center.lng}&size=1`)
+        .then(({ body: response }) => {
+          const location = response.features[0]
+          this.searchInput = (location.properties.locality) ?
+            `${location.properties.locality}, ${location.properties.country}` :
+            (location.properties.macroregion) ?
+            `${location.properties.macroregion}, ${location.properties.country}` :
+            `${location.properties.region}, ${location.properties.country}`
+        })
+      }, 6000)()
     }
   },
 
@@ -175,7 +188,7 @@ export default {
         this.searchLocation = undefined
       }
 
-      if (this.searchInput.length < 3) return
+      if (!this.searchFocused || this.searchInput.length < 3) return
 
       console.log('Search')
 

@@ -88,6 +88,9 @@ export default {
         zoom: this.$refs.map.mapObject.getZoom(),
         center: this.$refs.map.mapObject.getCenter()
       })
+
+      this.$emit('center-change', this.$refs.map.mapObject.getCenter())
+      this.$emit('zoom-change', this.$refs.map.mapObject.getZoom())
     }
   },
 
