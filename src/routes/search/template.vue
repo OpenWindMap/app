@@ -3,7 +3,7 @@
     <nav class="nav has-shadow fixed-header">
       <div class="field is-fullwidth nav-item">
         <p class="control is-fullwidth has-icon has-icon-right">
-          <input class="input" type="text" :placeholder="$pgettext('Search something awesome...', 'Search field placeholder')"
+          <input class="input" type="text" :placeholder="$pgettext('Search field placeholder', 'Search...')"
             v-model="searchInput" @focus="searchFocused = true" @blur="blurLater">
           <span class="icon">
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
@@ -12,11 +12,11 @@
           <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 1 || preSearchResults.length > 1)">
             <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
               <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
-              <span> #{{ pioupiou.id }}</span>
+              <small>(Pioupiou #{{ pioupiou.id }})</small>
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
-              <strong>{{ location.properties.name }}</strong><span>, {{ location.properties.country }}</span>
-              <small>({{ location.properties.source }})</small>
+              <strong>{{ location.properties.name }}</strong><small>, {{ location.properties.region }}</small>
+              <small v-if="location.properties.source === 'paraglidingearth-beta'"><translate>(Parapente)</translate></small>
             </li>
           </ul>
         </p>
@@ -27,7 +27,7 @@
         <br>
         <br>
         <h6 class="subtitle is-6">
-          <translate translate-context="Search examples title">Find a spot</translate>
+          <translate translate-context="Search examples title">For example:</translate>
         </h6>
         <ul>
           <li><a @click="setSuggest('Maui, Hawaï', [20.802956799999997, -156.31068321602177])">
@@ -43,7 +43,7 @@
             Biarritz - France
           </a></li>
         </ul>
-        <br>
+        <!--<br>
         <hr>
         <br>
         <h6 class="subtitle is-6">
@@ -57,12 +57,12 @@
               <span> #{{ pioupiou.id }}</span>
             </router-link>
           </li>
-        </ul>
+        </ul>-->
       </div>
       <div class="column columns" v-else>
 
         <div class="column mini-map-container" v-if="searchLocation">
-          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange" @center-change="centerChange"></map-content>
+          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange"></map-content>
         </div>
 
         <div class="column" v-if="searchResults.length">
@@ -108,8 +108,9 @@ export default {
       searchLocation: undefined,
       searchBounds: undefined,
       opened: undefined,
-      highlights: [419, 293, 576, 401],
-      locationResult: []
+      highlights: [],
+      locationResult: [],
+      lastSearch: undefined
     }
   },
 
@@ -152,7 +153,7 @@ export default {
     },
     searchIn(location) {
       this.searchFocused = false
-      this.searchInput = `${location.properties.name}, ${location.properties.country}`
+      this.searchInput = `${location.properties.name}, ${location.properties.region}`
       this.searchLocation = location.geometry.coordinates.reverse()
     },
     boundsChange(bounds) {
@@ -188,19 +189,34 @@ export default {
         this.searchLocation = undefined
       }
 
+      if (this.searchInput === this.lastSearch) {
+        return
+      }
+
+      this.lastSearch = this.searchInput
+
       if (!this.searchFocused || this.searchInput.length < 3) return
 
-      console.log('Search')
+      console.log('Search ' + this.searchInput)
 
-      let geoloc = ''
+      this.$http.get(`http://137.74.25.60:3100/v1/autocomplete?text=${this.searchInput}`)
+        .then(({ body: response }) => {
+          if (this.searchInput !== response.geocoding.query.text) return
+          this.locationResult = response.features
+        })
+
+      /* let geoloc = ''
+
+      // TODO : utiliser le throttle ici à la place de lodash : http://stackoverflow.com/questions/3963299/jquery-auto-complete-request-throttling
 
       const getIt = throttle(() => {
         this.$http.get(`http://137.74.25.60:3100/v1/autocomplete?text=${this.searchInput}${geoloc}`)
         .then(({ body: response }) => {
           if (this.searchInput !== response.geocoding.query.text) return
           this.locationResult = response.features
+          console.log(this.locationResult)
         })
-      }, 6000)
+      }, 400)
 
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -209,7 +225,7 @@ export default {
         }, () => getIt())
       } else {
         getIt()
-      }
+      } */
     }
   }
 }

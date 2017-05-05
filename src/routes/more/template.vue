@@ -10,7 +10,7 @@
                     <span class="icon">
                       <i class="fa fa-book"></i>
                     </span> &nbsp;
-                    <translate tag="strong">What is Pioupiou ?</translate> <br>
+                    <translate tag="strong">What is Pioupiou?</translate> <br>
                     <!-- <translate tag="small">Brief about Pioupiou</translate> -->
                   </div>
                   <div class="is-pulled-right">
@@ -77,12 +77,12 @@
                             <span>{{ language }}</span>
                           </a>
                         </p>
-                        <p class="control">
+                        <!--<p class="control">
                           <a @click="moreLanguage"
                             class="button is-small is-primary is-outlined is-inverted">
                             <i class="fa fa-plus"></i>
                           </a>
-                        </p>
+                        </p>-->
                       </div>
                     </div>
                   </div>
@@ -116,8 +116,13 @@
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
-                        <translate tag="strong">Your own Pioupiou</translate> <br>
+                        <translate tag="strong">Install your own station</translate> <br>
                         <!-- <translate tag="small">Buy a Pioupiou to contribute</translate> -->
+                      </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
                       </div>
                     </div>
                   </header>
@@ -128,8 +133,30 @@
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
-                        <translate tag="strong">Open Data</translate> <br>
+                        <translate tag="strong">Reuse the open data</translate> <br>
                         <!-- <translate tag="small">Data are free for everyone !</translate> -->
+                      </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </header>
+                </a>
+              </div>
+              <div class="card">
+                <a href="mailto:support-app@pioupiou.com" target="_blank">
+                  <header class="card-header">
+                    <div class="is-clearfix is-fullwidth">
+                      <div class="is-pulled-left">
+                        <translate tag="strong">Help us translate the app</translate> <br>
+                        <!-- <translate tag="small">Data are free for everyone !</translate> -->
+                      </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
                       </div>
                     </div>
                   </header>
@@ -137,26 +164,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="card">
-          <a href="mailto:support-app@pioupiou.com" target="_blank">
-            <header class="card-header">
-              <div class="is-clearfix is-fullwidth">
-                <div class="is-pulled-left">
-                  <span class="icon">
-                    <i class="fa fa-bullhorn"></i>
-                  </span> &nbsp;
-                  <translate tag="strong">Report a bug</translate> <br>
-                  <!-- <translate tag="small">Contact us</translate> -->
-                </div>
-                <div class="is-pulled-right">
-                  <span class="icon">
-                    <i class="fa fa-chevron-right"></i>
-                  </span>
-                </div>
-              </div>
-            </header>
-          </a>
         </div>
         <div class="card">
           <a href="https://pioupiou.fr/en/support" target="_blank">
@@ -229,10 +236,7 @@
                       <translate tag="strong">Attributions</translate> <br>
                       <p class="control">
                         <small>
-                          <translate>All map credits goes to</translate>
-                          <a href="http://leafletjs.com">Leaflet</a>
-                          <translate tag="small"> and </translate>
-                          <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors
+                          <translate>Geographic data © OpenStreetMap contributors</translate>
                         </small>
                       </p>
                     </div>
@@ -250,7 +254,7 @@
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 0.4.0</strong> - beta
+                  <strong>Version 0.5.0</strong> - beta
                 </small>
               </div>
             </div>

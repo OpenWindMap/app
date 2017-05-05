@@ -103,10 +103,6 @@ export default {
   },
 
   mounted() {
-    const start = new Date(new Date().getTime() - (3 * 3600 * 1000)).toISOString()
-    this.$http.get(`archive/${this.station.id}?start=${start}&stop=now`).then(({ body }) => {
-      this.data = body.data
-    })
   }
 }
 </script>

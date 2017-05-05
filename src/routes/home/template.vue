@@ -8,8 +8,35 @@
       </div>
     </nav>
     <div class="columns">
+      <div class="column" v-if="historiesPioupious.length === 0">
+        <h5 class="subtitle is-5">
+            <translate>Welcome to the Pioupiou Wind Network!</translate>
+        </h5>
+        <h6 class="subtitle is-6">
+          <translate>Search for a spot or use the map to begin with</translate>
+        </h6>
+        <br>
+      </div>
       <div class="column">
         <h5 class="subtitle is-5">
+          <span class="icon">
+            <i class="fa fa-star"></i>
+          </span>
+          <translate>Favorites</translate>
+        </h5>
+        <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
+          :key="pioupiou.id" :station="pioupiou"
+          :opened="opened === pioupiou.id && context === 'F'" @open="show(pioupiou)" @show="show(pioupiou)">
+        </station-overview>
+        <h6 class="subtitle is-6" v-if="favoritesPioupious.length === 0">
+          <translate>No favorite spots yet</translate>
+        </h6>
+      </div>
+      <div class="column">
+        <h5 class="subtitle is-5">
+          <span class="icon">
+            <i class="fa fa-history"></i>
+          </span>
           <translate>History</translate>
         </h5>
         <station-overview v-for="pioupiou in historiesPioupious" v-if="pioupiou.id"
@@ -18,18 +45,6 @@
         </station-overview>
         <h6 class="subtitle is-6" v-if="historiesPioupious.length === 0">
           <translate>No history yet</translate>
-        </h6>
-      </div>
-      <div class="column">
-        <h5 class="subtitle is-5">
-          <translate>Favorites</translate>
-        </h5>
-        <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
-          :key="pioupiou.id" :station="pioupiou"
-          :opened="opened === pioupiou.id && context === 'F'" @open="show(pioupiou)" @show="show(pioupiou)">
-        </station-overview>
-        <h6 class="subtitle is-6" v-if="favoritesPioupious.length === 0">
-          <translate>No favorite yet</translate>
         </h6>
       </div>
     </div>
