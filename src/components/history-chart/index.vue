@@ -230,26 +230,19 @@ export default {
         this.context.stroke()
       }
 
-      const date = new Date()
+      const date = new Date(this.startTime)
       date.setMinutes(0)
       date.setSeconds(0)
 
       this.context.textBaseline = 'top'
 
-      for (let hour = 0; hour <= 24; hour++) {
-        date.setHours(hour)
-        this.context.fillText(`${hour}:00`, this.time2x(date), 3 * this.pxRatio)
+      for (let time = date.getTime(); time < this.stopTime; time += 3600000) {
+        const hour = (new Date(time)).getHours()
+        this.context.fillText(`${hour}:00`, this.time2x(time), 3 * this.pxRatio)
         this.context.beginPath()
-        this.context.moveTo(this.time2x(date), 0)
-        this.context.lineTo(this.time2x(date), this.height - this.marginBottom)
+        this.context.moveTo(this.time2x(time), 0)
+        this.context.lineTo(this.time2x(time), this.height - this.marginBottom)
         this.context.stroke()
-
-        date.setHours(-24 + hour)
-        this.context.beginPath()
-        this.context.moveTo(this.time2x(date), 0)
-        this.context.lineTo(this.time2x(date), this.height - this.marginBottom)
-        this.context.stroke()
-        date.setHours(24)
       }
     },
     drawArrow(x, y, heading, speed) {
