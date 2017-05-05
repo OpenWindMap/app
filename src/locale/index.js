@@ -23,7 +23,7 @@ export const convert = Vue.use(convertPlugin, {
     mps: 'm/s',
     kmph: 'km/h',
     mph: 'mph',
-    knot: 'knot',
+    knots: 'knots',
     bft: 'bft'
   },
   defaultUnit: 'kmph',
@@ -31,7 +31,7 @@ export const convert = Vue.use(convertPlugin, {
   conversions: {
     kmph: v => autoRound(v),
     mps: v => autoRound(v / 3.6), // eslint-disable-line no-mixed-operators
-    knot: v => autoRound(v / 1.852), // eslint-disable-line no-mixed-operators
+    knots: v => autoRound(v / 1.852), // eslint-disable-line no-mixed-operators
     mph: v => autoRound(v / 1.609), // eslint-disable-line no-mixed-operators
     bft: v => v >= 118 ? 12 : v < 1 ? 0 : Math.round(Math.cbrt(Math.pow(v, 2) / 9)) // eslint-disable-line no-mixed-operators
   }

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "./node_modules/.bin/vbuild --dev --eslint",
     "build": "./node_modules/.bin/vbuild --eslint",
-    "watch": "./node_modules/.bin/vbuild --watch --eslint"
+    "watch": "./node_modules/.bin/vbuild --watch --eslint",
+    "extract-pot": "make makemessages",
+    "compile-po": "make translations"
   },
   "dependencies": {
     "bulma": "^0.4.0",

@@ -19,19 +19,19 @@
       <strong :style="{ color: this.$options.filters.speedToColors(speedMin) }">
         {{ speedMin !== null && speedMin !== undefined ? $getvalue(speedMin) : '--' }}</strong>
       <br>
-      <translate tag="small">MIN</translate>
+      <translate tag="small">min</translate>
     </div>
     <div class="column is-2-mobile has-highlight">
       <strong :style="{ color: this.$options.filters.speedToColors(speedAvg) }">
         {{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
       <br>
-      <translate tag="small">AVG</translate>
+      <translate tag="small">avg</translate>
     </div>
     <div class="column is-2-mobile">
       <strong :style="{ color: this.$options.filters.speedToColors(speedMax) }">
         {{ speedMax !== null && speedMax !== undefined ? $getvalue(speedMax) : '--' }}</strong>
       <br>
-      <translate tag="small">MAX</translate>
+      <translate tag="small">max</translate>
     </div>
   </div>
 </template>

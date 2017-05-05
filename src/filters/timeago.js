@@ -5,7 +5,7 @@ const vm = Vue.prototype
 
 timeago.register('i18n', (number, index) => [
   [vm.$pgettext('Time to words', 'just now'), vm.$pgettext('Time to words', 'right now')],
-  [vm.$pgettext('Time to words', 'few seconds ago'), vm.$pgettext('Time to words', 'in few seconds')],
+  [vm.$pgettext('Time to words', 'a few seconds ago'), vm.$pgettext('Time to words', 'in few seconds')],
   [vm.$pgettext('Time to words', '1 minute ago'), vm.$pgettext('Time to words', 'in 1 minute')],
   [vm.$pgettext('Time to words', '%s minutes ago'), vm.$pgettext('Time to words', 'in %s minutes')],
   [vm.$pgettext('Time to words', '1 hour ago'), vm.$pgettext('Time to words', 'in 1 hour')],

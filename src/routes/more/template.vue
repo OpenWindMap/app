@@ -236,7 +236,13 @@
                       <translate tag="strong">Attributions</translate> <br>
                       <p class="control">
                         <small>
-                          <translate>Geographic data © OpenStreetMap contributors</translate>
+                          <translate>Cartographic data © OpenStreetMap contributors</translate>
+                          <br>
+                          <translate>Paragliding spots © ParaglidingEarth</translate>
+                          <br>
+                          <translate>Kitesurfing spots © FFVL</translate>
+                          <br>
+                          <translate>Open-source softwares: VueJS, Leaflet, Cordova, Pelias, Bulma, FontAwesome, NodeJS and many others</translate>
                         </small>
                       </p>
                     </div>
@@ -293,7 +299,7 @@ export default {
         }
       })
     },
-    repportBug() {
+    reportBug() {
       Raven.captureMessage('Generic bug reports', {
         level: 'warning'
       })

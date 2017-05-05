@@ -16,7 +16,8 @@
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
               <strong>{{ location.properties.name }}</strong><small>, {{ location.properties.region }}</small>
-              <small v-if="location.properties.source === 'paraglidingearth-beta'"><translate>(Parapente)</translate></small>
+              <small v-if="location.properties.source === 'paraglidingearth-beta'"><translate>(Paragliding)</translate></small>
+              <small v-if="location.properties.source === 'ffvlkite-beta'"><translate>(Kitesurf)</translate></small>
             </li>
           </ul>
         </p>
@@ -27,20 +28,23 @@
         <br>
         <br>
         <h6 class="subtitle is-6">
-          <translate translate-context="Search examples title">For example:</translate>
+          <translate translate-context="Search examples title">Suggestions:</translate>
         </h6>
         <ul>
-          <li><a @click="setSuggest('Maui, Hawaï', [20.802956799999997, -156.31068321602177])">
-            Maui - Hawaï
+          <li><a @click="setSuggest('Chamonix-Mont-Blanc, Haute-Savoie', [45.922169, 6.915194])">
+            Chamonix
           </a></li>
-          <li><a @click="setSuggest('Tarifa, Spain', [36.0127749, -5.6048872])">
-            Tarifa - Spain
+          <li><a @click="setSuggest('Biarritz, Pyrénées-Atlantiques', [43.482436, -1.559570])">
+            Biarritz
           </a></li>
-          <li><a @click="setSuggest('Chamonix-Mont-Blanc, France', [45.9246705, 6.8727506])">
-            Chamonix-Mont-Blanc - France
+          <li><a @click="setSuggest('Gruissan, Aude', [43.106910, 3.091364])">
+            Gruissan
           </a></li>
-          <li><a @click="setSuggest('Biarritz, France', [43.4815899, -1.5561078])">
-            Biarritz - France
+          <li><a @click="setSuggest('Dune du Pyla, Gironde', [44.582625, -1.221854])">
+            Dune du Pyla
+          </a></li>
+          <li><a @click="setSuggest('Dent de Crolles, Isère', [45.308051, 5.855160])">
+            Dent de Crolles
           </a></li>
         </ul>
         <!--<br>
@@ -170,7 +174,7 @@ export default {
     },
     centerChange(center) {
       throttle(() => {
-        this.$http.get(`http://137.74.25.60:3100/v1/reverse?point.lat=${center.lat}&point.lon=${center.lng}&size=1`)
+        this.$http.get(`http://api-search.pioupiou.fr/v1/reverse?point.lat=${center.lat}&point.lon=${center.lng}&size=1`)
         .then(({ body: response }) => {
           const location = response.features[0]
           this.searchInput = (location.properties.locality) ?
@@ -200,11 +204,13 @@ export default {
 
       console.log('Search ' + this.searchInput)
 
-      this.$http.get(`http://137.74.25.60:3100/v1/autocomplete?text=${this.searchInput}`)
+      this.$http.get(`http://api-search.pioupiou.fr/v1/autocomplete?text=${this.searchInput}`)
         .then(({ body: response }) => {
           if (this.searchInput !== response.geocoding.query.text) return
           this.locationResult = response.features
         })
+
+        // TODO : reimplement geoloc
 
       /* let geoloc = ''
 

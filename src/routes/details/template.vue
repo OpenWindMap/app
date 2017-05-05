@@ -7,8 +7,9 @@
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
                 <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
-                <small>#{{ pioupiou.id || id}}</small> &mdash;
+                <small>#{{ pioupiou.id || id}}</small>
                 <small v-if="pioupiou.location">
+                  |
                   {{ Math.abs(pioupiou.location.latitude) }}
                   {{ pioupiou.location.latitude > 0 ?
                     $pgettext('Cardinal direction abbreviation', 'N') :
@@ -64,7 +65,9 @@
                 <div class="column">
                   <article class="message" v-if="pioupiou.meta">
                     <div class="message-body" v-html="description || 'No descrition provided'">
-                      <br><br>
+                    </div>
+                    <div class="message-body pull-right">
+                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                   <article class="message" v-else>
