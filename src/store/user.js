@@ -76,11 +76,11 @@ export default {
     },
     getFromLStorage(context, { key }) {
       const value = JSON.parse(localStorage.getItem(key))
-
-      if (key === 'lang' && value === null) {
+      if (key === 'lang') {
         const systemLanguage = navigator.language.split('-')[0]
-        if (systemLanguage in Vue.$translations) {
-          context.dispatch('setLang', { lang: systemLanguage })
+        const language = value || systemLanguage
+        if (language in Vue.$translations) {
+          context.dispatch('setLang', { lang: language })
         }
       } else {
         context.commit('restoreStore', { [key]: value })
