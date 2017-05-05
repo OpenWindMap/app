@@ -17,7 +17,7 @@
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
               <strong>{{ location.properties.name }}</strong><small>, {{ location.properties.region }}</small>
               <small v-if="location.properties.source === 'paraglidingearth-beta'"><translate>(Paragliding)</translate></small>
-              <small v-if="location.properties.source === 'ffvlkite-beta'"><translate>(Kitesurf)</translate></small>
+              <small v-if="location.properties.source === 'ffvl-beta'"><translate>(Kitesurf)</translate></small>
             </li>
           </ul>
         </p>
@@ -69,7 +69,7 @@
           <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange"></map-content>
         </div>
 
-        <div class="column" v-if="searchResults.length">
+        <div class="column" v-if="searchResults.length && searchLocation">
           <template v-for="pioupiou in searchResults">
             <station-overview v-if="pioupiou !== undefined"
               :key="pioupiou.id" :station="pioupiou"
