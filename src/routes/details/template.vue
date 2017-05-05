@@ -67,7 +67,7 @@
                     <div class="message-body" v-html="description || 'No descrition provided'">
                     </div>
                     <div class="message-body pull-right">
-                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
+                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                   <article class="message" v-else>
@@ -259,5 +259,8 @@ export default {
     background-color: $body-background;
     height: 100px;
     width: 100%;
+  }
+  .no-decoration {
+    text-decoration: none;
   }
 </style>
