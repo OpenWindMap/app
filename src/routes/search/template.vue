@@ -186,6 +186,7 @@ export default {
     searchInput() {
       if (this.searchInput === '') {
         this.searchLocation = undefined
+        this.locationResult = []
       }
 
       if (!this.searchFocused || this.searchInput.length < 3) return
