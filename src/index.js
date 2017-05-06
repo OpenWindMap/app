@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import Raven from 'raven-js'
-// import RavenVue from 'raven-js/plugins/vue'
+import RavenVue from 'raven-js/plugins/vue'
+
+Raven.config('https://e375c29c0c6b4af8bcdf725b44f302bb@sentry.io/165583')
+.addPlugin(RavenVue, Vue)
+.install()
+
+window.Raven = Raven
 
 import { locale, convert } from '@/locale'
 import router from '@/routes'
@@ -26,10 +32,5 @@ new Vue({
 
 store.dispatch('user/syncTime')
 store.dispatch('user/restoreStore')
-//
-// Raven.config('https://db40d3c8c69c4b78b2f2bb3831a4805c@sentry.io/158470')
-//   .addPlugin(RavenVue, Vue)
-//   .install()
 
 window.Vue = Vue
-window.Raven = Raven
