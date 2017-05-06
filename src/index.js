@@ -1,12 +1,13 @@
 import Vue from 'vue'
-import Raven from 'raven-js'
-import RavenVue from 'raven-js/plugins/vue'
+// import Raven from 'raven-js'
+// import RavenVue from 'raven-js/plugins/vue'
 
-Raven.config('https://e375c29c0c6b4af8bcdf725b44f302bb@sentry.io/165583')
-.addPlugin(RavenVue, Vue)
-.install()
+// Raven must me initialized before the other modules
+// Raven.config('https://e375c29c0c6b4af8bcdf725b44f302bb@sentry.io/165583')
+// .addPlugin(RavenVue, Vue)
+// .install()
 
-window.Raven = Raven
+// window.Raven = Raven
 
 import { locale, convert } from '@/locale'
 import router from '@/routes'
