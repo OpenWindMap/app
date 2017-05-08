@@ -66,7 +66,9 @@
       <div class="column columns" v-else>
 
         <div class="column mini-map-container" v-if="searchLocation">
-          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation" @bounds-change="boundsChange"></map-content>
+          <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation"
+            @bounds-change="boundsChange" @marker-click="show">
+          </map-content>
         </div>
 
         <div class="column" v-if="searchResults.length && searchLocation">
