@@ -9,7 +9,7 @@
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
             <i class="fa fa-search" v-else></i>
           </span>
-          <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 1 || preSearchResults.length > 1)">
+          <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 0 || preSearchResults.length > 0)">
             <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
               <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
               <small>(Pioupiou #{{ pioupiou.id }})</small>
