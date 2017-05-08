@@ -4,34 +4,42 @@
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
           <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
-          <small>#{{ station.id }}</small> -
-          <small v-if="!offline && station.measurements">
-            {{ station.measurements.date | timeago(currentTime) }}
-          </small>
-          <translate tag="small" class="is-danger" v-else>
-            offline
-          </translate>
-          <!-- <small v-if="station.location">
-            {{ Math.abs(station.location.latitude) }}
-            {{ station.location.latitude > 0 ?
-              $pgettext('Cardinal direction abbreviation', 'N') :
-              $pgettext('Cardinal direction abbreviation', 'S') }}
-            ,
-            {{ Math.abs(station.location.longitude) }}
-            {{ station.location.longitude > 0 ?
-              $pgettext('Cardinal direction abbreviation', 'E') :
-              $pgettext('Cardinal direction abbreviation', 'W') }}
-          </small> -->
+          <small>#{{ station.id }}</small>
+          <template v-if="!offlineMode">
+            -
+            <small v-if="!offline && station.measurements">
+              {{ station.measurements.date | timeago(currentTime) }}
+            </small>
+            <translate tag="small" class="is-danger" v-else>
+              offline
+            </translate>
+            <!-- <small v-if="station.location">
+              {{ Math.abs(station.location.latitude) }}
+              {{ station.location.latitude > 0 ?
+                $pgettext('Cardinal direction abbreviation', 'N') :
+                $pgettext('Cardinal direction abbreviation', 'S') }}
+              ,
+              {{ Math.abs(station.location.longitude) }}
+              {{ station.location.longitude > 0 ?
+                $pgettext('Cardinal direction abbreviation', 'E') :
+                $pgettext('Cardinal direction abbreviation', 'W') }}
+            </small> -->
+          </template>
         </div>
         <div class="is-pulled-right">
-          <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
-            :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('avg')"
-            :heading="station.measurements.wind_heading"
-            :speed-min="station.measurements.wind_speed_min"
-            :speed-avg="station.measurements.wind_speed_avg"
-            :speed-max="station.measurements.wind_speed_max">
-          </wind-compass>
-          <wind-compass class="wind-compass" v-else></wind-compass>
+          <template v-if="!offlineMode">
+            <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
+              :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('avg')"
+              :heading="station.measurements.wind_heading"
+              :speed-min="station.measurements.wind_speed_min"
+              :speed-avg="station.measurements.wind_speed_avg"
+              :speed-max="station.measurements.wind_speed_max">
+            </wind-compass>
+            <wind-compass class="wind-compass" v-else></wind-compass>
+          </template>
+          <template v-else>
+            <call-station :station-id="station.id" ref="call"/>
+          </template>
         </div>
       </div>
     </header>
@@ -59,11 +67,12 @@
 import windCompass from '@/components/wind-compass'
 import windOverview from '@/components/wind-overview'
 import historyChart from '@/components/history-chart'
+import callStation from '@/components/call-station'
 
 export default {
   name: 'station-overview',
 
-  components: { windCompass, windOverview, historyChart },
+  components: { windCompass, windOverview, historyChart, callStation },
 
   props: {
     station: {
@@ -74,15 +83,20 @@ export default {
     opened: {
       type: Boolean,
       default: true
+    },
+
+    offlineMode: {
+      type: Boolean,
+      default: false
     }
   },
 
   methods: {
     open(pioupiou) {
-      this.$emit('open', pioupiou)
+      this.$emit('open', pioupiou, this.$refs.call.callLink)
     },
     show(pioupiou) {
-      this.$emit('show', pioupiou)
+      this.$emit('show', pioupiou, this.$refs.call.callLink)
     }
   },
 

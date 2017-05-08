@@ -73,7 +73,7 @@
           <template v-for="pioupiou in searchResults">
             <station-overview v-if="pioupiou !== undefined"
               :key="pioupiou.id" :station="pioupiou"
-              :opened="opened === pioupiou.id" @open="show(pioupiou)" @show="show(pioupiou)">
+              :opened="opened === pioupiou.id" @open="show" @show="show">
             </station-overview>
             <div class="column has-text-centered" v-else>
               <span class="icon">

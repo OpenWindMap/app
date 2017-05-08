@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <nav class="nav has-shadow">
+    <nav class="nav has-shadow is-hidden-desktop">
       <div class="nav-center">
         <router-link to="/" class="nav-item">
           <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
@@ -25,8 +25,8 @@
           <translate>Favorites</translate>
         </h5>
         <station-overview v-for="pioupiou in favoritesPioupious" v-if="pioupiou.id"
-          :key="pioupiou.id" :station="pioupiou"
-          :opened="opened === pioupiou.id && context === 'F'" @open="show(pioupiou)" @show="show(pioupiou)">
+          :key="pioupiou.id" :station="pioupiou" :offlineMode="offlineMode"
+          :opened="opened === pioupiou.id && context === 'F'" @open="show" @show="show">
         </station-overview>
         <h6 class="subtitle is-6" v-if="favoritesPioupious.length === 0">
           <translate>No favorite spots yet</translate>
@@ -40,8 +40,8 @@
           <translate>History</translate>
         </h5>
         <station-overview v-for="pioupiou in historiesPioupious" v-if="pioupiou.id"
-          :key="pioupiou.id" :station="pioupiou"
-          :opened="opened === pioupiou.id && context === 'H'" @open="show(pioupiou)" @show="show(pioupiou)">
+          :key="pioupiou.id" :station="pioupiou" :offlineMode="offlineMode"
+          :opened="opened === pioupiou.id && context === 'H'" @open="show" @show="show">
         </station-overview>
         <h6 class="subtitle is-6" v-if="historiesPioupious.length === 0">
           <translate>No history yet</translate>
@@ -82,6 +82,9 @@ export default {
     },
     favorites() {
       return this.$store.state.user.favorites
+    },
+    offlineMode() {
+      return this.$parent.offlineMode
     }
   },
 
@@ -129,8 +132,12 @@ export default {
       this.opened = this.opened === pioupiou.id && this.context === ctx ? undefined : pioupiou.id
       this.context = ctx
     },
-    show(pioupiou) {
-      this.$router.push({ name: 'details', params: { id: pioupiou.id } })
+    show(pioupiou, callLink) {
+      if (this.offlineMode) {
+        window.location.href = callLink
+      } else {
+        this.$router.push({ name: 'details', params: { id: pioupiou.id } })
+      }
     }
   }
 }
