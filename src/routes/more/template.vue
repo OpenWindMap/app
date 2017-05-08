@@ -213,6 +213,11 @@
                         <translate tag="strong">Privacy Policy</translate> <br>
                         <!-- <translate tag="small">Our Privacy Policy</translate> -->
                       </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
+                      </div>
                     </div>
                   </header>
                 </a>
@@ -224,6 +229,11 @@
                       <div class="is-pulled-left">
                         <translate tag="strong">Terms of Use</translate> <br>
                         <!-- <translate tag="small">Our Terms and Conditions of Use</translate> -->
+                      </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
                       </div>
                     </div>
                   </header>
