@@ -93,10 +93,10 @@ export default {
 
   methods: {
     open(pioupiou) {
-      this.$emit('open', pioupiou, this.$refs.call.callLink)
+      this.$emit('open', pioupiou, this.$refs.call ? this.$refs.call.callLink : undefined)
     },
     show(pioupiou) {
-      this.$emit('show', pioupiou, this.$refs.call.callLink)
+      this.$emit('show', pioupiou, this.$refs.call ? this.$refs.call.callLink : undefined)
     }
   },
 

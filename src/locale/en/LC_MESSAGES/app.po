@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pioupiou-app 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-05 20:44+0200\n"
+"POT-Creation-Date: 2017-05-08 16:26+0200\n"
 "PO-Revision-Date: 2017-03-29 10:19+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Attributions"
 msgstr ""
 
-#: src/components/wind-overview/index.vue:28
+#: src/components/wind-overview/index.vue:28 dist/client.f92d879e.js:1
 msgid "avg"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "No result found"
 msgstr ""
 
-#: src/components/station-overview/index.vue:11
+#: src/components/station-overview/index.vue:13
 #: src/routes/details/template.vue:44
 msgid "offline"
 msgstr ""
@@ -157,211 +157,277 @@ msgstr ""
 msgid "What is Pioupiou?"
 msgstr ""
 
-#: src/components/station-overview/index.vue:6
+#: src/components/station-overview/index.vue:6 dist/client.f92d879e.js:1
 msgid "Unnamed station"
 msgstr ""
 
-#: src/components/station-overview/index.vue:17
-#: src/routes/details/template.vue:15
+#: src/components/station-overview/index.vue:19
+#: src/routes/details/template.vue:15 dist/client.f92d879e.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "N"
 msgstr ""
 
-#: src/components/station-overview/index.vue:18
-#: src/routes/details/template.vue:16
+#: src/components/station-overview/index.vue:20
+#: src/routes/details/template.vue:16 dist/client.f92d879e.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "S"
 msgstr ""
 
-#: src/components/station-overview/index.vue:22
-#: src/routes/details/template.vue:20
+#: src/components/station-overview/index.vue:24
+#: src/routes/details/template.vue:20 dist/client.f92d879e.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "E"
 msgstr ""
 
-#: src/components/station-overview/index.vue:23
-#: src/routes/details/template.vue:21
+#: src/components/station-overview/index.vue:25
+#: src/routes/details/template.vue:21 dist/client.f92d879e.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "W"
 msgstr ""
 
-#: src/routes/home/index.js:8
-msgctxt "Route label"
-msgid "Home"
-msgstr ""
-
-#: src/routes/more/index.js:8
-msgctxt "Route label"
-msgid "More"
-msgstr ""
-
-#: src/routes/map/index.js:8
+#: src/routes/map/index.js:8 dist/client.f92d879e.js:1
 msgctxt "Route label"
 msgid "Map"
 msgstr ""
 
-#: src/routes/search/template.vue:60 src/routes/details/template.vue:9
-msgid "Unnamed Pioupiou"
-msgstr ""
-
-#: src/routes/search/index.js:8
-msgctxt "Route label"
-msgid "Search"
-msgstr ""
-
-#: src/routes/details/index.js:8
+#: src/routes/details/index.js:8 dist/client.f92d879e.js:1
 msgctxt "Route label"
 msgid "Details"
 msgstr ""
 
-#: src/filters/timeago.js:7
+#: src/routes/details/template.vue:9 src/routes/search/template.vue:60
+#: dist/client.f92d879e.js:1
+msgid "Unnamed Pioupiou"
+msgstr ""
+
+#: src/routes/home/index.js:8 dist/client.f92d879e.js:1
+msgctxt "Route label"
+msgid "Home"
+msgstr ""
+
+#: src/routes/more/index.js:8 dist/client.f92d879e.js:1
+msgctxt "Route label"
+msgid "More"
+msgstr ""
+
+#: src/routes/search/index.js:8 dist/client.f92d879e.js:1
+msgctxt "Route label"
+msgid "Search"
+msgstr ""
+
+#: src/filters/timeago.js:7 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "just now"
 msgstr ""
 
-#: src/filters/timeago.js:7
+#: src/filters/timeago.js:7 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "right now"
 msgstr ""
 
-#: src/filters/timeago.js:8
+#: src/filters/timeago.js:8 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "a few seconds ago"
 msgstr ""
 
-#: src/filters/timeago.js:8
+#: src/filters/timeago.js:8 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in few seconds"
 msgstr ""
 
-#: src/filters/timeago.js:9
+#: src/filters/timeago.js:9 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 minute ago"
 msgstr ""
 
-#: src/filters/timeago.js:9
+#: src/filters/timeago.js:9 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 minute"
 msgstr ""
 
-#: src/filters/timeago.js:10
+#: src/filters/timeago.js:10 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s minutes ago"
 msgstr ""
 
-#: src/filters/timeago.js:10
+#: src/filters/timeago.js:10 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s minutes"
 msgstr ""
 
-#: src/filters/timeago.js:11
+#: src/filters/timeago.js:11 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 hour ago"
 msgstr ""
 
-#: src/filters/timeago.js:11
+#: src/filters/timeago.js:11 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 hour"
 msgstr ""
 
-#: src/filters/timeago.js:12
+#: src/filters/timeago.js:12 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s hours ago"
 msgstr ""
 
-#: src/filters/timeago.js:12
+#: src/filters/timeago.js:12 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s hours"
 msgstr ""
 
-#: src/filters/timeago.js:13
+#: src/filters/timeago.js:13 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 day ago"
 msgstr ""
 
-#: src/filters/timeago.js:13
+#: src/filters/timeago.js:13 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 day"
 msgstr ""
 
-#: src/filters/timeago.js:14
+#: src/filters/timeago.js:14 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s days ago"
 msgstr ""
 
-#: src/filters/timeago.js:14
+#: src/filters/timeago.js:14 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s days"
 msgstr ""
 
-#: src/filters/timeago.js:15
+#: src/filters/timeago.js:15 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 week ago"
 msgstr ""
 
-#: src/filters/timeago.js:15
+#: src/filters/timeago.js:15 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 week"
 msgstr ""
 
-#: src/filters/timeago.js:16
+#: src/filters/timeago.js:16 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s weeks ago"
 msgstr ""
 
-#: src/filters/timeago.js:16
+#: src/filters/timeago.js:16 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s weeks"
 msgstr ""
 
-#: src/filters/timeago.js:17
+#: src/filters/timeago.js:17 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 month ago"
 msgstr ""
 
-#: src/filters/timeago.js:17
+#: src/filters/timeago.js:17 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 month"
 msgstr ""
 
-#: src/filters/timeago.js:18
+#: src/filters/timeago.js:18 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s months ago"
 msgstr ""
 
-#: src/filters/timeago.js:18
+#: src/filters/timeago.js:18 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s months"
 msgstr ""
 
-#: src/filters/timeago.js:19
+#: src/filters/timeago.js:19 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "1 year ago"
 msgstr ""
 
-#: src/filters/timeago.js:19
+#: src/filters/timeago.js:19 dist/client.f92d879e.js:1
 msgctxt "Time to words"
 msgid "in 1 year"
 msgstr ""
 
-#: src/filters/timeago.js:20
+#: src/filters/timeago.js:20 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "%s years ago"
 msgstr ""
 
-#: src/filters/timeago.js:20
+#: src/filters/timeago.js:20 dist/client.f92d879e.js:1
 #, javascript-format
 msgctxt "Time to words"
 msgid "in %s years"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "NNE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "NE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "ENE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "ESE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "SE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "SSE"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "SSW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "SW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "WSW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "WNW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "NW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Cardinal direction abbreviation"
+msgid "NNW"
+msgstr ""
+
+#: dist/client.f92d879e.js:1
+msgctxt "Search field placeholder"
+msgid "Search..."
 msgstr ""

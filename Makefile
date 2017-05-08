@@ -43,6 +43,12 @@ $(TMP_FILE): $(GETTEXT_HTML_SOURCES)
 		--package-name=$(shell node -e "console.log(require('./package.json').name);") \
 		--package-version=$(shell node -e "console.log(require('./package.json').version);") \
 		--output $@ $(GETTEXT_JS_SOURCES)
+# Extract not found label
+	xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
+		--from-code=utf-8 --join-existing --no-wrap \
+		--package-name=$(shell node -e "console.log(require('./package.json').name);") \
+		--package-version=$(shell node -e "console.log(require('./package.json').version);") \
+		--output $@ ./dist/*.{js,html}
 # Generate .po files for each available language.
 	@for lang in $(LOCALES); do \
 		export PO_FILE=$(OUTPUT_DIR)/locale/$$lang/LC_MESSAGES/app.po; \

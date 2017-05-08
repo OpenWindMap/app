@@ -3,7 +3,7 @@
     <nav class="nav has-shadow fixed-header">
       <div class="field is-fullwidth nav-item">
         <p class="control is-fullwidth has-icon has-icon-right">
-          <input class="input" type="text" :placeholder="$pgettext('Search field placeholder', 'Search...')"
+          <input class="input" type="text" :placeholder="`${ $pgettext('Search field placeholder', 'Search...') }`"
             v-model="searchInput" @focus="searchFocused = true" @blur="blurLater">
           <span class="icon">
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
