@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
+    <!-- <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/> -->
 
     <div class="notification is-danger" v-if="offlineMode">
       <translate translate-context="Offline alert message content">

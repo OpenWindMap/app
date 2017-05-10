@@ -31,7 +31,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <div class="columns">
+              <div class="">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
