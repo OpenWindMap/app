@@ -270,7 +270,7 @@
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 0.5.3</strong> - beta
+                  <strong>Version 1.0.0</strong>
                 </small>
               </div>
             </div>
