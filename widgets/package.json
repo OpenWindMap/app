@@ -1,0 +1,38 @@
+{
+  "name": "pioupiou-widgets",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Pioupiou Team",
+  "scripts": {
+    "dev": "./node_modules/.bin/vbuild --dev --eslint",
+    "build": "./node_modules/.bin/vbuild --eslint",
+    "watch": "./node_modules/.bin/vbuild --watch --eslint"
+  },
+  "dependencies": {
+    "bulma": "^0.4.0",
+    "font-awesome": "^4.7.0",
+    "install": "^0.10.0",
+    "linkifyjs": "^2.1.4",
+    "lodash": "^4.17.4",
+    "npm": "^4.5.0",
+    "raven-js": "^3.14.1",
+    "socket.io-client": "^1.7.3",
+    "timeago.js": "^3.0.1",
+    "vue": "^2.2.6",
+    "vue-focus": "^2.1.0",
+    "vue-gettext": "^2.0.10",
+    "vue-resource": "^1.2.1",
+    "vue-router": "^2.3.0",
+    "vue-select": "sagalbot/vue-select",
+    "vue-socket.io": "^2.1.1-a",
+    "vue2-leaflet": "0.0.42",
+    "vuex": "^2.2.1"
+  },
+  "devDependencies": {
+    "buble-loader": "^0.4.1",
+    "node-sass": "^4.5.1",
+    "resolve-url-loader": "^2.0.2",
+    "sass-loader": "^6.0.3",
+    "vbuild": "^6.24.14"
+  }
+}
