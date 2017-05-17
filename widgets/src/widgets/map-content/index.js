@@ -7,7 +7,7 @@ import filters from '@/filters'
 
 import widget from './widget'
 
-const SEL = 'pioupiou-station'
+const SEL = 'pioupiou-map'
 
 document.querySelectorAll(SEL).forEach(elem => {
   new Vue({

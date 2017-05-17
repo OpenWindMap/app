@@ -1,8 +1,8 @@
 <script lang="buble">
-import Component from '@/components/station-overview'
+import Component from '@/components/map-content'
 
 export default {
-  components: { stationOverview: Component },
+  components: { mapContent: Component },
 
   props: {
     stationId: {
@@ -18,17 +18,19 @@ export default {
   render(h) {
     return h('div', {
       class: {
-        'pioupiou-station-overview': true,
+        'pioupiou-map-content': true,
         'pioupiou-widget': true,
         'pioupiou-widget-light': this.lightStyle
       }
     }, [
-      h('station-overview', {
+      this.station.location === undefined ? null : h('map-content', {
         props: {
-          station: this.station
+          zoom: 14,
+          mapMarkers: this.stationMarkers,
+          autoCenter: 'marker'
         },
         on: {
-          open(target) {
+          markerClick(target) {
             window.open(`http://pioupiou.fr/fr/${target.id}`, '_blank')
           }
         }
@@ -50,6 +52,9 @@ export default {
     offline() {
       const now = new Date().getTime()
       return Math.round(now - new Date(this.station.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
+    },
+    stationMarkers() {
+      return [this.station]
     }
   },
 
@@ -66,46 +71,45 @@ export default {
   @import '~font-awesome/scss/font-awesome';
 
   .pioupiou-widget:not(:last-of-type) {
-    &.pioupiou-station-overview {
-      min-height: 60px;
+    &.pioupiou-map-content {
+      #map {
+        height: 100%;
+      }
     }
     .watermark {
       display: none;
     }
   }
 
-  .pioupiou-widget.pioupiou-station-overview {
+  .pioupiou-widget.pioupiou-map-content {
     @import '~bulma';
 
     min-width: 400px;
-    min-height: 95px;
+    min-height: 180px;
     width: 0;
     height: 0;
 
+    background-color: $body-background;
+    outline: 1px solid $grey-darker;
     color: $text-strong;
     margin: 0;
     padding: 0;
-    background-color: $body-background;
     outline: 1px solid $grey-darker;
 
-    overflow: auto;
+    overflow: hidden;
 
-    .card {
-      background-color: $body-background;
-      color: $text-strong;
-
-      strong {
-        color: $text-strong;
-      }
-      .card-header .wind-compass {
-        min-width: 90px !important;
-      }
+    #map {
+      height: 80%;
     }
 
     .watermark {
       height: 25px;
       padding: 5px 15px;
       float: right;
+    }
+
+    strong {
+      color: $text-strong;
     }
 
     .is-fullwidth {
@@ -123,15 +127,10 @@ export default {
     }
 
     &.pioupiou-widget-light {
-      &, .card {
-        background-color: $white;
-        color: $grey-darker;
-
-        strong {
-          color: $grey-darker;
-        }
-      }
+      background-color: $white;
+      color: $grey-darker;
       outline: 1px solid $white;
+
       .watermark {
         filter: none;
       }

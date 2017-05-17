@@ -1,5 +1,9 @@
 module.exports = (options) => ({
-  entry: 'src/widgets/station-overview/index.js',
+  entry: {
+    client: 'src/widgets/map-content/index.js',
+    'station-overview': 'src/widgets/station-overview/index.js',
+    'map-content': 'src/widgets/map-content/index.js'
+  },
 
   host: '0.0.0.0',
   port: 3000,
