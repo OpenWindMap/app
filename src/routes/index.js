@@ -7,6 +7,7 @@ import map from '@/routes/map'
 import more from '@/routes/more'
 
 import details from '@/routes/details'
+import showtime from '@/routes/showtime'
 
 Vue.use(Router)
 
@@ -14,6 +15,6 @@ export default new Router({
   routes: [
     { path: '/', redirect: '/home' },
 
-    home, search, map, more, details
+    home, search, map, more, details, showtime
   ]
 })

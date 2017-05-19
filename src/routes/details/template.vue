@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <div class="columns">
+    <div class="">
       <div class="column">
         <div class="card" style="box-shadow: initial;">
           <header class="card-header">
@@ -23,15 +23,15 @@
                 <small class="location-placeholder" v-else></small>
               </div>
               <div class="is-pulled-right">
-                <a @click="favMe" class="is-warning title is-3">
+                <!-- <a @click="favMe" class="is-warning title is-3">
                   <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-info']"></i>
-                </a>
+                </a> -->
               </div>
             </div>
           </header>
           <div class="card-content">
             <div class="content">
-              <div class="columns">
+              <div class="">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
