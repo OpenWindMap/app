@@ -23,6 +23,8 @@ import Raven from 'raven-js'
 import TabsFooter from '@/components/tabs-footer'
 import NavBar from '@/components/nav-bar'
 
+import { init as analytics } from '@/plugins/analytics'
+
 export default {
   name: 'pioupiou-app',
 
@@ -30,7 +32,9 @@ export default {
 
   data() {
     return {
-      connectionType: 'unknow'
+      connectionType: 'unknow',
+      cordova: false,
+      ga: () => {}
     }
   },
 
@@ -61,7 +65,7 @@ export default {
       Raven.setExtraContext({
         device: window.device || {}
       })
-
+      this.cordova = true
       document.body.className = window.device.platform.toLowerCase()
     }
   },
@@ -70,6 +74,22 @@ export default {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
     document.addEventListener('deviceready', this.deviceready)
+
+    window.ga = analytics()
+
+    window.ga('set', {
+      page: this.$route.path,
+      title: this.$route.name
+    })
+    window.ga('send', 'pageview')
+
+    this.$router.afterEach((to, from) => {
+      window.ga('set', {
+        page: to.path,
+        title: to.name
+      })
+      window.ga('send', 'pageview')
+    })
   }
 }
 </script>
