@@ -53,8 +53,8 @@ export default {
     }
 
     return {
-      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
+      // url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       minZoom: 3,
       myPosition: [undefined, undefined]
     }

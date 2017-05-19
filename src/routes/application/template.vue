@@ -8,9 +8,18 @@
       </translate>
     </div>
 
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <section class="columns">
+      <div class="column is-two-thirds">
+        <keep-alive>
+          <all-in-map></all-in-map>
+        </keep-alive>
+      </div>
+      <div class="column is-one-third">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </div>
+    </section>
 
     <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>
 
@@ -22,15 +31,17 @@ import Raven from 'raven-js'
 
 import TabsFooter from '@/components/tabs-footer'
 import NavBar from '@/components/nav-bar'
+import allInMap from '@/components/all-in-map-content'
 
 export default {
   name: 'pioupiou-app',
 
-  components: { TabsFooter, NavBar },
+  components: { TabsFooter, NavBar, allInMap },
 
   data() {
     return {
-      connectionType: 'unknow'
+      connectionType: 'unknow',
+      cordova: false
     }
   },
 
@@ -61,6 +72,8 @@ export default {
       Raven.setExtraContext({
         device: window.device || {}
       })
+
+      this.set(this, 'cordova', true)
 
       document.body.className = window.device.platform.toLowerCase()
     }
@@ -93,6 +106,12 @@ export default {
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
+    }
+
+    > .columns,
+    > .columns > .column {
+      margin: 0;
+      padding: 0;
     }
   }
 

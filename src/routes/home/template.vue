@@ -8,6 +8,7 @@
       </div>
     </nav>
     <div class="columns">
+      <img src="https://www.cleverfiles.com/howto/wp-content/uploads/2016/08/mini.jpg" alt="">
       <div class="column" v-if="historiesPioupious.length === 0">
         <h5 class="subtitle is-5">
             <translate>Welcome to the Pioupiou Wind Network!</translate>
