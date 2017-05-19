@@ -129,7 +129,7 @@ export default {
     display: none;
   }
 
-  #map .icon {
+  .vue2leaflet-map .icon {
     z-index: 999;
     position: absolute;
     top: 50%;
