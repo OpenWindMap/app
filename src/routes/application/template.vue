@@ -84,7 +84,7 @@ export default {
       } */
 
       window.AppRate.preferences.useLanguage = this.$store.state.user.lang
-      window.AppRate.promptForRating()
+      window.AppRate.promptForRating(false)
     }
   },
 
