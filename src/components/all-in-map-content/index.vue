@@ -31,7 +31,7 @@ export default {
 
   methods: {
     showPioupiou(pioupiou) {
-      this.$router.push({ name: 'desktop-details', params: { id: pioupiou.id } })
+      this.$router.push({ name: 'details', params: { id: pioupiou.id } })
     },
     controlsChange({ zoom, center }) {
       if (zoom === this.userZoom && center.lat === this.userCenter[0] && center.lng === this.userCenter[1]) return
@@ -43,10 +43,6 @@ export default {
   activated() {
     this.$store.dispatch('pioupious/fetchAll')
     this.$store.dispatch('pioupious/keepAllUpdated')
-  },
-
-  deactivated() {
-    this.$store.dispatch('pioupious/stopAllToBeUpdated')
   }
 }
 </script>

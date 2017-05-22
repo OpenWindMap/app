@@ -5,7 +5,6 @@ import home from '@/routes/home'
 import search from '@/routes/search'
 import map from '@/routes/map'
 import more from '@/routes/more'
-import desktop from '@/routes/desktop'
 
 import details from '@/routes/details'
 
@@ -15,6 +14,6 @@ export default new Router({
   routes: [
     { path: '/', redirect: '/home' },
 
-    home, search, map, more, details, desktop
+    home, search, map, more, details
   ]
 })

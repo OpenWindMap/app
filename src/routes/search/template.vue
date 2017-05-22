@@ -4,7 +4,7 @@
       <div class="field is-fullwidth nav-item">
         <p class="control is-fullwidth has-icon has-icon-right">
           <input class="input" type="text" :placeholder="`${ $pgettext('Search field placeholder', 'Search...') }`"
-            v-model="searchInput" @focus="searchFocused = true" @blur="blurLater">
+            v-model="searchInput" @focus="searchFocused = true" @blur="blurLater" ref="searchField">
           <span class="icon">
             <i class="fa fa-remove" v-if="searchInput !== ''" @click="searchInput = ''"></i>
             <i class="fa fa-search" v-else></i>
@@ -63,7 +63,7 @@
           </li>
         </ul>-->
       </div>
-      <div class="column columns" v-else>
+      <div class="column" v-else>
 
         <div class="column mini-map-container" v-if="searchLocation">
           <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation"
@@ -107,6 +107,13 @@ export default {
   components: { mapContent, stationOverview },
   directives: { focus },
 
+  props: {
+    autoFocus: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   data() {
     return {
       searchInput: '',
@@ -137,6 +144,10 @@ export default {
   },
 
   activated() {
+    if (this.autoFocus) {
+      this.$refs.searchField.focus()
+    }
+
     this.highlights.forEach(
       id => this.$store.dispatch('pioupious/fetchOne', { stationId: id })
     )
@@ -331,17 +342,8 @@ export default {
     cursor: pointer;
   }
 
-  .fixed-header {
-    position: fixed;
-    width: 100vw;
-  }
-
-  nav.fixed-header + .columns {
-    margin-top: 3.25em;
-  }
-
-  .fixed-header.mini-map-container + .column {
-    padding-top: 180px;
+  .fixed-header + .columns {
+    overflow: auto;
   }
 
   span.icon {
@@ -359,5 +361,11 @@ export default {
 
   span.icon {
     width: initial;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
   }
 </style>

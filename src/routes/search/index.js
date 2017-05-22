@@ -10,7 +10,7 @@ export default {
 
   icon: 'search',
   nav: true,
-  mobile: true,
 
-  component: Search
+  component: Search,
+  props: ({ params }) => ({ autoFocus: params.autoFocus === true || params.autoFocus === 'true' })
 }

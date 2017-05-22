@@ -9,12 +9,13 @@
     </div>
 
     <section class="columns">
-      <div class="column is-two-thirds">
+      <div class="column is-two-thirds is-hidden-touch">
         <keep-alive>
           <all-in-map></all-in-map>
         </keep-alive>
       </div>
       <div class="column is-one-third">
+        <tabs-header :routes="desktopRoutes" class="is-hidden-touch"/>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -29,14 +30,18 @@
 <script lang="buble">
 import Raven from 'raven-js'
 
+import { focus } from 'vue-focus'
+
 import TabsFooter from '@/components/tabs-footer'
+import TabsHeader from '@/components/tabs-header'
 import NavBar from '@/components/nav-bar'
 import allInMap from '@/components/all-in-map-content'
 
 export default {
   name: 'pioupiou-app',
 
-  components: { TabsFooter, NavBar, allInMap },
+  components: { TabsFooter, TabsHeader, NavBar, allInMap },
+  directives: { focus },
 
   data() {
     return {
@@ -57,6 +62,9 @@ export default {
     },
     offlineMode() {
       return (this.connectionType === 'none')
+    },
+    inSearch() {
+      return this.$route.name === 'search'
     }
   },
 
@@ -76,6 +84,9 @@ export default {
       this.set(this, 'cordova', true)
 
       document.body.className = window.device.platform.toLowerCase()
+    },
+    searchFocused() {
+      this.$router.push({ name: 'search', params: { autoFocus: true } })
     }
   },
 
@@ -112,6 +123,7 @@ export default {
     > .columns > .column {
       margin: 0;
       padding: 0;
+      height: 100%;
     }
   }
 

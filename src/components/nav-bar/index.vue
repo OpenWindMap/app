@@ -8,7 +8,7 @@
 
     <div class="nav-right nav-menu">
       <template v-for="route in routes">
-        <router-link :to="route.path || { 'name': route.name }" class="nav-item">
+        <router-link :to="route.name ? { 'name': route.name } : route.path" class="nav-item">
           {{ route.label || route.name || route.path }}
         </router-link>
       </template>

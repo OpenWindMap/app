@@ -83,8 +83,7 @@ export default {
       flex-direction: column;
       text-align: center;
 
-      &.router-link-active {
-        box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
+      &:not(.router-link-active) {
         background: $dark;
       }
     }

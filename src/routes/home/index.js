@@ -10,7 +10,6 @@ export default {
 
   icon: 'list-ul',
   nav: true,
-  mobile: true,
 
   component: Home
 }
