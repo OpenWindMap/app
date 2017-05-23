@@ -1,5 +1,5 @@
 <template lang="html">
-  <footer>
+  <header>
     <div class="tabs is-fullwidth">
       <ul>
         <li v-for="route in routes">
@@ -18,7 +18,7 @@
         </li>
       </ul>
     </div>
-  </footer>
+  </header>
 </template>
 
 <script lang="buble">
@@ -46,7 +46,7 @@ export default {
   @import "~bulma/sass/utilities/variables";
   @import "~bulma/sass/utilities/mixins";
 
-  footer {
+  header {
     @include touch {
       height: 60px;
     }

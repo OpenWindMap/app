@@ -107,6 +107,12 @@ export default {
     overflow: auto;
   }
 
+  #app > section > .column.is-one-third {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   #app {
     display: flex;
     flex-direction: column;

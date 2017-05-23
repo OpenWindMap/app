@@ -50,13 +50,19 @@ export default {
 
   mutations: {
     updateAll(state, { pioupious }) {
+      const setKey = (object, oldObject) => Object.keys(object).forEach(key => {
+        if (oldObject[key] !== object[key]) {
+          if (object[key] === Object(object[key])) { // is Object
+            setKey(object[key], oldObject[key])
+          } else {
+            Vue.set(oldObject, key, object[key])
+          }
+        }
+      })
+
       pioupious.forEach(pioupiou => {
         if (pioupiou.id in state.pioupious) {
-          Object.keys(pioupiou).forEach(key => {
-            if (state.pioupious[pioupiou.id][key] !== pioupiou[key]) {
-              Vue.set(state.pioupious[pioupiou.id], key, pioupiou[key])
-            }
-          })
+          setKey(pioupiou, state.pioupious[pioupiou.id])
         } else {
           Vue.set(state.pioupious, pioupiou.id, pioupiou)
         }

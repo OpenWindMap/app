@@ -139,7 +139,7 @@ export default {
     searchResults() {
       return this.preSearchResults.concat(
         this.$store.getters['pioupious/findByLoc'](this.searchBounds)
-      )
+      ).slice(0, 15)
     }
   },
 
@@ -366,6 +366,6 @@ export default {
   section {
     display: flex;
     flex-direction: column;
-    height: 90%;
+    height: 100%;
   }
 </style>
