@@ -11,7 +11,7 @@
         <li>
           <a @click="rotateUnit">
             <span class="text-icon">
-              <strong>{{ $convert.currentLabel }}</strong>
+              <strong>{{ $pgettext('Units label', $convert.currentLabel) }}</strong>
             </span>
             <translate tag="span" translate-context="Footer unit chooser">Unit</translate>
           </a>

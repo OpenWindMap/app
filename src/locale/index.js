@@ -18,13 +18,15 @@ export const locale = Vue.use(GetText, {
 
 const autoRound = v => v >= 10 ? Math.round(v) : Number(Math.round(v + 'e+1') + 'e-1')
 
+console.log(Vue.prototype.$gettext('search'))
+
 export const convert = Vue.use(convertPlugin, {
   availableUnits: {
-    mps: 'm/s',
-    kmph: 'km/h',
-    mph: 'mph',
-    knots: 'knots',
-    bft: 'bft'
+    mps: Vue.prototype.$pgettext('Units label', 'm/s'),
+    kmph: Vue.prototype.$pgettext('Units label', 'km/h'),
+    mph: Vue.prototype.$pgettext('Units label', 'mph'),
+    knots: Vue.prototype.$pgettext('Units label', 'knots'),
+    bft: Vue.prototype.$pgettext('Units label', 'bft')
   },
   defaultUnit: 'kmph',
 

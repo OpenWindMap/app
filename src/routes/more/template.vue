@@ -54,7 +54,7 @@
                         <p class="control" v-for="(unit, key) in $convert.available">
                           <a @click="changeUnit(key)"
                             :class="['button is-small is-primary', $convert.current === key ? '' : 'is-outlined is-inverted']">
-                            <span>{{ unit }}</span>
+                            <span>{{ $pgettext('Units label', unit) }}</span>
                           </a>
                         </p>
                       </div>
