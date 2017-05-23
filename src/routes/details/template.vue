@@ -31,7 +31,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <div class="columns">
+              <div class="">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
                     :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
@@ -124,6 +124,9 @@ export default {
       return this.$store.state.user.currentTime
     },
     description() {
+      if (!this.pioupiou.meta) {
+        return ''
+      }
       return this.$options.filters.linkify(this.pioupiou.meta.description || '')
     },
     offline() {
@@ -148,10 +151,19 @@ export default {
       if (nTime !== this.dataOld) {
         this.dataOld = nTime
       }
+    },
+    id(val, oldVal) {
+      this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: oldVal })
+
+      this.$store.dispatch('pioupious/fetchOne', { stationId: val })
+      this.$store.dispatch('pioupious/keepOneUpdated', { stationId: val })
+
+      this.$store.dispatch('user/pushToHistories', { stationId: val })
     }
   },
 
   activated() {
+    console.log('ACTIVATED')
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
@@ -239,6 +251,7 @@ export default {
     .message-body {
       border-radius: initial;
       border: initial;
+      word-wrap: break-word;
     }
   }
 
@@ -262,5 +275,12 @@ export default {
   }
   .no-decoration {
     text-decoration: none;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
   }
 </style>
