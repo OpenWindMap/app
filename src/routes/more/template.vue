@@ -262,20 +262,20 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <header class="card-header" style="padding-bottom: 0px;">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+                <img src="~static/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 1.0.2</strong>
+                  <strong>Version 1.0.3</strong>
                 </small>
               </div>
             </div>
           </header>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

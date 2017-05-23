@@ -264,7 +264,7 @@ export default {
     }
   }
 
-  #map {
+  .vue2leaflet-map {
     height: 180px;
   }
 

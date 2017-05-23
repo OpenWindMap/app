@@ -3,7 +3,7 @@
     <nav class="nav has-shadow is-hidden-desktop">
       <div class="nav-center">
         <router-link to="/" class="nav-item">
-          <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+          <img src="~static/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
         </router-link>
       </div>
     </nav>

@@ -23,6 +23,8 @@ import Raven from 'raven-js'
 import TabsFooter from '@/components/tabs-footer'
 import NavBar from '@/components/nav-bar'
 
+import { init as analytics } from '@/plugins/analytics'
+
 export default {
   name: 'pioupiou-app',
 
@@ -30,7 +32,9 @@ export default {
 
   data() {
     return {
-      connectionType: 'unknow'
+      connectionType: 'unknow',
+      cordova: false,
+      ga: () => {}
     }
   },
 
@@ -61,8 +65,26 @@ export default {
       Raven.setExtraContext({
         device: window.device || {}
       })
-
+      this.cordova = true
       document.body.className = window.device.platform.toLowerCase()
+
+      // TODO stocker les ID dans un fichier de conf
+      window.AppRate.preferences.storeAppURL = {
+        ios: '1235894756',
+        android: 'market://details?id=tech.altostratus.pioupiou'
+      }
+
+      // TODO brancher à gettext à la place de apprate useLanguage
+      /* AppRate.preferences.customLocale = {
+        title: "Rate %@",
+        message: "If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!",
+        cancelButtonLabel: "No, Thanks",
+        laterButtonLabel: "Remind Me Later",
+        rateButtonLabel: "Rate It Now"
+      } */
+
+      window.AppRate.preferences.useLanguage = this.$store.state.user.lang
+      window.AppRate.promptForRating(false)
     }
   },
 
@@ -70,6 +92,22 @@ export default {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
     document.addEventListener('deviceready', this.deviceready)
+
+    window.ga = analytics()
+
+    window.ga('set', {
+      page: this.$route.path,
+      title: this.$route.name
+    })
+    window.ga('send', 'pageview')
+
+    this.$router.afterEach((to, from) => {
+      window.ga('set', {
+        page: to.path,
+        title: to.name
+      })
+      window.ga('send', 'pageview')
+    })
   }
 }
 </script>
