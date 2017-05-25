@@ -53,9 +53,6 @@ export default {
   }
 
   .tabs {
-    &, ul, li, a {
-      height: 100%;
-    }
 
     ul {
       border-bottom: initial;
