@@ -82,6 +82,8 @@ export default {
         if (language in Vue.$translations) {
           context.dispatch('setLang', { lang: language })
         }
+      } else if (key === 'unit') {
+        context.commit('setUnit', { unit: value })
       } else {
         context.commit('restoreStore', { [key]: value })
       }
