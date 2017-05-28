@@ -35,7 +35,7 @@ export default {
 
   methods: {
     rotateUnit() {
-      this.$store.commit('user/rotateUnit')
+      this.$store.dispatch('user/rotateUnit')
     }
   }
 }
