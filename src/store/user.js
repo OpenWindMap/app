@@ -26,8 +26,8 @@ export default {
       let unit = availableUnits.indexOf(Vue.config.unit)
       unit = (unit += 1) && unit >= availableUnits.length ? 0 : unit
       Vue.config.unit = availableUnits[unit]
+      state.unit = availableUnits[unit]
     },
-
     pushToHistories(state, { stationId }) {
       if (state.histories.indexOf(stationId) !== -1) {
         state.histories.splice(state.histories.indexOf(stationId), 1)
@@ -69,6 +69,10 @@ export default {
   },
 
   actions: {
+    rotateUnit(context) {
+      context.commit('rotateUnit')
+      context.dispatch('saveIntoLStorage', { unit: context.state.unit })
+    },
     saveIntoLStorage(context, object) {
       Object.entries(object).forEach(([key, value]) => {
         localStorage.setItem(key, JSON.stringify(value))
@@ -83,7 +87,9 @@ export default {
           context.dispatch('setLang', { lang: language })
         }
       } else if (key === 'unit') {
-        context.commit('setUnit', { unit: value })
+        if (value) {
+          context.commit('setUnit', { unit: value })
+        }
       } else {
         context.commit('restoreStore', { [key]: value })
       }
