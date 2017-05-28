@@ -29,12 +29,13 @@
         <div class="is-pulled-right">
           <template v-if="!offlineMode">
             <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
-              :inline="true" :icon-only="opened" :hide="opened" :label="$gettext('avg')"
+              :inline="true" :icon-only="opened" :hide="opened"
               :heading="station.measurements.wind_heading"
               :speed-min="station.measurements.wind_speed_min"
               :speed-avg="station.measurements.wind_speed_avg"
               :speed-max="station.measurements.wind_speed_max">
             </wind-compass>
+            <!--  :label="$gettext('avg')" -->
             <wind-compass class="wind-compass" v-else></wind-compass>
           </template>
           <template v-else>

@@ -25,7 +25,7 @@
       <strong :style="{ color: this.$options.filters.speedToColors(speedAvg) }">
         {{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
       <br>
-      <translate tag="small">avg</translate>
+      <small>{{ $convert.currentLabel }}</small>
     </div>
     <div class="column is-2-mobile">
       <strong :style="{ color: this.$options.filters.speedToColors(speedMax) }">
