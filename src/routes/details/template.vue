@@ -251,6 +251,7 @@ export default {
     .message-body {
       border-radius: initial;
       border: initial;
+      word-wrap: break-word;
     }
   }
 

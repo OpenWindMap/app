@@ -35,7 +35,7 @@ export default {
 
   methods: {
     rotateUnit() {
-      this.$store.commit('user/rotateUnit')
+      this.$store.dispatch('user/rotateUnit')
     }
   }
 }
@@ -82,6 +82,7 @@ export default {
       border-bottom: initial;
       flex-direction: column;
       text-align: center;
+      padding: 0.5em 0.5em;
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);

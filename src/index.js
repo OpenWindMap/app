@@ -1,3 +1,5 @@
+import * as shim from 'es6-shim' // eslint-disable-line no-unused-vars
+
 import Vue from 'vue'
 // import Raven from 'raven-js'
 // import RavenVue from 'raven-js/plugins/vue'

@@ -7,7 +7,8 @@ import translations from '@/locale/translations'
 export const locale = Vue.use(GetText, {
   availableLanguages: {
     en: 'English',
-    fr: 'Français'
+    fr: 'Français',
+    nl: 'Nederlands'
   },
   defaultLanguage: 'en',
 
