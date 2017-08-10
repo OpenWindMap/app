@@ -2,9 +2,9 @@ import L from 'leaflet'
 import filters from '@/filters'
 
 const windIcon = L.divIcon({
-  iconSize: [25, 35], // [26, 48],
+  iconSize: [25, 35],
   popupAnchor: [1, -10],
-  iconAnchor: [12.5, 8.75] // [13, 12]
+  iconAnchor: [12.5, 4.5]
 })
 
 export const WindMarker = L.Marker.extend({
@@ -21,13 +21,9 @@ export const WindMarker = L.Marker.extend({
     this._icon.style.border = 'none'
     this._icon.style.background = 'rgba(0, 0, 0, 0)'
 
-    console.log()
-
     const rotate = 'rotate(' + this.options.heading + 'deg)'
-
     this._icon.style[L.DomUtil.TRANSFORM] += ' ' + rotate
-    this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '12.5px 10px'
-    this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '12.5px 10px'
+    this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '12.5px 4.5px'
 
     this._icon.title = this.options.title
 
@@ -39,7 +35,7 @@ export const WindMarker = L.Marker.extend({
           <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
         </filter>
       </defs>
-      <polygon points="22,9.75 12.5,28 3,9.75 12.5,14.75" style="filter:url(#f3)" fill="${filters.speedToColors(this.options.speed)}" />
+      <polygon stroke="black" stroke-width="0.5" strock-linecap="round" filter="url(#f3)" points="22,9.75 12.5,30 3,9.75 12.5,14.75" fill="${filters.speedToColors(this.options.speed)}" />
       <circle cx="12.5" cy="5" r="4.5" fill="#222"/>
     </svg>`
 
