@@ -69,6 +69,7 @@ export default {
     options.speed = this.speed
     options.heading = this.heading
     options.heading = this.heading
+    options.type = this.type
     options.title = this.title
     this.mapObject = windMarker(this.latLng, options)
     eventsBinder(this, this.mapObject, events)

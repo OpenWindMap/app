@@ -2,9 +2,9 @@ import L from 'leaflet'
 import filters from '@/filters'
 
 const windIcon = L.divIcon({
-  iconSize: [25, 30],
-  popupAnchor: [1, -10],
-  iconAnchor: [12.5, 5]
+  // iconSize: [25, 30],
+  // popupAnchor: [1, -10],
+  iconAnchor: [0, 0]
 })
 
 export const WindMarker = L.Marker.extend({
@@ -13,12 +13,12 @@ export const WindMarker = L.Marker.extend({
     heading: 0,
     title: '',
     icon: windIcon,
-    type: 5
+    type: 0
   },
 
   _setPos(pos) {
     const pointTypes = [
-      `<circle cx="5" cy="5" r="4.5"/>`,
+      `<circle cx="5" cy="5" r="5"/>`,
       `<path d="M5,0C2.243,0,0,2.243,0,5c0,2.757,2.243,5,5,5c2.757,0,5-2.243,5-5C10,2.243,7.757,0,5,0z M5,8.333
       	C3.162,8.333,1.667,6.839,1.667,5c0-1.838,1.496-3.333,3.333-3.333c1.839,0,3.333,1.496,3.333,3.333
       	C8.333,6.839,6.839,8.333,5,8.333z"/>`,
@@ -41,34 +41,34 @@ export const WindMarker = L.Marker.extend({
 
     // let myRotate = this.options.heading
     // setInterval(() => {
-    //   myRotate += 1
+    //   myRotate += 1 / Math.PI
     //   const rotate = 'rotate(' + myRotate + 'deg)'
     //   this._icon.style[L.DomUtil.TRANSFORM] += ' ' + rotate
-    //   this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '12.5px 7px'
     // }, 500)
 
     const rotate = 'rotate(' + this.options.heading + 'deg)'
     this._icon.style[L.DomUtil.TRANSFORM] += ' ' + rotate
-    this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '12.5px 8px'
+    this._icon.style[L.DomUtil.TRANSFORM + '-origin'] = '0px 0px'
 
+    this._icon.style.textAlign = 'center'
     this._icon.title = this.options.title
 
     this._icon.innerHTML = `
-      <svg width="10px" height="10px" style="margin-left: 7.5px; transform: rotate(${-this.options.heading}deg);">
-        <g fill="#222">
-          ${pointTypes[this.options.type]}
-        </g>
-      </svg>
-      <svg width="25px" height="20px" style="margin-top: -4px;">
+      <svg width="26.5" height="28" style="position: absolute; left: -13.25px;">
         <defs>
-          <filter id="f3" x="0" y="0" width="140%" height="140%">
+          <filter id="blur">
             <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
             <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.5" />
             <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
           </filter>
         </defs>
-        <polygon class="polygon-arrow" stroke="black" stroke-width="0.5" strock-linecap="round" filter="url(#f3)"
-          points="22,0 12.5,20 3,0 12.5,4" fill="${filters.speedToColors(this.options.speed)}" />
+        <polygon stroke="black" stroke-width="0.5" strock-linecap="round" filter="url(#blur)"
+          points="3.75,4 13.25,8 22.75,4 13.25,24" fill="${filters.speedToColors(this.options.speed)}" />
+      </svg>
+      <svg width="10px" height="10px" style="position: absolute; left: -5px; top: -5px; transform: rotate(-${this.options.heading}deg); -webkit-transform: rotate(-${this.options.heading}deg)">
+        <g fill="#222">
+          ${pointTypes[this.options.type]}
+        </g>
       </svg>`
 
     return this._icon.title

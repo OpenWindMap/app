@@ -6,7 +6,7 @@
     />
     <map-marker v-for="marker in mapMarkers" :key="marker.key || marker.id"
       :location="marker.location" :measurements="marker.measurements"
-      :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
+      :type="marker.type" :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
     ></map-marker>
     <span class="icon" v-if="mapMarkers && !mapMarkers.length">
       <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
