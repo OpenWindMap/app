@@ -98,6 +98,8 @@ export default {
       .fa.fa-map-o {
         font-weight: bold;
       }
+
+      display: block;
     }
 
     strong {
@@ -110,6 +112,7 @@ export default {
       align-items: center;
       display: inline-flex;
       line-height: 24px;
+      display: block;
     }
   }
 </style>

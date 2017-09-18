@@ -161,6 +161,7 @@ export default {
       font-size: 0.7em;
       padding: 0;
       line-height: 1.6em;
+      min-width: 25%;
       min-width: 25vw;
     }
   }

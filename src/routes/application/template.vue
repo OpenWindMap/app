@@ -120,11 +120,13 @@ export default {
 
   html, body {
     overflow: auto;
+    height: 100%;
   }
 
   #app {
     display: flex;
     flex-direction: column;
+    height: 100%;
     height: 100vh;
 
     > section {
@@ -140,6 +142,7 @@ export default {
   }
 
   .modal .modal-content {
+    max-height: 80%;
     max-height: 80vh;
 
     .content p {

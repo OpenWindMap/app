@@ -7,7 +7,7 @@ module.exports = (options) => ({
   cleanDist: true,
 
   autoprefixer: {
-    browsers: ['ios 7', 'chrome 30', 'ie 8', 'firefox 25', 'edge 12', 'safari 7'] // ~ august 2013
+    browsers: ['ios 7', 'chrome 30', 'ie 8', 'firefox 25', 'edge 12', 'safari 7', 'android 4.2'] // ~ august 2013
   },
 
    production: {

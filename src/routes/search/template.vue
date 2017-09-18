@@ -297,6 +297,7 @@ export default {
     background: $white;
     margin-top: -1px;
     border: 1px solid $white;
+    max-height: 100px;
     max-height: 25vh;
     overflow: auto;
     padding-top: 0.3em;
@@ -333,6 +334,7 @@ export default {
 
   .fixed-header {
     position: fixed;
+    width: 100%;
     width: 100vw;
   }
 

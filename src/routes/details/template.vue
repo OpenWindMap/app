@@ -189,6 +189,7 @@ export default {
       }
 
       .is-pulled-left {
+        max-width: 80%;
         max-width: 80vw;
       }
 
