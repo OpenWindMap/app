@@ -8,7 +8,9 @@
     </div>
 
     <div class="column" v-if="!offline && (heading !== null && heading !== undefined)">
-      <div class="wind-icon" :style="windIconStyle"></div>
+      <div class="wind-icon">
+        <wind-icon :heading="heading" :speed="speed"/>
+      </div>
     </div>
 
     <div class="column" v-if="!offline && ((!iconOnly && !inline) || (iconOnly && !inline && hide))"
@@ -37,8 +39,12 @@
 </template>
 
 <script lang="buble">
+import windIcon from '@/components/wind-icon'
+
 export default {
   name: 'wind-compass',
+
+  components: { windIcon },
 
   props: {
     heading: {
@@ -92,18 +98,6 @@ export default {
   computed: {
     speed() {
       return this.speedAvg
-    },
-    windIconStyle() {
-      let colorIndex = Math.floor(this.speed / 5)
-      colorIndex = (colorIndex > 15) ? 15 : colorIndex
-      const shift = -colorIndex * 2.38
-
-      const rotate = this.heading
-
-      return {
-        'background-position': `${shift}em 0px`,
-        transform: `rotate(${rotate}deg)`
-      }
     }
   }
 }
@@ -113,11 +107,9 @@ export default {
   @import "~src/assets/vars";
 
   .wind-icon {
-    background-image: url("~static/img/compass-wind-icon.png");
     height: 3em;
     width: 2em;
     margin: auto;
-    background-size: 38em 3em;
   }
 
   .columns.is-mobile {
