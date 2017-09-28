@@ -9,6 +9,7 @@ export default {
   state: {
     favorites: [],
     histories: [],
+    renames: {},
     historyLength: 4,
     lang: undefined,
     unit: undefined,
@@ -18,6 +19,9 @@ export default {
   },
 
   getters: {
+    getName(state) {
+      return id => id in state.renames ? state.renames[id] : undefined
+    }
   },
 
   mutations: {
@@ -44,6 +48,12 @@ export default {
       if (state.favorites.indexOf(stationId) !== -1) {
         state.favorites.splice(state.favorites.indexOf(stationId), 1)
       }
+    },
+    renameStation(state, { stationId, newName }) {
+      Vue.set(state.renames, stationId, newName)
+    },
+    removeRename(state, { stationId }) {
+      Vue.delete(state.renames, stationId)
     },
     restoreStore(state, object) {
       Object.entries(object).forEach(([key, value]) => {
@@ -105,6 +115,14 @@ export default {
     removeToFavorites(context, { stationId }) {
       context.commit('removeToFavorites', { stationId })
       context.dispatch('saveIntoLStorage', { favorites: context.state.favorites })
+    },
+    renameStation(context, { stationId, newName }) {
+      context.commit('renameStation', { stationId, newName })
+      context.dispatch('saveIntoLStorage', { renames: context.state.renames })
+    },
+    removeRename(context, { stationId }) {
+      context.commit('removeRename', { stationId })
+      context.dispatch('saveIntoLStorage', { renames: context.state.renames })
     },
     pushMapControls(context, { zoom, center }) {
       context.commit('pushMapControls', { zoom, center })

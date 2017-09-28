@@ -6,7 +6,14 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
+                <strong ref="rename" contenteditable spellcheck="false" @keypress="validateName" @blur="updateName">{{ name || $gettext('Unnamed Pioupiou') }}</strong>
+                <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
+                  <i class="fa fa-window-close"></i>
+                </span>
+                <span class="icon" @click="renameFocus" v-else>
+                  <i class="fa fa-pencil-square"></i>
+                </span>
+                <br>
                 <small>#{{ pioupiou.id || id}}</small>
                 <small v-if="pioupiou.location">
                   |
@@ -120,6 +127,9 @@ export default {
     faved() {
       return this.$store.state.user.favorites.indexOf(this.id) !== -1
     },
+    name() {
+      return this.$store.getters['user/getName'](this.id) || (this.pioupiou.meta && this.pioupiou.meta.name)
+    },
     currentTime() {
       return this.$store.state.user.currentTime
     },
@@ -142,6 +152,24 @@ export default {
       } else {
         this.$store.dispatch('user/pushToFavorites', { stationId: this.id })
       }
+    },
+    renameFocus() {
+      this.$refs.rename.focus()
+    },
+    validateName(event) {
+      if (event.which === 13 || event.keyCode === 13) {
+        event.target.blur()
+      }
+      return false
+    },
+    updateName(event) {
+      this.$store.dispatch('user/renameStation', { stationId: this.id, newName: event.target.innerText })
+      this.$forceUpdate()
+    },
+    restoreName() {
+      this.$store.dispatch('user/removeRename', { stationId: this.id })
+      this.$refs.rename.innerText = this.name
+      this.$forceUpdate()
     }
   },
 
