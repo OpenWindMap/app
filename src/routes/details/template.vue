@@ -149,6 +149,10 @@ export default {
 
   methods: {
     favMe() {
+      if (!this.$store.getters['user/isLocalStorage']) {
+        alert('You are using FakeStorage !') // eslint-disable-line no-alert
+      }
+
       if (this.faved) {
         this.$store.dispatch('user/removeToFavorites', { stationId: this.id })
         this.restoreName()

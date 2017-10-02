@@ -1,7 +1,28 @@
 import Vue from 'vue'
+import fakeStorage from 'fa-storage/src/memory.js'
 
 Object.values = object => Object.keys(object).map(key => object[key])
 Object.entries = object => Object.keys(object).map(key => [key, object[key]])
+
+function isLocalStorageSupported() {
+  const item = 'localStoragePollyfill'
+  try {
+    localStorage.setItem(item, item)
+    localStorage.removeItem(item)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+window.fakeStorage = fakeStorage()
+
+function localStoragePolyfill() {
+  if (isLocalStorageSupported()) {
+    return window.localStorage
+  }
+  return window.fakeStorage
+}
 
 export default {
   namespaced: true,
@@ -21,6 +42,9 @@ export default {
   getters: {
     getName(state) {
       return id => id in state.renames ? state.renames[id] : undefined
+    },
+    isLocalStorage() {
+      return localStoragePolyfill().constructor.name === 'Storage'
     }
   },
 
@@ -85,11 +109,11 @@ export default {
     },
     saveIntoLStorage(context, object) {
       Object.entries(object).forEach(([key, value]) => {
-        localStorage.setItem(key, JSON.stringify(value))
+        localStoragePolyfill().setItem(key, JSON.stringify(value))
       })
     },
     getFromLStorage(context, { key }) {
-      const value = JSON.parse(localStorage.getItem(key))
+      const value = JSON.parse(localStoragePolyfill().getItem(key))
       if (key === 'lang') {
         const systemLanguage = navigator.language.split('-')[0]
         const language = value || systemLanguage
