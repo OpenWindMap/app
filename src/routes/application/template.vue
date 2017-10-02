@@ -156,8 +156,11 @@ export default {
     user-drag: none;
   }
 
-  input {
-    user-select: auto !important;
+  input,
+  textarea,
+  [contenteditable] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
   }
 
   #app .notification {

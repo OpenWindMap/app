@@ -6,13 +6,15 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong ref="rename" contenteditable spellcheck="false" @keypress="validateName" @blur="updateName">{{ name || $gettext('Unnamed Pioupiou') }}</strong>
-                <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
-                  <i class="fa fa-window-close"></i>
-                </span>
-                <span class="icon" @click="renameFocus" v-else>
-                  <i class="fa fa-pencil-square"></i>
-                </span>
+                <strong ref="rename" :contenteditable="faved" spellcheck="false" @keypress="validateName" @blur="updateName" @focus="selectName">{{ name || $gettext('Unnamed Pioupiou') }}</strong>
+                <template v-if="faved">
+                  <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
+                    <i class="fa fa-window-close"></i>
+                  </span>
+                  <span class="icon" @click="renameFocus" v-else>
+                    <i class="fa fa-pencil-square"></i>
+                  </span>
+                </template>
                 <br>
                 <small>#{{ pioupiou.id || id}}</small>
                 <small v-if="pioupiou.location">
@@ -149,12 +151,25 @@ export default {
     favMe() {
       if (this.faved) {
         this.$store.dispatch('user/removeToFavorites', { stationId: this.id })
+        this.restoreName()
       } else {
         this.$store.dispatch('user/pushToFavorites', { stationId: this.id })
+        this.renameFocus()
       }
     },
     renameFocus() {
-      this.$refs.rename.focus()
+      this.$nextTick(() => {
+        this.$refs.rename.focus()
+      })
+    },
+    selectName() {
+      // document.execCommand('selectAll', false, null)
+      const range = document.createRange()
+      range.selectNodeContents(this.$refs.rename)
+      range.collapse(false)
+      const selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
     },
     validateName(event) {
       if (event.which === 13 || event.keyCode === 13) {
@@ -163,8 +178,14 @@ export default {
       return false
     },
     updateName(event) {
+      if (event.target.innerText === '') {
+        this.restoreName()
+        document.execCommand('unselect', false, null)
+        return
+      }
       this.$store.dispatch('user/renameStation', { stationId: this.id, newName: event.target.innerText })
       this.$forceUpdate()
+      document.execCommand('unselect', false, null)
     },
     restoreName() {
       this.$store.dispatch('user/removeRename', { stationId: this.id })
