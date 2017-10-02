@@ -47,9 +47,9 @@ export default {
   @import "~bulma/sass/utilities/mixins";
 
   footer {
-    @include touch {
-      height: 60px;
-    }
+    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
   }
 
   .tabs {
