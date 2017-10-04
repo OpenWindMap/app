@@ -1,4 +1,5 @@
-import * as shim from 'es6-shim' // eslint-disable-line no-unused-vars
+import 'es6-shim'
+import 'tocca'
 
 import Vue from 'vue'
 // import Raven from 'raven-js'
@@ -35,5 +36,6 @@ new Vue({
 
 store.dispatch('user/syncTime')
 store.dispatch('user/restoreStore')
+store.dispatch('user/watchPosition')
 
 window.Vue = Vue

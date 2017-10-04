@@ -36,7 +36,8 @@ export default {
     unit: undefined,
     center: undefined,
     zoom: undefined,
-    currentTime: 0
+    currentTime: 0,
+    position: undefined
   },
 
   getters: {
@@ -89,7 +90,6 @@ export default {
       state.center = center
     },
     setTimeToNow(state) {
-      console.log('Time set')
       state.currentTime = (new Date()).getTime()
     },
     setLang(state, { lang }) {
@@ -99,6 +99,10 @@ export default {
     setUnit(state, { unit }) {
       state.unit = unit
       Vue.config.unit = state.unit
+    },
+    userPosition(state, { position }) {
+      state.position = position.coords
+      console.log('user position', position)
     }
   },
 
@@ -159,6 +163,13 @@ export default {
     setUnit(context, { unit }) {
       context.commit('setUnit', { unit })
       context.dispatch('saveIntoLStorage', { unit })
+    },
+    watchPosition(context) {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.watchPosition(position => {
+          context.commit('userPosition', { position })
+        })
+      }
     },
     restoreStore(context) {
       Object.keys(context.state).forEach(key => {
