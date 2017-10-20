@@ -25,7 +25,7 @@
       </template>
       <template v-else>
       <h5>
-        Quelle valeur vous semblerez plus juste ?
+        Quelle valeur vous semblerait plus juste ?
       </h5>
       <div :class="['field has-addons', hilights.indexOf(que.id) == -1 ? 'is-secondary is-disabled' : '' ]"
         v-for="que in questions">
@@ -63,14 +63,16 @@
       </p>
     </template>
   </div>
-  <div class="feedbacks-opener" v-else>
-    <a class="button is-rounded is-primary is-outlined is-inverted" @click="() => (reset(), answer(), open())">
-      <i class="fa fa-flag"></i>
+  <div class="column feedbacks-opener" v-else>
+    <a class="button is-link is-small" @click="() => (reset(), answer(), open())">
+      Ces valeurs vous semblent incorectes ? ({{ distance }}m)
     </a>
   </div>
 </template>
 
 <script lang="buble">
+import geodist from 'geodist'
+
 export default {
   name: 'user-feedbacks',
 
@@ -101,6 +103,11 @@ export default {
     },
     lastFeedback() {
       return this.$store.state.user.lastFeedback
+    },
+    distance() {
+      const station = this.station.location
+      const user = this.$store.state.user.position
+      return user && station ? geodist(station, user, { unit: 'meters' }) : undefined
     }
   },
 
@@ -213,20 +220,8 @@ export default {
     margin: 0;
     background: $dark;
   }
-
-  .feedbacks-opener {
-    position: absolute;
-    right: 9px;
-    width: 100%;
-
-    .button.is-rounded {
-      position: relative;
-      top: -62px;
-      left: 43%;
-      border-radius: 100%;
-      width: 43px;
-      height: 43px;
-    }
+  .column.feedbacks-opener {
+    margin-top: -0.75rem;
   }
 
   .field {

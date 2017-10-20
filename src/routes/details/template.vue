@@ -98,6 +98,8 @@
 </template>
 
 <script lang="buble">
+import geodist from 'geodist'
+
 import mapContent from '@/components/map-content'
 import windOverview from '@/components/wind-overview'
 import historyChart from '@/components/history-chart'
@@ -147,6 +149,11 @@ export default {
     offline() {
       const now = new Date().getTime()
       return this.pioupiou.measurements && Math.round(now - new Date(this.pioupiou.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
+    },
+    distance() {
+      const station = this.pioupiou.location
+      const user = this.$store.state.user.position
+      return user && station ? geodist(station, user, { unit: 'meters' }) : undefined
     }
   },
 
@@ -224,6 +231,16 @@ export default {
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+
+    if (this.distance) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'proximity',
+        eventAction: this.distance <= 5000 ? 'near' : 'far',
+        eventLabel: this.pioupiou.id,
+        eventValue: this.distance
+      })
+    }
   },
 
   deactivated() {

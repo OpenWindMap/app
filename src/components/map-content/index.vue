@@ -116,7 +116,12 @@ export default {
       this.$emit('zoom-change', this.$refs.map.mapObject.getZoom())
     },
     moveOnMe() {
-      const zoom = 10
+      this.$store.dispatch('user/sendFunctUsage', { action: 'moveOnMe' })
+
+      let zoom = this.zoom
+      if (!this.hold) {
+        zoom = 10
+      }
       const center = { lat: this.myPosition.latitude, lng: this.myPosition.longitude }
 
       this.$emit('controls-change', { zoom, center })
@@ -127,6 +132,7 @@ export default {
       if (this.hold) {
         this.hold = false
       } else {
+        this.$store.dispatch('user/sendFunctUsage', { action: 'stickOnMe' })
         this.moveOnMe()
         this.hold = true
       }
