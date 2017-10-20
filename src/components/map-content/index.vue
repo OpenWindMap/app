@@ -7,7 +7,7 @@
     <v-marker :lat-lng="[myPosition.latitude, myPosition.longitude]" v-if="myPosition" :icon="icon"></v-marker>
     <map-marker v-for="marker in mapMarkers" :key="marker.key || marker.id"
       :location="marker.location" :measurements="marker.measurements"
-      :type="marker.type" :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
+      :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
     ></map-marker>
     <div class="leaflet-control-container" v-if="lockButton">
       <div class="leaflet-top leaflet-left leaflet-after">
