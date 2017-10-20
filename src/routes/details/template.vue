@@ -33,7 +33,7 @@
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
-                  <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-info']"></i>
+                  <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-primary']"></i>
                 </a>
               </div>
             </div>
@@ -43,7 +43,7 @@
               <div class="">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
-                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
+                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'" :lockButton="false"></map-content>
                   <div class="map-placeholder" v-else></div>
                   <map-content v-else :zoom="14"></map-content>
 
@@ -64,6 +64,8 @@
 
                   <div class="overview-placeholder" v-else></div>
                 </div>
+
+                <user-feedbacks :station="pioupiou"></user-feedbacks>
 
                 <div class="column">
                   <keep-alive>
@@ -99,6 +101,7 @@
 import mapContent from '@/components/map-content'
 import windOverview from '@/components/wind-overview'
 import historyChart from '@/components/history-chart'
+import userFeedbacks from '@/components/user-feedbacks'
 
 export default {
   name: 'details-view',
@@ -110,7 +113,7 @@ export default {
     }
   },
 
-  components: { windOverview, mapContent, historyChart },
+  components: { windOverview, mapContent, historyChart, userFeedbacks },
 
   data() {
     return {

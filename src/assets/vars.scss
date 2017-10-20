@@ -60,7 +60,7 @@ $body-background: $grey-darker;
 
 $input-background: $body-background;
 
-$info:    $title;
+$info:    $blue-ligher;
 $success: $emerald;
 $warning: $orange-yellow;
 $danger:  $orange-red;
@@ -98,9 +98,12 @@ $speed15: $purlple;
     color: $body-background;
   }
   &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
-    border-color: $white;
-    color: $white;
-    &:hover, &:focus {
+    &, &:hover {
+      background-color: transparent;
+      border-color: $white;
+      color: $white;
+    }
+    &:focus {
       color: $body-background;
       background-color: $white-bis;
     }
@@ -109,14 +112,82 @@ $speed15: $purlple;
 .is-info:not(.button) {
   color: $info;
 }
+.button.is-info {
+  color: $body-background;
+  &, &:hover, &:focus {
+    color: $body-background;
+  }
+  &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    &, &:hover {
+      background-color: transparent;
+      border-color: $info;
+      color: $info;
+    }
+    &:focus {
+      color: $body-background;
+      background-color: $info;
+    }
+  }
+}
 .is-success:not(.button) {
   color: $success;
+}
+.button.is-success {
+  color: $body-background;
+  &, &:hover, &:focus {
+    color: $body-background;
+  }
+  &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    &, &:hover {
+      background-color: transparent;
+      border-color: $success;
+      color: $success;
+    }
+    &:focus {
+      color: $body-background;
+      background-color: $success;
+    }
+  }
 }
 .is-warning:not(.button) {
   color: $warning;
 }
+.button.is-warning {
+  color: $body-background;
+  &, &:hover, &:focus {
+    color: $body-background;
+  }
+  &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    &, &:hover {
+      background-color: transparent;
+      border-color: $warning;
+      color: $warning;
+    }
+    &:focus {
+      color: $body-background;
+      background-color: $warning;
+    }
+  }
+}
 .is-danger:not(.button) {
   color: $danger;
+}
+.button.is-danger {
+  color: $body-background;
+  &, &:hover, &:focus {
+    color: $body-background;
+  }
+  &.is-outlined, &.is-inverted, &.is-outlined.is-inverted {
+    &, &:hover {
+      background-color: transparent;
+      border-color: $danger;
+      color: $danger;
+    }
+    &:focus {
+      color: $body-background;
+      background-color: $danger;
+    }
+  }
 }
 
 nav.nav, .card {

@@ -1,5 +1,5 @@
 import 'es6-shim'
-import 'tocca'
+// import 'tocca'
 
 import Vue from 'vue'
 // import Raven from 'raven-js'

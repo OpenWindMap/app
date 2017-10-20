@@ -37,7 +37,8 @@ export default {
     center: undefined,
     zoom: undefined,
     currentTime: 0,
-    position: undefined
+    position: undefined,
+    lastFeedback: undefined
   },
 
   getters: {
@@ -103,6 +104,9 @@ export default {
     userPosition(state, { position }) {
       state.position = position.coords
       console.log('user position', position)
+    },
+    setLastFeedback(state, { lastFeedback }) {
+      state.lastFeedback = lastFeedback
     }
   },
 
@@ -159,6 +163,10 @@ export default {
     setLang(context, { lang }) {
       context.commit('setLang', { lang })
       context.dispatch('saveIntoLStorage', { lang })
+    },
+    setLastFeedback(context, { lastFeedback }) {
+      context.commit('setLastFeedback', { lastFeedback })
+      context.dispatch('saveIntoLStorage', { lastFeedback })
     },
     setUnit(context, { unit }) {
       context.commit('setUnit', { unit })

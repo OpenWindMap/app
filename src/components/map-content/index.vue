@@ -9,7 +9,7 @@
       :location="marker.location" :measurements="marker.measurements"
       :type="marker.type" :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
     ></map-marker>
-    <div class="leaflet-control-container">
+    <div class="leaflet-control-container" v-if="lockButton">
       <div class="leaflet-top leaflet-left leaflet-after">
         <div class="leaflet-control-lock leaflet-bar leaflet-control" :class="{ hold }">
           <a class="leaflet-control-lock" title="Move on me" role="button" aria-label="Move on me" @click="moveOnMe" @longtap="stickOnMe">⌖</a>
@@ -42,6 +42,11 @@ export default {
     center: {
       type: [Object, Array],
       default: () => [46.76306, 2.42472] // France True-center
+    },
+
+    lockButton: {
+      type: Boolean,
+      default: true
     },
 
     autoCenter: {
