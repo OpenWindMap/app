@@ -8,8 +8,11 @@
       </translate>
     </div>
 
-    <div class="notification is-danger">
+    <div class="notification is-danger" v-if="userPosition">
       {{ userPosition.latitude }} - {{ userPosition.longitude }} - {{ userPosition.accuracy }}
+    </div>
+    <div class="notification is-danger" v-else>
+      Location disabled
     </div>
 
     <keep-alive>
