@@ -86,6 +86,8 @@ export default {
 
       window.AppRate.preferences.useLanguage = this.$store.state.user.lang
       window.AppRate.promptForRating(false)
+
+      this.$store.dispatch('user/watchPosition')
     }
   },
 
@@ -109,6 +111,8 @@ export default {
       })
       window.ga('send', 'pageview')
     })
+
+    this.$store.dispatch('user/watchPosition')
   }
 }
 </script>

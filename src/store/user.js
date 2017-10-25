@@ -102,8 +102,12 @@ export default {
       Vue.config.unit = state.unit
     },
     userPosition(state, { position }) {
-      state.position = position.coords
-      console.log('user position', position)
+      if (position && position.coords) {
+        state.position = position.coords
+      } else {
+        state.position = undefined
+      }
+      console.log('user position', state.position)
     },
     setLastFeedback(state, { lastFeedback }) {
       state.lastFeedback = lastFeedback
@@ -190,7 +194,9 @@ export default {
       if ('geolocation' in navigator) {
         navigator.geolocation.watchPosition(position => {
           context.commit('userPosition', { position })
-        })
+        }, () =>
+          context.commit('userPosition', { position: undefined })
+        )
       }
     },
     restoreStore(context) {

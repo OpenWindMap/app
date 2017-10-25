@@ -92,7 +92,11 @@ export default {
   watch: {
     myPosition() {
       if (this.hold) {
-        this.moveOnMe()
+        try {
+          this.moveOnMe()
+        } catch (e) {
+          this.hold = false
+        }
       }
     }
   },
@@ -119,7 +123,7 @@ export default {
       this.$store.dispatch('user/sendFunctUsage', { action: 'moveOnMe' })
 
       let zoom = this.zoom
-      if (!this.hold) {
+      if (!this.hold && zoom < 10) {
         zoom = 10
       }
       const center = { lat: this.myPosition.latitude, lng: this.myPosition.longitude }

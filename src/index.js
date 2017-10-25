@@ -36,6 +36,5 @@ new Vue({
 
 store.dispatch('user/syncTime')
 store.dispatch('user/restoreStore')
-store.dispatch('user/watchPosition')
 
 window.Vue = Vue
