@@ -196,7 +196,7 @@ export default {
           context.commit('userPosition', { position })
         }, () =>
           context.commit('userPosition', { position: undefined })
-        )
+        , { maximumAge: 1500, timeout: 3000, enableHighAccuracy: true })
       }
     },
     restoreStore(context) {
