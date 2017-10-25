@@ -8,6 +8,10 @@
       </translate>
     </div>
 
+    <div class="notification is-danger">
+      {{ userPosition.latitude }} - {{ userPosition.longitude }} - {{ userPosition.accuracy }}
+    </div>
+
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -51,6 +55,9 @@ export default {
     },
     offlineMode() {
       return (this.connectionType === 'none')
+    },
+    userPosition() {
+      return this.$store.state.user.position
     }
   },
 
@@ -170,6 +177,7 @@ export default {
     margin: 0;
     padding: 0.4em 1em;
     font-size: 0.9em;
+    border-radius: 0;
   }
 
   .sentry-error-embed header h2 > span {
