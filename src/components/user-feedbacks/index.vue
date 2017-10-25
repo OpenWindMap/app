@@ -3,34 +3,35 @@
     <button class="delete" @click="close"></button>
     <template v-if="!answered">
       <h5>
+        <translate>Near this station?</translate>
         {{ question.text }}
       </h5>
       <div class="field has-addons" v-if="!answered">
         <p class="control">
-          <a class="button is-small is-info" @click="() => answer('under')">
-            <span>Sous estimée</span>
+          <a class="button is-small is-info" @click="() => answer('underestimated')">
+            <translate>Underestimated</translate>
           </a>
         </p>
         <p class="control">
           <a class="button is-small is-success" @click="() => answer('ok')">
-            <span>Bonne</span>
+            <translate>Perfect</translate>
           </a>
         </p>
         <p class="control">
-          <a class="button is-small is-warning" @click="() => answer('upper')">
-            <span>Sur estimée</span>
+          <a class="button is-small is-warning" @click="() => answer('overestimated')">
+            <translate>Overestimated</translate>
           </a>
         </p>
       </div>
-      </template>
-      <template v-else>
-      <h5>
-        Quelle valeur vous semblerait plus juste ?
-      </h5>
+    </template>
+    <template v-else>
+      <translate tag="h5">
+        Which value will fit your thoughts better?
+      </translate>
       <div :class="['field has-addons', hilights.indexOf(que.id) == -1 ? 'is-secondary is-disabled' : '' ]"
         v-for="que in questions">
         <p class="control">
-          <label class="label" @click="hilight(que)">{{ que.min }}</label>
+          <label class="label" @click="hilight(que)">{{ que.abbr }}</label>
         </p>
         <p class="control">
           <a class="button is-small is-info" @click="() => (hilight(que), changeValue(que, -5))">
@@ -43,7 +44,7 @@
           </a>
         </p>
         <p class="control">
-          <input type="input" class="input" :value="que.value" @click="(evt) => (hilight(que), targetInput(evt))"/>
+          <input type="input" class="input" :value="values[que.id]" @click="(evt) => (hilight(que), targetInput(evt))"/>
         </p>
         <p class="control">
           <a class="button is-small is-warning" @click="() => (hilight(que), changeValue(que, 1))">
@@ -58,21 +59,21 @@
       </div>
       <p class="control">
         <a class="button is-small is-primary is-outlined is-inverted" @click="() => (send(), close())">
-          <span>Envoyer</span>
+          <translate>Send it</translate>
         </a>
       </p>
     </template>
   </div>
   <div class="column feedbacks-opener" v-else>
-    <a class="button is-link is-small" @click="() => (reset(), answer(), open())">
-      Ces valeurs vous semblent incorectes ? ({{ distance }}m)
+    <a class="button is-link" @click="() => (reset(), open())">
+      <translate tag="small">
+        Near this station?
+      </translate>
     </a>
   </div>
 </template>
 
 <script lang="buble">
-import geodist from 'geodist'
-
 export default {
   name: 'user-feedbacks',
 
@@ -89,25 +90,27 @@ export default {
       current: 0,
       answered: false,
       hilights: [],
-      questions: [
-        { id: 'wind_speed_min', min: 'MIN', text: 'Comment estimez vous cette mesure du vent min ?', value: undefined },
-        { id: 'wind_speed_avg', min: 'AVG', text: 'Comment estimez vous cette mesure du vent moy ?', value: undefined },
-        { id: 'wind_speed_max', min: 'MAX', text: 'Comment estimez vous cette mesure du vent max ?', value: undefined }
-      ]
+      values: {
+        wind_speed_min: undefined, // eslint-disable-line camelcase
+        wind_speed_avg: undefined, // eslint-disable-line camelcase
+        wind_speed_max: undefined // eslint-disable-line camelcase
+      }
     }
   },
 
   computed: {
+    questions() {
+      return [
+        { id: 'wind_speed_min', abbr: this.$gettext('MIN'), text: this.$gettext('What is your feeling about the wind minimum measurement?') },
+        { id: 'wind_speed_avg', abbr: this.$gettext('AVG'), text: this.$gettext('What is your feeling about the wind average measurement?') },
+        { id: 'wind_speed_max', abbr: this.$gettext('MAX'), text: this.$gettext('What is your feeling about the wind maximum measurement?') }
+      ]
+    },
     question() {
       return this.questions[this.current]
     },
     lastFeedback() {
       return this.$store.state.user.lastFeedback
-    },
-    distance() {
-      const station = this.station.location
-      const user = this.$store.state.user.position
-      return user && station ? geodist(station, user, { unit: 'meters' }) : undefined
     }
   },
 
@@ -133,7 +136,7 @@ export default {
       if (!this.station.measurements) return
 
       this.questions.forEach(question => {
-        question.value = this.$getvalue(this.station.measurements[question.id])
+        this.values[question.id] = this.$getvalue(this.station.measurements[question.id])
       })
 
       this.chooseQuestion()
@@ -157,20 +160,36 @@ export default {
 
     answer(value) {
       if (value) {
-        console.log(
-          Date.now(),
-          this.station.id,
-          this.station.location.latitude,
-          this.station.location.longitude,
-          this.$store.state.user.position ? this.$store.state.user.position.latitude : undefined,
-          this.$store.state.user.position ? this.$store.state.user.position.longitude : undefined,
-          this.question.id,
-          this.station.measurements[this.question.id],
-          value
-        )
+        this.$store.dispatch('user/sendFeedback', {
+          date: Date(),
+          type: 'feeling',
+          station: {
+            id: this.station.id,
+            location: {
+              latitude: this.station.location.latitude,
+              longitude: this.station.location.longitude
+            }
+          },
+          user: {
+            location: {
+              latitude: this.$store.state.user.position ? this.$store.state.user.position.latitude : undefined,
+              longitude: this.$store.state.user.position ? this.$store.state.user.position.longitude : undefined
+            }
+          },
+          feedback: {
+            measurement: this.question.id,
+            value: this.station.measurements[this.question.id],
+            feeling: value
+          }
+        })
       }
 
       this.answered = true
+
+      if (value === 'ok') {
+        this.close()
+      }
+
       this.hilight(this.question)
     },
 
@@ -183,28 +202,38 @@ export default {
     },
 
     changeValue(question, value) {
-      question.value += value
+      this.values[question.id] = Math.round(this.values[question.id] + value)
+      if (this.values[question.id] < 0) {
+        this.values[question.id] = 0
+      }
     },
 
     chooseQuestion() {
-      this.current = Math.floor(Math.random() * this.questions.length)
+      // this.current = Math.floor(Math.random() * this.questions.length)
+      this.current = 1
     },
 
     send() {
       this.questions.forEach(question => {
-        if (question.value !== this.$getvalue(this.station.measurements[question.id])) {
-          console.log(
-            Date.now(),
-            this.station.id,
-            this.station.location.latitude,
-            this.station.location.longitude,
-            this.$store.state.user.position ? this.$store.state.user.position.latitude : undefined,
-            this.$store.state.user.position ? this.$store.state.user.position.longitude : undefined,
-            question.id,
-            this.$getvalue(this.station.measurements[question.id]),
-            question.value,
-            this.$convert.current
-          )
+        if (this.values[question.id] !== (this.$getvalue(this.station.measurements[question.id]))) {
+          this.$store.dispatch('user/sendFeedback', {
+            date: Date(),
+            type: 'values',
+            station: {
+              id: this.station.id,
+              location: this.station.location
+            },
+            user: {
+              location: this.$store.state.user.position ? this.$store.state.user.position : {}
+            },
+            feedback: {
+              measurement: question.id,
+              value: this.station.measurements[question.id],
+              unitValue: this.$getvalue(this.station.measurements[question.id]),
+              unit: this.$convert.current,
+              userValue: this.values[question.id]
+            }
+          })
         }
       })
     }
@@ -221,7 +250,9 @@ export default {
     background: $dark;
   }
   .column.feedbacks-opener {
+    margin: 0 0.75rem;
     margin-top: -0.75rem;
+    text-align: right;
   }
 
   .field {

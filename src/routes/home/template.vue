@@ -17,12 +17,12 @@
         </h6>
         <br>
       </div>
-      <div class="column">
+      <div class="column" v-if="nearsPioupious.length > 0">
         <h5 class="subtitle is-5">
           <span class="icon">
             <i class="fa fa-street-view"></i>
           </span>
-          <translate>Proche de vous</translate>
+          <translate>Near you</translate>
         </h5>
         <station-overview v-for="pioupiou in nearsPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou" :offlineMode="offlineMode"

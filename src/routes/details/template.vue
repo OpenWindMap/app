@@ -65,7 +65,7 @@
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
-                <user-feedbacks :station="pioupiou"></user-feedbacks>
+                <user-feedbacks :station="pioupiou" v-if="distance < 5000"></user-feedbacks>
 
                 <div class="column">
                   <keep-alive>
@@ -326,6 +326,10 @@ export default {
       border-radius: initial;
       border: initial;
       word-wrap: break-word;
+
+      a.no-decoration {
+        text-decoration: none;
+      }
     }
   }
 
@@ -346,9 +350,6 @@ export default {
     background-color: $body-background;
     height: 100px;
     width: 100%;
-  }
-  .no-decoration {
-    text-decoration: none;
   }
 
   section {

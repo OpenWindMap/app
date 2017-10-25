@@ -198,6 +198,10 @@ export default {
         context.dispatch('getFromLStorage', { key })
       })
     },
+    sendFeedback(context, feedback) {
+      console.log('Feedback > ', feedback)
+      Vue.http.post(`http://localhost:4500/${feedback.type}`, feedback)
+    },
     syncTime(context) {
       setInterval(() => {
         context.commit('setTimeToNow')
