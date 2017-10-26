@@ -1,22 +1,11 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the pioupiou-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: pioupiou-app 0.1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-24 16:26+0200\n"
-"PO-Revision-Date: 2017-05-26 10:03+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Pioupiou App\n"
+"Language: en\n"
 
 #: src/routes/search/template.vue:20
 msgid "(Kitesurf)"
@@ -24,15 +13,15 @@ msgstr "(Kitesurf)"
 
 #: src/routes/search/template.vue:19
 msgid "(Paragliding)"
-msgstr "(Parapente)"
+msgstr "(Paragliding)"
 
 #: src/routes/more/template.vue:246
 msgid "Attributions"
-msgstr "Bedanken"
+msgstr "Attributions"
 
 #: src/routes/more/template.vue:249
 msgid "Cartographic data © OpenStreetMap contributors"
-msgstr "Cartografische gegevens © OpenStreetMap bijdragers"
+msgstr "Cartographic data © OpenStreetMap contributors"
 
 #: src/routes/more/template.vue:176
 msgid "Contact"
@@ -40,23 +29,23 @@ msgstr "Contact"
 
 #: src/routes/more/template.vue:101
 msgid "Contribute"
-msgstr "Nu bijdragen"
+msgstr "Contribute"
 
 #: src/routes/home/template.vue:40
 msgid "Favorites"
-msgstr "Favorieten"
+msgstr "Favorites"
 
 #: src/routes/more/template.vue:153
 msgid "Help us translate the app"
-msgstr "Help ons de app te vertalen"
+msgstr "Help us translate the app"
 
 #: src/routes/home/template.vue:55
 msgid "History"
-msgstr "Geschiedenis"
+msgstr "History"
 
 #: src/routes/more/template.vue:119
 msgid "Install your own station"
-msgstr "Installeer jouw eigen station"
+msgstr "Install your own station"
 
 #: src/routes/more/template.vue:253
 msgid "Kitesurfing spots © FFVL"
@@ -64,11 +53,11 @@ msgstr "Kitesurfing spots © FFVL"
 
 #: src/routes/more/template.vue:69
 msgid "Language"
-msgstr "Taal"
+msgstr "Language"
 
 #: src/routes/more/template.vue:195
 msgid "Legal"
-msgstr "Legaal"
+msgstr "Legal"
 
 #: src/components/wind-overview/index.vue:34
 msgid "max"
@@ -78,35 +67,29 @@ msgstr "max"
 msgid "min"
 msgstr "min"
 
-#: src/components/user-feedbacks/index.vue:6
-#: src/components/user-feedbacks/index.vue:69
-msgid "Near this station?"
-msgstr ""
-
 #: src/routes/home/template.vue:25
 msgid "Near you"
-msgstr ""
+msgstr "Near you"
 
 #: src/components/history-chart/index.vue:12
 msgid "No data found"
-msgstr "Geen gegevens gevonden"
+msgstr "No data found"
 
 #: src/routes/home/template.vue:47
 msgid "No favorite spots yet"
-msgstr "Nog geen favoriete spot"
+msgstr "No favorite spots yet"
 
 #: src/routes/home/template.vue:62
 msgid "No history yet"
-msgstr "Nog geen geschiedenis"
+msgstr "No history yet"
 
 #: src/routes/home/template.vue:32
-#, fuzzy
 msgid "No nears spots yet"
-msgstr "Nog geen favoriete spot"
+msgstr "No nears spots yet"
 
 #: src/routes/search/template.vue:90
 msgid "No result found"
-msgstr "Geen resultaten gevonden"
+msgstr "No result found"
 
 #: src/components/station-overview/index.vue:13
 #: src/routes/details/template.vue:53
@@ -120,19 +103,19 @@ msgstr "Offline mode"
 
 #: src/routes/more/template.vue:255
 msgid "Open-source softwares: VueJS, Leaflet, Cordova, Pelias, Bulma, FontAwesome, NodeJS and many others"
-msgstr "Open-source softwares: VueJS, Leaflet, Cordova, Pelias, Bulma, FontAwesome, NodeJS en veel anderen"
+msgstr "Open-source softwares: VueJS, Leaflet, Cordova, Pelias, Bulma, FontAwesome, NodeJS and many others"
 
 #: src/components/user-feedbacks/index.vue:22
 msgid "Overestimated"
-msgstr ""
+msgstr "Overestimated"
 
 #: src/routes/more/template.vue:251
 msgid "Paragliding spots © ParaglidingEarth"
-msgstr "Parapente spots © ParaglidingEarth"
+msgstr "Paragliding spots © ParaglidingEarth"
 
 #: src/components/user-feedbacks/index.vue:17
 msgid "Perfect"
-msgstr ""
+msgstr "Perfect"
 
 #: src/routes/more/template.vue:213
 msgid "Privacy Policy"
@@ -140,321 +123,335 @@ msgstr "Privacy Policy"
 
 #: src/routes/more/template.vue:136
 msgid "Reuse the open data"
-msgstr "De open data hergebruiken"
+msgstr "Reuse the open data"
 
 #: src/routes/home/template.vue:16
 msgid "Search for a spot or use the map to begin with"
-msgstr "Zoek voor een spot ofwel gebruik de kaart voor te beginnen"
-
-#: src/components/user-feedbacks/index.vue:62
-msgid "Send it"
-msgstr ""
+msgstr "Search for a spot or use the map to begin with"
 
 #: src/routes/more/template.vue:32
 msgid "Settings"
-msgstr "Instellingen"
+msgstr "Settings"
 
 #: src/routes/search/template.vue:31
 msgctxt "Search examples title"
 msgid "Suggestions:"
-msgstr "Suggesties :"
+msgstr "Suggestions:"
 
 #: src/routes/more/template.vue:230
 msgid "Terms of Use"
-msgstr "Voorwaarden"
+msgstr "Terms of Use"
 
 #: src/components/user-feedbacks/index.vue:12
 msgid "Underestimated"
-msgstr ""
+msgstr "Underestimated"
 
 #: src/components/tabs-footer/index.vue:16
 msgctxt "Footer unit chooser"
 msgid "Unit"
-msgstr "Eenheid"
+msgstr "Unit"
 
 #: src/routes/more/template.vue:49
 msgid "Units"
-msgstr "Eenheden"
+msgstr "Units"
 
 #: src/routes/home/template.vue:13
 msgid "Welcome to the Pioupiou Wind Network!"
-msgstr "Welkom bij de Pioupiou wind netwerk!"
+msgstr "Welcome to the Pioupiou Wind Network!"
 
 #: src/routes/more/template.vue:13
 msgid "What is Pioupiou?"
-msgstr "Wat is Pioupiou?"
+msgstr "What is Pioupiou?"
 
 #: src/components/user-feedbacks/index.vue:28
 msgid "Which value will fit your thoughts better?"
-msgstr ""
+msgstr "Which value will fit your thoughts better?"
 
-#: src/components/station-overview/index.vue:6 dist/client.bb163ef5.js:1
+#: src/components/station-overview/index.vue:6 dist/client.4ce2076d.js:1
 msgid "Unnamed station"
-msgstr "Station zonder naam"
+msgstr "Unnamed station"
 
-#: src/components/station-overview/index.vue:19 dist/client.bb163ef5.js:1
+#: src/components/station-overview/index.vue:19 dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "N"
 msgstr "N"
 
-#: src/components/station-overview/index.vue:20 dist/client.bb163ef5.js:1
+#: src/components/station-overview/index.vue:20 dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "S"
-msgstr "Z"
+msgstr "S"
 
-#: src/components/station-overview/index.vue:24 dist/client.bb163ef5.js:1
+#: src/components/station-overview/index.vue:24 dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "E"
-msgstr "O"
+msgstr "E"
 
-#: src/components/station-overview/index.vue:25 dist/client.bb163ef5.js:1
+#: src/components/station-overview/index.vue:25 dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "W"
 msgstr "W"
 
-#: src/filters/timeago.js:7 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:7 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "just now"
-msgstr "daarnet"
+msgstr "just now"
 
-#: src/filters/timeago.js:7 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:7 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "right now"
-msgstr "nu meteen"
+msgstr "right now"
 
-#: src/filters/timeago.js:8 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:8 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "a few seconds ago"
-msgstr "enkele seconden geleden"
+msgstr "a few seconds ago"
 
-#: src/filters/timeago.js:8 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:8 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in few seconds"
-msgstr "binnen enkele seconden"
+msgstr "in few seconds"
 
-#: src/filters/timeago.js:9 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:9 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 minute ago"
-msgstr "1 minuut geleden"
+msgstr "1 minute ago"
 
-#: src/filters/timeago.js:9 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:9 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 minute"
-msgstr "binnen 1 minuut"
+msgstr "in 1 minute"
 
-#: src/filters/timeago.js:10 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:10 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s minutes ago"
-msgstr "%s minuten geleden"
+msgstr "%s minutes ago"
 
-#: src/filters/timeago.js:10 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:10 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s minutes"
-msgstr "binnen %s minuten"
+msgstr "in %s minutes"
 
-#: src/filters/timeago.js:11 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:11 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 hour ago"
-msgstr "1 uur geleden"
+msgstr "1 hour ago"
 
-#: src/filters/timeago.js:11 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:11 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 hour"
-msgstr "binnen 1 uur"
+msgstr "in 1 hour"
 
-#: src/filters/timeago.js:12 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:12 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s hours ago"
-msgstr "%s uren geleden"
+msgstr "%s hours ago"
 
-#: src/filters/timeago.js:12 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:12 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s hours"
-msgstr "binnen %s uren"
+msgstr "in %s hours"
 
-#: src/filters/timeago.js:13 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:13 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 day ago"
-msgstr "1 dag geleden"
+msgstr "1 day ago"
 
-#: src/filters/timeago.js:13 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:13 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 day"
-msgstr "binnen 1 dag"
+msgstr "in 1 day"
 
-#: src/filters/timeago.js:14 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:14 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s days ago"
-msgstr "%s dagen geleden"
+msgstr "%s days ago"
 
-#: src/filters/timeago.js:14 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:14 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s days"
-msgstr "binnen %s dagen"
+msgstr "in %s days"
 
-#: src/filters/timeago.js:15 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:15 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 week ago"
-msgstr "1 week geleden"
+msgstr "1 week ago"
 
-#: src/filters/timeago.js:15 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:15 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 week"
-msgstr "binnen 1 week"
+msgstr "in 1 week"
 
-#: src/filters/timeago.js:16 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:16 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s weeks ago"
-msgstr "%s weken geleden"
+msgstr "%s weeks ago"
 
-#: src/filters/timeago.js:16 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:16 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s weeks"
-msgstr "binnen %s weken"
+msgstr "in %s weeks"
 
-#: src/filters/timeago.js:17 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:17 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 month ago"
-msgstr "1 maand gelden"
+msgstr "1 month ago"
 
-#: src/filters/timeago.js:17 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:17 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 month"
-msgstr "binnen 1 maand"
+msgstr "in 1 month"
 
-#: src/filters/timeago.js:18 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:18 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s months ago"
-msgstr "%s maanden geleden"
+msgstr "%s months ago"
 
-#: src/filters/timeago.js:18 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:18 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s months"
-msgstr "binnen %s maanden"
+msgstr "in %s months"
 
-#: src/filters/timeago.js:19 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:19 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "1 year ago"
-msgstr "1 jaar geleden"
+msgstr "1 year ago"
 
-#: src/filters/timeago.js:19 dist/client.bb163ef5.js:1
+#: src/filters/timeago.js:19 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in 1 year"
-msgstr "binnen 1 jaar"
+msgstr "in 1 year"
 
-#: src/filters/timeago.js:20 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:20 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "%s years ago"
-msgstr "%s jaren geleden"
+msgstr "%s years ago"
 
-#: src/filters/timeago.js:20 dist/client.bb163ef5.js:1
-#, javascript-format
+#: src/filters/timeago.js:20 dist/client.4ce2076d.js:1
 msgctxt "Time to words"
 msgid "in %s years"
-msgstr "binnen %s jaren"
+msgstr "in %s years"
 
-#: src/routes/details/index.js:8 dist/client.bb163ef5.js:1
+#: src/routes/details/index.js:8 dist/client.4ce2076d.js:1
 msgctxt "Route label"
 msgid "Details"
 msgstr "Details"
 
 #: src/routes/details/template.vue:9 src/routes/search/template.vue:60
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgid "Unnamed Pioupiou"
-msgstr "Pioupiou zonder naam"
+msgstr "Unnamed Pioupiou"
 
-#: src/routes/home/index.js:8 dist/client.bb163ef5.js:1
+#: src/routes/home/index.js:8 dist/client.4ce2076d.js:1
 msgctxt "Route label"
 msgid "Home"
 msgstr "Home"
 
-#: src/routes/map/index.js:8 dist/client.bb163ef5.js:1
+#: src/routes/map/index.js:8 dist/client.4ce2076d.js:1
 msgctxt "Route label"
 msgid "Map"
-msgstr "Kaart"
+msgstr "Map"
 
-#: src/routes/more/index.js:8 dist/client.bb163ef5.js:1
+#: src/routes/more/index.js:8 dist/client.4ce2076d.js:1
 msgctxt "Route label"
 msgid "More"
-msgstr "Meer"
+msgstr "More"
 
-#: src/routes/search/index.js:8 dist/client.bb163ef5.js:1
+#: src/routes/search/index.js:8 dist/client.4ce2076d.js:1
 msgctxt "Route label"
 msgid "Search"
-msgstr "Zoeken"
+msgstr "Search"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "NNE"
-msgstr "NNO"
+msgstr "NNE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "NE"
-msgstr "NO"
+msgstr "NE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "ENE"
-msgstr "ONO"
+msgstr "ENE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "ESE"
-msgstr "OZO"
+msgstr "ESE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "SE"
-msgstr "ZO"
+msgstr "SE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "SSE"
-msgstr "ZZO"
+msgstr "SSE"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "SSW"
-msgstr "ZZW"
+msgstr "SSW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "SW"
-msgstr "ZW"
+msgstr "SW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "WSW"
-msgstr "WZW"
+msgstr "WSW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "WNW"
 msgstr "WNW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "NW"
 msgstr "NW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Cardinal direction abbreviation"
 msgid "NNW"
 msgstr "NNW"
 
-#: dist/client.bb163ef5.js:1
+#: dist/client.4ce2076d.js:1
 msgctxt "Search field placeholder"
 msgid "Search..."
-msgstr "Zoeken…"
+msgstr "Search..."
+
+#: dist/client.4ce2076d.js:1
+msgid "MIN"
+msgstr "MIN"
+
+#: dist/client.4ce2076d.js:1
+msgid "AVG"
+msgstr "AVG"
+
+#: dist/client.4ce2076d.js:1
+msgid "MAX"
+msgstr "MAX"
+
+#: src/components/user-feedbacks/index.vue:6
+#: src/components/user-feedbacks/index.vue:69
+msgid "Are you nearby?"
+msgstr "Are you nearby?"
+
+#: src/components/user-feedbacks/index.vue:62
+msgid "Send it and close"
+msgstr "Send it and close"
+
+#: dist/client.4ce2076d.js:1
+msgid "What is your feeling about the wind measurement?"
+msgstr "What is your feeling about the wind measurement?"
+
+#: src/routes/details/template.vue:86
+msgid "No descrition provided"
+msgstr "No descrition provided"
+

@@ -74,8 +74,8 @@
                 </div>
 
                 <div class="column">
-                  <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="description || 'No descrition provided'">
+                  <article class="message" v-if="pioupiou.meta && description">
+                    <div class="message-body" v-html="description">
                     </div>
                     <div class="message-body pull-right">
                       <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
@@ -83,7 +83,12 @@
                   </article>
                   <article class="message" v-else>
                     <div class="message-body">
-                      No descrition provided
+                      <translate>
+                        No descrition provided
+                      </translate>
+                    </div>
+                    <div class="message-body pull-right" v-if="pioupiou.meta">
+                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                 </div>

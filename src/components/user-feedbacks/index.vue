@@ -3,7 +3,7 @@
     <button class="delete" @click="close"></button>
     <template v-if="!answered">
       <h5>
-        <translate>Near this station?</translate>
+        <translate>Are you nearby?</translate>
         {{ question.text }}
       </h5>
       <div class="field has-addons" v-if="!answered">
@@ -59,7 +59,7 @@
       </div>
       <p class="control">
         <a class="button is-small is-primary is-outlined is-inverted" @click="() => (send(), close())">
-          <translate>Send it</translate>
+          <translate>Send it and close</translate>
         </a>
       </p>
     </template>
@@ -67,7 +67,7 @@
   <div class="column feedbacks-opener" v-else>
     <a class="button is-link" @click="() => (reset(), open())">
       <translate tag="small">
-        Near this station?
+        Are you nearby?
       </translate>
     </a>
   </div>
@@ -101,9 +101,9 @@ export default {
   computed: {
     questions() {
       return [
-        { id: 'wind_speed_min', abbr: this.$gettext('MIN'), text: this.$gettext('What is your feeling about the wind minimum measurement?') },
-        { id: 'wind_speed_avg', abbr: this.$gettext('AVG'), text: this.$gettext('What is your feeling about the wind average measurement?') },
-        { id: 'wind_speed_max', abbr: this.$gettext('MAX'), text: this.$gettext('What is your feeling about the wind maximum measurement?') }
+        { id: 'wind_speed_min', abbr: this.$gettext('MIN'), text: this.$gettext('What is your feeling about the wind measurement?') },
+        { id: 'wind_speed_avg', abbr: this.$gettext('AVG'), text: this.$gettext('What is your feeling about the wind measurement?') },
+        { id: 'wind_speed_max', abbr: this.$gettext('MAX'), text: this.$gettext('What is your feeling about the wind measurement?') }
       ]
     },
     question() {
