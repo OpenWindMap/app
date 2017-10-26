@@ -8,13 +8,6 @@
       </translate>
     </div>
 
-    <div class="notification is-danger" v-if="userPosition">
-      {{ userPosition.latitude }} - {{ userPosition.longitude }} - {{ userPosition.accuracy }}
-    </div>
-    <div class="notification is-danger" v-else>
-      Location disabled
-    </div>
-
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -58,9 +51,6 @@ export default {
     },
     offlineMode() {
       return (this.connectionType === 'none')
-    },
-    userPosition() {
-      return this.$store.state.user.position
     }
   },
 

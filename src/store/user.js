@@ -105,9 +105,8 @@ export default {
       if (position && position.coords) {
         state.position = position.coords
       } else {
-        state.position = undefined
+        state.position = null
       }
-      console.log('user position', state.position)
     },
     setLastFeedback(state, { lastFeedback }) {
       state.lastFeedback = lastFeedback
@@ -194,9 +193,9 @@ export default {
       if ('geolocation' in navigator) {
         navigator.geolocation.watchPosition(position => {
           context.commit('userPosition', { position })
-        }, () =>
-          context.commit('userPosition', { position: undefined })
-        , { maximumAge: 1500, timeout: 3000, enableHighAccuracy: true })
+        }, () => {
+          context.commit('userPosition', { position: null })
+        }, { maximumAge: 100, timeout: 10, enableHighAccuracy: true })
       }
     },
     restoreStore(context) {

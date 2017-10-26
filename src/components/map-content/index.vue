@@ -190,6 +190,7 @@ export default {
 
   .leaflet-control-lock {
     font-size: 22px;
+    font-weight: bold;
   }
 
   .vue2leaflet-map .icon {
