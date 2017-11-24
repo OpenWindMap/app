@@ -121,7 +121,7 @@ export default {
 
   beforeDestroy() {
     window.removeEventListener('resize', this.handleWindowResize)
-    window.addEventListener('orientationchange', this.handleWindowResize)
+    window.removeEventListener('orientationchange', this.handleWindowResize)
   },
 
   methods: {
