@@ -42,13 +42,11 @@ export default {
 
   props: {
     heading: {
-      type: Number,
-      required: true
+      type: Number
     },
 
     speedAvg: {
-      type: Number,
-      required: true
+      type: Number
     },
 
     speedMin: {
@@ -56,8 +54,7 @@ export default {
     },
 
     speedMax: {
-      type: Number,
-      required: true
+      type: Number
     },
 
     inline: {

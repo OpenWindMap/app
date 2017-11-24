@@ -1,4 +1,5 @@
-import * as shim from 'es6-shim' // eslint-disable-line no-unused-vars
+import 'es6-shim'
+import 'tocca'
 
 import Vue from 'vue'
 // import Raven from 'raven-js'

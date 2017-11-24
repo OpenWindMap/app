@@ -3,7 +3,7 @@
     <header class="card-header" @click="open(station)">
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
-          <strong>{{ station.meta && station.meta.name || `${ $gettext('Unnamed station') }` }}</strong> <br>
+          <strong>{{ name || `${ $gettext('Unnamed station') }` }}</strong> <br>
           <small>#{{ station.id }}</small>
           <template v-if="!offlineMode">
             -
@@ -114,6 +114,9 @@ export default {
     },
     currentTime() {
       return this.$store.state.user.currentTime
+    },
+    name() {
+      return this.$store.state.user.renames[this.station.id] || (this.station.meta && this.station.meta.name)
     }
   },
 
@@ -161,6 +164,7 @@ export default {
       font-size: 0.7em;
       padding: 0;
       line-height: 1.6em;
+      min-width: 25%;
       min-width: 25vw;
     }
   }

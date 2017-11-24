@@ -86,6 +86,8 @@ export default {
 
       window.AppRate.preferences.useLanguage = this.$store.state.user.lang
       window.AppRate.promptForRating(false)
+
+      this.$store.dispatch('user/watchPosition')
     }
   },
 
@@ -109,6 +111,8 @@ export default {
       })
       window.ga('send', 'pageview')
     })
+
+    this.$store.dispatch('user/watchPosition')
   }
 }
 </script>
@@ -120,12 +124,13 @@ export default {
 
   html, body {
     overflow: auto;
+    height: 100%;
   }
 
   #app {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 
     > section {
       position: relative;
@@ -140,6 +145,7 @@ export default {
   }
 
   .modal .modal-content {
+    max-height: 80%;
     max-height: 80vh;
 
     .content p {
@@ -153,14 +159,18 @@ export default {
     user-drag: none;
   }
 
-  input {
-    user-select: auto !important;
+  input,
+  textarea,
+  [contenteditable] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
   }
 
   #app .notification {
     margin: 0;
     padding: 0.4em 1em;
     font-size: 0.9em;
+    border-radius: 0;
   }
 
   .sentry-error-embed header h2 > span {

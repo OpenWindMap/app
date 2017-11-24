@@ -146,7 +146,7 @@
                 </a>
               </div>
               <div class="card">
-                <a href="mailto:support-app@pioupiou.com" target="_blank">
+                <a href="https://poeditor.com/join/project/lXSmSCku6a" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
@@ -270,7 +270,7 @@
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 1.0.3</strong>
+                  <strong>Version 1.1.0</strong>
                 </small>
               </div>
             </div>
