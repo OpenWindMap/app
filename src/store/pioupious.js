@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import geodist from 'geodist'
 // import { connect } from 'socket.io-client'
 
 Object.values = object => Object.keys(object).map(key => object[key])
@@ -36,6 +37,21 @@ export default {
           (new RegExp(search, 'i')).test(pioupiou.id)
         )
       )
+    },
+    findByProximity(state, getters) {
+      return (position, dist) => getters.visible.filter(pioupiou =>
+        position !== undefined &&
+        geodist(pioupiou.location, position, { unit: 'meters', limit: dist })
+      ).sort((pioupiouA, pioupiouB) => {
+        const distA = geodist(pioupiouA.location, position, { unit: 'meters' })
+        const distB = geodist(pioupiouB.location, position, { unit: 'meters' })
+        if (distA > distB) {
+          return 1
+        } else if (distA < distB) {
+          return -1
+        }
+        return 0
+      })
     },
     findByLoc(state, getters) {
       return boundaries => getters.visible.filter(pioupiou =>
