@@ -194,8 +194,8 @@ export default {
         navigator.geolocation.watchPosition(position => {
           context.commit('userPosition', { position })
         }, () => {
-          context.commit('userPosition', { position: null })
-        }, { maximumAge: 100, timeout: 10, enableHighAccuracy: true })
+          // context.commit('userPosition', { position: null })
+        }, { maximumAge: 250, timeout: 10, enableHighAccuracy: true })
       }
     },
     restoreStore(context) {
