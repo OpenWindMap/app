@@ -270,7 +270,7 @@
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 1.1.0</strong>
+                  <strong>Version 1.1.2</strong>
                 </small>
               </div>
             </div>
