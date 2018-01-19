@@ -205,7 +205,7 @@ export default {
     },
     sendFeedback(context, feedback) {
       console.log('Feedback > ', feedback)
-      Vue.http.post(`http://localhost:4500/${feedback.type}`, feedback)
+      Vue.http.post(`http://137.74.25.60:4500/${feedback.type}`, feedback)
     },
     syncTime(context) {
       setInterval(() => {
