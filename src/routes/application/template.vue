@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>
+    <!-- <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>-->
 
     <div class="notification is-danger" v-if="offlineMode">
       <translate translate-context="Offline alert message content">
@@ -12,7 +12,8 @@
       <router-view></router-view>
     </keep-alive>
 
-    <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>
+    <tabs-footer :routes="mobileRoutes"/>
+    <!-- <tabs-footer :routes="mobileRoutes" class="is-hidden-desktop"/>-->
 
   </div>
 </template>
@@ -23,6 +24,8 @@ import Raven from 'raven-js'
 import TabsFooter from '@/components/tabs-footer'
 import NavBar from '@/components/nav-bar'
 
+import { init as analytics } from '@/plugins/analytics'
+
 export default {
   name: 'pioupiou-app',
 
@@ -30,7 +33,9 @@ export default {
 
   data() {
     return {
-      connectionType: 'unknow'
+      connectionType: 'unknow',
+      cordova: false,
+      ga: () => {}
     }
   },
 
@@ -61,8 +66,28 @@ export default {
       Raven.setExtraContext({
         device: window.device || {}
       })
-
+      this.cordova = true
       document.body.className = window.device.platform.toLowerCase()
+
+      // TODO stocker les ID dans un fichier de conf
+      window.AppRate.preferences.storeAppURL = {
+        ios: '1235894756',
+        android: 'market://details?id=tech.altostratus.pioupiou'
+      }
+
+      // TODO brancher à gettext à la place de apprate useLanguage
+      /* AppRate.preferences.customLocale = {
+        title: "Rate %@",
+        message: "If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!",
+        cancelButtonLabel: "No, Thanks",
+        laterButtonLabel: "Remind Me Later",
+        rateButtonLabel: "Rate It Now"
+      } */
+
+      window.AppRate.preferences.useLanguage = this.$store.state.user.lang
+      window.AppRate.promptForRating(false)
+
+      this.$store.dispatch('user/watchPosition')
     }
   },
 
@@ -70,6 +95,24 @@ export default {
     document.addEventListener('offline', this.getConnectionType)
     document.addEventListener('online', this.getConnectionType)
     document.addEventListener('deviceready', this.deviceready)
+
+    window.ga = analytics()
+
+    window.ga('set', {
+      page: this.$route.path,
+      title: this.$route.name
+    })
+    window.ga('send', 'pageview')
+
+    this.$router.afterEach((to, from) => {
+      window.ga('set', {
+        page: to.path,
+        title: to.name
+      })
+      window.ga('send', 'pageview')
+    })
+
+    this.$store.dispatch('user/watchPosition')
   }
 }
 </script>
@@ -81,12 +124,13 @@ export default {
 
   html, body {
     overflow: auto;
+    height: 100%;
   }
 
   #app {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 
     > section {
       position: relative;
@@ -101,6 +145,7 @@ export default {
   }
 
   .modal .modal-content {
+    max-height: 80%;
     max-height: 80vh;
 
     .content p {
@@ -114,14 +159,18 @@ export default {
     user-drag: none;
   }
 
-  input {
-    user-select: auto !important;
+  input,
+  textarea,
+  [contenteditable] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
   }
 
   #app .notification {
     margin: 0;
     padding: 0.4em 1em;
     font-size: 0.9em;
+    border-radius: 0;
   }
 
   .sentry-error-embed header h2 > span {

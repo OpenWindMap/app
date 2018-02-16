@@ -4,10 +4,18 @@
       :url="url"
       attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
     />
+    <v-marker :lat-lng="[myPosition.latitude, myPosition.longitude]" v-if="myPosition" :icon="icon"></v-marker>
     <map-marker v-for="marker in mapMarkers" :key="marker.key || marker.id"
       :location="marker.location" :measurements="marker.measurements"
       :title="marker.title || `#${marker.key || marker.id}`" @l-click="markerClick(marker)"
     ></map-marker>
+    <div class="leaflet-control-container" v-if="lockButton">
+      <div class="leaflet-top leaflet-left leaflet-after">
+        <div class="leaflet-control-lock leaflet-bar leaflet-control" :class="{ hold }">
+          <a class="leaflet-control-lock" title="Move on me" role="button" aria-label="Move on me" @click="moveOnMe" @longtap="stickOnMe">⌖</a>
+        </div>
+      </div>
+    </div>
     <span class="icon" v-if="mapMarkers && !mapMarkers.length">
       <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
     </span>
@@ -15,14 +23,15 @@
 </template>
 
 <script lang="buble">
-import { Map as vMap, TileLayer as vTilelayer } from 'vue2-leaflet'
+import L from 'leaflet'
+import { Map as vMap, TileLayer as vTilelayer, Marker as vMarker } from 'vue2-leaflet'
 
 import mapMarker from '@/components/map-marker'
 
 export default {
   name: 'map-content',
 
-  components: { vMap, vTilelayer, mapMarker },
+  components: { vMap, vTilelayer, vMarker, mapMarker },
 
   props: {
     zoom: {
@@ -33,6 +42,11 @@ export default {
     center: {
       type: [Object, Array],
       default: () => [46.76306, 2.42472] // France True-center
+    },
+
+    lockButton: {
+      type: Boolean,
+      default: true
     },
 
     autoCenter: {
@@ -46,30 +60,43 @@ export default {
   },
 
   data() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.$set(this, 'myPosition', [position.coords.latitude, position.coords.longitude])
-      })
-    }
-
     return {
       // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       minZoom: 3,
-      myPosition: [undefined, undefined]
+      hold: false,
+      icon: L.divIcon({
+        className: 'fa fa-street-view',
+        iconSize: [29, 34],
+        iconAnchor: [14.5, 10]
+      })
     }
   },
 
   computed: {
+    myPosition() {
+      return this.$store.state.user.position
+    },
     enumCenter() {
       switch (this.autoCenter) {
         case 'marker':
           return [this.mapMarkers[0].location.latitude, this.mapMarkers[0].location.longitude]
         case 'me':
-          return this.myPosition[0] !== undefined && this.myPosition[1] !== undefined ?
-            this.myPosition : this.center
+          return this.myPosition === undefined ?
+             this.center : [this.myPosition.latitude, this.myPosition.longitude]
         default:
           return this.center
+      }
+    }
+  },
+  watch: {
+    myPosition() {
+      if (this.hold) {
+        try {
+          this.moveOnMe()
+        } catch (e) {
+          this.hold = false
+        }
       }
     }
   },
@@ -91,6 +118,28 @@ export default {
 
       this.$emit('center-change', this.$refs.map.mapObject.getCenter())
       this.$emit('zoom-change', this.$refs.map.mapObject.getZoom())
+    },
+    moveOnMe() {
+      this.$store.dispatch('user/sendFunctUsage', { action: 'moveOnMe' })
+
+      let zoom = this.zoom
+      if (!this.hold && zoom < 10) {
+        zoom = 10
+      }
+      const center = { lat: this.myPosition.latitude, lng: this.myPosition.longitude }
+
+      this.$emit('controls-change', { zoom, center })
+      this.$emit('center-change', center)
+      this.$emit('zoom-change', zoom)
+    },
+    stickOnMe() {
+      if (this.hold) {
+        this.hold = false
+      } else {
+        this.$store.dispatch('user/sendFunctUsage', { action: 'stickOnMe' })
+        this.moveOnMe()
+        this.hold = true
+      }
     }
   },
 
@@ -129,7 +178,22 @@ export default {
     display: none;
   }
 
-  #map .icon {
+  .leaflet-top.leaflet-left.leaflet-after {
+    position: absolute;
+    top: 75px;
+  }
+
+  .leaflet-control-lock.hold .leaflet-control-lock {
+    color: #3b74c9;
+    font-weight: bold;
+  }
+
+  .leaflet-control-lock {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .vue2leaflet-map .icon {
     z-index: 999;
     position: absolute;
     top: 50%;
@@ -139,5 +203,10 @@ export default {
     .fa {
       font-size: 34px;
     }
+  }
+
+  .vue2leaflet-map .fa.fa-street-view {
+    font-size: 34px;
+    color: #3b74c9;
   }
 </style>

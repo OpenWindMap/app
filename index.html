@@ -18,10 +18,30 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
     <title>pioupiou-app</title>
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script src="https://cdn.ravenjs.com/3.15.0/raven.min.js" crossorigin="anonymous"></script>
     <script>
-    Raven.config('https://e375c29c0c6b4af8bcdf725b44f302bb@sentry.io/165583').install();
+      (function () {
+        window._ravenIsOk = false;
+        window._bugAlertShown = false;
+        if (window.location.hostname !== "localhost") {
+          Raven.config('https://e375c29c0c6b4af8bcdf725b44f302bb@sentry.io/165583').install();
+        }
+        var bugAlert = function () {
+          // alert("Un bug a été detecté ! Les infomations techniques ont été transmises à nos gentils développeurs. Ils vont vite tout réparer.\n\nA bug has shown up! Our friendly team of developers have been notified. They will fix it as quick as possible.");
+        };
+        try {
+          document.addEventListener('ravenSuccess', function () {
+            if (window._bugAlertShown) return;
+            bugAlert();
+            window._bugAlertShown = true;
+            //    Raven.showReportDialog();
+          }, false);
+          window._ravenIsOk = true;
+        } catch (e) {
+          // bugAlert();
+          throw(e);
+        }
+      }());
     </script>
 
     <!-- built files will be auto injected -->

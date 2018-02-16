@@ -6,7 +6,16 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong> <br>
+                <strong ref="rename" :contenteditable="faved" spellcheck="false" @keypress="validateName" @blur="updateName" @focus="selectName">{{ name || $gettext('Unnamed Pioupiou') }}</strong>
+                <template v-if="faved">
+                  <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
+                    <i class="fa fa-window-close"></i>
+                  </span>
+                  <span class="icon" @click="renameFocus" v-else>
+                    <i class="fa fa-pencil-square"></i>
+                  </span>
+                </template>
+                <br>
                 <small>#{{ pioupiou.id || id}}</small>
                 <small v-if="pioupiou.location">
                   |
@@ -24,17 +33,17 @@
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
-                  <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-info']"></i>
+                  <i :class="['fa', faved ? 'fa-star is-warning' : 'fa-star-o is-primary']"></i>
                 </a>
               </div>
             </div>
           </header>
           <div class="card-content">
             <div class="content">
-              <div class="columns">
+              <div class="">
                 <div class="column">
                   <map-content v-if="pioupiou.measurements && pioupiou.location"
-                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'"></map-content>
+                    :zoom="14" :map-markers="pioupiouMarkers" :auto-center="'marker'" :lockButton="false"></map-content>
                   <div class="map-placeholder" v-else></div>
                   <map-content v-else :zoom="14"></map-content>
 
@@ -56,6 +65,8 @@
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
+                <user-feedbacks :station="pioupiou" v-if="!offline && distance < 5000"></user-feedbacks>
+
                 <div class="column">
                   <keep-alive>
                     <history-chart :data="pioupiou.archive" style="height: 150px;"></history-chart>
@@ -63,8 +74,8 @@
                 </div>
 
                 <div class="column">
-                  <article class="message" v-if="pioupiou.meta">
-                    <div class="message-body" v-html="description || 'No descrition provided'">
+                  <article class="message" v-if="pioupiou.meta && description">
+                    <div class="message-body" v-html="description">
                     </div>
                     <div class="message-body pull-right">
                       <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
@@ -72,7 +83,12 @@
                   </article>
                   <article class="message" v-else>
                     <div class="message-body">
-                      No descrition provided
+                      <translate>
+                        No descrition provided
+                      </translate>
+                    </div>
+                    <div class="message-body pull-right" v-if="pioupiou.meta">
+                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                 </div>
@@ -87,9 +103,12 @@
 </template>
 
 <script lang="buble">
+import geodist from 'geodist'
+
 import mapContent from '@/components/map-content'
 import windOverview from '@/components/wind-overview'
 import historyChart from '@/components/history-chart'
+import userFeedbacks from '@/components/user-feedbacks'
 
 export default {
   name: 'details-view',
@@ -101,7 +120,7 @@ export default {
     }
   },
 
-  components: { windOverview, mapContent, historyChart },
+  components: { windOverview, mapContent, historyChart, userFeedbacks },
 
   data() {
     return {
@@ -120,25 +139,77 @@ export default {
     faved() {
       return this.$store.state.user.favorites.indexOf(this.id) !== -1
     },
+    name() {
+      return this.$store.getters['user/getName'](this.id) || (this.pioupiou.meta && this.pioupiou.meta.name)
+    },
     currentTime() {
       return this.$store.state.user.currentTime
     },
     description() {
+      if (!this.pioupiou.meta) {
+        return ''
+      }
       return this.$options.filters.linkify(this.pioupiou.meta.description || '')
     },
     offline() {
       const now = new Date().getTime()
       return this.pioupiou.measurements && Math.round(now - new Date(this.pioupiou.measurements.date).getTime()) >= this.$store.state.pioupious.timeout
+    },
+    distance() {
+      const station = this.pioupiou.location
+      const user = this.$store.state.user.position
+      return user && station ? geodist(station, user, { unit: 'meters' }) : undefined
     }
   },
 
   methods: {
     favMe() {
+      if (!this.$store.getters['user/isLocalStorage']) {
+        alert('You are using FakeStorage !') // eslint-disable-line no-alert
+      }
+
       if (this.faved) {
         this.$store.dispatch('user/removeToFavorites', { stationId: this.id })
+        this.restoreName()
       } else {
         this.$store.dispatch('user/pushToFavorites', { stationId: this.id })
+        this.renameFocus()
       }
+    },
+    renameFocus() {
+      this.$nextTick(() => {
+        this.$refs.rename.focus()
+      })
+    },
+    selectName() {
+      // document.execCommand('selectAll', false, null)
+      const range = document.createRange()
+      range.selectNodeContents(this.$refs.rename)
+      range.collapse(false)
+      const selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+    },
+    validateName(event) {
+      if (event.which === 13 || event.keyCode === 13) {
+        event.target.blur()
+      }
+      return false
+    },
+    updateName(event) {
+      if (event.target.innerText === '') {
+        this.restoreName()
+        document.execCommand('unselect', false, null)
+        return
+      }
+      this.$store.dispatch('user/renameStation', { stationId: this.id, newName: event.target.innerText })
+      this.$forceUpdate()
+      document.execCommand('unselect', false, null)
+    },
+    restoreName() {
+      this.$store.dispatch('user/removeRename', { stationId: this.id })
+      this.$refs.rename.innerText = this.name
+      this.$forceUpdate()
     }
   },
 
@@ -148,14 +219,33 @@ export default {
       if (nTime !== this.dataOld) {
         this.dataOld = nTime
       }
+    },
+    id(val, oldVal) {
+      this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: oldVal })
+
+      this.$store.dispatch('pioupious/fetchOne', { stationId: val })
+      this.$store.dispatch('pioupious/keepOneUpdated', { stationId: val })
+
+      this.$store.dispatch('user/pushToHistories', { stationId: val })
     }
   },
 
   activated() {
+    console.log('ACTIVATED')
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.id })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
+
+    if (this.distance) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'proximity',
+        eventAction: this.distance <= 5000 ? 'near' : 'far',
+        eventLabel: this.pioupiou.id,
+        eventValue: this.distance
+      })
+    }
   },
 
   deactivated() {
@@ -177,6 +267,7 @@ export default {
       }
 
       .is-pulled-left {
+        max-width: 80%;
         max-width: 80vw;
       }
 
@@ -223,7 +314,7 @@ export default {
     }
   }
 
-  #map {
+  .vue2leaflet-map {
     height: 180px;
   }
 
@@ -239,6 +330,11 @@ export default {
     .message-body {
       border-radius: initial;
       border: initial;
+      word-wrap: break-word;
+
+      a.no-decoration {
+        text-decoration: none;
+      }
     }
   }
 
@@ -260,7 +356,11 @@ export default {
     height: 100px;
     width: 100%;
   }
-  .no-decoration {
-    text-decoration: none;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
   }
 </style>

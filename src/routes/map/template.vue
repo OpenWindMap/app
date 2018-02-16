@@ -54,8 +54,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #map {
+  .vue2leaflet-map {
     flex: 1 1 auto;
+    min-height: 50%;
     min-height: 50vh;
     position: absolute;
     top: 0;

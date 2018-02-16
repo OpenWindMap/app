@@ -35,7 +35,7 @@ export default {
 
   methods: {
     rotateUnit() {
-      this.$store.commit('user/rotateUnit')
+      this.$store.dispatch('user/rotateUnit')
     }
   }
 }
@@ -47,9 +47,9 @@ export default {
   @import "~bulma/sass/utilities/mixins";
 
   footer {
-    @include touch {
-      height: 60px;
-    }
+    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
   }
 
   .tabs {
@@ -82,6 +82,7 @@ export default {
       border-bottom: initial;
       flex-direction: column;
       text-align: center;
+      padding: 0.5em 0.5em;
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
@@ -97,6 +98,8 @@ export default {
       .fa.fa-map-o {
         font-weight: bold;
       }
+
+      display: block;
     }
 
     strong {
@@ -109,6 +112,7 @@ export default {
       align-items: center;
       display: inline-flex;
       line-height: 24px;
+      display: block;
     }
   }
 </style>

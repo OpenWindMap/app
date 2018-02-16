@@ -3,7 +3,7 @@
     <nav class="nav has-shadow is-hidden-desktop">
       <div class="nav-center">
         <router-link to="/" class="nav-item">
-          <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+          <img src="~static/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
         </router-link>
       </div>
     </nav>
@@ -16,6 +16,21 @@
           <translate>Search for a spot or use the map to begin with</translate>
         </h6>
         <br>
+      </div>
+      <div class="column" v-if="nearsPioupious.length > 0">
+        <h5 class="subtitle is-5">
+          <span class="icon">
+            <i class="fa fa-street-view"></i>
+          </span>
+          <translate>Near you</translate>
+        </h5>
+        <station-overview v-for="pioupiou in nearsPioupious" v-if="pioupiou.id"
+          :key="pioupiou.id" :station="pioupiou" :offlineMode="offlineMode"
+          :opened="opened === pioupiou.id && context === 'F'" @open="show" @show="show">
+        </station-overview>
+        <h6 class="subtitle is-6" v-if="nearsPioupious.length === 0">
+          <translate>No nears spots yet</translate>
+        </h6>
       </div>
       <div class="column">
         <h5 class="subtitle is-5">
@@ -77,6 +92,11 @@ export default {
         id => this.$store.getters['pioupious/get'](id)
       )
     },
+    nearsPioupious() {
+      return this.$store.getters['pioupious/findByProximity'](
+        this.$store.state.user.position, 70 * 1000
+      ).slice(0, 5)
+    },
     histories() {
       return this.$store.state.user.histories
     },
@@ -111,6 +131,9 @@ export default {
     this.opened = undefined
     this.context = undefined
 
+    this.$store.dispatch('pioupious/fetchAll')
+    this.$store.dispatch('pioupious/keepAllUpdated')
+
     this.$forceUpdate()
   },
 
@@ -125,6 +148,8 @@ export default {
         this.$store.dispatch('pioupious/stopOneToBeUpdated', { stationId: id })
       }
     )
+
+    this.$store.dispatch('pioupious/stopAllToBeUpdated')
   },
 
   methods: {

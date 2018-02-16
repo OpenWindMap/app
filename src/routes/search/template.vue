@@ -11,7 +11,7 @@
           </span>
           <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 0 || preSearchResults.length > 0)">
             <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
-              <strong>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
+              <strong>{{ $store.state.user.renames[pioupiou.id] || pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
               <small>(Pioupiou #{{ pioupiou.id }})</small>
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
@@ -264,7 +264,7 @@ export default {
     }
   }
 
-  #map {
+  .vue2leaflet-map {
     height: 180px;
   }
 
@@ -297,6 +297,7 @@ export default {
     background: $white;
     margin-top: -1px;
     border: 1px solid $white;
+    max-height: 100px;
     max-height: 25vh;
     overflow: auto;
     padding-top: 0.3em;
@@ -333,6 +334,7 @@ export default {
 
   .fixed-header {
     position: fixed;
+    width: 100%;
     width: 100vw;
   }
 

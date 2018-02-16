@@ -7,10 +7,10 @@ export PATH := $(NODE_BINDIR):$(PATH)
 OUTPUT_DIR = src
 
 # Available locales for the app.
-LOCALES = en fr
+LOCALES = en fr nl
 
 # Name of the generated .po files for each available locale.
-LOCALE_FILES ?= $(patsubst %,$(OUTPUT_DIR)/locale/%/LC_MESSAGES/app.po,$(LOCALES))
+LOCALE_FILES ?= $(patsubst %,$(OUTPUT_DIR)/locale/%.po,$(LOCALES))
 
 GETTEXT_HTML_SOURCES = $(shell find $(OUTPUT_DIR) -name '*.vue' -o -name '*.html' 2> /dev/null)
 GETTEXT_JS_SOURCES = $(shell find $(OUTPUT_DIR) -name '*.vue' -o -name '*.js')
@@ -18,14 +18,17 @@ GETTEXT_JS_SOURCES = $(shell find $(OUTPUT_DIR) -name '*.vue' -o -name '*.js')
 TMP_FILE = $(OUTPUT_DIR)/locale/app.pot
 
 # Makefile Targets
-.PHONY: clean makemessages translations
+.PHONY: clean cleanjson pot json
 
 clean:
-	rm -f $(TMP_FILE) $(OUTPUT_DIR)/locale/translations.json
+	rm -f $(TMP_FILE) $(patsubst %,$(OUTPUT_DIR)/locale/%.po~,$(LOCALES))
 
-makemessages: $(TMP_FILE)
+cleanjson:
+	rm -f $(OUTPUT_DIR)/locale/translations.json
 
-translations: ./$(OUTPUT_DIR)/locale/translations.json
+pot: $(TMP_FILE)
+
+json: cleanjson ./$(OUTPUT_DIR)/locale/translations.json
 
 # Create a main .pot template, then generate .po files for each available language.
 # Thanx to Systematic: https://github.com/Polyconseil/systematic/blob/866d5a/mk/main.mk#L167-L183
@@ -51,7 +54,7 @@ $(TMP_FILE): $(GETTEXT_HTML_SOURCES)
 		--output $@ ./dist/*.{js,html}
 # Generate .po files for each available language.
 	@for lang in $(LOCALES); do \
-		export PO_FILE=$(OUTPUT_DIR)/locale/$$lang/LC_MESSAGES/app.po; \
+		export PO_FILE=$(OUTPUT_DIR)/locale/$$lang.po; \
 		echo "msgmerge --update $$PO_FILE $@"; \
 		mkdir -p $$(dirname $$PO_FILE); \
 		[ -f $$PO_FILE ] && msgmerge --lang=$$lang --update $$PO_FILE $@ || msginit --no-translator --locale=$$lang --input=$@ --output-file=$$PO_FILE; \

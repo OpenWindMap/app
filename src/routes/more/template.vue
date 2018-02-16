@@ -146,7 +146,7 @@
                 </a>
               </div>
               <div class="card">
-                <a href="mailto:support-app@pioupiou.com" target="_blank">
+                <a href="https://poeditor.com/join/project/lXSmSCku6a" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
@@ -262,20 +262,20 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <header class="card-header" style="padding-bottom: 0px;">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <img src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+                <img src="~static/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
               </div>
               <div class="is-pulled-right">
                 <small>
-                  <strong>Version 0.5.3</strong> - beta
+                  <strong>Version 1.1.0</strong>
                 </small>
               </div>
             </div>
           </header>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
