@@ -9,9 +9,9 @@ export default {
       type: Number,
       default: 123
     },
-    lightStyle: {
-      type: Boolean,
-      default: false
+    unit: {
+      type: String,
+      default: 'kpmh'
     }
   },
 
@@ -54,7 +54,8 @@ export default {
   },
 
   mounted() {
-    console.log({ stationId: this.stationId })
+    console.warn({ stationId: this.stationId, unit: this.unit })
+    // this.$store.dispatch('user/setUnit', { unit: 'knots' })
     this.$store.dispatch('pioupious/fetchOne', { stationId: this.stationId })
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.stationId })
   }
@@ -67,7 +68,7 @@ export default {
 
   .pioupiou-widget:not(:last-of-type) {
     &.pioupiou-station-overview {
-      min-height: 60px;
+      min-height: 124px;
     }
     .watermark {
       display: none;
@@ -78,9 +79,12 @@ export default {
     @import '~bulma';
 
     min-width: 400px;
-    min-height: 95px;
+    min-height: 159px;
+    overflow: hidden;
     width: 0;
     height: 0;
+
+    position: relative;
 
     color: $text-strong;
     margin: 0;
@@ -88,11 +92,13 @@ export default {
     background-color: $body-background;
     outline: 1px solid $grey-darker;
 
-    overflow: auto;
-
     .card {
       background-color: $body-background;
       color: $text-strong;
+
+      .card-content {
+        box-shadow: initial;
+      }
 
       strong {
         color: $text-strong;
@@ -106,6 +112,10 @@ export default {
       height: 25px;
       padding: 5px 15px;
       float: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      filter: brightness(0) grayscale(1) invert(1);
     }
 
     .is-fullwidth {
@@ -123,7 +133,7 @@ export default {
     }
 
     &.pioupiou-widget-light {
-      &, .card {
+      &, .card, .card-content {
         background-color: $white;
         color: $grey-darker;
 

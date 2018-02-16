@@ -18,8 +18,7 @@ document.querySelectorAll(SEL).forEach(elem => {
     render(h) {
       return h('widget', {
         props: {
-          stationId: elem.getAttribute('station-id'),
-          lightStyle: elem.getAttribute('light-style')
+          stationId: elem.getAttribute('station-id') || undefined
         }
       })
     },

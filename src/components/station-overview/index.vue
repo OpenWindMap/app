@@ -83,7 +83,7 @@ export default {
 
     opened: {
       type: Boolean,
-      default: false
+      default: true
     },
 
     offlineMode: {
@@ -132,7 +132,7 @@ export default {
   cursor: pointer;
   box-shadow: initial;
   border-top: 1px solid rgba(10, 10, 10, 0.1);
-  background-color: $dark;
+  background-color: $body-background;
 
   &:last-child {
     border-bottom: 1px solid rgba(10, 10, 10, 0.1);
@@ -173,7 +173,7 @@ export default {
   .card-content {
     padding: 0;
     box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
-    background-color: $dark;
+    background-color: $body-background;
 
     .content {
       font-size: 0.8em;

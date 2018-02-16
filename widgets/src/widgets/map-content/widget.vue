@@ -8,10 +8,6 @@ export default {
     stationId: {
       type: Number,
       default: 123
-    },
-    lightStyle: {
-      type: Boolean,
-      default: false
     }
   },
 
@@ -89,6 +85,8 @@ export default {
     width: 0;
     height: 0;
 
+    position: relative;
+
     background-color: $body-background;
     outline: 1px solid $grey-darker;
     color: $text-strong;
@@ -106,6 +104,10 @@ export default {
       height: 25px;
       padding: 5px 15px;
       float: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 9999;
     }
 
     strong {
