@@ -1,6 +1,5 @@
 module.exports = (options) => ({
   entry: {
-    client: 'src/widgets/map-content/index.js',
     'station-overview': 'src/widgets/station-overview/index.js',
     'map-content': 'src/widgets/map-content/index.js'
   },
@@ -25,8 +24,8 @@ module.exports = (options) => ({
      vendor: false,
 
      filename: {
-       css: '[name]/[name].[chunkhash:8].css',
-       js: '[name]/[name].[chunkhash:8].js',
+       css: '[name].css',
+       js: '[name].js',
      }
    }
 })

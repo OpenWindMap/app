@@ -8,19 +8,35 @@
     <style>
       html, body {
         width: 100vw;
-        background: white;
         margin: 0;
         padding: 0;
-        color: red;
         margin: 35px;
       }
 
       div {
         max-width: 100vw;
       }
+
+      pre {
+        overflow: auto;
+        background-color: #ffffff;
+        border: 1px solid #898989;
+        padding: 5px;
+      }
     </style>
   </head>
   <body>
+    <h1>Widgets</h1>
+
+    Pour utiliser les widgets, il suffit simplement, dans un premier temps,
+    d'importer les sources JavaScript ainsi que le ficher de style.
+
+    <pre>
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="WIDGET_STYLE_URL.css"&gt;
+  &lt;script src="WIDGET_JAVASCRIPT_URL.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
     <div>
       <pioupiou-station station-id="200" unit="knots"></pioupiou-station>
       <pioupiou-map station-id="200"></pioupiou-map>
