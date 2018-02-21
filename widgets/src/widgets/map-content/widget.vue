@@ -23,7 +23,8 @@ export default {
         props: {
           zoom: 14,
           mapMarkers: this.stationMarkers,
-          autoCenter: 'marker'
+          autoCenter: 'marker',
+          lockButton: false
         },
         on: {
           markerClick(target) {
@@ -126,6 +127,10 @@ export default {
 
     input {
       user-select: auto !important;
+    }
+
+    a {
+      color: initial;
     }
 
     &.pioupiou-widget-light {
