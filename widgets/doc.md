@@ -1,18 +1,18 @@
-> # Diffuser les widgets
->
-> 1. Se rendre sur la branch `feature/PIOUPWIDGETS-1`
->    ```bash
->    git checkout feature/PIOUPWIDGETS-1
->    ```
-> 2. Build les widgets
->    ```bash
->    cd widgets
->    npm run build
->    ```
-> 2. Heberger le dossier `dist`  
->    Il contient les fichiers JS, CSS ainsi que les dependances statics : images, logo, etc...
->  
->
+# Diffuser les widgets
+
+1. Se rendre sur la branch `feature/PIOUPWIDGETS-1`
+    ```bash
+    git checkout feature/PIOUPWIDGETS-1
+    ```
+2. Build les widgets
+    ```bash
+    cd widgets
+    npm run build
+    ```
+2. Heberger le dossier `dist`  
+    Il contient les fichiers JS, CSS ainsi que les dependances statics : images, logo, etc...
+
+---
 
 # Widgets
 
@@ -36,6 +36,7 @@ Un seul import par type de widget est suffisant, vous pourrez ensuite utiliser a
 ```html
 <pioupiou-station station-id="{station_id}"></pioupiou-station>
 ```
+Demo : _(ne fonctionne pas en demo Gitlab)_
 > <pioupiou-station station-id="620"></pioupiou-station>
 
 ### Station map
@@ -46,7 +47,7 @@ Un seul import par type de widget est suffisant, vous pourrez ensuite utiliser a
 ```html
 <pioupiou-map station-id="{station_id}"></pioupiou-map>
 ```
-
+Demo : _(ne fonctionne pas en demo Gitlab)_
 > <pioupiou-map station-id="620"></pioupiou-station>
 
 ## Composition
@@ -59,10 +60,11 @@ Seulement le dernier widget se verra apposé le watermark.
   <pioupiou-station station-id="620"></pioupiou-station>
 </div>
 ```
-<div>
-  <pioupiou-map station-id="620"></pioupiou-map>
-  <pioupiou-station station-id="620"></pioupiou-station>
-</div>
+Demo : _(ne fonctionne pas en demo Gitlab)_
+> <div>
+>   <pioupiou-map station-id="620"></pioupiou-map>
+>   <pioupiou-station station-id="620"></pioupiou-station>
+> </div>
 
 ```html
 <div>
@@ -70,10 +72,11 @@ Seulement le dernier widget se verra apposé le watermark.
   <pioupiou-map station-id="620"></pioupiou-map>
 </div>
 ```
-<div>
-  <pioupiou-station station-id="620"></pioupiou-station>
-  <pioupiou-map station-id="620"></pioupiou-map>
-</div>
+Demo : _(ne fonctionne pas en demo Gitlab)_
+> <div>
+>   <pioupiou-station station-id="620"></pioupiou-station>
+>   <pioupiou-map station-id="620"></pioupiou-map>
+> </div>
 
 <!-- pioupiou-station js:52.1KB css:22.9KB -->
 <script src="./dist/station-overview.js"></script>
