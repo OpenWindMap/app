@@ -1,4 +1,3 @@
-import 'es6-shim'
 import 'tocca'
 
 import Vue from 'vue'
