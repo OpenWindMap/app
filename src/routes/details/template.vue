@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <section>
     <div class="columns">
       <div class="column">
@@ -105,10 +105,10 @@
 <script lang="buble">
 import geodist from 'geodist'
 
-import mapContent from '@/components/map-content'
-import windOverview from '@/components/wind-overview'
-import historyChart from '@/components/history-chart'
-import userFeedbacks from '@/components/user-feedbacks'
+import mapContent from '@/components/map-content/index.vue'
+import windOverview from '@/components/wind-overview/index.vue'
+import historyChart from '@/components/history-chart/index.vue'
+import userFeedbacks from '@/components/user-feedbacks/index.vue'
 
 export default {
   name: 'details-view',

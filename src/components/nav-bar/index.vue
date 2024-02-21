@@ -1,8 +1,8 @@
-<template lang="html">
+<template>
   <nav class="nav has-shadow">
     <div class="nav-left">
       <router-link to="/" class="nav-item">
-        <img class="inverted" src="~static/img/pioupiou-logo.svg" alt="Pioupiou logo">
+        <img class="inverted" src="/img/pioupiou-logo.svg" alt="Pioupiou logo">
       </router-link>
     </div>
 

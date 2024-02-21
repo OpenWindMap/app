@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <wind-marker :title="title"
     :lat-lng="{lat: location.latitude, lng: location.longitude}"
     :heading="measurements.wind_heading" :speed="measurements.wind_speed_avg"
@@ -6,7 +6,7 @@
 </template>
 
 <script lang="buble">
-import windMarker from '@/components/wind-marker'
+import windMarker from '@/components/wind-marker/index.vue'
 
 export default {
   name: 'map-marker',
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss">
   .map-marker-icon {
-    background: url("~static/img/map-wind-icon.png");
+    background: url("/img/map-wind-icon.png");
     background-position: 0px 0px;
     border: none;
   }

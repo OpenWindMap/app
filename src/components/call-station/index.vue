@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <a :href="callLink">
     <span class="icon">
       <i class="fa fa-phone"></i>

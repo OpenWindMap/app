@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div :class="['has-text-centered', inline ? 'columns is-mobile' : '']">
 
     <div class="column" v-if="!offline && ((!iconOnly && inline) || (iconOnly && inline && hide))"
@@ -110,7 +110,7 @@ export default {
   @import "~src/assets/vars";
 
   .wind-icon {
-    background-image: url("~static/img/compass-wind-icon.png");
+    background-image: url("/img/compass-wind-icon.png");
     height: 3em;
     width: 2em;
     margin: auto;

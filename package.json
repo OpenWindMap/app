@@ -4,11 +4,16 @@
   "description": "The official Pioupiou app",
   "author": "Pioupiou Team",
   "scripts": {
-    "dev": "./node_modules/.bin/vbuild --dev --eslint",
-    "build": "./node_modules/.bin/vbuild --eslint",
-    "watch": "./node_modules/.bin/vbuild --watch --eslint",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "extract-pot": "make pot",
     "compile-po": "make json"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.1",
+    "sass": "^1.71.1",
+    "vite": "^5.1.4"
   },
   "dependencies": {
     "bulma": "^0.4.0",
@@ -24,7 +29,7 @@
     "socket.io-client": "^1.7.3",
     "timeago.js": "^3.0.1",
     "tocca": "^2.0.1",
-    "vue": "^2.2.6",
+    "vue": "^2.7.16",
     "vue-focus": "^2.1.0",
     "vue-gettext": "^2.0.10",
     "vue-resource": "^1.2.1",
@@ -33,12 +38,5 @@
     "vue-socket.io": "^2.1.1-a",
     "vue2-leaflet": "^0.0.49",
     "vuex": "^2.2.1"
-  },
-  "devDependencies": {
-    "buble-loader": "^0.4.1",
-    "node-sass": "^4.5.3",
-    "resolve-url-loader": "^2.0.2",
-    "sass-loader": "^6.0.3",
-    "vbuild": "^6.24.14"
   }
 }

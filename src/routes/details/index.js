@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Details from '@/routes/details/template'
+import Details from '@/routes/details/template.vue'
 
 export default {
   path: '/details/:id',

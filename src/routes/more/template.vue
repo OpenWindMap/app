@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <section>
     <div class="columns">
       <div class="column">
@@ -266,7 +266,7 @@
           <header class="card-header" style="padding-bottom: 0px;">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
-                <img src="~static/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
+                <img src="/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
               </div>
               <div class="is-pulled-right">
                 <small>

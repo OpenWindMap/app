@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Home from '@/routes/home/template'
+import Home from '@/routes/home/template.vue'
 
 export default {
   path: '/home',

@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="card">
     <header class="card-header" @click="open(station)">
       <div class="is-clearfix is-fullwidth">
@@ -65,10 +65,10 @@
 </template>
 
 <script lang="buble">
-import windCompass from '@/components/wind-compass'
-import windOverview from '@/components/wind-overview'
-import historyChart from '@/components/history-chart'
-import callStation from '@/components/call-station'
+import windCompass from '@/components/wind-compass/index.vue'
+import windOverview from '@/components/wind-overview/index.vue'
+import historyChart from '@/components/history-chart/index.vue'
+import callStation from '@/components/call-station/index.vue'
 
 export default {
   name: 'station-overview',

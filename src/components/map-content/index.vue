@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom" @l-viewreset="boundsChange" @l-moveend="boundsChange" @l-zoomend="boundsChange" ref="map">
     <v-tilelayer
       :url="url"
@@ -26,7 +26,7 @@
 import L from 'leaflet'
 import { Map as vMap, TileLayer as vTilelayer, Marker as vMarker } from 'vue2-leaflet'
 
-import mapMarker from '@/components/map-marker'
+import mapMarker from '@/components/map-marker/index.vue'
 
 export default {
   name: 'map-content',

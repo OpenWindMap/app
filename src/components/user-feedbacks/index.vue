@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="column feedbacks" v-if="!closed">
     <button class="delete" @click="close"></button>
     <template v-if="!answered">

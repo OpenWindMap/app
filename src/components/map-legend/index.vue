@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="map-legend">
     <canvas ref="legend"></canvas>
   </div>

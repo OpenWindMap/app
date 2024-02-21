@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <section>
     <nav class="nav has-shadow fixed-header">
       <div class="field is-fullwidth nav-item">
@@ -96,8 +96,8 @@
 </template>
 
 <script lang="buble">
-import mapContent from '@/components/map-content'
-import stationOverview from '@/components/station-overview'
+import mapContent from '@/components/map-content/index.vue'
+import stationOverview from '@/components/station-overview/index.vue'
 import { focus } from 'vue-focus'
 import { throttle } from 'lodash'
 

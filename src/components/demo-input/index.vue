@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="field">
     <p class="control">
       <input class="input" type="text" placeholder="Text input" v-model="message">

@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div id="app">
     <!-- <nav-bar :routes="desktopRoutes" class="is-hidden-touch"/>-->
 
@@ -21,8 +21,8 @@
 <script lang="buble">
 import Raven from 'raven-js'
 
-import TabsFooter from '@/components/tabs-footer'
-import NavBar from '@/components/nav-bar'
+import TabsFooter from '@/components/tabs-footer/index.vue'
+import NavBar from '@/components/nav-bar/index.vue'
 
 import { init as analytics } from '@/plugins/analytics'
 
@@ -119,7 +119,7 @@ export default {
 
 <style lang="scss">
   @import "~src/assets/vars";
-  @import '~bulma';
+  @import "~bulma/bulma.sass";
   @import '~font-awesome/scss/font-awesome';
 
   html, body {

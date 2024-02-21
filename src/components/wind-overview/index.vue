@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="columns is-mobile has-text-centered">
     <div class="column is-3-mobile">
       <template v-if="heading !== null && heading !== undefined">

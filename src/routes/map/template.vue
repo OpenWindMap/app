@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <section>
     <map-content :map-markers="pioupious" :center="userCenter" :zoom="userZoom"
       @marker-click="showPioupiou" @controls-change="controlsChange"></map-content>
@@ -7,8 +7,8 @@
 </template>
 
 <script lang="buble">
-import mapContent from '@/components/map-content'
-import mapLegend from '@/components/map-legend'
+import mapContent from '@/components/map-content/index.vue'
+import mapLegend from '@/components/map-legend/index.vue'
 
 export default {
   name: 'map-view',

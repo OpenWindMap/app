@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <footer>
     <div class="tabs is-fullwidth">
       <ul>

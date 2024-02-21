@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <figure class="has-text-centered">
     <!-- <canvas ref="background"></canvas> -->
     <canvas ref="chart" v-show="data !== null && data !== undefined"></canvas>

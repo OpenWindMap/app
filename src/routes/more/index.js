@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import More from '@/routes/more/template'
+import More from '@/routes/more/template.vue'
 
 export default {
   path: '/more',

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Search from '@/routes/search/template'
+import Search from '@/routes/search/template.vue'
 
 export default {
   path: '/search',

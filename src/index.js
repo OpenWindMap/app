@@ -18,7 +18,7 @@ import http from '@/resources/http'
 import store from '@/store'
 import filters from '@/filters'
 
-import App from '@/routes/application/template'
+import App from '@/routes/application/template.vue'
 
 new Vue({
   el: 'pioupiou-app',

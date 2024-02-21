@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Map from '@/routes/map/template'
+import Map from '@/routes/map/template.vue'
 
 export default {
   path: '/map',
