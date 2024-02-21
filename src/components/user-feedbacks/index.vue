@@ -247,7 +247,7 @@ export default {
   .column.feedbacks {
     padding: 8px;
     margin: 0;
-    background: $dark;
+    background: $light;
   }
   .column.feedbacks-opener {
     margin: 0 0.75rem;

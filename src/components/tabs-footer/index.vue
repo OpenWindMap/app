@@ -59,15 +59,15 @@ export default {
 
     ul {
       border-bottom: initial;
-      border-top: 1px solid $light;
+      border-top: 1px solid $dark;
 
       li {
         flex-shrink: 1;
         flex-basis: 0;
 
         &:last-child {
-          border-left: 1px solid $light;
-          background: $dark;
+          border-left: 1px solid $dark;
+          background: $light;
         }
       }
     }
@@ -86,7 +86,7 @@ export default {
 
       &.router-link-active {
         box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
-        background: $dark;
+        background: $light;
       }
     }
 

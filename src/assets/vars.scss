@@ -1,19 +1,19 @@
 // Colors
-// $black:          rgb( 18,  18,  18) !default;
-// $black-bis:      rgb( 36,  36,  36) !default;
-// $black-ter:      rgb( 54,  54,  54) !default;
-//
-// $grey-darker:    rgb( 74,  74,  74) !default;
-// $grey-dark:      rgb(100, 100, 100) !default;
-// $grey:           rgb(180, 180, 180) !default;
-// $grey-light:     rgb(200, 200, 200) !default;
-// $grey-lighter:   rgb(240, 240, 240) !default;
-//
-// $white-ter:      rgb(252, 252, 252) !default;
-// $white-bis:      rgb(254, 254, 254) !default;
-// $white:          rgb(255, 255, 255) !default;
+$black:          rgb( 18,  18,  18) !default;
+$black-bis:      rgb( 36,  36,  36) !default;
+$black-ter:      rgb( 54,  54,  54) !default;
 
-$black:          hsl(216, 57%, 7%) !default;
+$grey-darker:    rgb( 74,  74,  74) !default;
+$grey-dark:      rgb(100, 100, 100) !default;
+$grey:           rgb(180, 180, 180) !default;
+$grey-light:     rgb(200, 200, 200) !default;
+$grey-lighter:   rgb(240, 240, 240) !default;
+
+$white-ter:      rgb(252, 252, 252) !default;
+$white-bis:      rgb(254, 254, 254) !default;
+$white:          rgb(255, 255, 255) !default;
+
+/*$black:          hsl(216, 57%, 7%) !default;
 $black-bis:      hsl(216, 57%, 11%) !default;
 $black-ter:      hsl(216, 57%, 21%) !default;
 
@@ -25,7 +25,7 @@ $grey-lighter:   hsl(216, 57%, 71%) !default;
 
 $white-ter:      hsl(216, 57%, 80%) !default;
 $white-bis:      hsl(216, 57%, 85%) !default;
-$white:          hsl(216, 57%, 90%) !default;
+$white:          hsl(216, 57%, 90%) !default;*/
 
 $true-white:     rgb(255, 255, 255) !default;
 $blue-ligher:    rgb(  0, 255, 255) !default;
@@ -46,17 +46,17 @@ $purlple:        rgb(148,   0,  87) !default;
 
 // Typography
 $fa-font-path: '~font-awesome/fonts';
-$text: $grey-lighter;
+$text: $grey-darker;
 $text-light: $text;
-$text-strong: $white;
+$text-strong: $grey-darker;
 $title: $text-strong;
 $subtitle: $text-strong;
-$input: $white;
+$input: $grey-darker;
 $input-icon-active: $input;
 
 // Primary colors
 $primary: $title;
-$body-background: $grey-darker;
+$body-background: $white;
 
 $input-background: $body-background;
 
@@ -65,8 +65,8 @@ $success: $emerald;
 $warning: $orange-yellow;
 $danger:  $orange-red;
 
-$dark: $black-ter;
-$light: $grey;
+$dark: $grey;
+$light: $grey-lighter;
 
 $speed0:  $true-white;
 $speed1:  $blue-ligher;

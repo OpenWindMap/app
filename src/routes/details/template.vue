@@ -320,7 +320,7 @@ export default {
 
   article.message {
     box-shadow: inset 2px 0px 8px rgba(10, 10, 10, 0.1), inset -2px 0px 8px rgba(10, 10, 10, 0.1);
-    background: $dark;
+    background: $light;
     padding-bottom: 4em;
 
     .message-body {
@@ -337,7 +337,7 @@ export default {
   .map-placeholder {
     height: 180px;
     width: 100%;
-    background-color: $light;
+    background-color: $dark;
   }
 
   .location-placeholder {

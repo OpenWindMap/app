@@ -395,7 +395,7 @@ export default {
     .card-content {
       padding: 0;
       box-shadow: inset 0px 2px 8px rgba(10, 10, 10, 0.1), inset 0px -2px 8px rgba(10, 10, 10, 0.1);
-      background: $dark;
+      background: $light;
 
       .card-header {
         padding: 12px 12px 0px;
@@ -414,6 +414,11 @@ export default {
 
   .icon, a {
     color: $title;
+  }
+
+  .is-outlined {
+    color: $title !important;
+    border-color: $title !important;
   }
 
   img {
