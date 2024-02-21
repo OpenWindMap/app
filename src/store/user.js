@@ -114,17 +114,9 @@ export default {
   },
 
   actions: {
-    sendFunctUsage(context, { action }) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'functionalities',
-        eventAction: action
-      })
-    },
     rotateUnit(context) {
       context.commit('rotateUnit')
       context.dispatch('saveIntoLStorage', { unit: context.state.unit })
-      context.dispatch('sendFunctUsage', { action: 'rotateUnit' })
     },
     saveIntoLStorage(context, object) {
       Object.entries(object).forEach(([key, value]) => {
@@ -154,22 +146,18 @@ export default {
     pushToFavorites(context, { stationId }) {
       context.commit('pushToFavorites', { stationId })
       context.dispatch('saveIntoLStorage', { favorites: context.state.favorites })
-      context.dispatch('sendFunctUsage', { action: 'pushToFavorites' })
     },
     removeToFavorites(context, { stationId }) {
       context.commit('removeToFavorites', { stationId })
       context.dispatch('saveIntoLStorage', { favorites: context.state.favorites })
-      context.dispatch('sendFunctUsage', { action: 'removeToFavorites' })
     },
     renameStation(context, { stationId, newName }) {
       context.commit('renameStation', { stationId, newName })
       context.dispatch('saveIntoLStorage', { renames: context.state.renames })
-      context.dispatch('sendFunctUsage', { action: 'renameStation' })
     },
     removeRename(context, { stationId }) {
       context.commit('removeRename', { stationId })
       context.dispatch('saveIntoLStorage', { renames: context.state.renames })
-      context.dispatch('sendFunctUsage', { action: 'removeRename' })
     },
     pushMapControls(context, { zoom, center }) {
       context.commit('pushMapControls', { zoom, center })
@@ -178,7 +166,6 @@ export default {
     setLang(context, { lang }) {
       context.commit('setLang', { lang })
       context.dispatch('saveIntoLStorage', { lang })
-      context.dispatch('sendFunctUsage', { action: 'setLang' })
     },
     setLastFeedback(context, { lastFeedback }) {
       context.commit('setLastFeedback', { lastFeedback })
@@ -187,7 +174,6 @@ export default {
     setUnit(context, { unit }) {
       context.commit('setUnit', { unit })
       context.dispatch('saveIntoLStorage', { unit })
-      context.dispatch('sendFunctUsage', { action: 'setUnit' })
     },
     watchPosition(context) {
       if ('geolocation' in navigator) {

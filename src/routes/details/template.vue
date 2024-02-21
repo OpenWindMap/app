@@ -232,16 +232,6 @@ export default {
     this.$store.dispatch('pioupious/keepOneUpdated', { stationId: this.id })
 
     this.$store.dispatch('user/pushToHistories', { stationId: this.id })
-
-    if (this.distance) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'proximity',
-        eventAction: this.distance <= 5000 ? 'near' : 'far',
-        eventLabel: this.pioupiou.id,
-        eventValue: this.distance
-      })
-    }
   },
 
   deactivated() {

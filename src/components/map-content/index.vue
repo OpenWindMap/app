@@ -120,8 +120,6 @@ export default {
       this.$emit('zoom-change', this.$refs.map.mapObject.getZoom())
     },
     moveOnMe() {
-      this.$store.dispatch('user/sendFunctUsage', { action: 'moveOnMe' })
-
       let zoom = this.zoom
       if (!this.hold && zoom < 10) {
         zoom = 10
@@ -136,7 +134,6 @@ export default {
       if (this.hold) {
         this.hold = false
       } else {
-        this.$store.dispatch('user/sendFunctUsage', { action: 'stickOnMe' })
         this.moveOnMe()
         this.hold = true
       }
