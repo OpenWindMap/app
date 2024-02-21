@@ -3,14 +3,14 @@
     <div class="columns">
       <div class="column">
         <div class="card">
-          <a href="http://pioupiou.fr/en/" target="_blank">
+          <a href="https://forum.openwindmap.org/topic/20/1" target="_blank">
             <header class="card-header">
               <div class="is-clearfix is-fullwidth">
                   <div class="is-pulled-left">
                     <span class="icon">
                       <i class="fa fa-book"></i>
                     </span> &nbsp;
-                    <translate tag="strong">What is Pioupiou?</translate> <br>
+                    <translate tag="strong">What is OpenWindMap?</translate> <br>
                     <!-- <translate tag="small">Brief about Pioupiou</translate> -->
                   </div>
                   <div class="is-pulled-right">
@@ -112,7 +112,7 @@
           <div :class="['card-content', opened === 'contribute' ? '' : 'is-hidden']">
             <div class="content">
               <div class="card">
-                <a href="http://pioupiou.fr/en/reserve" target="_blank">
+                <a href="https://forum.openwindmap.org/topic/160/1" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
@@ -129,7 +129,7 @@
                 </a>
               </div>
               <div class="card">
-                <a href="http://developers.pioupiou.fr" target="_blank">
+                <a href="https://developers.pioupiou.fr" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
@@ -146,11 +146,11 @@
                 </a>
               </div>
               <div class="card">
-                <a href="https://poeditor.com/join/project/lXSmSCku6a" target="_blank">
+                <a href="https://github.com/OpenWindMap/app" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
-                        <translate tag="strong">Help us translate the app</translate> <br>
+                        <translate tag="strong">Help us develop this app</translate> <br>
                         <!-- <translate tag="small">Data are free for everyone !</translate> -->
                       </div>
                       <div class="is-pulled-right">
@@ -166,14 +166,14 @@
           </div>
         </div>
         <div class="card">
-          <a href="https://pioupiou.fr/en/support" target="_blank">
+          <a href="https://forum.openwindmap.org" target="_blank">
             <header class="card-header">
               <div class="is-clearfix is-fullwidth">
                 <div class="is-pulled-left">
                   <span class="icon">
                     <i class="fa fa-commenting-o"></i>
                   </span> &nbsp;
-                  <translate tag="strong">Contact</translate> <br>
+                  <translate tag="strong">Forum</translate> <br>
                   <!-- <translate tag="small">Contact us</translate> -->
                 </div>
                 <div class="is-pulled-right">
@@ -206,12 +206,11 @@
           <div :class="['card-content', opened === 'legal' ? '' : 'is-hidden']">
             <div class="content">
               <div class="card">
-                <a href="https://pioupiou.fr/en/privacy-and-cookies" target="_blank">
+                <a href="https://forum.openwindmap.org/post/3258" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
                         <translate tag="strong">Privacy Policy</translate> <br>
-                        <!-- <translate tag="small">Our Privacy Policy</translate> -->
                       </div>
                       <div class="is-pulled-right">
                         <span class="icon">
@@ -223,12 +222,11 @@
                 </a>
               </div>
               <div class="card">
-                <a href="https://pioupiou.fr/en/terms-of-use" target="_blank">
+                <a href="https://forum.openwindmap.org/post/3257" target="_blank">
                   <header class="card-header">
                     <div class="is-clearfix is-fullwidth">
                       <div class="is-pulled-left">
-                        <translate tag="strong">Terms of Use</translate> <br>
-                        <!-- <translate tag="small">Our Terms and Conditions of Use</translate> -->
+                        <translate tag="strong">About us</translate> <br>
                       </div>
                       <div class="is-pulled-right">
                         <span class="icon">
@@ -239,6 +237,22 @@
                   </header>
                 </a>
               </div>
+              <!---<div class="card">
+                <a href="https://pioupiou.fr/en/terms-of-use" target="_blank">
+                  <header class="card-header">
+                    <div class="is-clearfix is-fullwidth">
+                      <div class="is-pulled-left">
+                        <translate tag="strong">Terms of Use</translate> <br>
+                      </div>
+                      <div class="is-pulled-right">
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </header>
+                </a>
+              </div>-->
               <div class="card">
                 <header class="card-header">
                   <div class="is-clearfix is-fullwidth">

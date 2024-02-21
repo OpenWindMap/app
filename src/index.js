@@ -20,7 +20,7 @@ import filters from '@/filters'
 import App from '@/routes/application/template.vue'
 
 new Vue({
-  el: 'pioupiou-app',
+  el: 'openwindmap-app',
   components: { App },
 
   render: h => h('app'),

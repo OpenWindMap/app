@@ -3,7 +3,8 @@
     <nav class="nav has-shadow is-hidden-desktop">
       <div class="nav-center">
         <router-link to="/" class="nav-item">
-          <img src="/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">
+          <!--<img src="/img/pioupiou-logo.svg" class="inverted" alt="Pioupiou logo">-->
+          <h1 class="title is-5">OpenWindMap.org</h1>
         </router-link>
       </div>
     </nav>
