@@ -1,11 +1,15 @@
 # app
-Source code of the Pioupiou hybrid Android / iOS / Web app
+Source code of the OpenWindMap hybrid Android / iOS / Web app
+
+*Based on the legacy Pioupiou app. Work in progress*
+
+`npm run dev`
 
 ## License
 
 Copyright © 2017-2018 Altostratus SA
 
-Copyright © 2021 OpenWindMap SCIC SA
+Copyright © 2021-2024 OpenWindMap SCIC SA
 
 GNU Affero General Public License v3.0
 
