@@ -65,7 +65,7 @@
                   <div class="overview-placeholder" v-else></div>
                 </div>
 
-                <user-feedbacks :station="pioupiou" v-if="!offline && distance < 5000"></user-feedbacks>
+                <!--<user-feedbacks :station="pioupiou" v-if="!offline && distance < 5000"></user-feedbacks>-->
 
                 <div class="column">
                   <keep-alive>
