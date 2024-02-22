@@ -39,7 +39,8 @@ export default {
     currentTime: 0,
     position: undefined,
     lastFeedback: undefined,
-    positionWatch: false
+    positionWatch: false,
+    firstRun: true
   },
 
   getters: {
@@ -114,7 +115,10 @@ export default {
     },
     setLastFeedback(state, { lastFeedback }) {
       state.lastFeedback = lastFeedback
-    }
+    },
+    dissmissFirstRun(state) {
+      state.firstRun = false
+    },
   },
 
   actions: {
@@ -207,6 +211,10 @@ export default {
       setInterval(() => {
         context.commit('setTimeToNow')
       }, 1000)
+    },
+    dissmissFirstRun(context) {
+      context.commit('dissmissFirstRun')
+      context.dispatch('saveIntoLStorage', { firstRun: false  })
     }
   }
 }

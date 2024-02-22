@@ -10,13 +10,9 @@
     </nav>
     <div class="columns">
       <div class="column" v-if="historiesPioupious.length === 0">
-        <h5 class="subtitle is-5">
-            <translate>Welcome to the Pioupiou Wind Network!</translate>
-        </h5>
         <h6 class="subtitle is-6">
           <translate>Search for a spot or use the map to begin with</translate>
         </h6>
-        <br>
       </div>
       <div class="column">
         <h5 class="subtitle is-5">

@@ -35,6 +35,8 @@ new Vue({
 
 store.dispatch('user/syncTime')
 store.dispatch('user/restoreStore')
+
+if (store.state.user.firstRun) router.push({ name: 'first-run' })
 if (store.state.user.positionWatch) store.dispatch('user/watchPosition')
 
 window.Vue = Vue
