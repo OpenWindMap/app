@@ -155,9 +155,6 @@ export default {
       this.drawDataLine()
     },
     drawDataLine() {
-      this.context.lineWidth = 2 * this.pxRatio
-
-      this.context.strokeStyle = 'rgba(0, 0, 0, 0.3)' //this.gradient
 
       let X = this.time2x(this.dataSet[0].date)
       let Y = this.speed2y(this.dataSet[0].avg)
@@ -172,6 +169,12 @@ export default {
         this.context.lineTo(X, Y)
       })
 
+      this.context.lineWidth = 5 * this.pxRatio
+      this.context.strokeStyle = 'rgba(255, 255, 255, 0.5)' //this.gradient
+      this.context.stroke()
+
+      this.context.lineWidth = 3 * this.pxRatio
+      this.context.strokeStyle = 'rgb(100, 100, 100)' //this.gradient
       this.context.stroke()
 
       Y = this.height - (12.5 * this.pxRatio)
@@ -212,7 +215,7 @@ export default {
       this.context.shadowBlur = 0
       
       for (let i = 1; i < this.dataSet.length; i++) {
-        this.context.fillStyle = this.$options.filters.speedToColors((this.dataSet[i-1].avg + this.dataSet[i].avg) / 2)
+        this.context.fillStyle = this.gradient //this.$options.filters.speedToColors((this.dataSet[i-1].avg + this.dataSet[i].avg) / 2)
         this.context.lineWidth = this.pxRatio
         this.context.beginPath()
         this.context.moveTo(this.time2x(this.dataSet[i-1].date), this.speed2y(this.dataSet[i-1].max))

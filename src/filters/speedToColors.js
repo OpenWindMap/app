@@ -16,16 +16,31 @@ export const palette = [
   'rgb(255,  60,   0)',
   'rgb(255,   5,   0)',
   'rgb(204,   0,  41)',
-  'rgb(148,   0,  87)'
+  'rgb(148,   0,  87)',
+  'rgb(138,   0,  94)',
+  'rgb(122,   0,  98)',
+  'rgb(107,   0,  99)',
+  'rgb( 87,   0,  92)',
+  'rgb( 72,   0,  87)',
+  'rgb( 60,   0,  87)',
+  'rgb( 52,   0,  82)',
+  'rgb( 40,   0,  77)',
+  'rgb( 27,   0,  66)',
+  'rgb( 17,   0,  36)',
+  'rgb(  8,   0,  46)',
+  'rgb(  2,   0,  31)',
+  'rgb(  0,   0,   0)'
 ]
+
+const count = palette.length
 
 export const speedToColorsFilter = Vue.filter('speedToColors', speed => {
   const i = Math.floor(speed / 5)
-  return palette[i > 15 ? 15 : i]
+  return palette[i > count ? count : i]
 })
 
 export const speedToColorsFilter2 = Vue.filter('speedToColors2', speed => {
   const i = Math.floor(speed / 5)
   if (i == 0) return ''
-  return palette[i > 15 ? 15 : i]
+  return palette[i > count ? count : i]
 })
