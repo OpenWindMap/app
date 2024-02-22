@@ -85,7 +85,7 @@ export default {
     },
     restoreStore(state, object) {
       Object.entries(object).forEach(([key, value]) => {
-        Vue.set(state, key, value || state[key])
+        Vue.set(state, key, value === null ? state[key] : value)
       })
     },
     pushMapControls(state, { zoom, center }) {
