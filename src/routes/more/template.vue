@@ -23,6 +23,103 @@
           </a>
         </div>
         <div class="card">
+          <a href="https://forum.openwindmap.org/topic/160/1" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-plus"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Install a station</translate> <br>
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
+              </div>
+            </header>
+          </a>
+        </div>
+        <div class="card">
+          <a href="https://forum.openwindmap.org/category/43/app-android-ios" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-commenting-o"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Feedback</translate> <br>
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
+              </div>
+            </header>
+          </a>
+        </div>
+        <div class="card">
+          <a href="https://forum.openwindmap.org" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-users"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Forum</translate> <br>
+                  <!-- <translate tag="small">Contact us</translate> -->
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
+              </div>
+            </header>
+          </a>
+        </div>
+        <div class="card">
+          <a href="https://github.com/OpenWindMap/app" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-github"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Contribute to this app</translate> <br>
+                  <!-- <translate tag="small">Data are free for everyone !</translate> -->
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
+              </div>
+            </header>
+          </a>
+        </div>
+        <div class="card">
+          <a href="https://developers.pioupiou.fr" target="_blank">
+            <header class="card-header">
+              <div class="is-clearfix is-fullwidth">
+                <div class="is-pulled-left">
+                  <span class="icon">
+                    <i class="fa fa-database"></i>
+                  </span> &nbsp;
+                  <translate tag="strong">Open-data</translate> <br>
+                </div>
+                <div class="is-pulled-right">
+                  <span class="icon">
+                    <i class="fa fa-external-link"></i>
+                  </span>
+                </div>
+              </div>
+            </header>
+          </a>
+        </div>
+        <div class="card">
           <header class="card-header" @click="open('settings')">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left">
@@ -90,100 +187,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="card">
-          <header class="card-header" @click="open('contribute')">
-            <div class="is-clearfix is-fullwidth">
-              <div class="is-pulled-left">
-                <span class="icon">
-                  <i class="fa fa-child"></i>
-                </span> &nbsp;
-                <translate tag="strong">Contribute</translate> <br>
-                <!-- <translate tag="small">How to contribute</translate> -->
-              </div>
-              <div class="is-pulled-right">
-                <span class="icon">
-                  <i class="fa fa-chevron-down" v-if="opened === 'contribute'"></i>
-                  <i class="fa fa-chevron-right" v-else></i>
-                </span>
-              </div>
-            </div>
-          </header>
-          <div :class="['card-content', opened === 'contribute' ? '' : 'is-hidden']">
-            <div class="content">
-              <div class="card">
-                <a href="https://forum.openwindmap.org/topic/160/1" target="_blank">
-                  <header class="card-header">
-                    <div class="is-clearfix is-fullwidth">
-                      <div class="is-pulled-left">
-                        <translate tag="strong">Install your own station</translate> <br>
-                        <!-- <translate tag="small">Buy a Pioupiou to contribute</translate> -->
-                      </div>
-                      <div class="is-pulled-right">
-                        <span class="icon">
-                          <i class="fa fa-external-link"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </header>
-                </a>
-              </div>
-              <div class="card">
-                <a href="https://developers.pioupiou.fr" target="_blank">
-                  <header class="card-header">
-                    <div class="is-clearfix is-fullwidth">
-                      <div class="is-pulled-left">
-                        <translate tag="strong">Reuse the open data</translate> <br>
-                        <!-- <translate tag="small">Data are free for everyone !</translate> -->
-                      </div>
-                      <div class="is-pulled-right">
-                        <span class="icon">
-                          <i class="fa fa-external-link"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </header>
-                </a>
-              </div>
-              <div class="card">
-                <a href="https://github.com/OpenWindMap/app" target="_blank">
-                  <header class="card-header">
-                    <div class="is-clearfix is-fullwidth">
-                      <div class="is-pulled-left">
-                        <translate tag="strong">Help us develop this app</translate> <br>
-                        <!-- <translate tag="small">Data are free for everyone !</translate> -->
-                      </div>
-                      <div class="is-pulled-right">
-                        <span class="icon">
-                          <i class="fa fa-external-link"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </header>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <a href="https://forum.openwindmap.org" target="_blank">
-            <header class="card-header">
-              <div class="is-clearfix is-fullwidth">
-                <div class="is-pulled-left">
-                  <span class="icon">
-                    <i class="fa fa-commenting-o"></i>
-                  </span> &nbsp;
-                  <translate tag="strong">Forum</translate> <br>
-                  <!-- <translate tag="small">Contact us</translate> -->
-                </div>
-                <div class="is-pulled-right">
-                  <span class="icon">
-                    <i class="fa fa-external-link"></i>
-                  </span>
-                </div>
-              </div>
-            </header>
-          </a>
         </div>
         <div class="card">
           <header class="card-header" @click="open('legal')">
