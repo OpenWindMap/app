@@ -2,7 +2,7 @@
   <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom" @l-viewreset="boundsChange" @l-moveend="boundsChange" @l-zoomend="boundsChange" ref="map">
     <v-tilelayer
       :url="url"
-      attribution="<a href='https://osm.org/copyright'>OpenStreetMap</a> contributors | <a href='https://meteo-parapente.com'>Meteo-Parapente.com</a>"
+      attribution="<a href='https://osm.org/copyright'>OSM</a> | <a href='https://meteo-parapente.com'>MP</a>"
     />
     <v-marker :lat-lng="[myPosition.latitude, myPosition.longitude]" v-if="myPosition" :icon="icon"></v-marker>
     <map-marker v-for="marker in mapMarkers" :key="marker.key || marker.id"
@@ -213,5 +213,15 @@ export default {
 
   .leaflet-control-container .leaflet-bottom {
     z-index: unset;
+  }
+
+  .leaflet-control-attribution {
+    background: rgba(255, 255, 255, 0.3) !important;
+    a[href="https://leafletjs.com"], span[aria-hidden="true"] {
+      display: none;
+    }
+    a {
+      color: #888;
+    }
   }
 </style>
