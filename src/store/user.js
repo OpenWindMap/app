@@ -181,7 +181,7 @@ export default {
           context.commit('userPosition', { position })
         }, () => {
           // context.commit('userPosition', { position: null })
-        }, { maximumAge: 250, timeout: 10, enableHighAccuracy: true })
+        }, { maximumAge: 15000, timeout: 5000, enableHighAccuracy: true })
       }
     },
     restoreStore(context) {
