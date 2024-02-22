@@ -2,7 +2,7 @@
   <v-map :zoom="zoom" :center="enumCenter" :min-zoom="minZoom" @l-viewreset="boundsChange" @l-moveend="boundsChange" @l-zoomend="boundsChange" ref="map">
     <v-tilelayer
       :url="url"
-      attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+      attribution="<a href='https://osm.org/copyright'>OpenStreetMap</a> contributors | <a href='https://meteo-parapente.com'>Meteo-Parapente.com</a>"
     />
     <v-marker :lat-lng="[myPosition.latitude, myPosition.longitude]" v-if="myPosition" :icon="icon"></v-marker>
     <map-marker v-for="marker in mapMarkers" :key="marker.key || marker.id"
@@ -61,8 +61,7 @@ export default {
 
   data() {
     return {
-      // url: 'http://pioupiou.fr/tiles/{z}/{x}/{y}.png',
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'https://{s}.base-layers.meteo-parapente.com/osm-shaded/{z}/{x}/{y}.png',
       minZoom: 3,
       hold: false,
       icon: L.divIcon({
@@ -171,10 +170,6 @@ export default {
   //   background-color: initial;
   // }
 
-  .leaflet-control.leaflet-control-attribution {
-    display: none;
-  }
-
   .leaflet-top.leaflet-left.leaflet-after {
     position: absolute;
     top: 75px;
@@ -205,5 +200,9 @@ export default {
   .vue2leaflet-map .fa.fa-street-view {
     font-size: 34px;
     color: #3b74c9;
+  }
+
+  .leaflet-control-container .leaflet-top {
+    z-index: unset;
   }
 </style>
