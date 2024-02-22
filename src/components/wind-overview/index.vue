@@ -15,20 +15,20 @@
         </span>
       </template>
     </div>
-    <div :class="['column is-2-mobile', offset ? `is-offset-${ offset }` : `` ]">
-      <strong :style="{ color: this.$options.filters.speedToColors(speedMin) }">
+    <div :class="['column is-2-mobile speed', offset ? `is-offset-${ offset }` : `` ]">
+      <strong :style="{ color: this.$options.filters.speedToColors2(speedMin) }">
         {{ speedMin !== null && speedMin !== undefined ? $getvalue(speedMin) : '--' }}</strong>
       <br>
       <translate tag="small">min</translate>
     </div>
-    <div class="column is-2-mobile has-highlight">
-      <strong :style="{ color: this.$options.filters.speedToColors(speedAvg) }">
+    <div class="column is-2-mobile speed has-highlight">
+      <strong :style="{ color: this.$options.filters.speedToColors2(speedAvg) }">
         {{ speedAvg !== null && speedAvg !== undefined ? $getvalue(speedAvg) : '--' }}</strong>
       <br>
       <small>{{ $convert.currentLabel }}</small>
     </div>
-    <div class="column is-2-mobile">
-      <strong :style="{ color: this.$options.filters.speedToColors(speedMax) }">
+    <div class="column is-2-mobile speed">
+      <strong :style="{ color: this.$options.filters.speedToColors2(speedMax) }">
         {{ speedMax !== null && speedMax !== undefined ? $getvalue(speedMax) : '--' }}</strong>
       <br>
       <translate tag="small">max</translate>
@@ -127,5 +127,9 @@ export default {
     i.fa {
       font-size: 2em;
     }
+  }
+
+  .speed > strong{
+    text-shadow: -0.5px -0.5px 0 #aaa, 0.5px -0.5px 0 #aaa, -0.5px 0.5px 0 #aaa, 0.5px 0.5px 0 #aaa;
   }
 </style>

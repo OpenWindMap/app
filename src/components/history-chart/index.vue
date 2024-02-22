@@ -157,7 +157,7 @@ export default {
     drawDataLine() {
       this.context.lineWidth = 2 * this.pxRatio
 
-      this.context.strokeStyle = this.gradient
+      this.context.strokeStyle = 'rgba(0, 0, 0, 0.3)' //this.gradient
 
       let X = this.time2x(this.dataSet[0].date)
       let Y = this.speed2y(this.dataSet[0].avg)
@@ -193,24 +193,41 @@ export default {
       // }
     },
     drawDataAmplitude() {
-      this.context.fillStyle = '#316fad'
+      this.context.shadowColor = 'rgba(0, 0, 0, 0.2)'
+      this.context.shadowBlur = 10
+      this.context.fillStyle = 'white'
+      this.context.strokeStyle = 'rgba(0, 0, 0, 0.2)'
       this.context.beginPath()
-
       this.context.moveTo(this.time2x(this.dataSet[0].date), this.speed2y(this.dataSet[0].max))
-
-      this.dataSet.slice(1).forEach(data => {
-        this.context.lineTo(this.time2x(data.date), this.speed2y(data.max))
-      })
-
-      this.dataSet.reverse().forEach(data => {
-        this.context.lineTo(this.time2x(data.date), this.speed2y(data.min))
-      })
-
+      for (let i = 1; i < this.dataSet.length; i++) {
+        this.context.lineTo(this.time2x(this.dataSet[i].date), this.speed2y(this.dataSet[i].max))
+      }
+      for (let i = this.dataSet.length -1 ; i >= 0; i--) {
+        this.context.lineTo(this.time2x(this.dataSet[i].date), this.speed2y(this.dataSet[i].min))
+      }
+      // this.context.stroke()
       this.context.fill()
+
+      this.context.shadowColor = 0
+      this.context.shadowBlur = 0
+      
+      for (let i = 1; i < this.dataSet.length; i++) {
+        this.context.fillStyle = this.$options.filters.speedToColors((this.dataSet[i-1].avg + this.dataSet[i].avg) / 2)
+        this.context.lineWidth = this.pxRatio
+        this.context.beginPath()
+        this.context.moveTo(this.time2x(this.dataSet[i-1].date), this.speed2y(this.dataSet[i-1].max))
+        this.context.lineTo(this.time2x(this.dataSet[i].date) + this.pxRatio , this.speed2y(this.dataSet[i].max))
+        this.context.lineTo(this.time2x(this.dataSet[i].date) + this.pxRatio, this.speed2y(this.dataSet[i].min))
+        this.context.lineTo(this.time2x(this.dataSet[i-1].date), this.speed2y(this.dataSet[i-1].min))
+        this.context.closePath()
+        this.context.fill()
+      }
+
+      this.dataSet.reverse() // it won't work without this, IDK why
     },
     drawGrid() {
-      this.context.strokeStyle = 'rgba(255, 255, 255, 0.1)'
-      this.context.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      this.context.strokeStyle = 'rgba(0, 0, 0, 0.1)'
+      this.context.fillStyle = 'rgba(0, 0, 0, 0.5)'
       this.context.font = `${10 * this.pxRatio}px Arial`
       this.context.textBaseline = 'bottom'
 
@@ -257,9 +274,9 @@ export default {
       this.context.closePath()
       this.context.lineWidth = this.pxRatio
       this.context.fillStyle = this.$options.filters.speedToColors(speed)
-      // this.context.strokeStyle = 'rgb(74, 74, 74)'
+      this.context.strokeStyle = 'rgba(0, 0, 0, 0.4)'
       this.context.fill()
-      //  this.context.stroke()
+      this.context.stroke()
       this.context.restore()
     }
   }
@@ -272,7 +289,7 @@ export default {
   figure, canvas {
     height: 100%;
     width: 100%;
-    background-color: hsl(216, 57%, 31%)
+    background-color: white;
   }
 
   span.icon {

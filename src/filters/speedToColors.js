@@ -19,7 +19,13 @@ export const palette = [
   'rgb(148,   0,  87)'
 ]
 
-export default Vue.filter('speedToColors', speed => {
+export const speedToColorsFilter = Vue.filter('speedToColors', speed => {
   const i = Math.floor(speed / 5)
+  return palette[i > 15 ? 15 : i]
+})
+
+export const speedToColorsFilter2 = Vue.filter('speedToColors2', speed => {
+  const i = Math.floor(speed / 5)
+  if (i == 0) return ''
   return palette[i > 15 ? 15 : i]
 })

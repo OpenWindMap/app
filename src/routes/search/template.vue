@@ -312,7 +312,7 @@ export default {
       white-space: nowrap;
 
       &, strong, small {
-        color: $body-background;
+        //color: $body-background;
       }
 
       &:hover {
@@ -347,7 +347,7 @@ export default {
   }
 
   span.icon {
-    color: $grey;
+    //color: $grey-darker;
     vertical-align: middle;
     height: 100%;
     i.fa {
@@ -357,6 +357,7 @@ export default {
 
   .control span.icon i.fa {
     font-size: 21px;
+    color: $grey;
   }
 
   span.icon {
