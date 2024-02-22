@@ -191,7 +191,8 @@ export default {
     },
     sendFeedback(context, feedback) {
       console.log('Feedback > ', feedback)
-      Vue.http.post(`http://localhost:4500/${feedback.type}`, feedback)
+      Vue.http.post(`http://localhost:4500/${feedback.type}`, feedback) // TODO
+      console.error('feedback server not set')
     },
     syncTime(context) {
       setInterval(() => {
