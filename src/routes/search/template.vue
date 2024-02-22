@@ -67,7 +67,7 @@
 
         <div class="column mini-map-container" v-if="searchLocation">
           <map-content :zoom="9" :map-markers="searchResults.length ? searchResults : undefined" :center="searchLocation"
-            @bounds-change="boundsChange" @marker-click="show">
+            @bounds-change="boundsChange" @center-change="centerChange" @marker-click="show">
           </map-content>
         </div>
 
@@ -100,6 +100,7 @@ import mapContent from '@/components/map-content/index.vue'
 import stationOverview from '@/components/station-overview/index.vue'
 import { focus } from 'vue-focus'
 import { throttle } from 'lodash'
+import geodist from 'geodist'
 
 export default {
   name: 'search-view',
@@ -113,6 +114,7 @@ export default {
       searchFocused: false,
       searchLocation: undefined,
       searchBounds: undefined,
+      searchCenter: {lat: 45, lon: 5},
       opened: undefined,
       highlights: [],
       locationResult: [],
@@ -130,9 +132,25 @@ export default {
       return this.$store.getters['pioupious/findByName'](this.searchInput)
     },
     searchResults() {
-      return this.preSearchResults.concat(
-        this.$store.getters['pioupious/findByLoc'](this.searchBounds)
-      )
+      const nearby = this.$store.getters['pioupious/findByLoc'](this.searchBounds)
+      const merged = this.preSearchResults.concat(nearby)
+      return merged.sort((a, b) => {
+        const distA = geodist(
+          this.searchCenter,
+          {lat: a.location.latitude, lon: a.location.longitude}
+        )
+        const distB = geodist(
+          this.searchCenter,
+          {lat: b.location.latitude, lon: b.location.longitude}
+        )
+        return distA < distB ? -1 : 1
+      })
+    },
+    latitude() {
+      return this.$store.state.user.position ? this.$store.state.user.position.latitude : undefined
+    },
+    longitude() {
+      return this.$store.state.user.position ? this.$store.state.user.position.longitude : undefined
     }
   },
 
@@ -165,6 +183,10 @@ export default {
     boundsChange(bounds) {
       this.searchBounds = bounds
     },
+    centerChange(center) {
+      const { lat, lng } = center
+      this.searchCenter = { lat, lon: lng }
+    },
     blurLater() {
       setTimeout(() => {
         this.searchFocused = false
@@ -174,18 +196,6 @@ export default {
       this.searchInput = name
       this.searchLocation = location
     },
-    centerChange(center) {
-      throttle(() => {
-        this.$http.get(`http://api-search.pioupiou.fr/v1/reverse?point.lat=${center.lat}&point.lon=${center.lng}&size=1`)
-        .then(({ body: response }) => {
-          const location = response.features[0]
-          this.searchInput = (location.properties.locality) ?
-            `${location.properties.locality}, ${location.properties.country}` :
-            (location.properties.macroregion) ?
-            `${location.properties.macroregion}, ${location.properties.country}` :
-            `${location.properties.region}, ${location.properties.country}`
-        })
-      }, 6000)()
     stationType(id) {
       return this.$store.getters['pioupious/getStationType'](id)
     }
@@ -206,12 +216,17 @@ export default {
 
       if (!this.searchFocused || this.searchInput.length < 3) return
 
-      console.log('Search ' + this.searchInput)
+      let query = `https://api-search.meteo-parapente.com/v1/autocomplete?text=${this.searchInput}`
 
-      this.$http.get(`http://api-search.pioupiou.fr/v1/autocomplete?text=${this.searchInput}`)
+      if (this.latitude && this.longitude) {
+        query += `&focus.point.lat=${this.latitude}&focus.point.lon=${this.longitude}`
+      }
+
+      this.$http.get(query)
         .then(({ body: response }) => {
           if (this.searchInput !== response.geocoding.query.text) return
           this.locationResult = response.features
+          
         })
 
         // TODO : reimplement geoloc
