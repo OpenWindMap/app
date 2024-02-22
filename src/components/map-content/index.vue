@@ -210,4 +210,8 @@ export default {
   .leaflet-control-container .leaflet-top {
     z-index: unset;
   }
+
+  .leaflet-control-container .leaflet-bottom {
+    z-index: unset;
+  }
 </style>
