@@ -1,6 +1,11 @@
 # app
 Source code of the OpenWindMap hybrid Android / iOS / Web app
 
+Android: https://play.google.com/store/apps/details?id=tech.altostratus.pioupiou
+
+iOS: https://apps.apple.com/app/openwindmap/id1235894756
+
+
 *Based on the legacy Pioupiou app. Work in progress*
 
 `npm run dev`
