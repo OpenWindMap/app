@@ -74,25 +74,19 @@
                 </div>
 
                 <div class="column">
-                  <article class="message" v-if="pioupiou.meta && description">
-                    <div class="message-body" v-html="description">
+                  <article class="message">
+                    <div class="message-body" v-html="description" v-if="pioupiou.meta && description">
                     </div>
-                    <div class="message-body pull-right">
-                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
-                    </div>
-                  </article>
-                  <article class="message" v-else>
-                    <div class="message-body">
+                    <div class="message-body" v-else>
                       <translate>
                         No descrition provided
                       </translate>
                     </div>
-                    <div class="message-body pull-right" v-if="pioupiou.meta">
-                      <small><a :href="'https://pioupiou.fr/' + pioupiou.id + '/edit?fromApp'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
+                    <div class="message-body pull-right">
+                      <small><a :href="'https://forum.openwindmap.org/topic/66/1'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                 </div>
-
               </div>
             </div>
           </div>
