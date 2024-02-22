@@ -4,7 +4,7 @@
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
           <strong>{{ name || `${ $gettext('Unnamed station') }` }}</strong> <br>
-          <small>#{{ station.id }}</small>
+          <small>{{ stationType }} {{ station.id }}</small>
           <template v-if="!offlineMode">
             -
             <small v-if="!offline && station.measurements">
@@ -117,6 +117,9 @@ export default {
     },
     name() {
       return this.$store.state.user.renames[this.station.id] || (this.station.meta && this.station.meta.name)
+    },
+    stationType() {
+      return this.$store.getters['pioupious/getStationType'](this.station.id)
     }
   },
 

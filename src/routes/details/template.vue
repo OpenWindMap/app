@@ -6,7 +6,7 @@
           <header class="card-header">
             <div class="is-clearfix is-fullwidth">
               <div class="is-pulled-left title is-5">
-                <strong ref="rename" :contenteditable="faved" spellcheck="false" @keypress="validateName" @blur="updateName" @focus="selectName">{{ name || $gettext('Unnamed Pioupiou') }}</strong>
+                <strong ref="rename" :contenteditable="faved" spellcheck="false" @keypress="validateName" @blur="updateName" @focus="selectName">{{ name || $gettext('Unnamed Station') }}</strong>
                 <template v-if="faved">
                   <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
                     <i class="fa fa-window-close"></i>

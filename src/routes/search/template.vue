@@ -12,7 +12,7 @@
           <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 0 || preSearchResults.length > 0)">
             <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
               <strong>{{ $store.state.user.renames[pioupiou.id] || pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
-              <small>(Pioupiou #{{ pioupiou.id }})</small>
+              <small> ({{ stationType(pioupiou.id) }} #{{ pioupiou.id }})</small>
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
               <strong>{{ location.properties.name }}</strong><small>, {{ location.properties.region }}</small>
@@ -186,6 +186,8 @@ export default {
             `${location.properties.region}, ${location.properties.country}`
         })
       }, 6000)()
+    stationType(id) {
+      return this.$store.getters['pioupious/getStationType'](id)
     }
   },
 

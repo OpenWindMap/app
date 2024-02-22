@@ -61,6 +61,22 @@ export default {
         pioupiou.location.longitude >= boundaries._southWest.lng &&
         pioupiou.location.longitude <= boundaries._northEast.lng
       )
+    },
+    getStationType(state, getters) {
+      return id => {
+        // hardcoded right now. to be provided by next API
+        if (id >= 1300) {
+          return 'Windbird'
+        } else if (id >= 1200) {
+          return 'Custom'
+        } else if (id >= 900 && id < 1000) {
+          return 'Arduino'
+        } else if (id >= 800 && id < 900) {
+          return 'Meteowind'
+        } else {
+          return 'Pioupiou'
+        }
+      }
     }
   },
 
