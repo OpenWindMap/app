@@ -38,7 +38,8 @@ export default {
     zoom: undefined,
     currentTime: 0,
     position: undefined,
-    lastFeedback: undefined
+    lastFeedback: undefined,
+    positionWatch: false
   },
 
   getters: {
@@ -107,6 +108,9 @@ export default {
       } else {
         state.position = null
       }
+    },
+    setPositionWatch(state, { positionWatch }) {
+      state.positionWatch = positionWatch
     },
     setLastFeedback(state, { lastFeedback }) {
       state.lastFeedback = lastFeedback
@@ -183,6 +187,11 @@ export default {
           // context.commit('userPosition', { position: null })
         }, { maximumAge: 15000, timeout: 5000, enableHighAccuracy: true })
       }
+    },
+    setPositionWatch(context, { positionWatch }) {
+      if (positionWatch && !context.state.positionWatch) context.dispatch('watchPosition')
+      context.commit('setPositionWatch', { positionWatch })
+      context.dispatch('saveIntoLStorage', { positionWatch  })
     },
     restoreStore(context) {
       Object.keys(context.state).forEach(key => {

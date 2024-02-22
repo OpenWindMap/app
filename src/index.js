@@ -35,5 +35,6 @@ new Vue({
 
 store.dispatch('user/syncTime')
 store.dispatch('user/restoreStore')
+if (store.state.user.positionWatch) store.dispatch('user/watchPosition')
 
 window.Vue = Vue

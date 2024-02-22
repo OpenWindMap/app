@@ -18,20 +18,26 @@
         </h6>
         <br>
       </div>
-      <div class="column" v-if="nearsPioupious.length > 0">
+      <div class="column">
         <h5 class="subtitle is-5">
           <span class="icon">
             <i class="fa fa-street-view"></i>
           </span>
           <translate>Near you</translate>
         </h5>
+        <div style="padding-left: 12px;" v-if="!positionEnabled"> <!-- TODO: make this cleaner ---->
+          <a @click="enablePositionWatch()" class="button is-primary is-outlined is-small">
+            <translate>Click to enable location detection</translate>
+          </a>
+        </div>
+        <h6 class="subtitle is-6" v-else-if="nearsPioupious.length === 0">
+          <translate>No data yet</translate>
+        </h6>
         <station-overview v-for="pioupiou in nearsPioupious" v-if="pioupiou.id"
           :key="pioupiou.id" :station="pioupiou" :offlineMode="offlineMode"
           :opened="opened === pioupiou.id && context === 'F'" @open="show" @show="show">
         </station-overview>
-        <h6 class="subtitle is-6" v-if="nearsPioupious.length === 0">
-          <translate>No nears spots yet</translate>
-        </h6>
+
       </div>
       <div class="column">
         <h5 class="subtitle is-5">
@@ -106,6 +112,9 @@ export default {
     },
     offlineMode() {
       return this.$parent.offlineMode
+    },
+    positionEnabled() {
+      return this.$store.state.user.positionWatch
     }
   },
 
@@ -160,6 +169,9 @@ export default {
     },
     show(pioupiou) {
       this.$router.push({ name: 'details', params: { id: pioupiou.id } })
+    },
+    enablePositionWatch() {
+      this.$store.dispatch('user/setPositionWatch', { positionWatch: true })
     }
   }
 }

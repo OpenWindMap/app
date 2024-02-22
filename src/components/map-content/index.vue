@@ -119,6 +119,7 @@ export default {
       this.$emit('zoom-change', this.$refs.map.mapObject.getZoom())
     },
     moveOnMe() {
+      if (!this.$store.state.user.positionWatch) this.enablePositionWatch()
       let zoom = this.zoom
       if (!this.hold && zoom < 10) {
         zoom = 10
@@ -130,12 +131,16 @@ export default {
       this.$emit('zoom-change', zoom)
     },
     stickOnMe() {
+      if (!this.$store.state.user.positionWatch) this.enablePositionWatch()
       if (this.hold) {
         this.hold = false
       } else {
         this.moveOnMe()
         this.hold = true
       }
+    },
+    enablePositionWatch() {
+      this.$store.dispatch('user/setPositionWatch', { positionWatch: true })
     }
   },
 
