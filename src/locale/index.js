@@ -8,6 +8,10 @@ export const locale = Vue.use(GetText, {
   availableLanguages: {
     en: 'English',
     fr: 'Français',
+    de: 'Deutsch',
+    it: 'Italiano',
+    es: 'Español',
+    pt: 'Português',
     nl: 'Nederlands'
   },
   defaultLanguage: 'en',

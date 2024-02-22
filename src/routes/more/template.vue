@@ -70,12 +70,12 @@
                       <!-- <translate tag="small">Choose your language</translate> -->
                     </div>
                     <div class="is-pulled-right">
-                      <div class="field has-addons">
+                      <div class="field">
                         <p class="control" v-for="(language, key) in $language.available">
                           <a @click="changeLanguage(key)"
-                            :class="['button is-small is-primary', $language.current === key ? '' : 'is-outlined is-inverted']">
+                            :class="['button is-small is-primary wide', $language.current === key ? '' : 'is-outlined is-inverted']">
                             <span>{{ language }}</span>
-                          </a>
+                          </a><br />
                         </p>
                         <!--<p class="control">
                           <a @click="moreLanguage"
@@ -441,5 +441,9 @@ export default {
 
   .fa.fa-external-link {
     font-weight: bold;
+  }
+
+  .button.wide {
+    width: 150px;
   }
 </style>
