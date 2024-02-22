@@ -27,7 +27,7 @@
           </template>
         </div>
         <div class="is-pulled-right">
-          <template v-if="!offlineMode">
+          <template>
             <wind-compass class="wind-compass" v-if="station.measurements" :offline="offline"
               :inline="true" :icon-only="opened" :hide="opened"
               :heading="station.measurements.wind_heading"
@@ -37,9 +37,6 @@
             </wind-compass>
             <!--  :label="$gettext('avg')" -->
             <wind-compass class="wind-compass" v-else></wind-compass>
-          </template>
-          <template v-else>
-            <call-station :station-id="station.id" ref="call"/>
           </template>
         </div>
       </div>
@@ -68,12 +65,11 @@
 import windCompass from '@/components/wind-compass/index.vue'
 import windOverview from '@/components/wind-overview/index.vue'
 import historyChart from '@/components/history-chart/index.vue'
-import callStation from '@/components/call-station/index.vue'
 
 export default {
   name: 'station-overview',
 
-  components: { windCompass, windOverview, historyChart, callStation },
+  components: { windCompass, windOverview, historyChart },
 
   props: {
     station: {
@@ -94,10 +90,10 @@ export default {
 
   methods: {
     open(pioupiou) {
-      this.$emit('open', pioupiou, this.$refs.call ? this.$refs.call.callLink : undefined)
+      this.$emit('open', pioupiou)
     },
     show(pioupiou) {
-      this.$emit('show', pioupiou, this.$refs.call ? this.$refs.call.callLink : undefined)
+      this.$emit('show', pioupiou)
     }
   },
 

@@ -158,12 +158,8 @@ export default {
       this.opened = this.opened === pioupiou.id && this.context === ctx ? undefined : pioupiou.id
       this.context = ctx
     },
-    show(pioupiou, callLink) {
-      if (this.offlineMode) {
-        window.location.href = callLink
-      } else {
-        this.$router.push({ name: 'details', params: { id: pioupiou.id } })
-      }
+    show(pioupiou) {
+      this.$router.push({ name: 'details', params: { id: pioupiou.id } })
     }
   }
 }
