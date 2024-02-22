@@ -194,7 +194,7 @@ nav.nav, .card {
   background-color: $body-background;
 }
 
-::-webkit-input-placeholder {
-  color: $white;
+::placeholder {
+  color: $grey-darker;
   opacity: 0.7;
 }
