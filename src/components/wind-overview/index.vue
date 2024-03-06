@@ -43,22 +43,22 @@ export default {
   props: {
     heading: {
       type: Number,
-      required: true
+      default: null
     },
 
     speedAvg: {
       type: Number,
-      required: true
+      default: null
     },
 
     speedMin: {
       type: Number,
-      required: true
+      default: null
     },
 
     speedMax: {
       type: Number,
-      required: true
+      default: null
     },
 
     offset: {
