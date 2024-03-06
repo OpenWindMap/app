@@ -8,7 +8,7 @@
               <div class="is-pulled-left title is-5">
                 <strong ref="rename" :contenteditable="faved" spellcheck="false" @keypress="validateName" @blur="updateName" @focus="selectName">{{ name || $gettext('Unnamed Station') }}</strong>
                 <template v-if="faved">
-                  <span class="icon" @click="restoreName" v-if="pioupiou.meta && name !== pioupiou.meta.name">
+                  <span class="icon" @click="restoreName" v-if="name !== pioupiou.name">
                     <i class="fa fa-window-close"></i>
                   </span>
                   <span class="icon" @click="renameFocus" v-else>
@@ -16,20 +16,7 @@
                   </span>
                 </template>
                 <br>
-                <small>#{{ pioupiou.id || id}}</small>
-                <small v-if="pioupiou.location">
-                  |
-                  {{ Math.abs(pioupiou.location.latitude) }}
-                  {{ pioupiou.location.latitude > 0 ?
-                    $pgettext('Cardinal direction abbreviation', 'N') :
-                    $pgettext('Cardinal direction abbreviation', 'S') }}
-                  ,
-                  {{ Math.abs(pioupiou.location.longitude) }}
-                  {{ pioupiou.location.longitude > 0 ?
-                    $pgettext('Cardinal direction abbreviation', 'E') :
-                    $pgettext('Cardinal direction abbreviation', 'W') }}
-                </small>
-                <small class="location-placeholder" v-else></small>
+                <small>{{ pioupiou.id || id }}</small>
               </div>
               <div class="is-pulled-right">
                 <a @click="favMe" class="is-warning title is-3">
@@ -83,10 +70,18 @@
                       </translate>
                     </div>
                     <div class="message-body pull-right">
-                      <small><a :href="'https://forum.openwindmap.org/topic/66/1'" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
+                      <small><a :href="`https://api.openwindmap.org/v2/edit/redirect/` + pioupiou.id" target="_blank" class="no-decoration"><span class="icon"><i class="fa fa-pencil-square-o"></i></span></a></small>
                     </div>
                   </article>
                 </div>
+
+                <div class="column" style="font-size: 90%;">
+                  <ul>
+                    <li><translate>Hardware:</translate> <span v-html="hardware"></span></li>
+                    <li><translate>Network(s):</translate> <span v-html="networks || ''"></span></li>
+                  </ul>
+                </div>
+
               </div>
             </div>
           </div>
@@ -109,7 +104,7 @@ export default {
 
   props: {
     id: {
-      Type: Number,
+      Type: String,
       default: 0
     }
   },
@@ -134,7 +129,7 @@ export default {
       return this.$store.state.user.favorites.indexOf(this.id) !== -1
     },
     name() {
-      return this.$store.getters['user/getName'](this.id) || (this.pioupiou.meta && this.pioupiou.meta.name)
+      return this.$store.getters['user/getName'](this.id) || (this.pioupiou.name)
     },
     currentTime() {
       return this.$store.state.user.currentTime
@@ -153,6 +148,18 @@ export default {
       const station = this.pioupiou.location
       const user = this.$store.state.user.position
       return user && station ? geodist(station, user, { unit: 'meters' }) : undefined
+    },
+    networks() {
+      if (!this.pioupiou.meta) return ''
+      return this.pioupiou.meta.networks.map(network => {
+        return `<a class="link" href="https://api.openwindmap.org/v2/network/redirect/${encodeURI(network)}" target="_blank">${network}</a>`
+      }).join(', ')
+    },
+    hardware() {
+      if (!this.pioupiou.meta) return '-'
+      const hardware = this.pioupiou.meta.hardware
+      if (!hardware) return '-'
+      return `<a class="link" href="https://api.openwindmap.org/v2/hardware/redirect/${encodeURI(hardware)}" target="_blank">${hardware}</a>`
     }
   },
 

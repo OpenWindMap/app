@@ -14,7 +14,7 @@ export default {
 
   props: {
     stationId: {
-      Type: Number,
+      Type: String,
       required: true
     }
   },

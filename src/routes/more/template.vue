@@ -150,7 +150,7 @@
                       <div class="field has-addons">
                         <p class="control" v-for="(unit, key) in $convert.available">
                           <a @click="changeUnit(key)"
-                            :class="['button is-small is-primary', $convert.current === key ? '' : 'is-outlined is-inverted']">
+                            :class="['button is-small is-primary', $convert.current === key ? '' : 'is-inverted is-outlined']">
                             <span>{{ unit }}</span>
                           </a>
                         </p>

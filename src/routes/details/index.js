@@ -9,5 +9,5 @@ export default {
   },
 
   component: Details,
-  props: ({ params }) => ({ id: parseInt(params.id, 10) })
+  props: ({ params }) => ({ id: params.id })
 }

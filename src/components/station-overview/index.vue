@@ -4,9 +4,9 @@
       <div class="is-clearfix is-fullwidth">
         <div class="is-pulled-left">
           <strong>{{ name || `${ $gettext('Unnamed station') }` }}</strong> <br>
-          <small>{{ stationType }} {{ station.id }}</small>
+          <small>{{ station.id }}</small>
           <template v-if="!offlineMode">
-            -
+            ·
             <small v-if="!offline && station.measurements">
               {{ station.measurements.date | timeago(currentTime) }}
             </small>
@@ -112,10 +112,7 @@ export default {
       return this.$store.state.user.currentTime
     },
     name() {
-      return this.$store.state.user.renames[this.station.id] || (this.station.meta && this.station.meta.name)
-    },
-    stationType() {
-      return this.$store.getters['pioupious/getStationType'](this.station.id)
+      return this.$store.state.user.renames[this.station.id] || (this.station.name)
     }
   },
 

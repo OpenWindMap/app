@@ -74,10 +74,10 @@ export default {
       return this.data.map(data => ({
         lat: data[1],
         lon: data[2],
-        avg: data[4],
-        min: data[3],
-        max: data[5],
-        heading: data[6],
+        avg: data[5],
+        min: data[4],
+        max: data[6],
+        heading: data[7],
         date: new Date(data[0])
       }))
     },

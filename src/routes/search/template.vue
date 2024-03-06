@@ -11,8 +11,8 @@
           </span>
           <ul class="autocomplete" v-show="searchFocused && (locationResult.length > 0 || preSearchResults.length > 0)">
             <li v-for="pioupiou in preSearchResults.slice(0, 3)" v-if="pioupiou !== undefined" @click="show(pioupiou)">
-              <strong>{{ $store.state.user.renames[pioupiou.id] || pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</strong>
-              <small> ({{ stationType(pioupiou.id) }} #{{ pioupiou.id }})</small>
+              <strong>{{ $store.state.user.renames[pioupiou.id] || pioupiou.name || $gettext('Unnamed Pioupiou') }}</strong>
+              <small> ({{ pioupiou.id }})</small>
             </li>
             <li v-for="location in locationResult" v-if="location !== undefined" @click="searchIn(location)">
               <strong>{{ location.properties.name }}</strong><small>, {{ location.properties.region }}</small>
@@ -57,8 +57,8 @@
           <li v-for="pioupiou in highlightsPioupious" v-if="pioupiou !== undefined" :key="pioupiou.id">
             <router-link :to="{ 'name': 'details', 'params': { id: pioupiou.id } }"
               v-if="pioupiou !== undefined && pioupiou.id !== undefined">
-              <span>{{ pioupiou.meta && pioupiou.meta.name || $gettext('Unnamed Pioupiou') }}</span>
-              <span> #{{ pioupiou.id }}</span>
+              <span>{{ pioupiou.name || $gettext('Unnamed Pioupiou') }}</span>
+              <span> {{ pioupiou.id }}</span>
             </router-link>
           </li>
         </ul>-->
@@ -195,9 +195,6 @@ export default {
     setSuggest(name, location) {
       this.searchInput = name
       this.searchLocation = location
-    },
-    stationType(id) {
-      return this.$store.getters['pioupious/getStationType'](id)
     }
   },
 

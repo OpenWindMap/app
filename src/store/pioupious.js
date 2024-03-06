@@ -33,7 +33,7 @@ export default {
     findByName(state) {
       return search => Object.values(state.pioupious).filter(pioupiou =>
         search.length > 0 && (
-          (new RegExp(search, 'i')).test(pioupiou.meta.name) ||
+          (new RegExp(search, 'i')).test(pioupiou.name) ||
           (new RegExp(search, 'i')).test(pioupiou.id)
         )
       )
@@ -97,7 +97,15 @@ export default {
     updateOne(state, { pioupiou }) {
       if (pioupiou.id in state.pioupious) {
         Object.keys(pioupiou).forEach(key => {
-          if ((typeof pioupiou[key] === 'object' && 'date' in pioupiou[key] && state.pioupious[pioupiou.id][key].date !== pioupiou[key].date) || (typeof pioupiou[key] !== 'object' && state.pioupious[pioupiou.id][key] !== pioupiou[key])) {
+          if (
+            (typeof pioupiou[key] === 'object' && (
+              (!state.pioupious[pioupiou.id][key])
+              ||
+              ('date' in pioupiou[key] && state.pioupious[pioupiou.id][key].date !== pioupiou[key].date)
+            ))
+            ||
+            (typeof pioupiou[key] !== 'object' && state.pioupious[pioupiou.id][key] !== pioupiou[key])
+          ) {
             console.log('update', pioupiou.id, key)
             Vue.set(state.pioupious[pioupiou.id], key, pioupiou[key])
           }

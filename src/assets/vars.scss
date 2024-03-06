@@ -198,3 +198,11 @@ nav.nav, .card {
   color: $grey-darker;
   opacity: 0.7;
 }
+
+a.link {
+  text-decoration: underline;
+}
+
+a.link::after {
+  // content: ' >';
+}
